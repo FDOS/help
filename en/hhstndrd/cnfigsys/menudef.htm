@@ -1,0 +1,35 @@
+<html>
+<title>menudefault</title>
+<body>
+<h1>menudefault</h1>
+<p>Sets a time delayed default option for a config.sys menu.</p>
+<pre>
+   <b>menudefault=defaultoption,delay</b>
+</pre>
+where the delay is in seconds.
+<h2>Example</h2>
+<pre>
+   MENU Choose Wisely:
+   MENU
+   MENU 0)    normal stuff
+   MENU 1)    alternative stuff
+   
+   MENUDEFAULT=0,5
+</pre>
+The menu will wait 5 seconds. If no key is pressed in this time, option 0 is selected
+automatically.
+<h2>See Also</h2>
+<pre>
+<a href="menu.htm">menu</a>
+<a href="menucol.htm">menucol</a>
+<a href="index.htm">config.sys</a>
+</pre>
+<hr>
+<address>
+<b>Copyright &copy; 2003 Rob Platt</b>
+<br>
+This file forms part of The FreeDOS HTML Help Documentation, and is covered
+under its terms: see <a href="../../index.htm#copying">index.htm</a><br>
+</address>
+</body>
+</html>

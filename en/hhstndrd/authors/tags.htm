@@ -1,0 +1,102 @@
+<HTML>
+<HEAD>
+ <TITLE>HTML Help Viewer 5.3.2 - Supported Tags </TITLE>
+</HEAD>
+<!-- This document is HTML Help compatible -->
+<BODY>
+<H1>HTML Help Viewer 5.3.2 - Supported Tags</H1>
+<P>This document describes the subset of HTML supported by Help.</P>
+<p><b><A Name="Comment">&lt;!-- --&gt;</A></b><br>
+Comment. All tags and text within the comment are
+ignored by HTML Help.</p>
+<p><b><A Name="A">&lt;A&gt;</A></b><br>
+Help fully supports the HREF and NAME attributes, except that:
+<UL>
+<LI>Links to other files can only be relative, not absolute. So
+HREF="..\foo.htm" works but HREF="C:\foo.htm" does not
+<LI>Double quotation marks &quot;&quot; must always be put around filenames
+and bookmarks e.g. HREF="foo.htm" but not HREF=foo.htm
+<LI>references to web and email addresses are ignored.
+<LI>DOS-style (8.3) filenames should be used.
+</UL></P>
+<p><b><A Name="B">&lt;B&gt;</A></b><br>
+<b>Bold</b> text is displayed in bright white.</p>
+<p><b><A Name="BODY">&lt;BODY&gt;</A></b><br>
+Indicates the beginning of the text to be displayed.</p>
+<p><b><A Name="BR">&lt;BR&gt;</A></b><br>
+Line break.</p>
+<p><b><A Name="CODE">&lt;CODE&gt;</A></b><br>
+Code is just displayed as <b>Bold</b> text (in bright white).</p>
+<p><b><A Name="EM">&lt;EM&gt;</A></b><br>
+<em>Emphasised</em> text, like <i>italicised</i> text, is displayed using
+the color magenta (a shade of purple).
+</p>
+<p><b><A Name="H1">&lt;H1&gt;</A></b><br>
+Help puts this header 1 text in <b>bold</b> and puts a thick line
+underneath it.<br>
+<p><b><A Name="H2">&lt;H2&gt;</A></b>,
+   <b><A Name="H3">&lt;H3&gt;</A></b><br>
+Header 2 and 3 text is put in bold, and a new paragraph is started.</p>
+<p><b><A Name="HEAD">&lt;HEAD&gt;</A></b><br>
+HTML header.</p>
+<p><b><A Name="HR">&lt;HR&gt;</A></b><br>
+Creates a horizontal rule along the screen. Only a horizontal rule without
+any attributes is supported at present.</p>
+<p><b><A Name="HTML">&lt;HTML&gt;</A></b><br>
+Denotes a HTML file.</p>
+<p><b><A Name="I">&lt;I&gt;</A></b><br>
+<i>Italicised</i> text is displayed using the color magenta
+(a shade of purple).</p>
+<p><b><A Name="LI">&lt;LI&gt;</A></b><br>
+A list object.</p>
+<p><b><A Name="OL">&lt;OL&gt;</A></b><br>
+At present, ordered lists are rendered as unordered lists. Embedded lists
+are not supported.
+<p><b><A Name="P">&lt;P&gt;</A></b><br>
+New paragraph.</p>
+<p><b><A Name="PRE">&lt;PRE&gt;</A></b><br>
+Preformatted text</p>
+<p><b><A Name="STRONG">&lt;STRONG&gt;</A></b><br>
+<strong>Strong</strong> text, like <b>bold</b> text, is displayed as bright
+white.</p>
+<p><b><A Name="TITLE">&lt;TITLE&gt;</A></b><br>
+Does nothing - yet.</p>
+<p><b><A Name="TT">&lt;TT&gt;</A></b><br>
+<em>TT</em> text, like <i>italicised</i> text, is displayed using
+the color magenta (a shade of purple).
+</p>
+<p><b><A Name="UL">&lt;UL&gt;</A></b><br>
+Embedded lists are not currently supported.
+</p>
+<H1>
+<A Name="ENTITIES">Character Entities supported in HTML Help</A></H1>
+Over 250 character entities are supported, including all Latin-1 entities.
+NCRs (Numeric Character References) and UTF-8 are also supported. However,
+help can only display those characters that are available in the currently
+active DOS codepage. For a list of codepages that help is 'aware' of,
+type "HELP /C" at the command prompt.
+<H1><A Name="NOTES">General Notes on HTML Help</A></H1>
+<OL>
+<LI>Text is wrapped if it does not fit on the line.
+<LI>Tags are case insensitive, so
+<b>&lt;A HREF="FOO.HTM"&gt;</b> is equivelent to
+<b>&lt;a href="foo.htm"&gt;</b>.
+<LI>The maximum size for a document is 64K.
+<LI>Only short (8.3) file names are supported.
+<LI>Help distinguishes between file types by filename
+extension. Therefore the <b>.htm</b> extension is recommended for HTML files.
+</OL>
+<HR>
+<ADDRESS>
+<b>Copyright &copy; 2002-4 <A HREF="mailto:worldwiderob@yahoo.co.uk">Robert Platt
+</A></b><BR>
+Permission is granted to copy, distribute and/or modify this
+      document under the terms of the GNU Free Documentation License,
+      Version 1.1 or any later version published by the Free Software
+      Foundation; with no Invariant Sections, no Front-Cover Texts and
+      no Back-Cover Texts.  A copy of the license is included in the
+      section entitled <a href="../../../fdl.txt">"GNU Free Documentation License"</a>.
+
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,69 @@
+<html>
+<title>country</title>
+<body>
+<h1>country</h1>
+Sets the international behavior of DOS. 
+<pre>
+   country=nnn[,[mmm][,[d:][path]file]]
+</pre>
+<h2>Options</h2>
+<pre>
+  <b>nnn</b>
+  The country code, as shown in the table below.
+
+  <b>mmm</b>
+  The code page, as shown in the table below.
+  If not specified, a code page will be chosen automatically.
+
+  <b>d:path\file</b>
+  The pathname to a country-information file.
+  If not specified, the file 'COUNTRY.SYS' is used instead.
+</pre>
+<h2>Country Codes</h2>
+In the table:
+<ul>
+<li> HH means a 24hr-clock hour
+<li> hh a 12hr-clock hour.
+<li> X means AM and PM are appended
+</ul>
+<pre>
+                                             format for
+       Locale      nnn        mmm        date         time
+===============================================================
+US                 001      437, 850   mm/dd/yyyy  hh:mm:ss.ssX
+Canadian French    002      863, 850   yyyy-mm-dd  HH:mm:ss,ss
+Latin America      003      850, 437   mm/dd/yyyy  hh:mm:ss.ssX
+Russia             007      866, 437   dd.mm.yyyy  HH:mm:ss,ss
+Netherlands        031      850, 437   dd-mm-yyyy  HH:mm:ss,ss
+Belgium            032      850, 437   dd-mm-yyyy  HH:mm:ss,ss
+France             033      850, 437   dd-mm-yyyy  HH:mm:ss,ss
+Spain              034      850, 437   dd-mm-yyyy  HH:mm:ss,ss
+Hungary            036      850, 852   yyyy-mm-dd  HH:mm:ss,ss
+Yugoslavia         038      850, 852   yyyy-mm-dd  HH:mm:ss,ss
+Italy              039      850, 437   mm/dd/yyyy  HH.mm.ss,ss
+Switzerland        041      850, 437   mm.dd.yyyy  HH,mm,ss.ss
+Czechoslovakia     042      850, 852   yyyy-mm-dd  HH:mm:ss,ss
+UK                 044      850, 437   dd/mm/yyyy  hh:mm:ss.ssX
+Denmark            045      850, 865   dd-mm-yyyy  HH:mm:ss,ss
+Sweden             046      850, 437   yyyy-mm-dd  HH.mm.ss,ss
+Norway             047      850, 865   mm.dd.yyyy  HH:mm:ss,ss
+Poland             048      850, 852   yyyy-mm-dd  HH:mm:ss,ss
+Germany            049      850, 437   dd.mm.yyyy  HH:mm:ss,ss
+Argentina          054      850, 437   dd/mm/yyyy  hh:mm:ss.ssX
+Brazil             055      850, 860   dd/mm/yyyy  HH:mm:ss,ss
+International
+    English        061      850, 437   mm/dd/yyyy  HH:mm:ss.ss
+Portugal           351      850, 860   dd-mm-yyyy  HH:mm:ss,ss
+Finland            358      850, 437   dd.mm.yyyy  HH:mm:ss,ss
+</pre>
+
+<h2>See Also</h2>
+<a href="index.htm">config.sys</a>
+<hr>
+<address>
+<b>Copyright &copy; 1998 Jim Hall</b><br>
+This file is derived from the FreeDOS Spec Appendices.
+See the file <a href="../H2Cpying.txt">H2Cpying.txt</a> for copying conditions.
+</address>
+</body>
+</html>

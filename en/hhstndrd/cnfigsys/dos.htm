@@ -1,0 +1,36 @@
+<html>
+<title>dos</title>
+<body>
+<h1>dos</h1>
+Tell the DOS kernel how to load itself. 
+<pre>
+   <b>dos=high|low[,umb|noumb]</b>
+or
+   <b>dos=[high|low,]umb|noumb</b>
+</pre>
+
+<h2>Options</h2>
+<pre>
+  <b>dos=high</b>
+  Tells DOS to load itself into high memory.
+  You must first load a high memory manager.
+
+  <b>dos=low</b>
+  Tells DOS to load into conventional memory.
+
+  <b>dos=umb</b>
+  Tells DOS to keep a link between UMA and conventional.
+
+  <b>dos=noumb<b>
+  Tells DOS not to keep a link between UMA and conventional.
+</pre>
+<h2>See Also</h2>
+<a href="index.htm">config.sys</a>
+<hr>
+<address>
+<b>Copyright &copy; 1998 Jim Hall</b><br>
+This file is derived from the FreeDOS Spec Appendices.
+See the file <a href="../H2Cpying.txt">H2Cpying.txt</a> for copying conditions.
+</address>
+</body>
+</html>

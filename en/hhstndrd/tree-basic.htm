@@ -1,0 +1,61 @@
+<html><head><title>Tree</title></head>
+<body bgcolor="lightgrey">
+<h1>Tree</h1>
+
+<p>Graphically displays the directory [folder] structure of a given
+ drive or path.  Optionally includes filelist in display.
+</p>
+
+<h2>Usage:</h2>
+<pre>
+ Syntax: <strong>TREE</strong> [d:][path] [<b>/F</b>] [<b>/A</b>]
+   d:path
+       The drive and path to start from.  If no path is given, start
+       from the current directory.
+   <b>/F</b>  Display the names of files in each directory.
+   <b>/A</b>  Use ASCII characters to visually represent the directory
+       structure.
+
+   <b>/?</b>  Display help and exit.
+
+ Additional Options in FreeDOS Tree: (Not available in standard Tree.)
+   <b>/V</b>  Display version information and exit.
+   <b>/S</b>  Shortnames only (disable Long File Name support, DOS version only).
+
+</pre>
+<br />
+<h2>Examples:</h2>
+<p>To display the complete directory hierarchy of drive C and pause <br />
+ after each screenful, run tree specifying C: as the start path and <br />
+ pipe its output to the more command:<br />
+<br />
+<samp> tree C:\ | more </samp>
+</p>
+
+<p>To display the directory hierarchy of a subdirectory and have the <br />
+ output only use standard ASCII characters (such as for printing or <br />
+ sending to someone who may view it without DOS line/box drawing character <br />
+ support), specify the subdirectory and the /A switch:<br />
+<br />
+<samp> tree <i>ASUBDIR</i> /a </samp>
+</p>
+
+<p>To display the structure of a directory tree and the files within <br />
+ each directory, add the /F switch:<br />
+<br />
+<samp> tree /f | more </samp>
+</p>
+
+<p />
+<hr />
+<p />
+
+<p><em>Copyright:</em> 
+ This document is <strong>public domain</strong>, only public domain additions will be accepted. <br />
+ Thus this document may be freely copied, etc. but no warranty, claim of correctness, 
+ nor fitness for any purpose is given. <br />
+ KJD 2003
+</p>
+
+</body>
+</html>

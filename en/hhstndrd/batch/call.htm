@@ -1,0 +1,40 @@
+<html>
+<title>call</title>
+<body>
+<h1>call</h1>
+Runs a batch file from within a batch file.
+<pre>
+    <b>call [/S|/N] [drive:][path]filename [batch parameters]</b>
+</pre>
+<h2>Options</h2>
+<pre>
+  <b>filename</b>
+  The batch file to be called.
+
+  <b>[batch paramaters]</b>
+  These are passed on to the batch file being called
+
+  <b>/S</b>
+  Forces the swapping of FreeCOM
+
+  <b>/N</b>
+  Prevents the swapping of FreeCOM.
+</pre>
+
+<h2>Notes</h2>
+<p>When the called batch file is complete, the processing of the original batch
+file resumes.
+<p>Batch files can be run directly from another batch file without the call
+command, but processing of the original batch file will not be resumed.
+
+<h2>See Also</h2>
+<a href="index.htm">batch files</a>
+<hr>
+<address>
+<b>Copyright &copy; 2003 Robert Platt</a></b>
+<br>
+This file forms part of The FreeDOS HTML Help Documentation, and is covered
+under its terms: see <a href="../../index.htm#copying">index.htm</a><br>
+</address>
+</body>
+</html>

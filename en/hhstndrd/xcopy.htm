@@ -1,0 +1,83 @@
+<html>
+<title>xcopy</title>
+<body>
+<h1>xcopy</h1>
+Copies files and directories, including subdirectories. 
+<pre>
+   <b>copy {d: | [d:]path} [d:][path] [options]</b>
+</pre>
+<h2>Options</h2>
+<pre>
+  <b>{d: | d:path}</b>
+  The source to copy from.  This must be either a drive or a full
+  path.
+
+  <b>d:path</b>
+  The destination to copy to.  If not present, xcopy
+  assumes the working directory.
+
+  <b>/A</b>
+  Only copy files with the Archive bit set.
+
+  <b>/M</b>
+  Only copy files with the Archive bit set, and turn off the A bit.
+
+  <b>/H</b>
+  Also copies hidden and system files.
+
+  <b>/D</b>
+  The destination is a directory. Cannot be used with /F.
+
+  <b>/F</b>
+  The destination is a file. Cannot be used with /D
+
+  <b>/N</b>
+  Same as /Y.
+
+  <b>/P</b>
+  Prompt for confirmation before each file.
+
+  <b>/Q</b>
+  Doesn't report the filenames of copied files.
+
+  <b>/R</b>
+  Allow read-only files to be overwritten.
+
+  <b>/S</b>
+  Copy subdirectories, except empty ones.
+
+  <b>/E</b>
+  Copy subdirectories, even if empty.
+
+  <b>/V</b>
+  Verify each file as it is written to disk.
+
+  <b>/W</b>
+  Wait before copying any files. Presents a prompt, which you
+  must first acknowledge.
+
+  <b>/Y</b>
+  No prompting for confirmation of overwriting files.
+</pre>
+
+<h2>Notes</h2>
+The COPYCMD environment variable can be set to make <b>/Y</b> (or <b>/N</b>) the default:
+<pre>
+   <a href="set.htm">set</a> <b>COPYCMD=/Y</b>
+</pre>
+To cancel the <b>/Y</b> for a particular xcopy command, use <b>/-Y</b> at the command line.<br><br>
+The COPYCMD variable also affects the <a href="copy.htm">copy</a> command.
+Use <b>/Y</b> to change the way both copy and xcopy behave.
+Use <b>/N</b>, which copy ignores, to change only the way xcopy behaves.
+
+<h2>See Also</h2>
+<a href="copy.htm">Copy</a><br>
+<a href="diskcopy.htm">Diskcopy</a>
+<hr>
+<address>
+<b>Copyright &copy; 1998 Jim Hall</b><br>
+This file is derived from the FreeDOS Spec Command HOWTO.
+See the file <a href="H2Cpying.txt">H2Cpying.txt</a> for copying conditions.
+</address>
+</body>
+</html>

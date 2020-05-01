@@ -1,0 +1,41 @@
+<html>
+<title>buffers</title>
+<body>
+<h1>buffers</h1>
+This is a config.sys command. It tells FreeDOS how many disk buffers it should
+allocate.
+
+<pre>
+   <b>buffers=p[,s]</b>
+</pre>
+<p>where p is the number of primary disk buffers, in the range 1-99.</p>
+<h2>Options</h2>
+<pre>
+   <b>s</b>
+   The number of secondary disk buffers, in the range 1-8.
+</pre>
+<h2>Usage</h2>
+<p>The default setting depends on the amount of conventional memory your system has:
+<pre>
+Memory (KB)                Primary Buffers           Secondary Buffers
+----------------------------------------------------------------------
+    &lt; 128                           3                         1
+  128 - 255                         5                         1
+  256 - 511                        10                         1
+  512 - 640                        15                         1
+</pre>
+<p>
+Increasing the number of buffers can improve the speed of programs that
+work with a large number of files, but also uses up more memory resources.
+</p>
+<h2>See Also</h2>
+<a href="index.htm">config.sys</a>
+<hr>
+<address>
+<b>Copyright &copy; 2003 Rob Platt</b>
+<br>
+This file forms part of The FreeDOS HTML Help Documentation, and is covered
+under its terms: see <a href="../../index.htm#copying">index.htm</a><br>
+</address>
+</body>
+</html>

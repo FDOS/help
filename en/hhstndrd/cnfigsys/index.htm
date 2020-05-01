@@ -1,0 +1,40 @@
+<html>
+<title>config.sys</title>
+<body>
+<h1>config.sys</h1>
+<p>FreeDOS reads the config.sys file at startup to configure the DOS system. It is read
+before the <a href="../batch/autoexec.htm">autoexec.bat</a> file is run.</p>
+<p>There is a special set of commands for use in the config.sys file.<br>DOS prompt and
+<a href="../batch/index.htm">batch file</a> commands generally cannot be used in config.sys.</p>
+<h2>Making config.sys interactive with ! and ?</h2>
+<p>Config.sys lines that begin with <b>!</b> will be processed even when single stepping.
+<pre>
+   !files=20
+</pre>
+<p>Lines that begin with <b>?</b> will be queried: the user will be asked for confirmation before
+that line is run.
+<pre>
+   ?device=MAYBE.SYS
+</pre>
+<p>See also the <a href="menu.htm">menu</a> config.sys command.
+<h2>See Also</h2>
+<pre>
+<a href="buffers.htm">Buffers</a>      <a href="install.htm">Install</a>
+<a href="country.htm">Country</a>      <a href="lastdrv.htm">Lastdrive</a>
+<a href="device.htm">Device</a>       <a href="menu.htm">Menu</a>
+<a href="device.htm">Devicehigh</a>   <a href="menudef.htm">Menudefault</a>
+<a href="dos.htm">Dos</a>          <a href="rem.htm">Rem</a>
+<a href="driveprm.htm">Driveparm</a>    <a href="screen.htm">Screen</a>
+<a href="echo.htm">Echo</a>         <a href="shell.htm">Shell</a>
+<a href="fcbs.htm">Fcbs</a>         <a href="stacks.htm">Stacks</a>
+<a href="files.htm">Files</a>        <a href="version.htm">Version</a>
+</pre>
+<hr>
+<address>
+<b>Copyright &copy; 2003 Rob Platt</b>
+<br>
+This file forms part of The FreeDOS HTML Help Documentation, and is covered
+under its terms: see <a href="../../index.htm#copying">index.htm</a><br>
+</address>
+</body>
+</html>

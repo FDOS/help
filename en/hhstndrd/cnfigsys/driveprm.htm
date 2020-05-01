@@ -1,0 +1,54 @@
+<html>
+<title>driveparm</title>
+<body>
+<h1>driveparm</h1>
+Defines parameters for block devices.
+<pre>
+   <b>driveparm=[options]</b>
+</pre>
+<h2>Options</h2>
+<pre>
+  <b>/d:nnn</b>
+  The physical drive number, in the range 0-255. 0=A:
+
+  <b>/c</b>
+  Use this if the drive can detect when the door is open/closed.
+
+  <b>/f:n</b>
+  The drive type, corresponding to:
+    0=160/180k or 320/360k
+    1=1.2M
+    2=720k (the default)
+    3=[not defined]
+    4=[not defined]
+    5=hard disk
+    6=tape
+    7=1.44M
+    8=R/W optical
+    9=2.88M
+
+  <b>/h:nn</b>
+  The number of heads, in the range 1-99.
+
+  <b>/i</b>
+  Use this if the disk is a 3.5-inch drive
+
+  <b>/n</b>
+  Use this if the disk is a non-removable disk
+
+  <b>/s:nn</b>
+  The number of sectors, in the range 1-99
+
+  <b>/t:nn</b>
+  The number of tracks per side
+</pre>
+<h2>See Also</h2>
+<a href="index.htm">config.sys</a>
+<hr>
+<address>
+<b>Copyright &copy; 1998 Jim Hall</b><br>
+This file is derived from the FreeDOS Spec Appendices.
+See the file <a href="../H2Cpying.txt">H2Cpying.txt</a> for copying conditions.
+</address>
+</body>
+</html>

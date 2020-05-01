@@ -1,0 +1,48 @@
+<html>
+<title>menu</title>
+<body>
+<h1>menu</h1>
+<p>Displays a menu.</p>
+<pre>
+   <b>menu [text]</b>
+</pre>
+<h2>Usage</h2>
+<p>Use <a href="menudef.htm">menudefault</a> to set a time delayed default option.</p>
+<p>Lines that begin with <b>1?</b> will only be processed if the user presses <b>1</b>.
+<p>Lines beginning with <b>23?</b> will be loaded if the user presses either <b>2</b> or <b>3</b>.
+<h2>Example</h2>
+<pre>
+   MENU Please Select Configuration:
+   MENU
+   MENU Option 0    basic stuff only
+   MENU Option 1    CD-ROM
+   MENU Option 2    TROUSERS
+   MENU Option 3    CD-ROM and TROUSERS
+
+   13? DEVICE=CDROM.SYS /D:CDDRIVE1
+   23? DEVICE=TROUSERS.SYS
+
+   0?  ECHO Warning: basic stuff only!
+</pre>
+<h2>Using with autoexec.bat</h2>
+The environment variable CONFIG is set to the menu option value. Therefore %CONFIG% can be
+used in the <a href="../batch/autoexec.htm">autoexec.bat</a> in conjunction with the
+<a href="../batch/if.htm">if</a> command. For instance:
+<pre>
+   IF "%config%"=="1" SHSUCDX /D:CDDRIVE1
+</pre>
+<h2>See Also</h2>
+<pre>
+<a href="menucol.htm">menucol</a>
+<a href="menudef.htm">menudefault</a>
+<a href="index.htm">config.sys</a>
+</pre>
+<hr>
+<address>
+<b>Copyright &copy; 2003 Rob Platt</b>
+<br>
+This file forms part of The FreeDOS HTML Help Documentation, and is covered
+under its terms: see <a href="../../index.htm#copying">index.htm</a><br>
+</address>
+</body>
+</html>
