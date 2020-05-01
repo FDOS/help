@@ -1,0 +1,49 @@
+<html>
+<title>sys</title>
+<body>
+<h1>sys</h1>
+Make a floppy disk or hard disk bootable. 
+<pre>
+  <b>sys [[d:]path] d: [bootsect [BOTH]] [BOOTONLY] [switches]</b>
+</pre>
+<h2>Options</h2>
+<pre>
+  <b>[[d:]path]</b>
+  The (optional) location of the system files.
+  If not given, the current directory is assumed.
+
+  <b>d:</b>
+  The drive to make bootable.
+
+  <b>bootsect</b>
+  The name of file, to which the 512-byte boot sector image
+  will be written.
+  (the drive's real boot sector won't be
+   written to unless BOTH is used.)
+
+  <b>BOTH</b>
+  The new boot sector will be written to the image file
+  and to the actual drive boot sector.
+
+  <b>BOOTONLY</b>
+  With this option the boot sector (or image) will be updated,
+  but the kernel and <a href="command.htm">command.com</a> will
+  not be copied to the destination.
+
+Switches:
+
+  <b>/K <i>filename</i></b>
+  Gives the <i>filename</i> of the kernel file to be copied. This option
+  is only required when the kernel is not called "kernel.sys"
+
+  <b>/L <i>segment</i></b>
+  The load <i>segent</i>, in hexadecimal, to use. The default is 60.
+</pre>
+<hr>
+<address>
+<b>Copyright &copy; 1998 Jim Hall</b><br>
+This file is derived from the FreeDOS Spec Command HOWTO.
+See the file <a href="H2Cpying.txt">H2Cpying.txt</a> for copying conditions.
+</address>
+</body>
+</html>

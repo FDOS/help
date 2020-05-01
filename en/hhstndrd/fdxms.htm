@@ -1,0 +1,50 @@
+<html>
+<title>fdxms</title>
+<body>
+<h1>fdxms</h1>
+Extended memory driver for FreeDOS.
+<pre>
+      DEVICE=drive:path\fdxms.sys [options]
+      DEVICE=drive:path\fdxms286.sys [options]
+</pre>
+Fdxms is for 386+ computers.
+Fdxms286 is for 286 computers.
+<h2>Options</h2>
+<pre>
+
+ NUMHANDLES=<number>
+ Sets the number of XMS handles. Default is 32. Minimum
+ is two (not much use of XMS without any handles!) and
+ maximum is currently 1024. Each handle takes 5 bytes
+ (FDXMS.SYS) or 9 bytes (FDXXMS.SYS).
+
+  BIOS
+  Makes FDXMS to always call the BIOS through INT15
+  instead of using its own protected mode switching.
+
+  PS
+  Changes to the particular A20 handling necessary on
+  PS/2 machines.
+
+  GEODE
+  Removes delays while changing the A20 line. Reported
+  to help FDXMS to work on National Semiconductor's
+  Geode GX1 processor.
+
+  DELAY=<number>
+  Number of calls to the delay routine after changing
+  the A20 line. If you receive the error message "Unable
+  to switch A20 address line", try setting it to a big
+  value (say 4000) and see if it helps. Then fine tune
+  it as you want as low a value as possible for
+  speed. Default is 1. Maximum is 65535 and 0 maps to
+  65536.</pre>
+<hr>
+<address>
+<b>Copyright &copy; 2003 Martin Stromberg</a></b>
+<br>
+This file is covered under the terms of the GNU GPL license v2.</a><br>
+<a href="../../copying">COPYING</a>
+</address>
+</body>
+</html>

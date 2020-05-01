@@ -1,0 +1,82 @@
+<html>
+<title>How to use FreeDOS Help</title>
+<body>
+<h1>How to use FreeDOS Help</h1>
+<h2>Using the Mouse</h2>
+<ul>
+<li>Topic Links are highlighted in Yellow.
+<li>Click on a Link to see more on that topic.
+<li>Click on the scroll-bar to scroll the page up and down.
+<li>Quit Help by clicking on "exit" at the top of the screen.
+<li>More navigation is provided at the bottom of the screen.
+</ul>
+<h2>Using the Keyboard</h2>
+<ul>
+<li>Use the arrow keys to highlight a topic, then press enter.
+<li>Page Up and Page Down scroll the help information.
+<li>Alt+X exits help. (Alt+F4 works too)
+<li>Alt+Left Arrow goes back a topic. (Escape, Alt+B and Backspace work
+too)
+<li>Alt+Right Arrow goes forward a topic. (Alt+F works too)
+<li>Alt+C returns to the contents page.
+<li>F1 gives this help screen.
+<li>There are also other ways of scrolling the help information on
+screen. Home and End move to the very top and bottom of the
+document. Holding Alt while pressing the up and down arrow keys scrolls
+the help gradually.
+
+</ul>
+<h2>Understanding Help Topic "Syntax"</h2>
+<p>On most help topics you will see something like this:</p>
+<pre>
+<b>   command required [optional] [/switch] [/A|/B]</b>
+</pre>
+<p>Here is an explaination of the different parts of this line:</p>
+<pre>
+   <b>command</b>
+   This is the name of the command
+
+   <b>required</b>
+   Anything that follows the command name, which is not in
+   square brackets, [ and ], is a required parameter.
+   The command will report an error if you don't give this
+   information.
+
+   <b>[optional]</b>
+   options are written in square brackets, [ and ]. These change the
+   way the command runs. The square brackets aren't meant
+   to be typed when the command is used.
+
+   <b>[/switch]</b>
+   Options that begin with a / are called switches. The / symbol is
+   actually typed when the switch is used.
+
+   <b>[/A|/B]</b>
+   When there is a | symbol, this means there is a choice between
+   two options. Either /A or /B is allowed, but not both.
+   The | isn't meant to be typed when the command is used.
+</pre>
+<hr>
+<a name="otherway"><h1>Other Ways of Getting Help</h1></a>
+1. Most commands will describe their function and options, by using <b>/?</b> on
+them at the command line. For example:
+<pre>
+   dir /?
+</pre>
+2. The command <a href="hhstndrd/fasthelp.htm">fasthelp</a>.
+This is a clone of MS-DOS fasthelp.
+If you can't find what you are looking for in help, it may be in fasthelp,
+or vice versa.<br><br>
+3. The commands <a href="hhstndrd/whatis.htm">Whatis and Apropos</a><br><br>
+4. The doc subdirectory in the DOS directory contains many of the detailed manuals
+for various FreeDOS programs.<br><br>
+5. Visit the FreeDOS website, <a href="http://www.freedos.org">www.freedos.org</a>
+<hr>
+<address>
+<b>Copyright &copy; 2003-4 Rob Platt</b>
+<br>
+This file forms part of The FreeDOS HTML Help Documentation, and is covered
+under its terms: see <a href="index.htm#copying">index.htm</a><br>
+</address>
+</body>
+</html>

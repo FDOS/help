@@ -1,0 +1,197 @@
+<html>
+<title>Debug</title>
+<body>
+<h1>Debug</h1>
+The debugger.
+<pre>
+      Debug [[drive:][path]<b>file.ext</b> [<b>testprog arguments</b>]]
+</pre>
+This is a relatively advanced DOS tool but has many uses.
+For instance, it can be used to:
+<ul>
+<li>find bugs in programs
+<li>create programs from assembly code
+<li>inspect and edit binary files.
+</ul>
+
+<h2>Options</h2>
+<pre>
+   [drive:][path]<b>file.ext</b>
+   The name of the executable you wish to debug.
+   It doesn't have to be an executable - it could be a
+   binary or text file.
+   Since it can be any file, the file extension has to be specified.
+
+   <b>testprog arguments</b>
+   These arguments will be passed to the executable that is being
+   debugged as command line options, if and when it is run.
+   See <a href="#progexec">Program Execution</a> below for more information on running
+   executables.
+</pre>
+<p>Once Debug is started, the Debug command prompt is displayed.
+Enter Q to quit Debug, and ? to display the list of Debug commands.</p>
+
+<hr>
+<h1>General notes on Debug</h1>
+<p>Debug uses hexadecimal (base 16).</p>
+<p>Memory addresses are displayed in segment:offset form, e.g. 0D00:0100. The last
+four hexadecimal digits, which specify the offset from the segment, can go from 0000 to
+FFFF, a range of 64 Kilobytes.</p>
+<p>Executables with the .com extenstion have all their data and code in one segment. Hence for
+.com files, you can usually just write the offset when specifying memory addresses in Debug commands.
+Debug will assume the program segment. The same is also true of text/binary files that are &lt;64K long.</p>
+<p>To specify a memory range, seperate two addresses with a comma.</p>
+<h2>Differences between FreeDOS Debug and other versions</h2>
+<p>For those who have used Debug before but are migrating from a different version of DOS,
+the following document has been prepared: <a href="../../doc/debug/debug.doc">debug.doc</a>
+<hr>
+<h1>Debug's commands</h1>
+
+<pre>
+quit
+  <b>Q</b>
+
+help
+  <b>?</b>
+</pre>
+
+<h2>Inspecting and Editing Memory</h2>
+<pre>
+compare
+  <b>C</b> range address
+
+  Compares two memory ranges, displaying the differences.
+  Only the starting address of the second range is required, Debug will
+  assume the second range will be the same size as the first.
+  For instance
+       C 100,110 200
+  will compare the range 100,110 to 200,210.
+
+dump
+  <b>D</b> [range]
+
+  Displays the contents of a memory range. If no range is specified, dump
+  will display 128 bytes, starting where the last dump finished or at the
+  beginning of the loaded file.
+
+enter
+  <b>E</b> address [list]
+
+  Write over part of memory, beginning at address, with the list of bytes.
+  To enter a string of text characters, enclose the text in double quotes.
+  For instance
+       E 100 "Hello!"
+
+fill
+  <b>F</b> range list
+
+  Write over a memory range with a repeating list of bytes. For instance,
+  to set a memory range to zero, you might put
+       E 100,110 0
+  and to set a memory range to "brumbrum":
+       E 100,107 "brum"
+
+move
+  <b>M</b> sourcerange destaddress
+
+  Copies the range sourcerange into another range that begins at
+  destaddress.
+
+search
+  <b>S</b> range list
+
+  Searches for all occurences of the list of bytes in the specified range.
+  The starting address of each occurence is displayed.
+</pre>
+
+<h2>Calculating Numbers in Hexadecimal</h2>
+<pre>
+hex
+  <b>H</b> value1 value2
+
+  Displays two numbers, the first being value1+value2, the second being
+  value1-value2.
+</pre>
+
+<h2>Loading and Saving Files</h2>
+<pre>
+load program or file
+  <b>L</b> [[drive:][path]progname [arglist]]
+
+Set Name
+  <b>N</b> [[drive:][path]progname [arglist]]
+
+  Set the name for the current file/prgoram
+
+Write program or file
+  <b>W</b>
+
+  Writes the current program/file to disk. Use N to change the name
+  if you do not wish to overwrite the original file.
+</pre>
+
+<h2>Assembling and Disassembling</h2>
+<pre>
+assemble
+  <b>A</b> [address]
+
+unassemble
+  <b>U</b> [range]
+
+80x86 mode
+  <b>M</b>[setting]
+
+  Sets the CPU (processor) mode: the setting is in the range 1-6.
+  1 is for 80186, 2 for 80286 etc.
+  If no setting is specified, the current setting is displayed
+  This setting is reset when Debug quits.
+
+FPU mode
+  <b>MC</b>
+  <b>MNC</b>
+  Sets whether the floating point maths coprocessor is present or not.
+  Use MC to set it to present, MNC to set it to present.
+  Use M to enquire about the current setting.
+</pre>
+
+<a name="progexec"><h2>Program Execution</h2></a>
+<pre>
+go
+  <b>G</b> [=address] [breakpoints]
+
+  Begins execution of the loaded program or the machine code
+  at the specified address.
+  Execution is suspended at the breakpoint addresses, allowing you
+  to inspect memory etc.
+
+proceed
+  <b>P</b> [=address] [count]
+
+  Proceeds with execution in steps.
+
+register
+  <b>R</b> [register [value]]
+  display all CPU registers, or display/set a particular register.
+
+trace
+  <b>T</b> [=address] [count]
+</pre>
+  
+<h2>Port I/O</h2>
+<pre>
+input
+  <b>I</b> port
+
+output
+  <b>O</b> port byte
+</pre>
+
+<hr>
+<address>
+<b>Copyright &copy; 2003 Rob Platt</b>
+<br>
+This file forms part of The FreeDOS HTML Help Documentation, and is covered
+under its terms: see <a href="../index.htm#copying">index.htm</a><br>
+</address>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<html>
+<title>diskcopy</title>
+<body>
+<h1>diskcopy</h1>
+Copy the contents of a <i>floppy disk</i> to a second floppy. Also
+creates, copies and restores floppy disk image files.
+<pre>
+  <b>diskcopy source destination [options]</b>
+</pre>
+If the source and/or destination is a drive, for example "a:"
+then it is treated as a floppy disk, otherwise it is treated
+as an image file.<br><br>
+<b>The source and destination can be the same drive</b>; diskcopy will
+first copy from the source, and then prompt you to swap floppy disks.
+Then it will write to the destination.<br><br>
+<h2>Options</h2>
+<pre>
+  <b>/1</b>
+  Doesn't do anything in FreeDOS diskcopy.
+  In other versions of DOS, this copied the first side only.
+
+  <b>/v</b>
+  Verify that the data is copied correctly.
+</pre>
+<h2>Notes</h2>
+Diskcopy uses the Linux rawrite format for its image files. Therefore the
+image files from Diskcopy can be used by Rawrite and vice versa.<br><br>
+
+Diskcopy cannot read from or overwrite Linux floppy disks. It can, however,
+write a Linux floppy image to a DOS disk.
+<h2>Example</h2>
+<pre>
+   diskcopy a: a:
+</pre>
+<hr>
+<address>
+<b>Copyright &copy; 1998 Jim Hall</b><br>
+This file is derived from the FreeDOS Spec Command HOWTO.
+See the file <a href="H2Cpying.txt">H2Cpying.txt</a> for copying conditions.
+</address>
+</body>
+</html>

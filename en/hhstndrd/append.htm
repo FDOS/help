@@ -1,0 +1,59 @@
+<html>
+<title>append</title>
+<body>
+<h1>append</h1>
+Enables programs to open data files in specified directories as if the files were in the current directory.
+<h2>Syntax</h2>
+<pre>
+  <b>APPEND [[drive:]path[;...]] [/X[:ON|:OFF]] [/PATH:ON|/PATH:OFF] [/E]</b>
+  <b>APPEND ;</b>
+</pre>
+<h2>Options</h2>
+<pre>
+  <b>[drive:]path[;...]</b>
+  Drive and directory to append.
+
+  <b>/X[:ON]</b>
+  Extends APPEND to searches and command execution.
+
+  <b>/X:OFF</b>
+  Applies APPEND only to requests to open files.  This is the default
+  setting.
+
+  <b>/PATH:ON</b>
+  Searches appended directories for file requests that already include a
+  path.  This is the default setting.
+
+  <b>/PATH:OFF</b>
+  Switches off <b>/PATH:ON</b>.
+
+  <b>/E</b>
+  Stores the appended directory list in the environment.  /E may be used
+  only in the first invocation of APPEND. You can not include any paths on
+  the same command line as /E.
+
+  <b>APPEND ;</b> clears the list of appended directories.
+  <b>APPEND</b> without parameters displays the list of appended directories.
+</pre>  
+<h2>Copyright</h2>
+<pre>
+  &copy; 2004 Eduardo Casino, under the terms of the GNU GPL, Version 2
+</pre>
+<h2>Notes</h2>
+<pre>
+  Do not use <b>APPEND</b> with Windows or 32 bit extenders.
+
+  <b>APPEND</b> installs itself as an internal command after its first execution.
+  Second and successive invocations MUST exclude file path and extension.
+</pre>
+<h2>See Also</h2>
+<a href="path.htm">path</a><br>
+
+<hr>
+<address>
+<b>Copyright &copy; 2004 Eduardo Casino</b><br>
+This file forms part of The FreeDOS HTML Help Documentation, and is covered
+under its terms: see <a href="../index.htm#copying">index.htm</a><br>
+</address>
+</body>
+</html>

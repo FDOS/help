@@ -1,0 +1,137 @@
+<html>
+<title>fdisk</title>
+<body>
+<h1>fdisk</h1>
+Creates partitions on a hard disk.
+<pre>
+   <b>fdisk [options]</b>
+</pre>
+FDisk can be used in two ways:
+<ul>
+<li>Without options. FDisk provides an interactive menu.
+<li>With options.
+</ul>
+Note that an exception is that the <a href="#mono">/MONO</a> option is used with the interactive menu mode.
+<hr>
+<h1>options</h1>
+<h2>General Notes on the Options</h2>
+<ul>
+<li><tt><b>partition</b></tt>s, partition <tt><b>type</b></tt>s and <tt><b>drive</b></tt>s are all specified by numbers.
+<li><tt><b>size</b></tt>s are specified in Mega Bytes, or as a percentage if followed by ,100.<br>
+     For example 50 would be 50MB and 50,100 would be 50%.
+</ul>
+<h2>Partition Table Modification</h2>
+<pre>   
+/AUTO [<b>drive</b>]
+   Automatically partitions the hard disk with FAT16 partitions.
+
+/ACTIVATE:<b>partition</b> [<b>drive</b>]
+   Sets this partion active
+
+/CLEAR [<b>drive</b>]
+   Erases the partitions
+
+/CLEARALL [<b>drive</b>]
+   Erases the partitions and the Master Boot Record.
+
+/DELETE {/PRI | /EXT | /LOG:<b>partition</b> | /NUM:<b>partition</b>} [<b>drive</b>]
+   Deletes a partition (primary, extended, logical)   
+
+/DEACTIVATE [<b>drive</b>]
+   Removes the active status from the active partition on this drive.
+
+/EXT:<b>size</b> [ {/LOG:<b>size</b> [/SPEC:<b>type</b>]} | {/LOGO:<b>size</b> [/SPEC:<b>type</b>]} ] [<b>drive</b>]
+   Creates an Extended DOS Partition.
+   Sizes are in megabytes, or a percentage if size,100 is written.
+   Use /LOG to create a logical partition, and /LOGO to
+   create a FAT16 logical partition, in the extended
+   partition
+   Use /SPEC to specify the partition type number.
+
+/MODIFY:<b>partition</b>,<b>type</b> [<b>drive</b>]
+   Sets the partition type.
+
+/MOVE:<b>source_partition</b>,<b>dest_partition</b> [<b>drive</b>]
+   Moves the entry, in the primary partition table, from
+   source_partition to dest_partition.
+
+/PRI:<b>size</b> [/SPEC:<b>type</b>] [<b>drive</b>] 
+   creates a primary partition
+
+/PRIO:<b>size</b> [/SPEC:<b>type</b>] [<b>drive</b>] 
+   creates a FAT16 primary partition
+
+/SWAP:<b>first_partition</b>,<b>second_partition</b> [<b>drive</b>]
+   swaps two partition entries.
+
+
+<h2>Master Boot Record Modification</h2>
+
+/AMBR [<b>drive</b>]
+   Writes the MBR stored in the "boot.mbr" file to the drive.
+
+/MBR [<b>drive</b>]
+   Writes the MBR to the specified drive.
+
+/RMBR [<b>drive</b>]
+   Removes the MBR from the specified drive
+
+/SMBR [<b>drive</b>]
+   Downloads the MBR into a file called "boot.mbr".
+
+
+<h2>Getting Hard Disk Information</b>
+
+/DUMP
+   Displays all the information about all possible hard disks.
+
+/INFO [/TECH] [<b>drive</b>]
+   Displays partition information on the specified drive
+
+
+<h2>Legacy FDisk options</h2>
+
+/ACTOK
+   Skips integrity checking.
+
+/CMBR <b>drive</b>
+   Creates the Master Boot Record.
+
+/FPRMT
+   Prompts for FAT32/FAT16 in interactive mode.
+   
+/Q
+   Keeps the system from rebooting after you exit FDisk.
+   (Note:  FDisk will not reboot after you exit unless
+   rebooting is enabled in the "fdisk.ini" file.)
+
+/STATUS
+   Displays the current partition layout
+
+/X
+   Inhibits use of LBA partitions.
+
+
+<h2>Others</h2>
+
+/REBOOT
+   Forces a reboot.
+
+<a name="mono">/MONO</a>
+   Use the monochrome text mode in interactive FDisk.
+
+/XO
+   Enable extended options.
+</pre>
+
+<h2>See Also</h2>
+<a href="format.htm">format</a>
+<hr>
+<address>
+<b>Copyright &copy; 2003 Brian E. Reifsnyder</a></b>
+<br>
+This file is covered under the GNU GPL license V2</a><br>
+See <a href="../../copying">COPYING</a>
+</address>
+</body>
+</html>

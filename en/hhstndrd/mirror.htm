@@ -1,0 +1,37 @@
+<html>
+<title>mirror</title>
+<body>
+<h1>mirror</h1>
+Mirrors information about the disk, such as the boot sector, file allocation table
+and root directory.
+<pre>
+  <b>mirror d: <!-- [/L] [/Td:entries] [/Td:entries] [...] [/U] --> [/PARTN]</b>
+</pre>
+The information is stored at the end of the disk.
+This can be recovered if necessary using <a href="unformat.htm">unformat</a>.
+<h2>Options</h2>
+<pre>
+  <b>d:</b>
+  The drive that you want to be able to recover later using <a href="unformat.htm">unformat</a>.
+<!-- NOT CURRENTLY IMPLEMENTED:
+  <b>/L</b>
+  Retain only the latest information.
+
+  <b>/Td:[entries]</b>
+  Track information using a log file on the specified disk, and the
+  number of entries in the log file.
+
+  <b>/U</b>
+  Unload a previously loaded copy of the program. -->
+
+  <b>/PARTN</b>
+  Backs up partition table information to a:\partnsave.fil
+</pre>
+<hr>
+<address>
+<b>Copyright &copy; 1998 Jim Hall</b><br>
+This file is derived from the FreeDOS Spec Command HOWTO.
+See the file <a href="H2Cpying.txt">H2Cpying.txt</a> for copying conditions.
+</address>
+</body>
+</html>

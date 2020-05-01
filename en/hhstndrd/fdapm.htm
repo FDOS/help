@@ -1,0 +1,36 @@
+<html>
+<title>fdapm</title>
+<body>
+<h1>fdapm</h1>
+Advanced Power Management tool.
+<pre>
+    <b>fdapm <i>command</i></b>
+</pre>
+<h2>Commands</h2>
+Commands do not need to have - or / at the beginning.
+<pre>
+APMoff   - turn off BIOS APM savings, go full speed
+APMbios  - enable standard BIOS APM savings
+APMdos   - use resident handler for DOS and BIOS savings
+HELP     - display this help screen
+INFO     - show information about APM status
+STATS    - show statistics of resident handler
+
+STANDBY  - flush caches and enter stand-by mode
+SUSPEND  - flush caches, stop IDE disks, enter suspend mode
+POWEROFF - flush caches, stop IDE disks, power off VGA and system
+VGAoff   - 'turn off' VGA (DPMS screen saver)
+VGAon    - turn on VGA again
+HOTboot  - reboot using int 19h (just reload kernel - may crash!)
+WARMboot - perform a classical warm reboot (skips BIOS tests)
+COLDboot - perform a (quite) cold boot (with BIOS tests)
+</pre>
+<hr>
+<address>
+<b>Copyright &copy; 2004 Eric Auer</a></b>
+<br>
+This file is covered under the GNU General Public Lincense 2.
+Taken from the program output with command HELP.
+</address>
+</body>
+</html>

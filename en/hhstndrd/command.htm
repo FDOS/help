@@ -1,0 +1,42 @@
+<html>
+<title>command</title>
+<body>
+<h1>command</h1>
+Starts a new command shell. 
+<pre>
+   <b>command [[d:]path] [device] [options]</b>
+</pre>
+A new instance of FreeCOM will be created.
+<h2>Options</h2>
+<pre>
+  <b>d:path</b>
+  The drive and path where the shell is to look for the transient part
+  of the program.  This is usually only needed to set the COMSPEC.
+
+  <b>device</b>
+  An alternate device for all i/o.
+
+  <b>/e:nnnnn</b>
+  The environment size, in bytes, in the range 160-32768.  This number
+  will be rounded up the nearest 16 bytes.  The default is 256.
+
+  <b>/p</b>
+  Makes the shell permanent, so the EXIT command does not exit the
+  shell.
+
+  <b>/c {string}</b>
+  Executes the command in {string}, then exits.
+
+  <b>/msg</b>
+  Loads any error messages that might be stored on disk into memory.
+</pre>
+<h2>See Also</h2>
+<a href="exit.htm">Exit</a>
+<hr>
+<address>
+<b>Copyright &copy; 1998 Jim Hall</b><br>
+This file is derived from the FreeDOS Spec Command HOWTO.
+See the file <a href="H2Cpying.txt">H2Cpying.txt</a> for copying conditions.
+</address>
+</body>
+</html>

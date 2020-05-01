@@ -1,0 +1,70 @@
+<html>
+<title>fc</title>
+<body>
+<h1>fc</h1>
+Compares two files or sets of files, displaying the differences between the two.
+<pre>
+   <b>fc [d:][path]file1 [d:][path]file2 [options]</b> 
+</pre>
+Compares file1 to file2.
+<h2>Options</h2>
+<pre>
+  <b>/A</b>
+  Displays the first and last lines of differences only
+
+  <b>/B</b>
+  Compares binary files
+
+  <b>/C</b>
+  Ignore case
+
+  <b>/L</b>
+  Compare text files
+
+  <b>/LB</b><i>n</i>
+  Set the maximum number of consecutive different ASCII lines to <i>n</i>
+
+  <b>/Mn</b>
+  Set the maximum number of differences between binary files
+  to report, before aborting.
+  The default value is 20.
+  Use 0 to allow an unlimited number of differences.
+
+  <b>/N</b>
+  Display the line numbers (text files only)
+
+  <b>/S</b>
+  Scan files in subdirectories as well
+
+  <b>/T</b>
+  Does not convert tabs into spaces for comparison
+
+  <b>/W</b>
+  Pack white space (tabs, spaces) for text comparison
+
+  <b>/X</b>
+  Do not show context lines in text comparison
+
+  <b>/nnn</b>
+  Set to <b>nnn</b> lines the minimum number of consecutive matching
+  lines for comparison resynchronization
+</pre>
+<h2>Notes</h2>
+<ul>
+<li>FC defaults to binary mode for files .EXE, .COM, .SYS, .OBJ, .BIN and .LIB.
+<li>By default the binary compare stops after 20 differences but that value can
+be modified through the /M switch. /M0 means "unlimited differences".
+/M is interpreted as /M0.
+<li>A design limitation of this program is that, in the text mode file
+comparison, only the first 32765 lines are compared; the remaining lines are
+ignored. The line length is virtually unlimited.
+</ul>
+<hr>
+<address>
+<b>Copyright &copy; 1999 <a href="flurmy@comune.re.it">Maurizio Spagni</a></b><br>
+This file is covered under GNU General Public License version 2 (or at your option)
+any later version.<br>
+See <a href="../../copying">COPYING</a>
+</address>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<title>diskcomp</title>
+<body>
+<h1>diskcomp</h1>
+Compares the contents of two floppy disks, track by track 
+<pre>
+   <b>diskcomp [d: [d:]] [options]</b>
+</pre>
+<h2>Options</h2>
+<pre>
+  <b>d:</b>
+  The drive letter for a floppy disk.  If only one drive letter is
+  given, assume the working drive (if a floppy drive.)  If no drive
+  letters are given, assume both are the working drive (if a floppy).
+  If both drives are the same, diskcomp will read one floppy at a
+  time, and you will need to swap floppies.
+
+  <b>/1</b>
+  Compare only the first sides of the disks, even if double-sided
+  disks.
+
+  <b>/8</b>
+  Compare only the first 8 sectors per track.
+
+  <b>/40</b>
+  Compare only the first 40 tracks
+
+  <b>/b</b>
+  Forces diskcomp to user the BIOS to access the floppy disk drive.
+  (The BIOS is slower, but might be required for compatibility on some
+   machines.)
+</pre>
+<hr>
+<address>
+<b>Copyright &copy; 1998 Jim Hall</b><br>
+This file is derived from the FreeDOS Spec Command HOWTO.
+See the file <a href="H2Cpying.txt">H2Cpying.txt</a> for copying conditions.
+</address>
+</body>
+</html>

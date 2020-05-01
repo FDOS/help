@@ -1,0 +1,59 @@
+<html>
+<title>graphics</title>
+<body>
+<h1>graphics</h1>
+Allow the Prt Sc (Print Screen) key to print graphics screens. 
+<pre>
+   <b>graphics <i>type</i> [options]</b>
+</pre>
+<h2>Printer types</h2>
+You can use the following for <i>type</i>:
+<pre>
+   HPPCL
+   PCL
+   EPSON              Works with many impact/ribbon printers
+   ESC/P
+   POSTSCRIPT
+   PS
+   LASERJET
+   LASERJETII
+   QUIETJET
+   QUIETJETPLU
+   HPDEFAULT
+   DESKJET
+   RUGGEDWRITER
+   RUGGEDWRITERWIDE
+</pre>
+Some of these are equivelent, such as POSTSCRIPT and PS.
+<p>The following types are <b>not yet supported:</b>
+<pre>
+   IBM PC color ribbon printer (color1, color4, color8)
+   IBM convertible thermal printer
+   IBM graphics printer, proprinter and quietwriter.
+</pre>
+<h2>Options</h2>
+<pre>
+   <b>/B</b>
+   Use CGA background color
+
+   <b>/R</b>
+   Reverse colors: use black as white and white as black.
+
+   <b>/LCD</b>
+   <b>/PRINTBOX:LCD</b>
+   <b>/PRINTBOX:STD</b>
+   Ignored (not yet supported).
+   These will allow you to set a screen width-to-height ratio other than
+   4:3, which is currently always assumed.
+</pre>
+<h2>See Also</h2>
+<a href="graphexe.htm">graphics, graphpin, graph-hp</a>. Graphics uses these programs internally.
+<hr>
+<address>
+<b>Copyright &copy; 1998 Jim Hall</b><br>
+This file is derived from the FreeDOS Spec Command HOWTO.
+See the file <a href="H2Cpying.txt">H2Cpying.txt</a> for copying conditions.
+</address>
+</pre>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<html>
+<title>for</title>
+<body>
+<h1>for</h1>
+Runs a command for each file in a set of files.
+<pre>
+   <b>for</b> %variable <b>in (</b>set<b>) do</b> command [options]
+   <b>for</b> %%variable <b>in (</b>set<b>) do</b> command [options]
+</pre>
+The first format is for use on the command line, the second
+is for use in batch files.
+<h2>Options</h2>
+<pre>
+  <b>%variable</b> or <b>%%variable</b>
+  A name for the parameter that will be replaced with each file name.
+
+  <b>(set)</b>
+  The set of files.
+  Wildcards * and ? may be used.
+  
+  <b>command</b>
+  The command to run for each file.
+  
+  <b>options</b>
+  These options are passed to the command.
+</pre>
+<h2>Example</h2>
+Displays all the text files in the current directory, one after another:
+<pre>
+    for %f in (*.txt) <a href="more.htm">more</a> %f
+</pre>
+<h2>See Also</h2>
+<a href="batch/index.htm">batch files</a>
+<hr>
+<address>
+<b>Copyright &copy; 2003 Rob Platt</a></b>
+<br>
+This file forms part of The FreeDOS HTML Help Documentation, and is covered
+under its terms: see <a href="../index.htm#copying">index.htm</a><br>
+</address>
+</body>
+</html>

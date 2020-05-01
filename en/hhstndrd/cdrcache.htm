@@ -1,0 +1,83 @@
+<html>
+<title>CDRcache</title>
+<body>
+<h1>CDRcache</h1>
+CD drive cache program. Improves drive performance.<br>
+Requires <a href="fdxms.htm">XMS</a> memory, and at least a 386 computer.
+<pre>
+In <a href="cnfigsys/index.htm">config.sys</a>, either
+
+    <b><a href="cnfigsys/device.htm">device</a>=cdrcache <i>device</i> <i>name</i> <i>cachesize</i></b>
+or
+    <b><a href="cnfigsys/device.htm">devicehigh</a>=cdrcache <i>device</i> <i>name</i> <i>cachesize</i></b>
+</pre>
+Load CDRcache after loading your CD-ROM device driver
+(usually <a href="atapicdd.htm">atapicdd.sys</a>).
+<h2>Parameters</h2>
+<pre>
+    <b><i>device</i></b>
+    The same name of the device that you previously loaded with your CD-ROM
+    device driver.
+
+    <b><i>name</i></b>
+    A new name which you will pass to <a href="shsucdx.htm">shsucdx</a> in
+    the <a href="batch/autoexec.htm">autoexec.bat</a>
+
+    <b><i>cachesize</i></b>
+    Specifies the cache buffer size in kilobytes. The
+    cache is stored in XMS memory.
+    Minimum value is 128
+    Maximum value is 65280
+    
+    Values below 100 are valid for compatibility with previous
+    versions of CDRcache. Below 100, sizes are interpreted as
+    multiples of 0.25MB.
+</pre>
+<h2>Controlling the driver after loading</h2>
+Use:
+<pre>
+    <a href="batch/echo.htm">echo</a> <i>command</i> &gt; <i>name</i>
+</pre>
+Where <i>name</i> is the parameter passed to CDRcache
+(<a name="#cachename">see&nbsp;above</a>).<br>
+Command is:
+<pre>
+  <i>F</i>      - <i>F</i>lush the cache
+  <i>S</i>      - show <i>S</i>tatistics
+  <i>I</i>      - show statistics with extra technical <i>I</i>nformation
+  <i>C</i>      - <i>C</i>lear statistics
+  <i>Q</i>      - <i>Q</i>uiet mode
+  <i>N</i>      - <i>N</i>ormal verbosity
+  <i>V</i>      - <i>V</i>erbose/trace mode
+  <i>0</i>      - stop caching
+  <i>1</i>      - continue caching (after stop for instance)
+  <i>?</i>      - show help text
+</pre>
+
+<h2>Examples</h2>
+<pre>
+In <a href=cnfigsys/index.htm">config.sys</a>:
+
+   DEVICE=c:\fdos\bin\<a href="ataphicdd.htm">Atapicdd.sys</a> /D:FDCD0000
+   DEVICE=c:\fdos\bin\CDRcache.sys FDCD0000 CDRCACH$ 2048
+
+then in <a href="batch/autoexec.htm">autoexec.bat</a>:
+
+   c:\fdos\bin\<a href="shsucdx.htm">shsucdx</a> /D:CDRCACH$
+</pre>
+This allocates a 2048KB (2MB) cache buffer for a single IDE CD drive.
+
+<h2>See Also</h2>
+<pre>
+<a href="lbacache.htm">LBAcache</a>
+<a href="tickle.htm">Tickle</a>
+</pre>
+<hr>
+<address>
+<b>Copyright &copy; 2004 Rob Platt</b>
+<br>
+This file forms part of The FreeDOS HTML Help Documentation, and is covered
+under its terms: see <a href="../index.htm#copying">index.htm</a><br>
+</address>
+</body>
+</html>

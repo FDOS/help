@@ -1,0 +1,43 @@
+<html>
+<title>ctmouse</title>
+<body>
+<h1>ctmouse</h1>
+Installs the CuteMouse mouse driver.
+<pre>
+   ctmouse [options]
+   <a href="loadhigh.htm">LOADHIGH</a> ctmouse [options]
+</pre>
+<h2>Options</h2>
+<pre>
+  /P       - force PS/2 mouse mode
+  /S[c[i]] - force serial mouse mode at COM port c (c=1-4, default is COM1)
+             with IRQ line i (i=2-7, default is IRQ4 for COM1/3 and IRQ3
+             for COM2/4)
+  /Y       - prevent Mouse Systems mode
+  /V       - reverse search: find PS/2 after serial mouse
+  /3       - force 3-button mode (for Microsoft and PS/2 mice only)
+  /R[h[v]] - horizontal/vertical resolution (h,v=0-9; missing option R, no
+             arguments or 0 as argument after R mean auto resolution,
+             missing
+             second argument means same value as for first argument)
+  /L       - left hand mode (default is right hand mode)
+  /B       - cancel run if mouse services already present
+  /W       - prevent loading TSR into UMB
+  /U       - uninstall driver
+  /?       - show this help
+</pre>
+<h2>Notes</h2>
+ctmouse2 is a new branching of CuteMouse which supports the mouse wheel. It
+provides a wheel API (application programmer's interface), so that FreeDOS
+programs can use the mouse wheel.
+<hr>
+<address>
+<b>Visit the CuteMouse website at <a href="http://cutemouse.sourceforge.net">http://cutemouse.sourceforge.net</a></b>
+<br><br>
+<b>Copyright &copy; 1997-2004 Nagy Daniel</b>
+<br>
+This file forms part of The FreeDOS HTML Help Documentation, and is covered
+under its terms: see <a href="../index.htm#copying">index.htm</a><br>
+</address>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+<title>path</title>
+<body>
+<h1>path</h1>
+The list of paths which FreeDOS will search for commands and
+programs run from the command line.
+<pre>
+   path [pathlist]
+</pre>
+Use path without specifying a path list, to view the current
+setting.
+<h2>Options</h2>
+<pre>
+   pathlist
+   sets the list of paths. Seperate the paths with semicolons (;)
+</pre>
+<h2>Examples</h2>
+<pre>
+   path c:\fdos\bin;c:\util
+
+   path %path%;c:\games
+</pre>
+The second example adds c:\games to the existing list, preserving the
+previously set paths.
+<h2>Notes</h2>
+<p>Some commands are internal to FreeDOS. However, many are in the \bin directory
+so you may wish to have this directory on the path list (as in the first example above).
+
+<p>The paths of any frequently used programs can be put on the path list for
+convenience.
+
+<p>When a program or external command is entered at the command prompt, FreeDOS
+looks for it in the current directory and then in each of the paths specified
+by the path command.
+<hr>
+<address>
+<b>Copyright &copy; 2003 Rob Platt</b>
+<br>
+This file forms part of The FreeDOS HTML Help Documentation, and is covered
+under its terms: see <a href="../index.htm#copying">index.htm</a><br>
+</address>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<title>sort</title>
+<body>
+<h1>sort</h1>
+Sorts a file or input for displaying.
+<pre>
+   <b>sort</b> [d:][path]file [options]
+   command | <b>sort</b> [options]
+</pre>
+The file for input is not modified.
+<h2>Options</h2>
+<pre>
+  <b>/R</b>
+  Sort in reverse order.
+
+  <b>/+n</b>
+  Begin sorting at column n in each line of text.  Default=1.
+
+  <b>/N</b>
+  Enables National Language Support, so that messages will be
+  displayed according to the setting of the LANG environment variable.
+  Use the <a href="set.htm">set</a> command to set LANG.
+</pre>
+<h2>Examples</h2>
+1. Displays the current directory in alphabetical order:
+<pre>
+       <b>dir |sort</b>
+</pre>
+2. Sorts a file and writes it to another file:
+<pre>
+       <b>sort unordered.txt > ordered.txt</b>
+</pre>
+<hr>
+<address>
+<b>Copyright &copy; 1998 Jim Hall</b><br>
+This file is derived from the FreeDOS Spec Command HOWTO.
+See the file <a href="H2Cpying.txt">H2Cpying.txt</a> for copying conditions.
+</address>
+</body>
+</html>

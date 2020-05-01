@@ -1,0 +1,16 @@
+
+hhstndrd.zip
+============
+
+This contains the bulk of the html documents for use
+with help.exe (htmlhelp).
+
+IT DOES NOT NEED TO BE UNZIPPED - help.exe can read
+the html files from within hhstndrd.zip.
+
+(You may wish to unzip the html files so that they
+can be read with another browser, or to edit them.
+Zip files usually take priority over uncompressed files;
+if you want to make sure that help reads an edited,
+uncompressed version of a file, you should replace or
+delete the original version inside hhstndrd.zip)

@@ -1,0 +1,72 @@
+<html>
+<title>shsucdx</title>
+<body>
+<h1>shsuCDx</h1>
+<pre>
+   shsucdx [/D:<b>driver</b>[,<b>drive</b>][,<b>unit</b>],[<b>maxNumDrives</b>]] [switches]
+</pre>
+<p>The driver-to-DOS extender for CD drives. Use this (and a CD driver)
+so that CD drives can be accessed from DOS.</p>
+<h2>Options</h2>
+<pre>
+   <b>driver</b>
+   The alias of the CD driver, which is specified when the driver
+   is loaded. See below, <a href="#driver">Loading a CD driver</a>.
+
+   <b>drive</b>
+   The first CD drive will be assigned to this drive letter, then
+   subsequent drive letters will be used for any other CD drives
+   that are detected.
+
+   <b>unit</b>
+   Selects the first drive unit of those detected to be assigned to a
+   drive letter. This is a number from 0 to 99.
+  
+   <b>maxNumDrives</b>
+   shsucdx will not assign more than this many drives to drive letters.
+
+Switches:
+
+   <b>/C</b>
+   Uses conventional instead of high memory
+
+   <b>/U</b>
+   Unloads the shsucdx driver from memory
+
+   <b>/&tilde;</b>  Toggle tilde operation
+   <b>/&tilde;+</b> Switch tilde operation on
+   <b>/&tilde;-</b> Switch tilde operation off
+   Filenames on CD drives can be longer than DOS names, which
+   are restricted to 8 plus 3 for the extension. Shsucdx takes
+   the first 8 characters before the dot, and the first 3 after,
+   and discards the rest.
+   With tilde operation ON, shsucdx will use tildes to distinguish
+   between long file names that would have the same name when
+   shortened to an 8.3 DOS filename.
+</pre>
+<p>Note that shsucdx will only detect drives that are compatible with the specified driver.</p>
+<h2>Where can I get a CD driver from?</h2>
+<p>For IDE CD-ROM drives (most common) FreeDOS includes <a href="atapicdd.htm">ATAPICDD.SYS</a>
+(still in the development stage though).
+You may have a driver on your CD Drive's installation disk, or on the manufacturer's website.
+There are also various clone and generic drivers on the internet.</p>
+<a name="driver"><h2>Loading a CD driver</h2></a>
+You will need to load the driver in your <a href="cnfigsys/index.htm">config.sys</a> file
+before using it with shsucdx. For example:
+<pre>
+   <a href="cnfigsys/device.htm">DEVICE</a>=MYCDDRV.SYS /D:SHSU001
+</pre>
+Please refer to your driver's instructions for details on installation.<br><br>
+SHSU001 is the driver alias that will be given to shsucdx. It can be any alphanumeric name
+between 1 and 8 characters long.
+<h2>See Also</h2>
+<p>For more information, see <a href="../../doc/shsucdx/readme.cdx">readme.cdx</a></p>
+<hr>
+<address>
+<b>Copyright &copy; 2003-4 Rob Platt</b>
+<br>
+This file forms part of The FreeDOS HTML Help Documentation, and is covered
+under its terms: see <a href="../index.htm#copying">index.htm</a><br>
+</address>
+</body>
+</html>
