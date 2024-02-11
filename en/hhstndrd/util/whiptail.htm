@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: whiptail (wptail)</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: whiptail (wptail)</h1>
+<pre>
+  With WHIPTAIL you can create TUI dialog boxes and form and collect user
+  input using libnewt. (Requires CWSDPMI.)
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  See below, no more information available!
+</pre>
+<h2>Options:</h2>
+<pre>
+  Box options:
+  --msgbox &lt;text&gt; &lt;height&gt; &lt;width&gt;
+  --yesno &lt;text&gt; &lt;height&gt; &lt;width&gt;
+  --infobox &lt;text&gt; &lt;height&gt; &lt;width&gt;
+  --inputbox &lt;text&gt; &lt;height&gt; &lt;width&gt; [init]
+  --passwordbox &lt;text&gt; &lt;height&gt; &lt;width&gt; [init]
+  --textbox &lt;file&gt; &lt;height&gt; &lt;width&gt;
+  --menu &lt;text&gt; &lt;height&gt; &lt;width&gt; &lt;listheight&gt; [tag item]...
+  --checklist &lt;text&gt; &lt;height&gt; &lt;width&gt; &lt;listheight&gt; [tag item status]...
+  --radiolist &lt;text&gt; &lt;height&gt; &lt;width&gt; &lt;listheight&gt; [tag item status]...
+  --gauge &lt;text&gt; &lt;height&gt; &lt;width&gt; &lt;percent&gt;
+
+  Options (depend on box-option):
+  --clear                      Clear screen on exit
+  --defaultno                  Default no button
+  --default-item &lt;string&gt;      Set default string
+  --fb                         Use full buttons
+  --nocancel                   No cancel button
+  --yes-button &lt;text&gt;          Set text of yes button
+  --no-button &lt;text&gt;           Set text of no button
+  --ok-button &lt;text&gt;           Set text of ok button
+  --cancel-button &lt;text&gt;       Set text of cancel button
+  --noitem                     Display tags only
+  --separate-output            Output one line at a time
+  --output-fd &lt;fd&gt;             Output to fd, not stdout
+  --title &lt;title&gt;              Display title
+  --backtitle &lt;backtitle&gt;      Display backtitle
+  --scrolltext                 Force vertical scrollbars
+  --topleft                    Put window in top-left corner
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Sorry, but I found no documentation about this program.
+  See: <b>https://gitlab.com/FreeDOS/util/wptail/-/blob/master/DOC/
+  WHIPTAIL.1?ref_type=heads</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  whiptail --msgbox "Hello world, how are you?" 25 30 --title "Hello!"
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/v8power.htm">v8power</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2009 Blair Dude, help version 2023 W. Spiegl.
+  This tool bases on Red Hat, https://fedorahosted.org/newt/</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

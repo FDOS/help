@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: localize</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: localize</h1>
+<pre>
+  LOCALIZE is a small helper to let you localize your batch scripts.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  LOCALIZE x.y [optional text] [@@@ default text]
+</pre>
+<h2>Options:</h2>
+<pre>
+  x.y      This will display text number x.y from a localize.* file.
+  optional text  See example below.
+  @@@      This text will be translated; the translation is in the same
+           line as x.y: of the localize.* file.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  If no localize.* file could be found or text number x.y was not part
+  of the first found localize.* file that matches NLSPATH and LANG
+  settings, THEN the DEFAULT TEXT, if any, will be displayed. Finally,
+  the OPTIONAL TEXT is shown, if any - useful for displaying variable
+  values or text that does not need translation.
+
+  NLSPATH lists one or several (separated by ;) directories where
+  localize.* files can be found, and LANG selects the language.
+  Example NLSPATH=c:\foo and LANG=de will instruct localize to read
+  the messages from c:\foo\localize.de.
+  - Errorlevel 2 means syntax error, (first argument could not be parsed
+    as x.y number, localize has shown help screen)
+  - Errorlevel 1 will be returned if the file is not found (localization
+    error, possible reason: NLSPATH or LANG is not set)
+  - Errorlevel 0 means everything is ok.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  You have the following two settings in your <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a>:
+    set lang=de                (maybe another language)
+    set NLSPATH=C:\FREEDOS\NLS (these are the standard settings)
+  You have an english BATCH FILE, e.g.
+
+  <b>"MYBATCH.BAT":</b>
+  @echo off
+  cls
+  echo.
+  LOCALIZE 1.1 &percnt;LANG&percnt; @@@ Your current language setting is:
+  echo.
+  if errorlevel 2 goto SYNTAXERROR
+  LOCALIZE 1.2 &percnt;NLSPATH&percnt; @@@ Your current NLS path is:
+  if errorlevel 2 goto SYNTAXERROR
+  if errorlevel 1 goto WRONGPATH
+  if errorlevel 0 goto ALLOKAY
+
+  :SYNTAXERROR
+  echo.
+  LOCALIZE 1.3 @@@ There is a syntax error (first argument could not be
+  LOCALIZE 1.4 @@@ parsed as x.y number, localize has shown help screen)
+  echo.
+  pause
+  goto END
+
+  :WRONGPATH
+  echo.
+  LOCALIZE 1.5 @@@ Please check your NLSPATH and language. There is no file
+  LOCALIZE 1.6 @@@ &percnt;NLSPATH&percnt;\localize.&percnt;LANG&percnt; available.
+  echo.
+  pause
+  goto END
+
+  :ALLOKAY
+  echo.
+  LOCALIZE 1.9 @@@ Welcome at the batch translation script!
+  echo.
+  LOCALIZE 2.0 @@@ Your menu options are:
+  LOCALIZE 2.1 (1) @@@ Batch / Program 01
+  LOCALIZE 2.2 (2) @@@ Batch / Program 02
+  choice /c:12
+  if errorlevel 2 goto PROG02
+  if errorlevel 1 goto PROG01
+
+  :PROG01
+  echo.
+  LOCALIZE 3.1 @@@ You will start program 01 now
+  LOCALIZE 4.1 @@@ REM Add your command for program 01 here
+  echo.
+  pause
+  goto END
+
+  :PROG02
+  echo.
+  LOCALIZE 3.2 @@@ You will start program 02 now
+  LOCALIZE 4.2 @@@ REM Add your command for program 02 here
+  echo.
+  pause
+  goto END
+
+  :END
+  echo on
+  exit
+
+  To show the BATCH in German (or your) language you have to enter the
+  numbers 1.1 till 4.4 at "C:\FREEDOS\NLS\localize.de" (localize.xx) -
+  and the corresponding German (or your) text.
+  If you create another file for another language, e.g. localize.fr you
+  get a french translation.
+
+  <b>The German "LOCALIZE.DE" for the BATCH above looks as follows:</b>
+
+  1.1:Ihre aktuelle Ländereinstellung ist:
+  1.2:Ihr aktueller NLS-Pfad ist:
+  1.3:Es liegt ein Syntaxfehler vor (das erste Argument konnte nicht als
+  1.4:x.y geparst werden (localize hat eine Hilfemeldung gezeigt)
+  1.5:Bitte überprüfen Sie Ihren NLS-Pfad / Sprache. Es gibt keine Datei
+  1.6:&percnt;NLSPATH&percnt;\localize.&percnt;LANG&percnt;!
+  1.9:Willkommen beim Batch-Übersetzungsskript!
+  2.0:Bitte wählen Sie einen Menüpunkt aus:
+  2.1:Batch-Datei / Programm 01
+  2.2:Batch-Datei / Programm 02
+  3.1:Sie starten jetzt Programm 01
+  3.2:Sie starten jetzt Programm 02
+  4.1:REM Bitte geben Sie hier den Befehl für Programm 01 ein!
+  4.2:REM Bitte geben Sie hier den Befehl für Programm 02 ein!
+  99.0:Zeigt einen lokalisierten Text an (aus localize.*)
+  99.1:Zeigt Text Nummer x.y (und dann das [etc.])\r\nbzw. ersatzweise
+       den Text nach @@@ (und dann das [etc.])
+  99.2:Errorlevel: 0 wenn okay, 1 wenn kein localize.* gefunden\r\noder
+       kein Text x.y darin, Errorlevel 2 bedeutet Syntax error (das erste
+       Argument konnte nicht als x.y Wert erkannt werden, localize hat
+       den Hilfe-Bildschirm angezeigt).
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../batch/index.htm">batch files</a>
+  <a href="../command/environm.htm">environment variables</a>
+  <a href="../batch/errorlvl.htm">errorlevel</a>
+  <a href="../batch/set.htm">set</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Eric Auer, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

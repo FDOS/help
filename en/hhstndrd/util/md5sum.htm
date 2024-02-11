@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: md5sum</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: md5sum</h1>
+<pre>
+  MD5SUM is a Public Domain program used for computing and checking
+  cryptographic message digests (or check values) of files.  It was
+  written with the Unix philosophy of reading from standard input and
+  writing to standard output, and options can be delimited with "-"
+  and "/" in this program version.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  md5sum [/TBV] [/C [file]] | [file...]
+  md5sum [/?]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /C           Check message digests (default is generate).
+  /[-]V        Enable or disable verbose mode (default is off).
+  /[-]L        Enable or disable LFN usage (default is enable if
+               supported)
+  /[-]R[num]   Enable or diable recursing (default is off).
+               num is a number from 1 to 9 and limits recursion
+               (default=4)
+  /[-]S        Same as /[-]R=].
+  /T           Read files in text mode.
+  /B           Read files in binary mode (default; overrides /T).
+  /M[:|=]mode  Select the digest mode (SHA or MD5).
+  /?           Shows the help.
+  The input for /C should be a list of message digests and file names
+  that is printed on stdout by this program when it generates digests.
+  Note that now, both '-' and '/' switches are accepted.
+  When checking files, MD5SUM generates no output if the files match
+  their fingerprints, unless you also specify the -v switch. If there
+  is a problem, it will generate one or more of the following messages:
+    MD5SUM.EXE: can't open filename
+    MD5SUM.EXE: error reading filename
+    MD5SUM.EXE: MD5 check failed for filename
+    MD5SUM.EXE: _ of _ file(s) failed MD5 check
+    MD5SUM.EXE: no files checked
+  The argument for /M should be a digest mode, which could possible be
+  SHA, CRC32, SHA256 or MD5, depending on how MD5SUM was compiled.
+ </pre>
+<h2>Comments:</h2>
+<pre>
+  If the MD5 message digest "fingerprint" of a file has not changed,
+  this is a VERY good indication that the contents of the file has not
+  changed. Even if you wanted to change a file in such a way that it
+  still had the same MD5 "fingerprint," you probably couldn't do it
+  without a lot of supercomputer time (and neither could a bad guy).
+  This makes it useful for detection of forgeries, viruses, and just
+  plain transmission errors. Note that this is much more powerful than
+  a normal CRC, which is good at detecting some kinds of transmission
+  errors, but can easily be forged. This is also useful for signing a
+  collection of files with a digital signature (using PGP, a PEM
+  implementation, or some kind of DSA implementation, for example),
+  without having to individually sign each file. Simply create a text
+  file with the "fingerprints" of each file you wish to sign, then sign
+  that text file.
+
+  COMPUTING FILE MD5 FINGERPRINTS
+  To compute the MD5 fingerprint of a text file, simply type
+    MD5SUM filename(s)
+  "Wild cards" (like * and ?) ARE supported by this program, you can
+  also put more than one file name on the command line. Since the
+  program is assuming that this is a text file, line endings conventions
+  may differ and still result in the same check value.
+    MD5SUM filename(s)
+  To see the file names displayed while computing "fingerprints,"
+  include the -v option, like:
+    MD5SUM -v filename(s)
+  To write the output to a file instead of just displaying it on the
+  screen, use redirection with the "&gt;" character, like:
+    MD5SUM -v filename(s) &gt; md5file
+  To append the output to an existing file, use two &gt; characters, like:
+    MD5SUM -v filename(s) &gt;&gt; md5file
+
+  ADDING COMMENTS TO CHECK FILES
+  Sometimes it is nice to add comments to files containing MD5 finger-
+  prints. To do this, just edit the files made using the above
+  instructions to add in what you want to say. Lines that do not start
+  with valid hexadecimal digits are ignored as comments.
+
+  CHECKING FILES AGAINST STORED FINGERPRINTS
+  To check all of the files listed in check files as generated above to
+  see if they have changed:
+    MD5SUM -c md5file
+  For a more verbose listing of results (listing file names followed by
+  "OK" or "FAILED"), type:
+    MD5SUM -cv md5file
+
+  DETECTING MODIFICATION OR FORGERY OF FINGERPRINT FILES
+  One way to prevent alteration of fingerprint files is to store several
+  copies in different secure places, then compare them from time to time.
+  Another way is to use a digital signature produced by PGP, some PEM
+  implementation, or a DSS implementation. PGP is the most widely used
+  digital signature program in the public sector right now.
+
+  MD5SUM supports NLS (national language support).
+</pre>
+<h2>Examples:</h2>
+<pre>
+  md5sum /M:MD5 /V c:\autoexec.bat
+    Creates and shows an MD5 fingerprint of autoexec.bat (works with
+    CRC32, SHA and SHA256).
+  md5sum /M:SHA /R C:\*.* &gt; D:\myhashes.txt
+    Creates an SHA fingerprint of all files at C:\ and subdirectories
+    and writes it to D:\myhashes.txt. Please note that edit supports
+    only 64 KB size, so another editor maybe needed to open the file.
+    If you use the same partition for "myhashes.txt" the hash value
+    of this file maybe wrong.
+  md5sum -cv d:\myhashes.txt
+    Checks all listed files and reports files that failed. The amount
+    of FAILS is shown at the end, but not path and filename as the
+    list runs through very fast.
+  md5sum -cv d:\myhashes.txt > report.txt
+    Creates a file report.txt. You can open it with an editor and
+    use the search function to find "FAILED" and with this path and
+    filename of the modified file.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/bsum.htm">bsum</a>
+  <a href="../base/comp.htm">comp</a>
+  <a href="../base/diskcomp.htm">diskcomp</a>
+  <a href="../base/fc.htm">fc</a>
+</pre>
+<hr>
+<pre>
+   <b>Copyright &copy; 2005 Blair Campbell, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

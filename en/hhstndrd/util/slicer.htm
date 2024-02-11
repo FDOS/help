@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: slicer</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: slicer</h1>
+<pre>
+  SLICER is a simple file archiving and slicing/spanning program for DOS.
+  SLICER is very similar to tar. However, it has different primary focus
+  and objectives.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  slicer [options]
+</pre>
+<h2>Options:</h2>
+<pre>
+  SLICER option information:
+  /q    Disable all status messages
+  /v    Enable verbose status messages
+  /t    Test mode
+  /h    Display help information
+  /i ?  Include items maching filespec (option is assumed)
+  /I ?  Include items from file list
+  /e ?  Exclude items matching filespec
+  /E ?  Exclude items from file list
+  /d    Exclude empty directories
+  /D    Do not recurse subdirectories
+  /a    Include all hidden and system items
+  /o    Overwrite existing files
+  /k    Do not ignore file case
+  /g ?  Specify group category
+  /s ?  Size to slice archive, K, M or Bytes (only valid when creating a
+        new archive or re-slicing an existing archive).
+  /y    Automatically accept any prompts (not including file overwrite).
+
+  Operations related to entire archive:
+  /f ?  Specify archive file name
+  /c    Create a new archive
+  /r    Append to existing archive
+  /x    Extract from an existing archive
+  /R    Generate archive report
+  /O?   Set destination extraction path
+
+  Embedded text, notices and messages:
+  /L ?  Override system default language
+  /m ?  Embed message text from file
+  /M ?  Embed message text from file that requires a user to agree
+
+  Pass-through compression:
+  /p ?  Enable pass-through compression (GZ, maybe others later)
+
+</pre>
+<h2>Comments:</h2>
+<pre>
+ &num;&num;&num; How is *File SLICER* different?
+  Unlike other archiving utilities, *File SLICER* is more of a multi-
+  language group based file resource splitter, archiver and installer
+  hybrid utility.
+ *Hunh?*
+  When files are added to an archive, they may be given group tags.
+  These tags can be used to pull only specific classes of files from the
+  archive. For example, if storing a program, you could tag source files
+  as ***src*** and store binaries ungrouped. Then on extraction, the
+  binaries would always get extracted. But, the sources files would only
+  get extracted if the ***src*** group is is requested.
+  Then the multi-language thing... Language specific text can be embedded
+  into an archive. This text may be displayed automatically during the
+  extraction of an archive and also supports group tags. So, you could
+  embed English and Spanish text at the start of a ***src*** group that
+  gets displayed when the ***src*** group begins extraction.
+ *Installer kinda stuff. Well, only to the extent that multi-language
+  text can be flagged whith the **/M** switch to require user acceptance.
+  This would allow a license to be displayed and accepted before a group
+  is extracted.
+ *A file splitter thingy. It always works in splitting mode. The size for
+  each file is defined when an archive is created and cannot be changed
+  unless it is re-sliced. The primary archive file always ends in **SAF**
+  and additional files are numbered **001** and up. The first portion of
+  primary archive file's header is in pure text and can be viewed by
+  simply using the type command. If any additional non-language specific
+  text was appended to the header using the **/m** switch, it will be
+  shown as well.
+ &num;&num;&num; One more thing...
+  The FreeDOS installer for the Floppy Edition uses **SLICEREX** to
+  perform the installation of all the software packages. This is specially
+  tuned version of **SLICER** for the primary function of extracting
+  FreeDOS under the extreme memory limitations (everything loaded into
+  low memory) that the Floppy Edition operates. **SLICER/EX** is still
+  very new. So if for whatever reason the installation of packages fails,
+  you can try again and turn on logging for **SLICEREX** by setting an
+  environment variable **SLICER.LOG**. This log is gigantic and pushes
+  6mb under normal installations. It also really slows down the instal-
+  lation process. When you set the variable to turn on logging, I
+  recommend using **set SLICER.LOG=C:\SLICER.LOG** for the file.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - none - at the moment it is only used in FREEDOS for installation.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/7zdec.htm">7zdec</a>
+  <a href="../util/arj.htm">arj</a>
+  <a href="../util/bzip2.htm">bzip2</a>
+  <a href="../util/cabext.htm">cabext</a>
+  <a href="../util/gzip.htm">gzip</a>
+  <a href="../util/lpq1.htm">lpq1</a>
+  <a href="../util/lzip.htm">lzip</a>
+  <a href="../util/lzma.htm">lzma</a>
+  <a href="../util/lzop.htm">lzop</a>
+  <a href="../util/p7zip.htm">p7zip</a>
+  <a href="../util/tar.htm">tar</a>
+  <a href="../util/unzip.htm">unzip</a>
+  <a href="../util/zip.htm">zip</a>
+  <a href="../util/zoo.htm">zoo</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2019-2020 Jerome Shidel,help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

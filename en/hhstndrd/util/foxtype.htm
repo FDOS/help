@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: foxtype</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: foxtype</h1>
+<pre>
+  FoxType is an open-source program similar to the DOSish 'TYPE' command.
+  The main differences are that FoxType works in graphic mode (so it
+  does not allow redirection nor piping) and it's able to display UTF-8
+  text files.
+  FoxType is a 32 bits application, so it requires at least a 80386
+  processor with a VGA graphic card.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  FOXTYPE file.txt [/1280]
+</pre>
+<h2>Options:</h2>
+<pre>
+  The /1280 parameter switches FoxType to 1280x1024 video mode (requires
+  a VESA 1.2 compatible graphic card). In that mode FoxType supports more
+  Unicode characters, for example some asian scripts which are too complex
+  to be displayed at 640x480 resolution, other glyphs are simply smoother.
+  If you would like FoxType used that video mode by default, you should
+  specify a DOS environment variable 'FOXTYPE = /1280'. To do that, just
+  type in the DOS prompt 'SET FOXTYPE=/1280'.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  WARNING:
+  Before using the 1280x1024 VESA graphic mode, please check in your
+  computer's documentation if your monitor can handle it! There is a
+  risk that such high resolution could damage some old-generation
+  monitors (usualy those made before 1998 are the most vulnerable).
+</pre>
+<h2>Examples:</h2>
+<pre>
+  foxtype file.txt
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/edit.htm">edit</a>
+  <a href="../util/pg.htm">pg (pager)</a>
+  <a href="../command/type.htm">type</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2006-2007 Mateusz Viste, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

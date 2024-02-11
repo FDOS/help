@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>HTML Yardım Sistemi için Yazmak:</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<h1>HTML Yardım Sistemi için Yazmak:</h1>
+<pre>
+  Katkılar son derece hoş karşılanır. HTML yardım sistemine bir katkıda
+  bulunmak istiyorsanız, lütfen bakımcı ile irtibata geçin:
+    fritzdotmuelleratmaildotcom
+</pre>
+<h2>\help dizininin yapısı:</h2>
+<pre>
+  <b>\help\index.htm</b>
+    Sistemde kurulu yardım dillerini listeler.
+    İngilizce (EN) kurulu değilse ve LANG mevcut bir lisana ayarlı
+    değilse otomatik olarak yüklenir.
+  <b>\help\&percnt;LANG&percnt;\index.htm</b>
+    Yardım, varsayılan olarak bunu yükler. &percnt;LANG&percnt; LANG ortam değişkeni
+    ayarlanarak seçilen dildir. Eğer LANG ayarlı değilse, EN varsayılır.
+  <b>\help\&percnt;LANG&percnt;\help.htm</b>
+    Yardım, kullanıcı F1 tuşuna bastığında veya "Yardımın Yardımı"
+    bağlantısına tıkladığında bunu yükler.
+  <b>\help\docinfo\bi\nls\&percnt;LANG&percnt;.bi</b>
+    Kütüphane etajer dosyalarını Aitor'un bookshlf aracı ile lisan
+    endeksini oluşturmak için saklar (\help\index.htm).
+</pre>
+<h2>Sıkıştırılmış yardım dosyaları oluşturmak:</h2>
+<pre>
+  Sıkıştırılmış dosya kümesi için şu şekilde bir ad kullanmalısınız:
+    <b>\help\...\[isim]\[isim].zip</b>
+  Yardım dosyalarınızı sıkıştırmak istiyorsanız, zip biçiminde olmaları
+  gerekir. Dosya isimleri saklandıkları dizin ile aynı olmalıdır, ek
+  olarka zip uzantısı kullanılmalıdır. Mesela:
+    <b>\help\en\myhelp\myhelp.zip</b>
+  index.htm bir zip dosyası içinde olabilir, fakat değilse yardım ve
+  bookshlf daha iyi çalışır.
+  Zip dosyası içinde dizin yapılarına izin verilir. Ancak şifreleme ile
+  eski ve daha az bilinen sıkıştırma yöntemleri desteklenmez.
+</pre>
+<h2>Yardım dosyalarının değiştirilmiş sürümlerinin oluşturulması:</h2>
+<pre>
+  Değiştirilmiş sürümlerde başlık sayfasında (çoğunlukla index.htm)
+  farklı bir başlık kullanın. Bunun maksadı karışıklık ve çakışmalara
+  engel olmaktır ve daha da önemli olarak bu,
+  <a href="../other/fdl11.htm">GNU Özgür Belgelendirme Lisansı 1.1</a> bölüm 4A'da şart koşulur.
+  Başlığı değiştirmeye ilaveten lütfen tarihçeyi, yazarlar listesini
+  vs. güncelleyin, <a href="../other/fdl11.htm">GNU Özgür Belgeleme Lisansı 1.1</a> 4. bölümün
+  gerektirdiği üzere.
+  Eğer dosya kümesi yeni veya değiştirilmiş bir paketi açıklayacaksa ya
+  da dosya kümesi temel bir değişikliğe maruz kalıyorsa (mesela tercüme
+  gibi), en iyisi farklı bir alt dizin ismi kullanmaktır, yukarıda
+  \help dizininin yapısı bölümünde izah edildiği gibi. Bu, sadece
+  index.htm dosyasındaki alt dizin ismini bulup değiştirme meselesidir
+  ve hakikaten buna değer.
+  Mesela, "hhstndrd" dosya kümesinin küçültülmüş bir sürümünün ismi
+  "hhmicro" olabilir. Bu, alt dizinin ismi olur, ve index.htm dahilinde
+  başlık şu şekilde olabilir:
+    FreeDOS Hilfe (hhmicro 1.0)
+  Güncelleme yayınlarken sadece sürüm numarasını değiştirmek (isim ve
+  "hhmicro" dizini yerine) makul olacaktır.
+</pre>
+<h2>Yeni dosya eklemek veya oluşturmak:</h2>
+<pre>
+  Her yeni yardım dosyasının sonuna şu lisans mesajını koymanız tavsiye
+  edilir (buna istisna, yardım dosyası kümesine dahil olmayan, tek unless it is going to be a stand alone file, not
+  başına bir dosya olacaksa):
+
+    ...
+    &lt;hr&gt;
+    &lt;address&gt;
+
+    &lt;b&gt;Telif hakkı &amp;copy; 2008
+    &lt;a href="mailto:<b>benimepostam@adres.com</b>"&gt;<b>İsmim</b>&lt;/a&gt;&lt;/b&gt;&lt;br&gt;
+    Bu dosya FreeDOS HTML Yardım Belgelendirmesi parçasıdır ve onun
+    lisans koşulları kapsamındadır, şu sayfaya bakın:
+    &lt;a href="../index.htm"&gt;index.htm&lt;/a&gt;
+
+    &lt;/address&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+
+  Bir e-posta adresi girmek tamamen seçime dayalıdır; eğer yardım
+  dosyalarınızı bir İnternet sitesine yüklerseniz, e-posta adresi
+  spam'a maruz kalabilir.
+  Koşullar şunlardır: <a href="../other/fdl11.htm">GNU Özgür Belgelendirme Lisansı 1.1</a>.
+</pre>
+<h2>Zip arşivinde bulunan bir dosyanın düzenlenmesi:</h2>
+<pre>
+  Zip arşivini, html dosyalarının başka bir tarayıcı ile okunması veya
+  düzenleme amacıyla açmak isteyebilirsiniz. Zip dosyaları genelde
+  sıkıştırılmamış dosyalara nazaran önceliklidir; yardımın düzenlenmiş,
+  sıkıştırılmamış bir sürümü okumasını istiyorsanız, zip arşivindeki
+  orijinal sürümü silmeniz veya onun yerine başkasını koymanız gerekir.
+</pre>
+<h2>Yardım dosyalarının denenmesi:</h2>
+<pre>
+  Yardım dosyalarının denemesinde kullanılan referans tarayıcılar
+  şunlardır:
+    * FreeDOS HTML Yardım Görüntüleyicisi (help.exe)
+    * Chromium türevi bir tarayıcı.
+</pre>
+<h2>Tablo oluşturulması:</h2>
+<pre>
+  Maalesef yardım tablo etiketlerini desteklemez. Bilgi tabloları için
+  ön biçimlendirme etiketleri olan &lt;pre&gt; &lt;/pre&gt; kullanın.
+</pre>
+<h2>Genel ipuçları:</h2>
+<pre>
+  Yardımın görüntülediği dosyayı tazelemek için F5 veya Ctrl+R
+  tuşlarına basın. Böylece dosyaya yapılan değişiklikler derhal
+  görüntülenebilir. Bu, Windows türü bir ortamda dosyalar düzenlenirken
+  kullanışlıdır. HTML Yardım Görüntüleyicisini henüz dosya kümesine
+  dahil edilmemiş bir dosyayı görüntülemek amacıyla kullanmak için
+  yardım yolu geçersiz kılma seçeneği kullanılabilir:
+    help /O[sürücü:][yol]dosyaismi[.htm]
+  veya \HELP dizinine göreli ise:
+    help /L[altdizinler]dosyaismi[.htm]
+</pre>
+<h2>Ayrıca bakın:</h2>
+<pre>
+  <a href="tags.htm">HTML Yardım Tarafından Desteklenen Etiketler</a>
+  <a href="index.htm">Yazarlar için Kaynaklar</a>
+</pre>
+<hr>
+<pre>
+  <b>Telif hakkı &copy; 2003-4 Robert Platt, 2008 ve 2020 senelerinde</b>
+  <b>W. Spiegl tarafından güncellenmiştir.</b>
+  <b>2022 senesinde Berki Yenig&uuml;n tarafından tercüme edilmiştir.</b>
+
+  Bu dosya, FreeDOS HTML Yardım Belgelendirmesi'nin bir parçasıdır ve
+  onun şartları kapsamındadır: <a href="../../index.htm">index.htm</a> sayfasına bakın.
+
+</pre></body></html>

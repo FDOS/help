@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: pkginfo (part of pkgtools)</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: pkginfo (part of pkgtools)</h1>
+<pre>
+  PKGINFO is a command line utility to to display metadata and file
+  information for installed packages.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+Usage PKGINFO: [options] [package]
+     [options]   Options are not case specific. If no options are
+                 provided than /L is assumed by default.
+     [package]   Complex wildcard to specify package(s). Supports things
+                 like fd*pkg, *zip*, ?d*, etc.
+</pre>
+<h2>Options:</h2>
+<pre>
+Basic modes of operation:
+  /H         Display help and exit
+  /N         Names of installed packages
+  /L         List installed packages (names, titles, version)
+  /I         Details of installed packages
+  /D         Like /I, but provides more detail information
+  /W item    List only packages that contain a specific file or
+             directory to find out to which package it belongs.
+
+Mode modifier options:
+  /R         Report missing files
+  /E         List executable files
+  /A         List all files
+  /U         Determine disk usage
+  /P         Pause output, one page at a time
+  /S wild    Search the package information for text matching wild
+
+Miscellaneous options:
+  /VER       Display version information
+  /NLS lang  Use lang translations instead of system setting
+  //         Force using the / for the switch character
+</pre>
+<h2>Comments:</h2>
+<pre>
+  PKGINFO is a command line utility to to display metadata and file
+  information for installed packages. Mostly, using it is straight
+  forward. Just a couple things to note. First, the list of packages
+  can be limited by using an advanced wildcard. For example, *XMS* and
+  ?D*N all return expected results. Second, is the search option. You
+  can limit search to only specified packages or by default all packages
+  will have there metadata searched. The search is basically another
+  advanced wildcard as well. So, you could do a "pkginfo *fd* /s
+  gnu*ver*2" and get a list of all packages that whose id contains FD and
+  contain gnu*ver*2 somewhere in their metadata. You can also tack on /d
+  to have the metadata displayed as well. For the most part, the order of
+  command-line parameters makes no difference.
+  PKGINFO supports NLS.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  PKGINFO /P /VER  Shows program version
+  PKGINFO /P /E    Lists executable programs
+  PKGINFO /P /R    Reports missing files
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/fdimples.htm">fdimples</a>
+  <a href="../base/fdinst.htm">fdinst</a>
+  <a href="../base/fdnpkg.htm">fdnpkg</a>
+  <a href="../util/pkgmaker.htm">pkgmaker</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1990-2022 Jerome Shidel, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

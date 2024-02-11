@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: runtime</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: runtime</h1>
+<pre>
+  RUNTIME is a program that sets a timer, then runs the program specified
+  on the command line, and then prints the run time of that program.
+  That's all.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  runtime { program } [ ...]
+</pre>
+<h2>Options:</h2>
+<pre>
+  program   The program you want to start
+  /?        Shows the help
+</pre>
+<h2>Comments:</h2>
+<pre>
+  There is an alternative runtime.com "runtime-03sep2012" from Eric Auer
+  available at: <b>https://www.ibiblio.org/pub/micro/pc-stuff/freedos/</b>
+  <b>files/util/user/runtime</b>
+  with the same syntax (RUNTIME your_program [Options].
+  This one runs max. 1 day (23:59:59.99) 
+  Both versions of RUNTIME support NLS.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  runtime chkdsk c:  (runs chkdsk c: and then shows the needed time)
+  runtime defrag c:
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/sleep.htm">sleep</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2000,2002 Jim Hall, help version 2024 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>HTML Help Viewer 5.3.2 - Desteklenen Etiketler:</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<h1>HTML Help Viewer 5.3.2 - Desteklenen Etiketler:</h1>
+<pre>
+  Bu belge, Yardım tarafından desteklenen HTML alt kümesini açıklar.
+  <b><a name="Comment">&lt;!-- --&gt;</a></b>
+    Yorum. Yorum içindeki tüm etiketler ve metin HTML Yardım tarafından
+    görmezden gelinir.
+  <b><a name="A">&lt;A&gt;</a></b>
+    Yardım, HREF ve NAME özniteliklerini tamamen destekler, istisnalar:
+      * diğer dosyalara bağlantılar göreli olabilir, mutlak değil. Yani
+        HREF="..\foo.htm" çalışır ama HREF="C:\foo.htm" çalışmaz
+      * Çift tırnak işaretleri "" daima dosya adları ve yer imleri
+        etrafına konmalıdır, mesela HREF="foo.htm" ama HREF=foo.htm
+        değil.
+      * web ve e-posta adreslerine referanslar görmezden gelinir.
+      * DOS tarzı (8.3) dosya isimleri kullanılmalıdır.
+  <b><a name="B">&lt;B&gt;</a></b>
+    <b>Kalın</b> metin açık beyaz olarak görüntülenir.
+  <b><a name="BODY">&lt;BODY&gt;</a></b>
+    Görüntülenecek metnin başlangıcını gösterir.
+  <b><a name="BR">&lt;BR&gt;</a></b>
+    Satır sonu.
+  <b><a name="Code">&lt;CODE&gt;</a></b>
+    Kod sadece <b>bold</b> metin olarak görüntülenir (açık beyaz).
+  <b><a name="EM">&lt;EM&gt;</a></b>
+    <em>Vurgulanmış</em> metin, <i>italik</i> metin gibi magenta rengi
+    ile (morun bir tonu) görüntülenir.
+  <b><a name="H1">&lt;H1&gt;</a></b>
+    Yardım, bu başlık 1 metnini <b>kalın</b> olarak görüntüler ve
+    altına kalın bir çizgi koyar.
+  <b><a name="H2">&lt;H2&gt;</a>, <a name="H3">&lt;H3&gt;</a></b>
+    Başlık 2 ile 3 metinleri <b>kalın</b> olarak görüntülenirler ve
+    yeni bir paragraf başlatılır.
+  <b><a name="Head">&lt;HEAD&gt;</a></b>
+    HTML Başlığı.
+  <b><a name="HR">&lt;HR&gt;</a></b>
+    Ekran boyunca yatay bir cetvel oluşturur. Sadece öznitelikleri
+    bulunmayanlar güncel olarak desteklenmektedir.
+  <b><a name="HTML">&lt;HTML&gt;</a></b>
+    Bir HTML dosyasına işaret eder.
+  <b><a name="I">&lt;I&gt;</a></b>
+    <i>İtalik</i> metinler, magenta rengi (morun bir tonu) olarak
+    görüntülenir.
+  <b><a name="LI">&lt;LI&gt;</a></b>
+    Bir liste nesnesi.
+  <b><a name="OL">&lt;OL&gt;</a></b>
+    Güncel olarak, sıralı listeler sıralanmamış listeler olarak
+    oluşturulur. Yerleşik listeler desteklenmez.
+  <b><a name="P">&lt;P&gt;</a></b>
+    Yeni paragraf.
+  <b><a name="PRE">&lt;PRE&gt;</a></b>
+    Önceden biçimlendirilmiş metin
+  <b><a name="STRONG">&lt;STRONG&gt;</a></b>
+    <strong>Güçlü</strong> text, <b>kalın</b> metin gibi parlak beyaz
+     olarak görüntülenir.
+  <b><a name="TITLE">&lt;TITLE&gt;</a></b>
+    Hiçbir şey yapmaz - şimdilik.
+  <b><a name="TT">&lt;TT&gt;</a></b>
+    <tt>TT metin</tt>, <i>italik</i> metin gibi magenta rengi (morun
+    tonu) kullanılarak görüntülenir.
+  <b><a name="UL">&lt;UL&gt;</a></b>
+    Yerleşik listeler güncel olarak desteklenmez.
+</pre>
+<h2><a name="ENTITIES">HTML Yardım'ın Desteklediği Karakter Nesneleri:</a></h2>
+<pre>
+  250'yi aşkın karakter nesnesi desteklenir, buna tüm Latin-1 nesneleri
+  dahildir. NCR'ler (Numeric Character References) ve UTF-8 de
+  desteklenir. Ancak yardım sadece güncel olarak faal DOS kod
+  sayfasında mevcut olan karakterleri görüntüleyebilir. Yardımın
+  'tanıdığı' kod sayfaları listesi için komut isteminde "HELP /C" yazın.
+</pre>
+<h2><a name="NOTES">HTML Yardım Hakkında Genel Notlar:</a></h2>
+<pre>
+   1. Metin satıra sığımıyorsa sarılır.
+   2. Etiketler büyük/küçük harflere duyarsızdır, yani <b><a name="x">&lt;A HREF="FOO.HTM"&gt;</a></b>
+      <b><a name="y">&lt;a href="foo.htm"&gt;</a></b> ile eşdeğerdir.
+   3. Bir belgenin azami boyutu 64 KB'dir.
+   4. Sadece kısa (8.3) dosya isimleri desteklenir.
+   5. Yardım programı, dosya türlerini dosya adı uzantısı ile ayırır.
+      Dolayısıyla <b>.htm</b> uzantısı HTML dosyaları için tavsiye
+      edilir.
+</pre>
+<hr>
+<pre>
+  <b>Telif hakkı &copy; 2003 Robert Platt, 2008 senesinde W. Spiegl</b>
+  <b>tarafından güncellenmiştir.</b>
+  <b>2022 senesinde Berki Yenig&uuml;n tarafından tercüme edilmiştir.</b>
+
+  Değişmeyen bölümleri, ön kapak metni ve arka kapak metni olmaksızın
+  bu belgeyi GNU Özgür Belgelendirme Lisansı, Sürüm 1.1 veya Özgür
+  Yazılım Vakfı tarafından yayınlanacak sonraki herhangi bir sürüm
+  kapsamında kopyalamaya, dağıtmaya ve/veya değiştirmeye izin
+  verilmiştir. Bu lisansın bir kopyası,
+  <a href="../other/fdl11.htm">"GNU Free Documentation License 1.1"</a> bölümünde mevcuttur.
+
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.1 or
+  any later version published by the Free Software Foundation; with no
+  Invariant Sections, no Front-Cover Texts and no Back-Cover Texts.
+  A copy of the license is included in the section entitled
+  <a href="../other/fdl11.htm">"GNU Free Documentation License 1.1"</a>
+
+</pre></body></html>

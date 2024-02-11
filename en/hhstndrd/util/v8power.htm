@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: v8power</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: v8power</h1>
+<pre>
+  V8POWER Tools is a set of batch file enhancement utilities for DOS that
+  can provide text UI and other processing functions (UPX'd)
+</pre>
+<h2>Available utilities:</h2>
+<pre>
+  VASK      Prompt for text input.
+  VCHKBOX   Placeholder, not yet in use.
+  VCHOICE   Choose an option, returns an errorlevel.
+  VCLS      Clear screen.
+  VCURSOR   Change or query the cursor size and shape.
+  VDELAY    Delay in milliseconds.
+  VDELETE   Delete row (line) at the current location.
+  VEACH     Do something for each item in a list.
+  VECHO     Output text to display.
+  VERRLVL   Sets current errorlevel. Mostly for testing batch file logic.
+  VFDUTIL   File and directory utility.
+  VFONT     Temporarily load a text mode bitmap font.
+  VFRAME    Draw a box windowing thingy and move cursur to its inside top
+            left position.
+  VGOTOXY   Move or query cursur position.
+  VINFO     General system information utility.
+  VINSERT   Insert a blank row (line) at the current location.
+  VLINE     Draws a line.
+  VMATH     Simple math utility, but not a calculator.
+  VMODE     Set and query current video text modes.
+  VPAUSE    Simple wait for keypress or time-out.
+  VPCSPKR   Generate a tone using the built in speaker.
+  VPROGRES  Draw a progress bar at current location without moving cursor.
+  VREADKEY  Placeholder, not yet in use.
+  VSTR      Simple string processing utility. Outputs results to STDOUT.
+  VTEST     A tester of state.
+  VVER      V8Power information program.
+  VVIEW     Placeholder, not yet in use.
+</pre>
+<h2>Options:</h2>
+<pre>
+  Please run "command /?" or "command /? | more" for more information.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  V8Power Tools Usage:
+  Here is some basic information regarding all utilities and how they
+  operate. Options, values and hexidecimal numbers are not case specific
+  /f white is the same as /F wHIte.
+  Hexidecimal numbers may be prefixed with 0x to prevent them from being
+  treated as base ten. (Example: 10 and 0x10)
+  Spaces are mostly optional. /B7/f0 is the same as /B 7 /F 0.
+  But, not / B7 / F0.
+  To use a / or spaces in a value, put it in qoutes. Like
+  "Jack and/or Jill".
+  Use multiple qoutes to use quotes. Like "Jack's house" or 'Say "What?"'.
+  Unless overriden, most utilities use the text attribute at the current
+  cursor location.
+
+  Here is color table used for all **/A**, **/F** and **/B** switches:
+  Decimal     Hex         Label (Not case specific)
+   0          0x00        Black
+   1          0x01        Blue
+   2          0x02        Green
+   3          0x03        Cyan
+   4          0x04        Red
+   5          0x05        Magenta
+   6          0x06        Brown
+   7          0x07        Gray / Grey
+
+  (Foreground /f and /a only)
+   8          0x08        DarkGray / DarkGrey
+   9          0x09        LightBlue
+  10          0x0a        LightGreen
+  11          0x0b        LightCyan
+  12          0x0c        LightRed
+  13          0x0d        LightMagenta
+  14          0x0e        Yellow
+  15          0x0f        White
+
+  Most of the individual tools that support color changing also support
+  changing the Blink/Intensity setting. However, most tools do not
+  mention it.
+  /BlinkOn    Enable the Blink/Intensity bit. (Start Blinking)
+  /BlinkOff   Disable the Blink/Intensity bit. (Stop Blinking)
+
+  The DOS command line (and batch files) is limited to approximately 128
+  characters. This could make it difficult for tools like vecho to print
+  multiple lines at once. However, many tools such as vecho, vstr, etc.
+  support loading text resources from a file using the /T switch.
+  Generally, the /T switch is used to provide "Translation" text for a
+  batch. When loaded from file, the V8Power Tools utility is limited to
+  10 kilobytes per lines. Beyond that, the utility will ignore any
+  remaining text on that line. 10kb is equal to 5 screens or more
+  of text and is overkill.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Examples for all these comments are beyond the scope of this help.
+  Sorry for that. Please run "command /?" to get more information.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/whiptail.htm">whiptail</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2015-2021 Jerome Shidel, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

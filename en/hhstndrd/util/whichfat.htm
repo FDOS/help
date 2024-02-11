@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: whichfat</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: whichfat</h1>
+<pre>
+  WHICHFAT is a FAT32 kernel support detection and per-drive FAT (12-32)
+  type detection < 512 bytes.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  WHICHFAT
+  WHICHFAT x:
+</pre>
+<h2>Options:</h2>
+<pre>
+  x:  The drive letter, e.g. C: or D:
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Usage to detect kernel support:
+    WHICHFAT
+  The result is returned in <a href="../batch/errorlvl.htm">ERRORLEVEL / EXITCODE</a>:
+    0 has FAT32 kernel
+    1 has no FAT32 kernel
+
+  Usage to detect FAT type of a drive letter:
+    WHICHFAT x:
+  The result is returned in <a href="../batch/errorlvl.htm">ERRORLEVEL / EXITCODE</a>:
+    0 could not be detected
+    1 invalid drive letter
+   12 drive is FAT12
+   16 drive is FAT16
+   32 drive is FAT32
+</pre>
+<h2>Examples:</h2>
+<pre>
+  whichfat
+  if errorlevel 1 echo noFAT32
+  if errorlevel 0 echo FAT32
+  OR:
+  echo Errorlevel is: &percnt;errorlevel&percnt;
+
+  whichfat c:
+  echo Errorlevel is: &percnt;errorlevel&percnt;
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/aefdisk.htm">aefdisk</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../util/ranishpm.htm">ranishpm</a>
+  <a href="../base/sys.htm">sys</a>
+  <a href="../command/vol.htm">vol</a>
+  <a href="../util/xfdisk.htm">xfdisk</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Eric Auer, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

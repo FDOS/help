@@ -1,40 +1,76 @@
-<html>
-<title>call</title>
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>FreeDOS command: call</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
 <body>
-<h1>call</h1>
-Runs a batch file from within a batch file.
+<h1>Command: call</h1>
 <pre>
-    <b>call [/S|/N] [drive:][path]filename [batch parameters]</b>
+  CALL calls a nested batchfile or a program.
+  CALL is a <a href="../batch/index.htm">BATCH-FILE</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a> command.
 </pre>
-<h2>Options</h2>
+<h2>Syntax:</h2>
 <pre>
-  <b>filename</b>
-  The batch file to be called.
-
-  <b>[batch paramaters]</b>
-  These are passed on to the batch file being called
-
-  <b>/S</b>
-  Forces the swapping of FreeCOM
-
-  <b>/N</b>
-  Prevents the swapping of FreeCOM.
+  CALL [/Y] program [arguments]
+  CALL [/Y] [/S|/N] [drive][path] program [arguments]
+       drive      The drive letter, e.g. C:
+       path       The directory, e.g. \example\
+       program    The batchfile or program to be called.
+       arguments: Specifies any command-line information required by the
+                  program or batch file.
 </pre>
-
-<h2>Notes</h2>
-<p>When the called batch file is complete, the processing of the original batch
-file resumes.
-<p>Batch files can be run directly from another batch file without the call
-command, but processing of the original batch file will not be resumed.
-
-<h2>See Also</h2>
-<a href="index.htm">batch files</a>
+<h2>Options:</h2>
+<pre>
+  /S: If program is not a batch script, the external program is executed
+      by swapping FreeCOM out of memory. This process will require more
+      time, especially if FreeCOM is to be reloaded from a floppy, some
+      internal settings are lost, e.g. command line history, but it will
+      free as much memory as possible for the external program.
+      This option and, thereby, this function is available only, if
+      FreeCOM had been compiled with some support for swapping.
+  /N: If program is not a batch script, the external program is executed
+      directly, with swapping disabled. /N supersedes /S.
+  /Y: Enables tracemode during execution of the command.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  If the program is a batch script, that means it has the extension .BAT,
+  CALL nests the batch script within the already running one, means:
+  The processing of the original batch file resumes. Without CALL the
+  invoked batch script would terminate all already running batch
+  scripts. If present, the arguments are passed unchanged to the invoked
+  program.
+  CALL is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN A .BAT FILE / AUTOEXEC.BAT:
+    first command
+    second command
+    call c:\xy.bat OR: call C:\FREEDOS\BIN\defrag c:
+    third command
+    fourth command (first and second command are executed, then xy.bat OR
+                    defrag c: till it is finished, then FreeDOS continues
+                    with third and fourth command. Without call third and
+                    fourth command would not be executed).
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../batch/index.htm">batch files</a>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../command/loadfix.htm">loadfix</a>
+  <a href="../batch/lh.htm">loadhigh</a>
+</pre>
 <hr>
-<address>
-<b>Copyright &copy; 2003 Robert Platt</a></b>
-<br>
-This file forms part of The FreeDOS HTML Help Documentation, and is covered
-under its terms: see <a href="../../index.htm#copying">index.htm</a><br>
-</address>
-</body>
-</html>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2007 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

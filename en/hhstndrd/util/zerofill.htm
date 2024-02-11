@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: zerofill</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: zerofill</h1>
+<pre>
+  ZEROFILL writes zeros on the empty disk space for the selected drive.
+  It helps virtual machine, and disk compression software to compact the
+  allocated space in the volume, and so on reducing its disk usage.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  ZEROFILL [drive:]
+</pre>
+<h2>Options:</h2>
+<pre>
+  - none -
+</pre>
+<h2>Comments:</h2>
+<pre>
+  ZEROFILL has been specially optimized to run on pure DOS enviroments,
+  no matter if the are on the top of physical machines, or virtual
+  machines.
+  Even if FAT32 partitions are not explicitilly supported, its 64 bit
+  arithmetic should make it support volumes of up to 256 GB in size,
+  depending if DOS is able to properly inform about it on service 36h.
+  If not, it will only be able to fill reported size at most.
+  (Comment: This is theory, in reality ZEROFILL creates 4 x 512 MB big
+  files and deletes them at the end of the program so that you only
+  can start from the beginning). So it is actually (version 1.0.9) only
+  useful for HDs smaller than 2 GB!
+  HINT: In case that you want to wipe more free space search for "wipefree"
+  and "Uwe Sieber". This tool has source code included, but there is NO
+  documentation about the license! Use it at your own risk!
+</pre>
+<h2>Examples:</h2>
+<pre>
+  ZEROFILL C:
+  Will fill with zeros all available space in drive C.
+</pre>
+<h2>See also:</h2>
+<pre>
+  - nowhere -
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2012-2022 Javier Gutierrez Chamorrro (Guti), help
+  version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

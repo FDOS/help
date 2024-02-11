@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<title>Commande FreeDOS : fdisk</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : fdisk</h1>
+<pre>
+  FDISK créé une ou plusieurs partitions sur un disque dur. Après quoi,
+  les partitions peuvent être <a href="../base/format.htm">formatées</a>
+  et seront prêtes à l'emploi avec FreeDOS. Pour les rendre amorçables,
+  vous pourriez avoir à régler une  'partition active' et à exécuter
+  'fdisk /ipl' (ou : 'fdisk /mbr') et 'sys c:'.
+  FDISK n'est pas nécessaire pour les disquettes !
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  FDISK [argument]...
+  pas d'arguments  Fonctionne en mode interactif.
+  /INFO [lecteur&num;] Affiche les informations de partition du &lt;lecteur&num;>.
+  /REBOOT          Redémarre l'ordinateur.
+</pre>
+<h2>Options :</h2>
+<pre>
+  Commandes pour créer et effacer des partitions :
+  &lt;taille&gt;  est un chiffre pour les mégaoctets ou MAX pour la taille
+          maximale ou &lt;chiffre&gt;,100 pour &lt;chiffre&gt; en
+          pourcentage.
+  &lt;type&num;&gt; est un type de partition numérique ou FAT-12/16/32 si
+          /SPEC n'est pas fourni.
+
+  /PRI:&lt;taille&gt; [/SPEC:&lt;type&num;&gt;] [lecteur&num;] Crée une partition
+                                                       primaire.
+  /EXT:&lt;taille&gt; [lecteur&num;]                 Crée une partition DOS
+                                                 étendue.
+  /LOG:&lt;taille&gt; [/SPEC:&lt;type&num;&gt;] [lecteur&num;] Crée un lecteur
+                                                       logique.
+  /PRIO,/EXTO,/LOGO                        Identique à ci-dessus, mais
+                                           évite le FAT32.
+  /AUTO [lecteur&num;]                         Partitionne automatiquement le
+                                           disque.
+  /DELETE {/PRI[:&num;] | /EXT | /LOG:&lt;part&num;&gt;  Efface une partition.
+           | /NUM:&lt;part&num;&gt;} [drive&num;]        ...le lecteur logique
+                                           démarre à /NUM=5.
+  /DELETEALL [lecteur&num;]                    Efface toutes les partitions du
+                                           &lt;lecteur&num;&gt;.
+
+Définition des partitions actives :
+  /ACTIVATE:&lt;partition&num;&gt; [lecteur&num;]        Définit la &lt;partition&num;&gt;
+                                                 active.
+  /DEACTIVATE [lecteur&num;]                  Désactive toutes les partitions.
+
+Gestion MBR (Master Boot Record, zone amorce) :
+  /CLEARMBR [lecteur&num;]    Efface toutes les partitions et le code
+                          d'amorçage.
+  /LOADMBR  [lecteur&num;]    Charge la table des partitions et le code depuis
+                          "boot.mbr" vers le MBR.
+  /SAVEMBR  [lecteur&num;]    Sauvegarde la table des partitions et le code
+                          dans le fichier "boot.mbr".
+
+Modifications de code MBR laissant les partitions intactes :
+  /IPL      [lecteur&num;]    Installe le code d'amorçage standard sur le
+                          &lt;lecteur&num;&gt; MBR.
+                          ...Identique à /MBR et /CMBR pour la
+                          compatibilité.
+  /SMARTIPL [lecteur&num;]      Installe l'IPL DriveSmart sur le &lt;lecteur&num;&gt;
+                          MBR.
+  /LOADIPL  [lecteur&num;]    Écrit 440 octets de code depuis "boot.mbr" vers
+                          le MBR.
+
+Modification avancée de la table des partitions :
+  /MODIFY:&lt;part&num;&gt;,&lt;type&num;&gt; [lecteur&num;]         Change le type de
+                                        partition en &lt;type&num;&gt;. ...
+                                        Les lecteurs logiques démarrent à
+                                        "5".
+  /MOVE:&lt;srcpart&num;&gt;,&lt;destpart&num;&gt; [lecteur&num;] Déplace les
+                                                     partitions primaires.
+  /SWAP:&lt;1erepart&num;&gt;,&lt;2ndepart&num;&gt; [lecteur&num;] Échange les
+                                                     partitions primaires.
+
+Gestion des indicateurs sur un disque dur :
+  /CLEARFLAG[{:&lt;indicateur&num;&gt;} | /ALL}] [lecteur&num;] Réinitialise
+                      l'&lt;indicateur&num;&gt; ou bien tout sur le &lt;lecteur&num;&gt;.
+  /SETFLAG:&lt;indicateur&num;&gt;[,&lt;valeur&gt;] [lecteur&num;] Définit
+                     l'&lt;indicateur&num;&gt; en 1 ou bien en &lt;valeur&gt;.
+  /TESTFLAG:&lt;indicateur&num;&gt;[,&lt;valeur&gt;] [lecteur&num;] Teste
+              l'&lt;indicateur&num;&gt; pour 1 ou bien pour la &lt;valeur&gt;.
+
+Obtention d'informations sur les disques durs :
+  /STATUS       Affiche la disposition de partition actuelle.
+  /DUMP         Décharge les informations de partition de tous les disques
+                durs (pour le débogage).
+
+Commutateurs de l'interface utilisateur interactif :
+  /UI           Démarre toujours l'IU si fourni comme dernier argument.
+  /MONO         Force l'interface utilisateur à fonctionner en monochrome.
+  /FPRMT        Affiche une invite pour FAT32/FAT16 en mode interactif.
+  /XO           Active les options étendues.
+
+Options de compatibilité :
+  /X            Désactive ext. INT 13 et LBA pour les commandes suivantes.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Comme FDISK crée / efface des partitions, vous devriez l'utilisez avec
+  prudence. Si vous souhaitez rendre un disque dur amorçable, n'oubliez
+  pas de régler l'indicateur 'Actif' et d'exécuter 'fdisk /mbr' pour
+  écrire le MBR sur le disque dur. FreeDOS prend en charge jusqu'à QUATRE
+  partitions primaires. Si vous souhaitez créer plus de QUATRE partitions
+  sur un disque dur vous devriez d'abord créer un maximum de TROIS
+  partitions primaires, puis ajouter UNE (=au maximum !) partition étendue
+  et à l'intérieur de cette partition UNE ou DAVANTAGE de partitions
+  logiques.
+  Pour pouvoir amorcer depuis jusqu'à quatre partitions différentes, vous
+  devez installer un système sur ces partitions (au minimum = "sys c: /
+  d: /e: / f:") et ensuite exécuter fdisk puis modifier l'indicateur
+  'Actif' vers une autre partition primaire. Vous ne pouvez PAS amorcer
+  depuis les lecteurs logiques !
+FDISK a les  <a href="../batch/errorlvl.htm">NIVEAUX D'ERREURS / CODES DE SORTIE</a> suivants :
+     0  Fin normal du programme, pas d'erreur
+     1  Erreur de syntaxe
+     3  Erreur dans le fichier fdisk.ini
+     4  Erreur dans le fichier part.dat
+     5  Disque dur inexistant
+     6  Échec de l'allocation de tampon
+     7  Disque dur déjà partitionné. (Cela n'est retourné que si
+        la fonction "/AUTO" est utilisée et qu'il existe déjà des
+        partitions autres qu'une partition de diagnostic Compaq
+        sur le disque dur.)
+     8  Erreur de lecture depuis ou d'écriture sur le fichier boot.mbr.
+     9  Erreur diverse. Il vaut mieux examiner la sortie affichée
+        sur l'écran depuis FDISK libre pour déterminer la cause
+        exacte du problème.
+    20  L'indicateur n'a pas été défini (cf. /SETFLAG, /TESTFLAG et
+        /CLEARFLAG pour les détails)
+    21  L'indicateur n'a pas été défini (cf. le niveau d'erreur 20
+        ci-dessus)
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  Exemple 1 :
+  Rendre une disquette amorçable, version 1 :
+  Depuis un disque dur ou une disquette amorçable :
+    fdisk     (n'est pas nécessaire !)
+    format a: (Formate la disquette pour que des fichiers puissent être
+              écrits).
+    sys a:    Le <a href="../base/kernel.htm">NOYAU (KERNEL.SYS)</a> et <a href="../base/command.htm">COMMAND.COM</a>
+              seront copiés depuis votre disque dur ou disquette amorçable
+               vers A:; après l'exécution la disquette sera amorçable.
+  Exemple 2 :
+  Rendre une disquette amorçable, version 2 :
+  Depuis une disquette amorcée (dans le lecteur A:) :
+    fdisk     (n'est pas nécessaire !)
+    format b: (Formate la disquette pour que des fichiers puissent être
+              écrits). En fonction de la présence d'un ou bien deux
+              lecteurs de disquettes, la commande format formate sur le
+              lecteur B: ou vous demande d'insérer une nouvelle disquette
+              dans le lecteur A: et effectue le formatage. Lorsque cela
+              est terminé, insérez la disquette originale à nouveau,
+              puis entrez :
+    sys b:    Le <a href="../base/kernel.htm">NOYAU (KERNEL.SYS)</a> et <a href="../base/command.htm">COMMAND.COM</a>
+              seront copiés depuis votre disquette amorçable A: vers B:,
+              (procédure indique à format b:) après l'exécution la
+              disquette sera amorçable.
+  Exemple 3 :
+  Rendre un disque dur amorçable :
+  Depuis une disquette amorçable ou depuis un CD :
+    fdisk      (Cela vous permet de créer UNE ou PLUS de partitions, cf.
+               ci-dessus ; jusqu'à QUATRE partitions primaires peuvent
+               être créées.
+               (Si vous créez quatre partitions primaires l'espace restant
+               de votre disque dur ne peut être utilisé !) N'oubliez pas
+               de redémarrer !
+               Fdisk sans options affiche une interface utilisateur
+               graphique.
+    fdisk      Définit la <b>PARTITION ACTIVE</b> (seule cette partition
+               peut amorcer, mais vous pouvez changer cela en rendant
+               ACTIVE l'une des trois autres partitions primaires (il n'y
+               a PAS de gestionnaire d'amorçage) avec fdisk. N'oubliez pas
+               de redémarrer votre ordinateur !
+    fdisk      Tapez <b>FDISK /IPL</b> (ou : FDISK /mbr) pour mettre à
+               jour le code d'amorçage, puis n'oubliez pas de redémarrer !
+    format c:  Prépare le disque dur pour que les fichiers puissent être
+               écrits sur la partition C:. Vous devez le faire pour toutes
+               les partitions que vous souhaitez utiliser et que vous avez
+               préparé avec fdisk.
+    sys c:     Le <a href="../base/kernel.htm">NOYAU (KERNEL.SYS)</a> et <a href="../base/command.htm">COMMAND.COM</a>
+               seront copiés depuis la disquette ou CD amorçable vers C:
+  Exemple 4 :
+    fdisk /info
+</pre>
+<h2>Voir également :</h2>
+<pre>
+
+  <a href="../base/command.htm">command.com</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../base/krnl-dvl.htm">kernel-devel</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../base/sys.htm">sys</a>
+  <a href="../base/undelete.htm">undelete</a>
+  <a href="../base/unformat.htm">unformat</a>
+  <a href="../command/vol.htm">vol</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998-2023 Brian E. Reifsnyder et la communauté FreeDOS,
+  l'aide à été actualisée en 2023 par W. Spiegl et traduit par Berki
+  Yenigün.</b>
+
+  Ce fichier est dérivé de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+</pre>
+<hr>
+</body></html>

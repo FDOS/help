@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>FreeDOS ile Ağa Bağlanmak - TCP/IP uygulamaları</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<h1><a name="top"></a>FreeDOS ile Ağa Bağlanmak - TCP/IP uygulamaları</h1>
+<h2><a name="zzz"></a>Genel Bakış</h2>
+<pre>
+  "<a href="../network/history.htm">DOS ile Ağa Bağlanmanın Tarihçesi</a>" bölümünde, DOS için <a href="../network/tcpip.htm">TCP/IP</a>
+  uygulamalarının geçen asrın seksenli ve doksanlı senelerinde ne kadar
+  popüler olduklarını okumuştuk. Bu devir, Microsoft Windows 95'i piyasaya
+  sürdüğünde sona erdi: bu sürüm, <a href="../network/tcpip.htm">TCP/IP</a> ve diğer ağa bağlanma işlevlerini
+  kolay ve kullanıcı dostu bir arayüzde sağlıyordu. Bunun müşterileriyle,
+  DOS için birçok ticari <a href="../network/network.htm">ağ</a> uygulaması yok oldu. Ancak kamu malı, bedava
+  (freeware) ve shareware yazılımlar yaklaşan İnternet tarafından muhafaza
+  edildi. Bazıları bugün de geliştirilmeye devam etmektedir. Yeni
+  yazılımlar bile yazılmıştır.
+  DOS <a href="../network/tcpip.htm">TCP/IP</a> uygulamaları, ping, lpr, finger gibi klasik ağ araçlarını
+  veya SSH ve <a href="../network/nfs.htm">NFS</a> istemcileri, FTP, Web sunucuları, e-posta ve Usenet
+  yazılımları veya İnternet tarayıcıları gibi programları içerir. "<a href="../network/network.htm">Network</a>
+  Enhanced Operating System" yani Ağla Geliştirilmiş İşletim Sistemi
+  isimli tamamen eşten eşe bir ağa bağlanma çözümü bile mevcuttur (NeOS -
+  bkz.: <b>http://ftp.carnet.hr/pub/pc/networking/NeOS/README (*01)</b>)
+  ki bu, Avrupa Birliği "EUREKA" projesinin bir parçası olarak 1995 ila
+  2000 senelerinde geliştirilmişti (bkz.: <b>http://www.eureka.be/inaction/
+  AcShowProject.do;jsessionid=
+  7f00000122b839cfc1d1a5c44d359913f31b02769f2f?id=1317 (*02)</b>). Artık
+  bu yazılım bir kartpostal karşılığında dağıtılmaktadır.
+</pre>
+<h2><a name="aaa"></a>Bağlantılar</h2>
+<pre>
+  Michael Bernardi, DOS için yüzü aşkın <a href="../network/tcpip.htm">TCP/IP</a> uygulamasından oluşan
+  bir liste hazırlamıştır (bkz.: <b>http://www.dendarii.co.uk/FAQs/
+  dos-apps.html (*03)</b>). Başka listeleri de burada (bkz.: <b>ftp://ftp.
+  technion.ac.il/pub/supported/pc/comm/drivers/pkt_drv/doc/software.doc
+  (*04)</b>), şurada (bkz.: <b>ftp://ftp.cac.psu.edu/pub/dos/info/tcpip.
+  packages (*05)</b>) ve şurada (bkz.: <b>http://www.fdisk.com/doslynx/
+  (*06)</b>) bulabilirsiniz, bunlar daha fazla bilgi içerebilirler.
+  DOS ile ağa bağlanma uygulamaları hakında nispeten yeni ve devamlı
+  güncellenen bir kaynak, Britanyalı "DOS Solutions" yani "DOS Çözümleri"
+  sayfasıdır. (bkz.: <b>http://www.dossolutions.pwp.blueyonder.co.uk/
+  network.htm  (*07)</b>). Diğer DOS kaynakları için bağlantılar 157.
+  FreeDOS teknik notunda toplanmıştır (see: <b>http://www.freedos.org/
+  freedos/news/technote/157.html (*08)</b>). Nostalji sitesi
+  oldskool.org'un (bkz.: <b>ftp://ftp.oldskool.org/pub/tvdog/internet/
+  (*09)</b>) oldukça yararlı bir site olduğunu düşünüyorum.
+  Birçok bilgi hâlâ comp.protocols.tcp-ip.ibmpc Usenet tartışma grubundan
+  (bkz.: <b>http://groups.google.com/group/comp.protocols.tcp-ip.ibmpc
+  (*10)</b>) elde edilebilir, bilhassa ilk parça (bkz.: <b>http://www.
+  uni-giessen.de/faq/archiv/ibmpc-tcp-ip-faq.part1-3/msg00000.html (*11)</b>),
+  ikinci parça (bkz.: <b>http://www.uni-giessen.de/faq/archiv/
+  ibmpc-tcp-ip-faq.part1-3/msg00001.html (*12)</b>) ve üçüncü parça olarak
+  (bkz.: <b>http://www.uni-giessen.de/faq/archiv/ibmpc-tcp-ip-faq.part1-3/
+  msg00002.html (*13)</b>) gönderilmiş SSS belgelerinde.
+</pre>
+<h2><a name="bbb"></a>Uygulamalar</h2>
+<pre>
+  Bu belgede tüm <a href="../network/tcpip.htm">TCP/IP</a> uygulamalarını kapsamak mümkün değildir.
+  Ancak işte bazı hatırı sayılır örnekler:
+</pre>
+<h2><a name="ccc"></a>Arachne</h2>
+<pre>
+    (Arachne ekran fotoğrafı)
+  <b>"Arachne"</b>, DOS için grafik bir İnternet tarayıcısıdır. 1996 senesinde
+  Çekyalı programcı Michael Polak ve onun xChaos/Arachne Labs şirketi
+  tarafından oluşturulmuştur. (bkz.: <b>http://www.arachne.cz/ (*14)</b>)
+  2002 senesinde Michael Polak, Arachne'yi özgür bir yazılım yapmaya karar
+  vermiştir. Yeni lisans GNU GPL olmuştur (bkz.: <b>http://home.arachne.cz/
+  archive/v01.n1917 (*15)</b>). Bu tarayıcı birçok resim biçimini destekler.
+  Tablolar ve çerçeveleri doğru bir şekilde gösterir, HTML 4 ile CSS 1.0
+  desteği bulunur ve 1.90J3 ile daha yeni sürümler UTF-8'i bile anlar.
+  Diğer Arachne hizmetleri FTP, NNTP, IRC sohbeti, RSS, POP3 ve SMTP'yi
+  içerir. Yazılımın tam tarihçesi için şuraya bakın: (bkz.: <b>http://web.
+  archive.org/web/20070311000724/http://www.cisnet.com/glennmcc/ara-gpl/
+  history.txt  (*16)</b>).
+  Arachne hâlâ etkin bir şekilde geliştirilmektedir - programcıların bir
+  e-posta listesine katılması gerekir (bkz.: <b>http://tech.groups.yahoo.com/
+  group/ArachneDevelopment/ (*17)</b>). En yeni sürüm Glenn McCorkle'ın
+  sitesinde bulunabilir (bkz.: <b>http://www.glennmcc.org/ (*18)</b>). Daha
+  fazlasını Vikipedi makalesinde okuyabilirsiniz.
+</pre>
+<h2><a name="ddd"></a>EZ-NOS2</h2>
+<pre>
+    (EZ-NOS2 ekran fotoğrafı)
+  <b>"<a href="../network/history.htm#bbb">EZ-NOS2</a>"</b>, Phil Karn'ın <a href="../network/history.htm#bbf">KA9Q</a> yazılımının türevlerinden biridir.
+  Günümüzde DOS Solutions tarafından geliştirilmektedir (see: <b>http://www.
+  dossolutions.pwp.blueyonder.co.uk/eznos.htm (*19)</b>). Yazılım takımı,
+  bir Web sunucusu, FTP sunucusu, bootp sunucusuyla bir e-posta istemcisi
+  içerir. Tüm <a href="../network/history.htm#bbf">KA9Q</a> türevleri gibi GNU GPL kapsamında lisanslanmıştır.
+  Kaynak kodu ew_src.zip olarak indirebilir (bkz.: <b>http://www.
+  dossolutions.pwp.blueyonder.co.uk/progs/eznos/ez_src.zip (*20)</b>).
+</pre>
+<h2><a name="eee"></a>SSH2DOS</h2>
+<pre>
+    (Ekran fotoğrafı, bir Debian sunucusuna kapatılmış bir SSH oturumunu
+     göstermektedir.)
+  <b>"SSH2DOS"</b>, DOS için bir SSH, SFTP ve SCP istemcisidir. Bu hizmetler git
+  gide daha az güvenli olarak görülen klasik <a href="../network/history.htm#bbg">Telnet</a>- ve FTP- hizmetlerinin
+  yerini almaktadırlar.
+  SSH2DOS, Macar geliştirici Nagy Daniel tarafından 2000 senesinde
+  oluşturulmuştur ve SourceForge.net sitesinden indirilebilir (bkz.:
+  <b>http://sourceforge.net/projects/sshdos (*21)</b>). GNU GPL kapsamında
+  yayınlanmıştır. PuTTY SSH istemcisinden ve <a href="../network/wattcp.htm">WatTCP</a> çekirdek
+  kütüphanesinden kod kullanmaktadır.
+
+  <b>(*01) Tamam</b>
+  <b>(*02) http://ftp.carnet.hr/pub/pc/networking/NeOS/</b>
+  <b>(*03) Tamam</b>
+  <b>(*04) ?</b>
+  <b>(*05) ?</b>
+  <b>(*06) http://www.fdisk.com/doslynx/doslynx.htm</b>
+  <b>(*07) https://web.archive.org/web/20090513204533/http://
+        www.dossolutions.pwp.blueyonder.co.uk/network.htm</b>
+  <b>(*08) ?</b>
+  <b>(*09) Tamam</b>
+  <b>(*10) https://groups.google.com/forum/#!topic/comp.os.ms-windows.
+        networking.tcp-ip/Ekxg5Y5pP0g</b>
+  <b>(*11) http://www.menet.umn.edu/~bob/FAQ/tcpip-ibmpc.faq</b>
+  <b>(*12) https://web.archive.org/web/20100902023435/http://www.uni-
+        giessen.de/faq/archiv/ibmpc-tcp-ip-faq.part1-3/msg00001.html</b>
+  <b>(*13) https://web.archive.org/web/20100902023439/http://www.uni-
+        giessen.de/faq/archiv/ibmpc-tcp-ip-faq.part1-3/msg00002.html</b>
+  <b>(*14) http://www.glennmcc.org/</b>
+  <b>(*15) http://www.glennmcc.org/</b>
+  <b>(*16) Tamam</b>
+  <b>(*17) https://www.freelists.org/list/arachne</b>
+  <b>(*18) Tamam</b>
+  <b>(*19) https://web.archive.org/web/20081016111245/http://
+        www.dossolutions.pwp.blueyonder.co.uk/eznos.htm</b>
+  <b>(*20) https://web.archive.org/web/20070728204505/http://
+        www.dossolutions.pwp.blueyonder.co.uk/progs/eznos/ez_src.zip</b>
+  <b>(*21) Tamam</b>
+</pre>
+<hr>
+<pre>
+  <b>Telif hakkı &copy; 2007 Ulrich Hansen, Mainz (Almanya), 2010 ve 2020
+  senelerinde W.Spiegl tarafından değiştirilmiştir.</b>
+  <b>2023 senesinde Berki Yenigün tarafından tercüme edilmiştir.</b>
+  Daha fazla bilgi için <a href="../network/intro.htm#ddd">buraya bakın</a>.
+
+  Bu belgeyi kopyalama, dağıtma ve/veya değiştirme izni, GNU Özgür
+  Belgeleme Lisansı'nın 1.2 veya Free Software Foundation tarafından
+  yayınlanan daha yeni bir sürümü kapsamında verilmiştir.
+  Lisansın bir sureti, <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>
+  başlıklı bölümde mevcuttur.
+
+</pre></body></html>

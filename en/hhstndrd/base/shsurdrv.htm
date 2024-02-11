@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: shsurdrv</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: shsurdrv</h1>
+<pre>
+  SHSURDRV simulates a floppy or hard disk using an image file in memory
+  and/or create a RAM drive.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  SHSURDRV [/F[?][image][,drive]]... [/R[mem]] [/T] [/C] [/V] [/U] [/Q[Q]]
+           [/D[size][Ssectors][Ccluster][Dentries][Ffats][$[label]],][drive]]...
+</pre>
+<h2>Options:</h2>
+<pre>
+  image    Filename of raw disk image ('?' will ignore an invalid image)
+           or letter and colon to mirror a (floppy) drive (default is A:)
+           The image may have been compressed with gzip.
+  drive    Drive letter to use (default is first available).
+  size     Create a new drive with this much free space, in bytes;
+           suffix with 'K' for KiB or 'M' for MiB.
+  sectors  Use exact number of sectors as size (default is 4101).
+  cluster  Cluster size to use, in KiB (default is 4096 bytes).
+  entries  Number of root directory entries (default is 64).
+  fats     Number of File Allocation Tables (default is 1, max. of 2).
+  label    The volume label (default is "SHSURDRV").
+  /R       Reserve mem KiB of XMS (default is 4).
+  /T       Allocate at the top of XMS.
+  /C       Use conventional memory instead of loading high.
+  /V       Display memory usage (only at install).
+  /U       Unload.
+  /Q       Quiet - don't display sign-on banner.
+  /QQ      Really quiet - don't display anything.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  * A colon (':') can be used to separate an option from its value.
+  * Using /F and /D is optional; if the first character is a digit /D
+    will be assumed, otherwise /F.
+  * Options to /D may be separated by commas and appear in any order,
+    but size, if present, must be first.
+  * Size can be a predefined value - use "/?S" to see what is available.
+  * Cluster must be a power of 2 (ie. 0, 1, 2, 4, 8, 16, 32 or 64), any
+    other value will be rounded up to the next, but no higher than 64.
+  * Size will be rounded up to a multiple of the cluster size.
+  * Entries will be rounded up to a multiple of 16.
+  * Using more than 14 MiB of XMS requires /R or /T to start Windows,
+    which also doesn't like individual drives greater than 64 MiB.
+  * No drive letter will be assigned lower than the first.
+      Eg: /F:img1,E /F:img2,D will assign to E: and F:, *not* E: and D:.
+  * Only the drive (on the first partition of a hard disk) is simulated,
+    not the disk itself, and only a 512-byte sector size.
+
+  SHSUFDRV / SHSURDRV has the following <a href="../batch/errorlvl.htm">ERRORLEVEL / EXITCODES</a>:
+    0     On successful uninstall or this help is displayed;
+    1-32  The first drive assigned (A: = 1) on successful install;
+    255   Not able to (un)install.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Create a diskette image:
+  diskcopy a: C:\example\diskette.img
+  SHSURDRV /F:?C:\example\diskette.img,H /W /V
+  H:
+  dir (shows content)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/diskcopy.htm">diskcopy</a>
+  <a href="../util/ospimg.htm">dskimg/ospimg</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+  <a href="../util/raread.htm">raread</a>
+  <a href="../util/rawrite.htm">rawrite</a>
+  <a href="../base/shsufdrv.htm">shsufdrv</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

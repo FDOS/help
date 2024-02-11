@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: finddisk</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: finddisk</h1>
+<pre>
+  FINDDISK is a utility to locate a disk by label.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  FINDDISK [X:][+]LABEL
+</pre>
+<h2>Options:</h2>
+<pre>
+  FINDDISK searches <a href="../base/label.htm">LABEL</a> on drives C:-Z, case sensitive.
+  X:   Check only 1 drive
+  +    Go to the found drive
+  ? *  Wildcards, e.g. DO?-BI*
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Returns:
+  1,4,... A:;D:,... matches
+  0 no match
+  There is a bug in FREEDOS label that does not write the <a href="../base/label.htm">LABEL</a>
+  twice on the HD as it should. So it may happen that finddisk does not
+  work as expected.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  The actual FREEDOS live CD installs the label FREEDOS2023
+    finddisk +FREEDOS*    Shows "ECHO Match on and C:\" and goes to C:
+  If "tdsk - Turbodisk"  is installed:
+    finddisk turbodsk    Will show NO match (case sensitive!)
+    finddisk TURBODSK    Shows "ECHO Match on and F:" but stays at C:
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../base/tdsk.htm">tdsk/turbodisk</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2005 (unknown) help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: dog</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: dog</h1>
+<pre>
+  DOG is an alternative <a href="../command/index.htm">COMMAND.COM</a> shell.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DOG [-P[[:]envsize]¦-E:envsz¦-C command line]
+</pre>
+<h2>Options:</h2>
+<pre>
+  -P               Makes DOG a PERMANENT shell. Using this flag will
+                   also result in the execution of dog.dog in the
+                   current directory.
+  -E envsz         Makes the environment to (envsz / 16) 16 bit pages.
+  -C command line  Executes the command line and exits.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  The internal commands are:
+    CD  Changes the current directory to Path.
+    CT  Changes the current IO terminal to Device.
+    EH  Print a (formatted) string to stdio (normally the screen).
+    HH  Prints all DOG commands, and names
+    MD  Creates a new directory as in COMMAND.COM
+    RD  Removes a directory as in COMMAND.COM
+    SE  Sets the specified env_var to string in the environment.
+        Without arguments the command prints all env_vars to the screen.
+    XX  Exits the current DOG shell. Works only if the shell is not a
+        primary shell.
+  The external commands are:
+    BR  CC  CL  CP  CT  LS  MV  RM  SZ  TP  VF  VR (see documentation).
+  DOG has an extensive documentation that is beyond the scope of
+  this help. For more information see:
+  <b>https://gitlab.com/FreeDOS/util/dog</b>  OR:
+  <b>https://sourceforge.net/projects/dog/files/dog/</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - none -
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/index.htm">command.com</a>
+  <a href="../util/head.htm">head</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2002 Wolf Bergenheim, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

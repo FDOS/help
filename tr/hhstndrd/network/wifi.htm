@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>FreeDOS ile Ağa Bağlanmak - WiFi</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<h1><a name="top"></a>FreeDOS ile Ağa Bağlanmak - WiFi</h1>
+<h2><a name="zzz"></a>Genel Bakış</h2>
+<pre>
+  WiFi/telsiz ağa bağlanma FreeDOS ve bazı <a href="../network/network.htm">ağ</a> adaptörleriyle çalışır.
+  802.11b kartlarıyla ve azami 11 Mbps ile sınırlı gibi görünmektedir.
+  Şifreleme WEP'tir, yani <a href="../network/network.htm">ağ</a> güvensiz olacaktır.
+  USB ile bağlanan telsiz cihazlar henüz FreeDOS ile kullanılamazlar.
+</pre>
+<h2><a name="aaa"></a>Çalışabilecek olan ağ kartları</h2>
+<pre>
+  DOS sürücüleri bulunduğunu beyan eden kartlar (<b>garanti vermiyoruz</b>)
+  örnek olarak şunlardır:
+  <b>PCMCIA</b>
+    * Cisco Aironet 352 (CSCOAIRPCM352) 802.11b
+    * Cisco Aironet 351 (AIR-PCM351-RF) 802.11b
+    * Cisco Aironet 352 (AIRPCM352R)
+    * Cisco Aironet 352 (AIRPCM352B)
+    * Alvarion BreezeNET PRO.11 (511410)
+    * Alvarion BreezeNET PRO.11 (511419)
+    * Motorola spectrum24 LA 4111 (LA-4111-1000-US) 802.11b
+    * Motorola Spectrum24 LA-3021 (LA3021102FB) 802.11
+    * Intel PRO/Wireless 2011B (WPC2011BWWP100) 802.11b
+    * Proxim ORiNOCO Classic Gold (8410-WD) 802.11b
+    * NetBotz (nbac0227) 802.11b
+  <b>PCI</b>
+    * Proxim ORiNOCO 11b (8422-WD) 802.11b
+</pre>
+<h2><a name="bbb"></a>Paket sürücüleri</h2>
+<pre>
+  Lucent kartları için (türev şirketler: Avaya and Agere), mesela
+ "ORiNOCO", için Agere DOS için çalışan bir paket sürücüsü yazmıştır ve
+  ismi WVLAN42.COM'dur, <b>burada bulunabilir</b> (bkz.: <b>http://www.
+  szivarvanynet.hu/download/radionet/Drivers/Avaya/Dos/ (*01)</b>).
+</pre>
+<h2><a name="ccc"></a>Kurulum raporları</h2>
+<pre>
+  Cisco Aironet PCM 3xx veya LMC 3xx istemci adaptörlerinin bir DOS
+  sisteminde kurulumu şurada açıklanmıştır:
+    * <b>http://www.cisco.com/en/US/tech/tk722/tk809/
+      technologies_tech_note09186a00801beda4.shtml (*02)</b>
+    * <b>http://www.cisco.com/en/US/docs/wireless/wlan_adapter/350_cb20a/
+      user/ms-dos/configuration/guide/dosinst.pdf (*03)</b>
+    * <b>http://www.cisco.com/cgi-bin/tablebuild.pl/aironet-utils-dos (*04)</b>
+  Roberto Perotti, Orinoco/Lucent/Agere/Avaya kartları ve FreeDOS için
+  <b>bir kurulum raporu yazmıştır</b> (bkz.: <b>http://www.perotti.ic.cz
+  /wavelan/ (*05)</b>).
+  Christof Lange, <a href="../network/tcpip_ap.htm#ccc">Arachne</a> e-posta listesine DOS üzerinde çalışan bir
+  Avaya PCMCIA kartının olduğunu <b>bildirmiştir</b> (bkz.: <b>http://www.
+  freelists.org/post/arachne/Arachne-and-wifi (*06)</b>).
+
+  <b>(*01) Tamam</b>
+  <b>(*02) Tamam</b>
+  <b>(*03) Tamam</b>
+  <b>(*04) ?</b>
+  <b>(*05) https://web.archive.org/web/20110527113653/http://perotti.
+        ic.cz/wavelan/</b>
+  <b>(*06) Tamam</b>
+</pre>
+<hr>
+<pre>
+  <b>Telif hakkı &copy; 2007 Ulrich Hansen, Mainz (Almanya), 2010 ve 2020
+  senelerinde W.Spiegl tarafından değiştirilmiştir.</b>
+  <b>2023 senesinde Berki Yenigün tarafından tercüme edilmiştir.</b>
+  Daha fazla bilgi için <a href="../network/intro.htm#ddd">buraya bakın</a>.
+
+  Bu belgeyi kopyalama, dağıtma ve/veya değiştirme izni, GNU Özgür
+  Belgeleme Lisansı'nın 1.2 veya Free Software Foundation tarafından
+  yayınlanan daha yeni bir sürümü kapsamında verilmiştir.
+  Lisansın bir sureti, <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>
+  başlıklı bölümde mevcuttur.
+
+</pre></body></html>

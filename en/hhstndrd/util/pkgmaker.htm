@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: pkgmaker</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: pkgmaker (part of pkgtools)</h1>
+<pre>
+  PKGMAKER is a Command line utility to assist in creating packages for
+  FreeDOS. It can be used in several ways.
+  By default the first time PKGMAKER is run, it scans the filesystem and
+  stores information about it. On the second run, it compares the new
+  state to the previous scan and generate a new package LSM and LST files
+  accordingly.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  PKGMAKER: [options] [package]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /H        Display help and exit.
+  /I        Perform Initial scan (default on first run).
+  /S        Perform Secondary scan (default for second run).
+  /D drive  Include drive in scan (by default only C: is scanned).
+  /K        Don't delete scan data after second scan.
+  /M        Don't scan, just create the package metadata files.
+  /A file   Add a file to the package metadata.
+  /R wild   Detach files from the package metadata. (does not delete it)
+  /F        Occasionally, you may want to force it to do something.
+  /Z        Create zip archive of the package.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Lets say you have a program with an installer that you want to convert
+  over to a package. Easy. Simply run PKGMAKER. Perform your install.
+  Run PKGMAKER again. It would look something like this:
+    pkgmaker anewpkg
+    install
+    pkgmaker
+    edit &percnt;DOSDIR&percnt;\APPINFO\ANEWPKG.LSM
+    pkgmaker /z
+  Thats all there is to it. Well mostly all. Well, I guess there is a lot
+  more to mention...
+
+  The first time it is run it records the state of the drive where
+  FreeDOS is installed. You can have it record additional drives using
+  the /d switch. Do you want to include drive D: and E:? Then, just put
+  a /d de on the command line.
+  Don't panic if you forgot to do it. Simply tell PKGMAKER to do the
+  initial scan again using the /i switch.
+
+  After you do you install, you run PKGMAKER a second time. If you did
+  not   provide the package name on the first pass, you'll need to do it
+  now. It will scan the drive(s) a second time and compare it to the
+  original scan. A package file list will be generated using any new
+  files it finds. It will also create a template LSM file at this time.
+  Also, if it finds that a pre-existing file was modified it will create
+  a .MOD file listing those files.
+
+  The created .LSM, .LST and .MOD files will be stored in the normal
+  package management directories under &percnt;DOSDIR&percnt;\APPINFO and &percnt;DOSDIR&percnt;\
+  PACKAGES. And you could use a package manager like FDNPKG to "uninstall"
+  your newly created package now. But, we aren't done yet.
+
+  At this point, you'll probably want to edit your text base metadata
+  file. It was stored at &percnt;DOSDIR&percnt;\APPINFO\ANEWPKG.LSM with some bland
+  generic text. Things like Title, Version, Description, and License will
+  all need updated.
+
+  Now, we want to "zip-n-ship" it. PKGMAKER comes with a default config
+  file that is used to remap "real" directories to the "pseudo" directory
+  structure used for packages. If things are not ending up where you
+  expect when your package is installed, it probably is a remapping issue.
+  Mapping multiple "pseudo" directories to a single "real" directory can
+  be confusing to re-mapper. It really has no way to tell which one you
+  really want and will just pick one.
+
+  I hope that covers most of the important things. Oh, did I mention you
+  can attach and detach files from packages as well? Or sometimes you can
+  force PKGMAKER to ignore a bunch of different errors and procede anyway?
+
+  NOTE: At present Long File Names (LFN) are not supported. You also need
+  to have ZIP installed.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  See comments.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/fdimples.htm">fdimples</a>
+  <a href="../base/fdinst.htm">fdinst</a>
+  <a href="../base/fdnpkg.htm">fdnpkg</a>
+  <a href="../util/pkginfo.htm">pkginfo</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2023 Jerome Shidel, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

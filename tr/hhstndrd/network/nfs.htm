@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>FreeDOS ile Ağa Bağlanmak - NFS</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<h1><a name="top"></a>FreeDOS ile Ağa Bağlanmak - NFS</h1>
+<pre>
+  Bu belge, DOS sistemlerinde NFS ağının bir <a href="../network/network.htm">ağ</a> kartıyla NFS sunucusundaki
+  (UNIX) bir dizin yoluna bir DOS sürücü harfinin nasıl haritalanarak
+  kurulabileceğini açıklar.
+</pre>
+<h2><a name="aaa"></a>Donanım</h2>
+<pre>
+  Bu deneme, Red Hat Linux 5.2 (çekirdeğin 2.0.36 sürümü) çalıştıran bir
+  sunucu (486dx2-66s) ve 4.77 Mhz 8088, bazı 80286 ve çeşitli daha yüksek
+  makinelerdeki DOS istemcileriyle yapılmıştır, jenerik NE2000 klonu <a href="../network/network.htm">ağ</a>
+  kartlarıyla. Tümü iyi çalışmıştır. <a href="../network/network.htm">Ağ</a>, koaksiyel kablo üzerinde
+  10base2'den oluşuyordu ve 10 ila 20 sistem bulunduruyordu, daha yeni
+  makineler için bir 10baseT bulunuyordu.
+</pre>
+<h2><a name="bbb"></a>Yazılım</h2>
+<pre>
+  Yazılım XFS'den oluşuyordu. XFS80286 dizininde, 80286 ve daha yüksek
+  makinelerde çalışan bir FreeDOS dosya grubu bulun. XFS8088 dizininde ise
+  en eski PC'lerde çalışan 8088 dosya grubunu arayın.
+</pre>
+<h2><a name="ccc"></a>NFS sunucusu</h2>
+<pre>
+  GNU/Linux sunucusunda, gerekli dizin yollarını dışa aktarmak için /etc/
+  dışa aktarma dosyasını oluşturmanız (veya değiştirmeniz) gerekecektir.
+  Mesela tüm istemciler için /home/dos dizinini okunur-yazılır olarak
+  paylaşmak için:
+      /home/dos  (rw,insecure)
+  Uzaktan baskı almayı desteklemek için aynı zamanda şunu başlatmanız
+  gerekecektir: rpc.pcnfsd. Sistem başladığında otomatik olarak rpc.pcnfsd
+  unsurunun da başlaması için /etc/rc.d/init.d/nfs betiğini değiştirmeniz
+  gerekebilir. pcnfsd'nin Sun tarafından yazılmış küçük bir C programı
+  olduğunu ve İnternet üzerinden özgürce indirilebileceğini not edin. Eğer
+  sunucunuz pcnfsd'nin herhangi bir sürümüyle gelmediyse, onu derleyip
+  /usr/sbin dizinine kurmanız gerekecektir (rpc.nfsd ile aynı izinleri
+  kullanın).
+</pre>
+<h2><a name="ddd"></a>DOS istemcisi</h2>
+<pre>
+  <b>80286 ve daha yükseği</b>
+
+  80286 işlemcisi ve daha yükseğini desteklemek için XFS yazılımından
+  xfs80286 dizinine bakın. Tüm bu dizini olduğu gibi sabit diskinizde bir
+  dizine kopyalayın. HOSTS, XFS.BAT ve belki <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> ile <a href="../cnfigsys/index.htm">CONFIG.SYS</a>
+  dosyalarını XFS'e doğru yolu kullanmak için düzenlemeniz gerekecektir.
+  <a href="../network/network.htm">Ağınızı</a> başlatmak için şunu yazın:
+    XFS
+  Ekranınızın üst sağ köşesinde XFS'in yapmaya çalıştığı şeyi gösteren bir
+  karakter göreceksiniz:
+   <b> A </b> IP adresi almak için ARP talebi çalıştırılıyor,
+   <b> &gt; </b> <a href="../network/network.htm">ağa</a> paket gönderiliyor,
+   <b> &lt; </b> <a href="../network/network.htm">ağdan</a> paket alınıyor
+
+   <b>8088</b>
+
+  XFS yazılımından 8088 özel desteği için xfs8088 dizinine bakın ve bu
+  dosyalaları sabit diskinize kopyalayın. HOSTS ve XFS.BAT dosyalarını
+  yeni yolları kullanacak şekilde düzenleyin.
+  En eski 4,77 Mhz 8088 PC'ler gayet iyi çalışırlar. Ancak 8088 üzerinde
+  özel bir sürücü gerekir, çünkü orijinal <a href="../network/crynwr.htm">Crynwr</a> paket sürücüsü
+  üç 80286 talimatı yapar. Bu sürücüyü yamaladım ve ne2000b8.com olarak
+  tekrar isimlendirdim. Yeni sürücüyü yükleyin. Ayrıca XFS paketinin
+  sadece 8088 özel bir sürümünden dosyalara ihtiyacınız olacaktır
+  (xt-191.zip).
+  Aslında 8088 işlemcileri için bir NE1000 kartı vardı. Bunların hepsi
+  kayboldu. Denediğimiz bütün NE2000 kartları 8088 üzerinde gayet iyi
+  çalıştır, 16 bit kart 8 bit ISA yuvasına konduğunda bile. Bazı yeni
+  NE kartlarının, 8088 bilgisayarlara konmadan önce 80286 veya daha
+  yükseğinde ayarlanmaları gerekebilir.
+  Sadece MS-DOS ile denenmiştir, FreeDOS COMMAND.COM kabuğu 8088
+  işlemcileri desteklemez. MS-DOS 3.20, 5.00 ve 6.22 sürümlerinin hepsinin
+  denemelerinden olumlu sonuç alınmıştır.
+</pre>
+<h2><a name="eee"></a>Sorun giderme</h2>
+<pre>
+  Tecrübe ettiğimiz problemlerin çoğu kötü <a href="../network/network.htm">ağ</a> kablolarından veya
+  kesme sorunlarından kaynaklanıyordu. Başlamadan önce, ağınızın
+  erişilebilir olduğundan emin olun (bir GNU/Linux makinesinden diğerine
+  ping komutuyla deneyin.)
+  DOS makinelerinde, tüm NE2000 kartlarını 0x300 adresine ayarladık ve
+  ardından kullanılmayan bir kesme (interrupt) seçip kart ve sürücü
+  satırlarını denkleşecek şekilde ayarladık (lütfen XFS.BAT dosyasında
+  "ne2000" satırına bakın.)
+  Biraz kurcalamanın ardından ilk DOS istemciniz hızlıca NFS'i kullanmaya
+  başlayacaktır.
+  Diğer sorunlar için XFS191.ZIP ve xt-191.zip dosyalarındaki
+  belgelendirmeye bakın. GNU/Linux sunucularının çoğu NFS konusunda benzer
+  belgelendirmeye sahiptir, bu sunucuyu yapılandırmaya yardımcı olabilir.-
+</pre>
+<hr>
+<pre>
+  <b>Telif hakkı &copy; 2007 Ulrich Hansen, Mainz (Almanya), 2010
+  senesinde W.Spiegl tarafından değiştirilmiştir.</b>
+  <b>2023 senesinde Berki Yenigün tarafından tercüme edilmiştir.</b>
+  Daha fazla bilgi için <a href="../network/intro.htm#ddd">buraya bakın</a>.
+
+  Bu belgeyi kopyalama, dağıtma ve/veya değiştirme izni, GNU Özgür
+  Belgeleme Lisansı'nın 1.2 veya Free Software Foundation tarafından
+  yayınlanan daha yeni bir sürümü kapsamında verilmiştir.
+  Lisansın bir sureti, <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>
+  başlıklı bölümde mevcuttur.
+
+</pre></body></html>

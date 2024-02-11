@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>FreeDOS ile Ağa Bağlanmak - Günümüzde DOS ile Ağa Bağlanmak</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<h1><a name="top"></a>FreeDOS ile Ağa Bağlanmak - Günümüzde DOS ile Ağa Bağlanmak</h1>
+<h2><a name="zzz"></a>Genel Bakış</h2>
+<pre>
+  Bu bölümde <a href="../network/network.htm">ağ</a> sürücüleri, protokolleri ve FreeDOS PC'ler ile 21.
+  asırda <a href="../network/network.htm">ağa</a> bağlanmak için kullanılabilecek yazılımlar hakkında daha
+  fazlasını öğreneceğiz. <a href="../network/network.htm">Ağ</a> mevzusunda daha derin bilgi için Eugene
+  Blanchard tarafından <b>"Introduction to Data Communications"</b> (bkz.:
+  <b>http://www.techbooksforfree.com/intro_to_data_com/ (*01)</b>, GNU GPL,
+  daha yeni ama özgür olmayan bir sürümü <b>burada bulunabilir</b>
+  (bkz.:
+  <b>http://learnat.sait.ab.ca/ict/txt_information/Intro2dcRev2/index.html (*02)</b>)
+  metnini deneyebilirsiniz.
+</pre>
+<h2><a name="aaa"></a>Sürücüler</h2>
+<pre>
+  <a href="../network/ethernet.htm">Ethernet</a> günümüzün baskın <a href="../network/network.htm">şebeke</a> donanım teknolojisidir. Bu tür
+  <a href="../network/network.htm">ağ</a> adaptörleri için DOS üzerinde genelde üç tür sürücü
+  kullanılabilir (ve bunlardan en azından birini kartınız için bulmanız
+  muhtemeldir):
+    * <a href="../network/install.htm">Paket sürücüleri</a>, FTP Software Inc. tarafından icat edilmiştir.
+      Bunlardan birçoğu <a href="../network/crynwr.htm">Crynwr</a> tarafından yazılıp yayınlanmıştır.
+    * Open Datalink Interface (<a href="../network/odi.htm">ODI</a>) sürücüleri, ki <a href="../network/novell.htm">Novell</a> ve
+      Apple tarafından geliştirilmiştir, ve
+    * <a href="../network/network.htm">Network</a> Driver Interface Specification (<a href="../network/ndis.htm">NDIS</a>) sürücüleri, ki
+      Microsoft ve <a href="../network/3com.htm">3Com</a> tarafından geliştirilmiştir.
+  Üçü de <b>çoklu protokolleri</b> destekleyen <a href="../network/network.htm">ağ</a> sürücüleridir, ki bu
+  aynı kart üzerinde birçok protokolün desteklenebileceği anlamına gelir.
+  Önceki sürücüler sadece tek bir protokolü desteklerlerdi. Çok protokollü
+  sürücüler doğrudan <a href="../network/network.htm">ağ</a> arayüz kartıyla iletişim kurar ve yayınlanmış
+  arayüz tanımlaması sağlarlar, buna göre de uygulama geliştirilebilir.
+  Bu konuya genel bir giriş için <b>"Implementing Multi-Protocol <a href="../network/network.htm">Network</a>
+  Drivers in a DOS Environment"</b>, Georgia Üniversitesi, Athens, Georgia
+  (ABD) metnine bakabilirsiniz.
+  (bkz.: <b>http://www.eits.uga.edu/~ucns/lans/docs/netdrive.html (*03)</b>).
+</pre>
+<h2><a name="bbb"></a>Protokoller</h2>
+<pre>
+  Aşağıdaki protokoller bu üç sürücü tarafından desteklenir:
+    * Transmission Control Protocol/Internet Protocol (<a href="../network/tcpip.htm">TCP/IP</a>), ki mesela
+      UNIX, GNU/Linux, Windows, OS X ve İnternet tarafından kullanılır,
+    * Internetwork Packet Exchange/Sequenced Packet Exchange (<a href="../network/ipxspx.htm">IPX/SPX</a>)
+      protokolleri, ki mesela <a href="../network/novell.htm">Novell Netware</a> tarafından kullanılır,
+    * <a href="../network/network.htm">Network</a> Basic Input Output System (<a href="../network/history.htm#aaa">NetBIOS</a>) Extended User Interface
+      (NetBEUI yani <a href="../network/cifs.htm">CIFS</a>) protokolü, mesela OS/2,
+      Windows 9x, ME ve 2000 tarafından kullanılır.
+  <a href="../network/tcpip.htm">TCP/IP</a>, http, smtp veya ftp gibi temel İnternet hizmetleri için
+  standarttır ve yerel ağları yani Local Area <a href="../network/network.htm">Networks</a> (LAN)
+  bağlamak için de varsayılan sistem haline gelmiştir.
+  <a href="../network/cifs.htm">NetBEUI</a>, Windows 2000'e dek Microsoft sistemlerindeki LAN'lar için
+  varsayılan sistemdi. Yerine <a href="../network/tcpip.htm">TCP/IP</a> üzeri <a href="../network/history.htm#aaa">NetBIOS</a> (NBT) ve ardından
+  <a href="../network/tcpip.htm">TCP/IP</a> geldi. Uygulama seviyesi <a href="../network/network.htm">ağ</a> protokolü, mesela <a href="../network/history.htm#aab">SMB</a>, Windows XP'den
+  beri
+  (bkz.: <b>http://support.microsoft.com/default.aspx?scid=kb;en-us;Q204279
+  (*04)</b>) doğrudan TCP üzerinde <b>çalışabilir</b>.
+  <a href="../network/novell.htm">Novell'in</a> <a href="../network/ipxspx.htm">IPX</a> protokolü <a href="../network/novell.htm">Novell Netware</a> ile kullanılıyordu,
+  ki bu DOS veya Windows 3.x ile çalışan PC'lerde varsayılan ağ çözümüydü.
+  1998 yılından beri NetWare <a href="../network/tcpip.htm">TCP/IP</a> üzerinde çalışabilir, daha yeni
+  sürümler TCP/IP'yi varsayılan olarak kullanırlar.
+  Sonuç: <a href="../network/tcpip.htm">TCP/IP</a> modern <a href="../network/network.htm">ağların</a> ortak lisanıdır.
+  Diğer protokolleri kullanmak hâlâ mümkündür, fakat destek sonlanabilir.
+</pre>
+<h2><a name="ccc"></a>Ağ Yazılımları</h2>
+<pre>
+  Genel olarak DOS ile hâlâ kullanılabilecek aşağıdaki üç ağa bağlanma
+  yöntemi bulunmaktadır. Bunlar hakkında daha fazlasını şu bölümlerde
+  öğrenebilirsiniz:
+    * <a href="../network/novell.htm">Novell Netware</a> - <a href="../network/odi.htm">ODI</a> sürücü temelli <b>Novell NetWare</b> programlar
+      NetWare <a href="../network/network.htm">ağına</a> bağlanmak ve <a href="../network/tcpip.htm">TCP/IP</a> hizmetlerini kullanmak için.
+    * <a href="../network/msclient.htm">MS istemcisi</a> - <a href="../network/ndis.htm">NDIS</a> sürücü temelli <b>Microsoft "<a href="../network/history.htm#aab">LAN manager</a> Client"
+      veya "MS Client 3.0"</b>, DOS makinelerini bir Windows/<a href="../network/history.htm#aab">SMB</a> çalışma
+      grubuna eklemek için.
+    * <a href="../network/tcpip.htm">TCP/IP uygulamaları</a> - Paket sürücüsü temelli "UNIX-benzeri" <b>TCP/IP
+      uygulamalar</b>, http, smtp, ftp, SSH gibi <a href="../network/network.htm">ağ</a> hizmetleri sunmak
+      veya onlara erişmek için (bkz.: <a href="../network/tcpip_ap.htm#eee">SSH2DOS</a>) veya <a href="../network/nfs.htm">NFS</a>.
+    * <a href="../network/others.htm">Diğerleri</a>
+
+  <b>(*01) Tamam</b>
+  <b>(*02) http://www.telecomworld101.com/Intro2dcRev2/index.html</b>
+  <b>(*03) https://web.archive.org/web/20090112073628/http://www.
+        eits.uga.edu/~ucns/lans/docs/netdrive.html</b>
+  <b>(*04) https://web.archive.org/web/20060315052325/http://support.
+        microsoft.com/default.aspx?scid=kb;en-us;Q204279</b>
+</pre>
+<hr>
+<pre>
+  <b>Telif hakkı &copy; 2007 Ulrich Hansen, Mainz (Almanya), 2010 ve 2020
+  senelerinde W.Spiegl tarafından değiştirilmiştir.</b>
+  <b>2023 senesinde Berki Yenigün tarafından tercüme edilmiştir.</b>
+  Daha fazla bilgi için <a href="../network/intro.htm#ddd">buraya bakın</a>.
+
+  Bu belgeyi kopyalama, dağıtma ve/veya değiştirme izni, GNU Özgür
+  Belgeleme Lisansı'nın 1.2 veya Free Software Foundation tarafından
+  yayınlanan daha yeni bir sürümü kapsamında verilmiştir.
+  Lisansın bir sureti, <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>
+  başlıklı bölümde mevcuttur.
+
+</pre></body></html>

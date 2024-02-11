@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: xdel</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: xdel</h1>
+<pre>
+  XDEL is an extended file deletion tool, (actual version: 1.0.8!)
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  XDEL [/options] [@][d:][path]filename[.ext]... [/options]
+</pre>
+<h2>Options:</h2>
+<pre>
+  @             the following filename is the name of a file list
+  d:            drive which xdel is to search
+  path          directory where search is to begin
+  filename.ext  file to be deleted (wildcards allowed)
+  /D            remove empty subdirectories
+  /N or /Y      delete specified files with no warning (CAREFUL!)
+  /O            overwrite before deleting - file contents PERMANENTLY LOST
+  /P            prompt before deleting each file
+  /R            delete read-only files
+  /S            delete files in subdirectories
+  /H or /?      this help message
+  Multiple files may be specified on the command line.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  XDEL was introduced by DR-DOS and a long time later M$ introduced
+  <a href="../base/deltree.htm">DELTREE</a>. This implementation of XDEL is intended to be 100&percnt; compatible
+  with DR-DOS version. If you find anything different, consider it a bug
+  and send me a notofication, please.
+  XDEL can be used in place of <a href="../base/deltree.htm">DELTREE</a>, but in fact it has more options,
+  including:
+    - Default is not to delete Read/Only files,
+    - Option to include _or_not_ subdirectories,
+    - Option to wipe all files before deleting,
+    - Options to ask or not for confirmation, individualy or globally.
+  XDEL has the following <a href="../batch/errorlvl.htm">ERRORLEVEL / EXITCODES</a>
+    1 = Syntax error
+    2 = Could not delete (for any reason, including operator cancel)
+    3 = Out of memory
+
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Differences to deletree:
+  XDEL  /RY  *.*
+    will remove all files, including R/O and it will NOT ask for
+    confirmation :)
+  It has one major difference:
+  XDEL /SRDN DIR\*.*
+    will delete all files and subdirectories just as
+    DELTREE /Y DIR\*.*
+  but the directory DIR\  will NOT be removed (This is the DR-DOS
+  standard)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/del.htm">del/erase</a>
+  <a href="../base/deltree.htm">deltree</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+  <a href="../command/rd.htm">rd/rmdir</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2002 Alain Mouette, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

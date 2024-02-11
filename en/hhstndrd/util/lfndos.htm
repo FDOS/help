@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: lfdndos</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: lfndos</h1>
+<pre>
+  LFNDOS provides the Windows95 Long Filename (LFN) API to DOS programs.
+  Under Windows95, a DOS program can use long filenames by calling a set
+  of interrupt functions, which Windows provides. For example, COMMAND.COM
+  will allow long filenames when run as a DOS Prompt from Windows, but not
+  if you restart in MS-DOS mode. Other programs such as EDIT.COM and all
+  DJGPP programs use long filenames if available.
+
+  LFNDOS provides the long filename service under DOS, allowing you to use
+  long filenames with these programs. It uses the same format for storing
+  the names on disk as Windows95 does, so you can view and use long file-
+  names under both systems interchangeably.
+
+  You don't even need Windows95 to use LFNDOS: you can use it, for example,
+  to view the filenames on a disk from a friend who uses Windows95, instead
+  of just getting the short ALONGF&tilde;1.DOC type names.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  LFNDOS [-u] [-t]
+</pre>
+<h2>Options:</h2>
+<pre>
+  -u  Removes installed TSR from memory.
+  -t  Installs as TSR, not memory resident (warning: bugs, may crash)
+</pre>
+<h2>Comments:</h2>
+<pre>
+  All that LFNDOS does is translate a long filename into its short
+  equivalent and then pass the short name on to DOS. So, for example, on
+  an 'open file' command, LFNDOS will search for a file with the given
+  long name, find the short-name alias and then call the DOS open file
+  function using the alias. For this reason LFNDOS is completely
+  compatible with DOS, since it always passes on requests to DOS instead
+  of handling them itsself. Using another example, remove directory,
+  LFNDOS simply removes the long filename entries from the hard disk and
+  then tells DOS to remove the directory with the short-name equivalent.
+  So in this way, LFNDOS never has to cope with marking clusters in the
+  FAT and such like, which keeps it reliable and simple (would you like
+  it poking around your FAT all the time?).
+  For more information, see:
+  <b>https://gitlab.com/FreeDOS/drivers/lfndos</b> OR:
+  <b>C:\FREEDOS\DOC\LFNDOS\lfndos.doc</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  lfndos -t  Installs as TSR, to remove it, type:
+  lfndos -u   OR:
+  lfndos     to remove it, type:
+  exit
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/doslfn.htm">doslfn</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998, 1999 Chris Jones, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

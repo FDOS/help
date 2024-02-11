@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: lzop</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: lzop</h1>
+<pre>
+  lzop is a file compressor very similar to gzip. lzop favors speed
+  over compression ratio.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  lzop [ *command* ] [ *options* ] [ *filename* ... ]
+  lzop [-dxlthIVL19] [-qvcfFnNkUp] [-o file] [-S suffix] [[@]file..]
+  [*filename* ...]
+</pre>
+<h2>Commands:</h2>
+<pre>
+  -1      Compress faster.        -9  Compress better.
+  -d      Decompress.             -x  Extract (same as -dPp).
+  -l      List compressed file.   -I  Display system information.
+  -t      Test compressed file.   -V  Display version number.
+  -h      Give this help.         -L  Display software license.
+</pre>
+<h2>Options:</h2>
+<pre>
+  -q      Be quiet.
+  -v      Be verbose.
+  -c      Write on standard output.
+  -oFILE  Write output to 'FILE'.
+  -p      Write output to current dir.
+  -pDIR   Write to path 'DIR'.
+  -f      Force overwrite of output files.
+  -n      Do not restore the original file name.
+  -N      Restore the original file name (default).
+  -P      Restore or save the original path and file name.
+  -S.suf  Use suffix.suf on compressed files.
+  -F      Do *not* store or verify checksum of files (faster).
+  -U      Delete input files after successful operation (like gzip
+          and bzip2).
+  file..  Files to (de)compress. If none given, try standard input.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  LZOP, like most Zippers, has an extensive documentation that is beyond
+  the scope of this help. For more information see:
+  <b>https://gitlab.com/FreeDOS/archiver/lzop</b> OR:
+  <b>http://www.lzop.org/</b> (version 1.04 available there)
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - none -
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/7zdec.htm">7zdec</a>
+  <a href="../util/arj.htm">arj</a>
+  <a href="../util/bzip2.htm">bzip2</a>
+  <a href="../util/cabext.htm">cabext</a>
+  <a href="../util/gzip.htm">gzip</a>
+  <a href="../util/lpq1.htm">lpq1</a>
+  <a href="../util/lzip.htm">lzip</a>
+  <a href="../util/lzma.htm">lzma</a>
+  <a href="../util/p7zip.htm">p7zip</a>
+  <a href="../util/slicer.htm">slicer</a>
+  <a href="../util/tar.htm">tar</a>
+  <a href="../util/unzip.htm">unzip</a>
+  <a href="../util/zip.htm">zip</a>
+  <a href="../util/zoo.htm">zoo</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1996-2003 Markus Franz Xaver Johannes Oberhumer,
+  help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

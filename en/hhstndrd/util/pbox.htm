@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: pbox (Password Box)</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: pbox (Password Box)</h1>
+<pre>
+  PasswordBox is a console-mode program which will keep all your
+  passwords safe, inside an encrypted database.
+  This program is written by Mateusz Viste, and uses the AES
+  implementation of Chris Brown to handle all encryption/decryption
+  processes.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  PBOX [--help][--dump]
+</pre>
+<h2>Options:</h2>
+<pre>
+  --help  Displays a help screen (any unsupported parameter will display
+          it, too).
+  --dump  Lists all the data of your encrypted database on screen.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  CAUTION: This program features 128 bits AES encryption, which might be
+  illegal in your country.
+  FAQ:
+
+  Q: Where does PasswordBox store its encrypted database?
+  A: The location of the database (which is, by the way, a single file)
+     depends on the system you are running PasswordBox on. To know where
+     the database is stored on your system, just type "pbox --help" -
+     the location of the database will be printed on the screen.
+
+  Q: I lost my master password! How can I recover all informations that
+     I stored inside my encrypted database?
+  Y: You can't. That's the whole point of encrypting informations: you
+     won't be able to get these informations unless you provide the
+     password which was used to encrypt the database.
+
+  Q: Why have you created yet another password-keeping program?? They
+     are already plenty of them out there!
+  A: That's right, there are many programs which allow you to keep a
+     database of passwords, PINs, etc. However, I needed a *simple*
+     program running on my Linux console, so I could access it easily
+     via remote sessions. I couldn't find any program fulfilling these
+     needs, therefore I decided to write my own.
+
+  Q: I don't trust you. How do I know that your program isn't secretly
+     sending all my passwords to you?
+  A: PasswordBox, unlike many other similar applications, is published
+     on a open source license (GNU/GPL). This allows you to examine the
+     source of PasswordBox, which is available on my website, and
+     recompile it by yourself if you really want to.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Start:
+    Enter "PBOX" and you are asked for a MasterPassword.
+    A user interface appears.
+    Press "INSERT" to create a new entry, e.g. "Password of my email
+    account"
+    Press "ENTER" and you are asked for this password.
+    Press "F1" - you will get a list of all available options.
+    E.g.:
+    "INSERT" and you can add the password of another
+    account or whatever. And "up/down", "pgUp/PgDown and so on.
+    Quit with "ESC".
+    Enter "PBOX", you are asked for your MasterPassword and then
+    you get your passwords.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/password.htm">password</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2009-2010 Mateusz Viste, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

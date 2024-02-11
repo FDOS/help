@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: gzip / gunzip / zcat</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: gzip / gunzip / zcat</h1>
+<pre>
+  GZIP (GNU zip) is a compression utility designed to be a replacement
+  for 'compress'. Its main advantages over compress are much better
+  compression and freedom from patented algorithms. The GNU Project
+  uses it as the standard compression program for its system.
+  Copy GZIP.EXE to GUNZIP.EXE and ZCAT.EXE, or use "gzip -d" to
+  decompress. GZIP386.exe runs much faster but only on 386 and above.
+  ZCAT is identical to GUNZIP -c.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  gzip [ -acdfhlLnNrtvV19 ] [-S suffix] [ name ... ]
+  gunzip [ -acfhlLnNrtvV ] [-S suffix] [ name ... ]
+  zcat [ -fhLV ] [ name ... ]
+</pre>
+<h2>Options:</h2>
+<pre>
+  -a --ascii              Ascii text mode: convert end-of-lines using
+                          local conventions.
+  -c --stdout --to-stdout
+                          Write output on standard output; keep original
+                          files unchanged.
+  -d --decompress --uncompress
+                          Decompress.
+  -f --force              Force overwrite of output file and compress
+                          links.
+  -h --help               Display a help screen and quit.
+  -l --list               List compressed file contents
+  -L --license            Display the gzip license and quit.
+  -n --no-name            Do not save or restore the original name and
+                          time stamp.
+  -N --name               Save or restore the original name and time
+                          stamp.
+  -q --quiet              Suppress all warnings.
+  -S .suf --suffix .suf   Use suffix .suf instead of .gz.
+  -t --test               Test. Check the compressed file integrity.
+  -v --verbose            Verbose mode.
+  -V --version            Display the version number and compilation
+                          options then quit.
+  -1 --fast               Compress faster
+  -9 --best               Compress better
+  file...                 File to (de)compress. If none given use
+                          standard input.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  GZIP, like most Zippers, has an extensive documentation that is beyond
+  the scope of this help. For more information see:
+  <b>https://gitlab.com/FreeDOS/archiver/gzip/-/tree/master/DOC/GZIP?</b>
+  <b>ref_type=heads</b> OR:
+  <b>C:\FREEDOS\DOC\GZIP</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  <b>COMPRESS:</b>
+  gzip -c readme.txt > foo.gz
+  <b>EXPAND:</b>
+  gzip -c -d foo.gz > readme2.txt  (creates uncompressed readme2.txt) OR:
+  gunzip -c foo.gz > readme3.txt (creates uncompressed readme3.txt) OR:
+  gunzip foo.gz (greates uncompressed file "foo", deletes "foo.gz").
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/7zdec.htm">7zdec</a>
+  <a href="../util/arj.htm">arj</a>
+  <a href="../util/bzip2.htm">bzip2</a>
+  <a href="../util/cabext.htm">cabext</a>
+  <a href="../util/lpq1.htm">lpq1</a>
+  <a href="../util/lzip.htm">lzip</a>
+  <a href="../util/lzma.htm">lzma</a>
+  <a href="../util/lzop.htm">lzop</a>
+  <a href="../util/p7zip.htm">p7zip</a>
+  <a href="../util/slicer.htm">slicer</a>
+  <a href="../util/tar.htm">tar</a>
+  <a href="../util/unzip.htm">unzip</a>
+  <a href="../util/zip.htm">zip</a>
+  <a href="../util/zoo.htm">zoo</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1992-1993 Jean-loup Gailly, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

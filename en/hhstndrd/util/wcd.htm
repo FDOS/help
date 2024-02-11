@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: wcd</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: wcd</h1>
+<pre>
+  WCD is a command-line program to change directory fast. It saves time
+  typing at the keyboard. One needs to type only a part of a directory
+  name and WCD will jump to it. WCD has a fast selection method in case
+  of multiple matches and allows aliasing and banning of directories. WCD
+  also includes a full screen interactive directory tree browser with
+  speed search.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  wcd [options] [directory]
+</pre>
+<h2>Options:</h2>
+<pre>
+  -a                      Add current path to treefile
+  -aa                     Add current and all parent paths to treefile
+  -A PATH                 Add tree from PATH
+  -b                      Ban current path
+  -c,  --direct-cd        Direct CD mode
+  -d DRIVE                Set DRIVE for stack &amp; go files (DOS)
+  -e                      Add current path to Extra treefile
+  -ee                     Add current and all parent paths to Extra treefile
+  -E PATH                 Add tree from PATH to Extra treefile
+  -f FILE                 Use extra treeFile
+  +f FILE                 Add extra treeFile
+  -g                      Graphics
+  -gd                     Graphics, dump tree
+  -G PATH                 Set PATH Go-script
+  -GN, --no-go-script     No Go-script
+  -h,  --help             Show this Help
+  -i,  --ignore-case      Ignore case (default)
+  +i,  --no-ignore-case   Regard case
+  -I,  --ignore-diacritics     Ignore diacritics
+  +I,  --no-ignore-diacritics  Regard diacritics (default)
+  -j,  --just-go          Just go mode
+  -k,  --keep-paths       Keep paths
+  -K,  --color            Colors
+  -l ALIAS                aLias current directory
+  -ls                     List the aliases
+  -L,  --license          show software License
+  -m DIR                  Make DIR, add to treefile
+  -M DIR                  Make DIR, add to extra treefile
+  -n PATH                 Use relative treefile in PATH
+  +n PATH                 Add relative treefile in PATH
+  -N,  --numbers          Use Numbers
+  -o                      Use stdOut
+  -od, --to-stdout        Dump matches
+  -q,  --quiet            Quieter operation
+  -r DIR                  Remove DIR
+  -rmtree DIR             Remove DIR recursive
+  -s                      Scan disk from $HOME
+  -S PATH                 Scan disk from PATH
+  +S PATH                 Scan disk from PATH, create relative treefile
+  -t                      don't strip /tmp_mnt from paths
+  -T,  --ascii-tree       draw tree with ASCII characters
+  -Ta, --alt-tree-nav     Alternative tree navigation
+  -TC, --center-tree      Centered tree view
+  -Tc, --compact-tree     Compact tree
+  -Td, --cjk-width        Support legacy CJK fonts
+  -u USER                 Use USER's treefile
+  +u USER                 Add USER's treefile
+  -v,  --verbose          Verbose operation
+  -V,  --version          Show Version info
+  -w,  --wild-match-only  Wild matching only
+  -x PATH                 eXclude PATH during disk scan
+  -xf FILE                eXclude paths from FILE
+  -y,  --assume-yes       assume Yes on all queries
+  -z NUMBER               Set max stack siZe
+  -[NUMBER]               push dir (NUMBER times)
+  +[NUMBER]               pop dir (NUMBER times)
+  =                       show stack
+</pre>
+<h2>Comments:</h2>
+<pre>
+  The 16 bit Real Mode version of WCD has NO <a href="../base/nlsfunc.htm">NLS</a> support.
+  WCD has an extensive documentation that is beyond the scope of
+  this help. For more information see:
+  <b>https://gitlab.com/FreeDOS/util/wcd/-/tree/master/DOC/WCD?ref_type=heads</b>
+  OR: <b>https://waterlan.home.xs4all.nl/wcd.html</b> OR:
+  <b>C:\FREEDOS\DOC\WCD</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Search for C:\FREEDOS\DOC
+  You are at C:
+  wcd doc
+  wcd shows you the following result:
+  a /APPS/DN2/DOC
+  b /APPS/ELVIS/DOC
+  c /APPS/VIM/DOC
+  d /FREEDOS/DOC
+  e /GAMES/LIQUIWAR/DOC
+
+  Type "d" and you are at C:\FREEDOS\DOC
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/cd.htm">cd</a>
+  <a href="../command/cdd.htm">cdd</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1996-2018 Erwin Waterlander, help version
+  2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

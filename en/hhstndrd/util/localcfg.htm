@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: localcfg</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: localcfg</h1>
+<pre>
+  LOCALCFG creates a custom <a href="../base/cntrysys.htm">COUNTRY.SYS</a>-like file matching your
+  preferences.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  localcfg myprefs.sys [options]
+</pre>
+<h2>Options:</h2>
+<pre>
+  Options allow to configure country locales to your likening, as
+  follows:
+    /country:XX Indicates your country code is XX (1 for USA, 33 for
+                France, etc)
+    /cp:XXX     Adapts country data for codepage XXX (example: '437')
+    /decim:X    Reconfigures the decimal symbol to be 'X'
+    /thous:X    Reconfigures the thousands symbol to be 'X'
+    /datesep:X  Sets the date separator to 'X' (for example '/')
+    /datefmt:X  Sets the date format, can be: MDY, DMY or YMD
+    /timesep:X  Sets the time separator to 'X" (for example ':')
+    /timefmt:X  Sets the time format: 0=12h with AM/PM or 1=24h
+    /curr:XXX   Sets the currency to XXX (a string of 1 to 4 characters)
+    /currpos:X  Sets the currency symbol position X, where X is either
+                0=currency precedes the value, 1=currency follows the
+                value and 2=currency replaces the decimal sign
+    /currspc:X  Space between the currency and the value (0=no, 1=yes)
+    /currprec:X Currency's precision (number of decimal digits, 0..9)
+    /yesno:XY   Sets the 'Yes/No' letter to XY (default: YN)
+    If COUNTRY.SYS location is not provided, then localcfg tries loading
+    it from &percnt;DOSDIR&percnt;\CFG\COUNTRY.SYS
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Localcfg is a 16 bit tool designed for DOS. It provides an easy way of
+  configurating system locales by generating a custom <a href="../base/cntrysys.htm">COUNTRY.SYS</a> file
+  that reflects the exact preferences of the user. Localcfg supports NLS.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Settings for Germany:
+  localcfg /country:49 /cp:858 /decim:, /thous:. /datesep:. /datefmt:DMY
+           /timesep:: /timefmt:1 /curr:EUR /currpos:1 /currspc:1
+           /currprec:2 /yesno:JN
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/cntrysys.htm">country.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2015-2023 Mateusz Viste, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

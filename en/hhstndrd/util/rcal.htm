@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: rcal</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: rcal</h1>
+<pre>
+  RCAL is an interactive calculator that loosely mimics the behavior of
+  "roller printing" calculators. It supports huge numbers, floating point
+  and has extremely low hardware requirements.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  rcal [/log=file.log] [/?]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /log=file.log  Writes the log file ("paper of roller printing")
+  /?             Shows the help
+</pre>
+<h2>Comments:</h2>
+<pre>
+  rcal is a 16-bit (real mode) DOS application. It needs DOS 3+, an 8086
+  CPU and around 100 KiB of available conventional RAM.
+  USAGE:
+  Using rcal is as simple as launching the rcal executable and providing
+  the operands and operators that need to be computed. Following operators
+  are supported:
+   '+' and '-' (add/subtract)
+   '*' and '/' (multiply/divide)
+   ^ - power
+   &percnt; - percent
+  Inputing a negative operand requires to press the 'S' key (S = change
+  sign).
+
+  Operator notes:
+  1. The percent operator acts in a perhaps peculiar way, since it
+     actually does slightly more than just scaling a value down by 100.
+     When it is preceded by an addition or subtraction, the percent
+     operator will add or subtract the product of the previous operand.
+     Example:
+       Operation: "300 + 5&percnt;" will actually perform "300 + (300 * 5&percnt;)"
+  2. The power operator (^) supports only integer exponents.
+  3. Divisions are performed using a precision limited to 20 decimal
+     places.
+
+  Limitations:
+  Values that can be input to rcal can have up to 10 integer digits and
+  6 fractional digits. The computation engine itself is able to handle
+  much bigger numbers though: the entire result can be up to 56 digits
+  long (longer intermediate results are possible, but won't be displayed).
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Enter an operand, followed by an operator, followed by an operand.
+  Press ESC to quit.
+  rcal                        (Enter rcal first, followed by ENTER)
+      2.795      =  2.795     (Enter the value followed by +)
+  +   3,87629    =  6.67129   (Enter the value followed by -)
+  -   5.123456   =  1.547834  (Enter the value followed by /)
+  /   2          =  0.773917  (Enter the value followed by *)
+  *   4          =  3.095668  (ESC to quit).
+                 =  Goodbye
+
+  rcal                        (Enter rcal first, followed by ENTER)
+      55         =  55        (Enter the value, followed by ^)
+  ^    4         =  9150625   (Enter the value, followed by ESC)
+                 =  Goodbye   (55^4 = 55*55*55*55)
+
+  rcal                        (Enter rcal first, followed by ENTER)
+      555        =  555       (Enter the value, followed by +)
+  +    10&percnt;       =  610,5     (Enter the value AND "&percnt;", followed by -)
+  -    20&percnt;       =  488,4     (Enter the value AND "&percnt;", followed by *)
+  *     3&percnt;       =  14,652    (Enter the value AND "5", followed by ESC).
+                 = Goodbye
+
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/fdrc.htm">fdrc</a>
+  <a href="../util/foxcalc.htm">foxcalc</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2018 Mateusz Viste, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

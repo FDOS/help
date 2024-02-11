@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>FreeDOS ile Ağa Bağlanmak - NTCPDRV</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<h1><a name="top"></a>FreeDOS ile Ağa Bağlanmak - NTCPDRV</h1>
+<h2><a name="zzz"></a>Genel Bakış:</h2>
+<pre>
+  Trumpet TCP sürücüsü harici bir <a href="../network/ldtcpipk.htm">TCP/IP Çekirdeğidir</a>. Yerleşik
+  (TSR (=terminate and stay resident)) bir program olarak çalışır ve bir
+  paket sürücüsünün üzerine gelir. TCPDRV, 1992 senesinde Avustralya,
+  Hobart'ta Tasmanya Üniversitesi Psikoloji Bölümü'nde bir programcı olan
+  Peter Tattam tarafından oluşturulmuştur. İnternet sitesindeki
+  biyografisine göre, <b>http://www.tattsoft.com/aboutUs.htm (*01)</b>),
+  shareware "Trumpet  Newsreader" programını bundan kısa bir süre önce
+  geliştirmişti ve TCP sürücüsünü Turbo Pascal için açık olarak başka
+  hiçbir şey mevcut olmadığı için yazmıştı. Bu geliştirme daha sonra
+  popüler Windows yazılımı olan "Trumpet Winsock" için yolu açtı ve Tattam
+  bunu 1994 senesinde kurduğu "Trumpet International of Australia" şirketi
+  vasıtasıyla piyasaya sürdü. (bkz.: <b>http://www.trumpet.com.au/ (*02)</b>).
+  TCPDRV 2.01  "deneysel bir sürüm" olarak yayınlanmıştı. 1993 senesinde
+  3.01 sürümü bunu takip etti, ismi NTCPDRV idi. İyileştirmeler daha
+  verimli bellek kullanımı ve hata gidermeleri içeriyordu (bkz: <b>http://
+  alumnus.caltech.edu/~dank/trumpet/ (*03)</b>). Her iki sürüm ile TCP201.SPE
+  metin dosyası (bkz.: <b>http://wiretap.area.com/Gopher/pub/tsoft/
+  trumpet-abi/tcp201.specification (*04)</b>) - programcılar için
+  tanımlama - Trumpet İnternet sitesinden herkese açık şekilde
+  yayınlanmıştı (bkz.: <b>http://www.trumpet.com.au/dosapps/ (*05)</b>).
+  Sitedeki lisanslama şartları kısa ve sadeydi: "Bu DOS uygulamaları
+  ücretsiz ve desteksiz olarak yayınlanmıştır." Tumpet yazılımlarının
+  popülerliği sayesinde bu çeşitli yansılardan indirilebilir
+  (bkz.: <b>http://wiretap.area.com/Gopher/pub/tsoft/trumpet-abi/(*06)</b>).
+  TCP sürücüsünün ticari bir sürümü, Peter Tattam'ın yeni şirketi
+  "Tattam Software Enterprises" vasıtasıyla edinilebilir (bkz.: <b>http://
+  www.tattsoft.com/index.php/products/tcpip-driver.html (*07)</b>).
+</pre>
+<h2><a name="aaa"></a>Kurulum ve yapılandırma:</h2>
+<pre>
+  NTCPDRV.ZIP dosyasını (see: <b>http://wiretap.area.com/Gopher/pub/tsoft/
+  trumpet-abi/ntcpdrv.zip (*08)</b>) indirip çıkarın. Eğer belgelendirmeye
+  ihtiyacınız varsa, eski TCP201.ZIP sürümünü de indirin (bkz.: <b>http://
+  wiretap.area.com/Gopher/pub/tsoft/trumpet-abi/tcp201.zip (*09)</b>), bu
+  ayrıca birkaç uygulama da içerir.
+  <a href="../network/ldtcpipk.htm">TCP/IP Çekirdeği</a>, <a href="../network/network.htm">ağınızın</a> ayarlarına göre yapılandırılmalıdır. Bu, ya
+  komut satırı parametreleri ile, ya da DOS ortam değişkenleri ayarlayarak
+  yapılır.
+  O zaman NTCPDRV.EXE dosyasını şöyle bir komutla (tek satır) başlatın:
+      NTCPDRV -ip=192.168.1.80 -netmask=255.255.255.0
+      -gateway=192.168.1.1 -dns-host=192.168.1.1
+  veya önce ortam değişkenlerini ayarlayarak onu yapılandırın: şu
+  satırları <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> veya NTCPDRV.EXE dosyasından önce başlatılacak
+  bir toplu iş dosyasına ekleyin.
+      --- <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> ---
+      set ip=192.168.1.80
+      set netmask=255.255.255.0
+      set gateway=192.168.1.1
+      set dns=192.168.1.1
+  Aşağıdaki resmide gösterildiği üzere, çekirdek başlatıldıktan sonra
+  otomatik olarak kullanılabilir bir kesme vektörü arar. Aynı zamanda
+  mesela paket sürücüsü tarafından uygulamalara sağlanan 0x61 vektörünü
+  belirtmek için "-vec=61" parametresini kullanabilirsiniz. Daha fazla
+  seçenek için belgelendirmeye bakın.
+    (Resim: NTCPDRV başlangıç mesajları)
+  Trumpet <a href="../network/ldtcpipk.htm">TCP/IP Çekirdeği</a> başlatıldıktan sonra, <a href="../network/ldtcpipk.htm">TCP/IP Çekirdeği</a>
+  gerektiren birçok <a href="../network/tcpip.htm">TCP/IP</a> uygulaması çalıştırabilirsiniz (mesela Trumpet
+  Newsreader, veya DOS Web sunucuları Sioux ya da Webserv'i). Makineniz
+  ayrıca artık <a href="../network/network.htm">ağdan</a> erişilebilir olacaktır, bir ping
+  talebi deneyin.
+    (Resim: bir Windows makinesinden ping)
+  Yukarıdaki resimde, FreeDOS ile yerleşik NTCPDRV çalıştıran bir makineyi
+  Windows XP çalıştıran başka bir makineden pingliyoruz. Performans en
+  süratlisi değil ve ilk paket kaybedilmiş.
+
+  Ardından bir Debian GNU/Linux makinesinden ping talebi gönderiyoruz:
+    (Resim: bir GNU/Linux makinesinden ping)
+  İlk paket gene daha fazla zamana ihtiyaç duyuyor, üçüncüsü makul bir
+  sürede alınıyor. En azından şunu görüyoruz: <a href="../network/network.htm">ağ</a> çalışıyor ve Trumpet
+  TCP sürücüsü çağrılarımıza cevap veriyor.
+
+  <b>(*01) http://www.tattsoft.com/index.php/about-us.html</b>
+  <b>(*02) Tamam</b>
+  <b>(*03) https://web.archive.org/web/20100127193745/http://alumnus.
+        caltech.edu/~dank/trumpet/</b>
+  <b>(*04) ftp://ftp.tsoft.net/pub/tsoft/trumpet-abi/</b>
+  <b>(*05) http://www.trumpet.com.au/ ?</b>
+  <b>(*06) http://ftp.gnome.org/mirror/archive/ftp.sunet.se/pub/
+        simtelnet/trumpet/tcp-abi/</b>
+  <b>(*07) Tamam</b>
+  <b>(*08) ftp://ftp.oldskool.org/pub/tvdog/internet/ntcpdrv.zip</b>
+  <b>(*09) ftp://ftp.oldskool.org/pub/tvdog/internet/tcp201.zip
+        ftp://ftp.oldskool.org/pub/tvdog/internet/tcp201.txt</b>
+</pre>
+<hr>
+<pre>
+  <b>Telif hakkı &copy; 2007 Ulrich Hansen, Mainz (Almanya), 2010 ve 2020
+  senelerinde W.Spiegl tarafından değiştirilmiştir.</b>
+  <b>2023 senesinde Berki Yenigün tarafından tercüme edilmiştir.</b>
+  Daha fazla bilgi için <a href="../network/intro.htm#ddd">buraya bakın</a>.
+
+  Bu belgeyi kopyalama, dağıtma ve/veya değiştirme izni, GNU Özgür
+  Belgeleme Lisansı'nın 1.2 veya Free Software Foundation tarafından
+  yayınlanan daha yeni bir sürümü kapsamında verilmiştir.
+  Lisansın bir sureti, <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>
+  başlıklı bölümde mevcuttur.
+
+</pre></body></html>

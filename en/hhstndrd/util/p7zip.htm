@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: p7zip</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: p7zip</h1>
+<pre>
+  7-Zip is a file archiver with the highest compression ratios.
+  P7ZIP is a quick port of 7za.exe (command line version of 7zip),
+  ver 4.65.
+  P7ZIPR is a port of 7zr, ver 4.65.
+  7z   uses plugins to handle archives.
+  7za  is a stand-alone executable.
+  7za  handles less archive formats than 7z.exe.
+  7zr  is a light stand-alone executable that supports only 7z/LZMA/
+       BCJ/BCJ2
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  p7zip &lt;command&gt; [&lt;switches&gt;...] &lt;archive_name&gt; [&lt;file_names&gt;...]
+        [&lt;@listfiles...&gt;]
+</pre>
+<h2>Commands:</h2>
+<pre>
+  a: Add files to archive
+  b: Benchmark
+  d: Delete files from archive
+  e: Extract files from archive (without using directory names)
+  l: List contents of archive
+  t: Test integrity of archive
+  u: Update files to archive
+  x: eXtract files with full paths
+</pre>
+<h2>Switches:</h2>
+<pre>
+  -ai[r[-|0]]{@listfile|!wildcard}: Include archives
+  -ax[r[-|0]]{@listfile|!wildcard}: eXclude archives
+  -bd: Disable percentage indicator
+  -i[r[-|0]]{@listfile|!wildcard}: Include filenames
+  -m{Parameters}: set compression Method (see the manual)
+  -o{Directory}: set Output directory
+  -p{Password}: set Password
+  -r[-|0]: Recurse subdirectories
+  (CAUTION: this flag does not do what you think, avoid using it)
+  -sfx[{name}]: Create SFX archive
+  -si[{name}]: read data from stdin
+  -slt: show technical information for l (List) command
+  -so: write data to stdout (eg: 7z a dummy -tgzip -so Doc.txt &gt;
+       archive.gz)
+  -ssc[-]: set sensitive case mode
+  -t{Type}: Set type of archive
+  -v{Size}[b|k|m|g]: Create volumes
+  -u[-][p#][q#][r#][x#][y#][z#][!newArchiveName]: Update options
+  -w[path]: assign Work directory. Empty path means a temporary directory
+  -x[r[-|0]]]{@listfile|!wildcard}: eXclude filenames
+  -y: assume Yes on all queries
+</pre>
+<h2>Comments:</h2>
+<pre>
+  P7ZIP has the following <a href="../batch/errorlvl.htm">ERRORLEVEL / EXITCODES</a>:
+    0  No error
+    1  Warning (Non fatal error(s)). For example, one or more files were
+       locked by some other application, so they were not compressed.
+    2  Fatal error
+    7  Command line error
+    8  Not enough memory for operation
+  255  User stopped the process
+  For more information see:
+  <b>C:\UTIL\P7ZIP</b> OR:
+  <b>https://gitlab.com/FreeDOS/archiver/p7zip/-/tree/master/ARCHIVER/</b>
+  <b>P7ZIP/MANUAL?ref_type=heads</b> OR:
+  <b>https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/</b>
+  <b>repositories/latest/archiver/</b>
+  Comment: I am not sure if all commands and switches work correct.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  p7zip a D:\test.zip C:
+  p7zip l D:\test.zip
+  (maybe you get RAM problems)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/7zdec.htm">7zdec</a>
+  <a href="../util/arj.htm">arj</a>
+  <a href="../util/bzip2.htm">bzip2</a>
+  <a href="../util/cabext.htm">cabext</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+  <a href="../util/gzip.htm">gzip</a>
+  <a href="../util/lpq1.htm">lpq1</a>
+  <a href="../util/lzip.htm">lzip</a>
+  <a href="../util/lzma.htm">lzma</a>
+  <a href="../util/lzop.htm">lzop</a>
+  <a href="../util/slicer.htm">slicer</a>
+  <a href="../util/tar.htm">tar</a>
+  <a href="../util/unzip.htm">unzip</a>
+  <a href="../util/zip.htm">zip</a>
+  <a href="../util/zoo.htm">zoo</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1999-2009 Igor Pavlov, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

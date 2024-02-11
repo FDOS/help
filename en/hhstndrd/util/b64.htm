@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: b64</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: b64</h1>
+<pre>
+  B64 is a simple utility that implements Base64 Content-
+  Transfer-Encoding standard described in RFC1113.
+  (http://www.faqs.org/rfcs/rfc1113.html)
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  b64 -option [-l &lt;num&gt;] [&lt;FileIn&gt; [&lt;FileOut&gt;]]
+</pre>
+<h2>Options:</h2>
+<pre>
+  -e  Encode to Base64
+  -d  Decode from Base64
+  -t  Show test instructions. Under Windows the following command line
+      will pipe the help text to run a test:
+        b64 -t | cmd
+  -h  This help text.
+  -?  This help text.
+  Note:
+  -l  Use to change line size (from 72 characters)
+</pre>
+<h2>Comments:</h2>
+<pre>
+  This is the coding scheme used by MIME to allow
+  binary data to be transferred by SMTP mail.
+  More documentation is in the b64.c source file.
+  B64 has the following <a href="../batch/errorlvl.htm">ERRORLEVEL / EXITCODE</a>:
+  0 = success.  Non-zero is an error code.
+  1 = Bad Syntax,
+  2 = File Open,
+  3 = File I/O
+</pre>
+<h2>Examples:</h2>
+<pre>
+  b64 -e binfile b64file     (Encode to b64)
+  b64 -d b64file binfile     (Decode from b64)
+  b64 -e -l40 infile outfile (Line Length of 40)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1986-2015 Bob Trower, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

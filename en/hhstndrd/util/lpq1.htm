@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: lpq1</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: lpq1</h1>
+<pre>
+  lpq1 is a file compressor and archiver.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  lpq1 {a|x|l} archive [[-opt] files...]...
+</pre>
+<h2>Commands / Options:</h2>
+<pre>
+  Commands:
+  a = create archive and compress named files.
+  x = extract from archive.
+  l = list contents.
+
+  The "a" command creates a new archive and adds the named files.
+  Wildcards are permitted if compiled with g++. Options and filenames may
+  be in any order. Options apply only to filenames after the option, and
+  override previous options.
+  Options are:
+    -s = store without compression.
+    -c = compress (default).
+  For example:
+    <b>lpq1 a foo.lpq1 a.txt -s b.txt -c c.txt tmp/d.txt /tmp/e.txt</b>
+  creates the archive foo.lpq(1) with 5 files (correct: foo.lpq! - 8.3!).
+  The file b.txt is stored without compression. The other 4 files are
+  compressed. If any named file does not exist, then it is omitted from
+  the archive with a warning and the remaining files are added. An
+  existing archive cannot be overwritten. There must be at least one
+  filename on the command line.
+
+  The "x" command extracts the archive contents, creating files exactly
+  as named when the archive was created. Files cannot be overwritten.
+  If a file already exists or cannot be created, then it is skipped.
+  For example, "tmp/d.txt" would be skipped if either the current
+  directory does not have a subdirectory tmp, or tmp is write protected,
+  or tmp/d.txt already exists.
+  If "x" is followed by one or more file names, then the output files
+  are renamed in the order they were added to the archive and any
+  remaining contents are extracted without renaming.
+  For example:
+    <b>lpq1 x foo.lpq1 x.txt y.txt</b>  (correct: foo.lpq! - 8.3!)
+  would extract a.txt to x.txt and b.txt to y.txt, then extract c.txt,
+  tmp/d.txt and /tmp/e.txt. If the command line has more filenames than
+  the archive then the extra arguments are ignored. Options are not
+  allowed.
+
+  The "l" (letter l) command lists the contents. Any extra arguments
+  are ignored.
+  Any other command, or no command, displays a help message.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Archives are "solid". You can only create new archives. You cannot
+  modify existing archives. File names are stored and extracted exactly
+  as named when the archive is created, but you have the option to rename
+  them during extraction. Files are never clobbered.
+</pre>
+  <h2>ARCHIVE FORMAT:</h2>
+  <pre>
+    "lPq", 1, [filename {'\0' mode usize csize contents}...]...
+  The first 4 bytes are "lPq\x01" (1 is the version number).
+  A file is stored as one or more blocks. The filename is stored
+  only in the first block as a NUL terminated string. Subsequent
+  blocks start with a 0.
+  The mode is 's' if the block is stored and 'c' if compressed.
+    usize = uncompressed size as a 4 byte big-endian number (MSB first).
+    csize = compressed size as a 4 byte big-endian number.
+  The contents is copied from the file itself if mode is 's' or the
+  compressed contents otherwise. Its length is exactly csize bytes.
+  Files are compressed in lpaq1 7 format, which requires 387 MB memory.
+  The model state is retained between files. lpaq1 is a context mixing
+  compressor. See lpaq1.cpp from <b>http://cs.fit.edu/&tilde;mmahoney/compression/</b>
+  for a detailed description of the algorithm.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  See section "Commands / Options"
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/7zdec.htm">7zdec</a>
+  <a href="../util/arj.htm">arj</a>
+  <a href="../util/bzip2.htm">bzip2</a>
+  <a href="../util/cabext.htm">cabext</a>
+  <a href="../util/gzip.htm">gzip</a>
+  <a href="../util/lzip.htm">lzip</a>
+  <a href="../util/lzma.htm">lzma</a>
+  <a href="../util/lzop.htm">lzop</a>
+  <a href="../util/p7zip.htm">p7zip</a>
+  <a href="../util/slicer.htm">slicer</a>
+  <a href="../util/tar.htm">tar</a>
+  <a href="../util/unzip.htm">unzip</a>
+  <a href="../util/zip.htm">zip</a>
+  <a href="../util/zoo.htm">zoo</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007-2008 Matt Mahoney, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

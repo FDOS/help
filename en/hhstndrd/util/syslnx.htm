@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: syslinux</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: syxlinux</h1>
+<pre>
+  SYSLINUX is a collection of bootloaders
+</pre>
+<h2>Installation:</h2>
+<pre>
+  SYSLINUX C:
+  COPY MEMDISK C:\
+  COPY CHAIN.C32 C:\
+  COPY MENU.C32 C:\
+
+  When booting and presented with commandline, type
+  CHAIN.C32 FREEDOS=KERNEL.SYS
+
+  Alternatively, create a SYSLINUX.CFG, read documentation carefully for
+  that! (in below example, a "CONTENTS" directory with within it,
+  ISOLINUX directory, with within it, the ISOLINUX.BIN CDROM bootloader
+  - non-emulation style.
+  Please be aware to use "/" and "\" exactly as below!
+
+  For MEMDISK and ISOLINUX, please read documentation carefully!:
+  * mkisofs -b isolinux/freedos.img -o c:\cdtest\cd1.iso contents
+  * mkisofs -no-emul-boot -b isolinux/isolinux.bin -o c:\cdtest\cd1.iso
+  contents
+
+  Alternatives for CDRECORD (which includes MKISOFS) are XORRISO and
+  CDRKIT (see http://sites.google.com/site/blairdude/cdrkit for DOS port)
+</pre>
+<h2>Options:</h2>
+<pre>
+  - none -
+</pre>
+<h2>Comments:</h2>
+<pre>
+  SYSLNX has an extensive documentation that is beyond the scope of
+  this help. For more information see:
+  <b>https://gitlab.com/FreeDOS/boot/syslnx</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - none -
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../util/ranishpm.htm">Ranish partition manager</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1994-2008 H. Peter Anvin, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

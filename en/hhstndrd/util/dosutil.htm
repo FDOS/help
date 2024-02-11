@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: dosutil</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: dosutil</h1>
+<pre>
+  DOSUTIL is a collection of small utilities for batch files.
+</pre>
+<h2>Available programs:</h2>
+<pre>
+  ASKECHO   (ASK and ECHO) Simply writes its arguments to stdout.
+  CGENERR   Takes one numeric argument in the range of 0 .. 255. It
+            terminates immediately returning this number as error code.
+            Tests the "IF ERRORLEVEL n" command of batchfiles.
+  DUMPENV   Simply writes the current environment to stdout in much the
+            same way as the built-in command SET (without arguments)
+            would do it.
+  FAM       (Find and modify) is a program  that reads text from its
+            stdin channel, line by line, and splits each line into
+            several (up to ten) fields,  according to certain rules.
+  FNTOOL    A LFN-aware utility to process DOS filenames in various ways.
+  FORM      Displays a form on the screen, accepts the user's entries.
+  GENERR    Takes one numeric argument in the range of 0 .. 255. It ter-
+            minates immediately returning this number as error code.
+            Tests the "IF ERRORLEVEL n" command of batchfiles. See
+            CGENERR.
+  INLINE    Reads lines beginning with a distinct label from a file and
+            writes them to stdout.
+  INVOKE    Is a program that takes the name of another program as first
+            argument and possible (up to 19) more arguments.
+  PIPESET   (PIPE via stdin and SET environment variable) can be used to
+            set environment variables.
+  PRINTF    Print formatted does essentially the same as the built-in
+            echo command, but allows to format the text in various ways.
+  RPN       (Reverse Polish Notation) is a program to carry out numeric
+            calculations.
+  SCRDUMP   Writes a portion of the screen to stdout if stdout is redir-
+            ected to a file. Serves as logging feature in batch files.
+  SELECT    (SELECT an item from a menu) is a program  which presents
+            the user a menu  from which he/she can pick an item.
+  TEE       is a program that simply copies its stdin to stderr.
+  TIMESTMP  (TIMESTaMP) is a program that simply writes its arguments to
+            stdout.
+  TR        (TRanslate characters) is a program which allows to replace
+            certain characters in an input by a replacement.
+</pre>
+<h2>Options:</h2>
+<pre>
+  Please run "command" without any arguments for more information.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  DOSUTILS have an extensive documentation that is beyond the scope of
+  this help. For more information see:
+  <b>https://gitlab.com/FreeDOS/util/dosutil/-/tree/master/DOC/</b>  OR:
+  <b>DOSUTIL?ref_type=heads</b>
+  <b>C:\FREEDOS\DOC\DOSUTIL\dosutils.txt</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Examples for all these comments are beyond the scope of this help.
+  Sorry for that. Please run "command" to get more information.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/print.htm">print</a>
+  <a href="../util/tee.htm">tee</a>
+  <a href="../util/usbprint.htm">usbprint</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2010 Jürgen Hoffmann, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

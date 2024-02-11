@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>FreeDOS ile Ağa Bağlanmak - DOS ağlarının tarihçesi</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<h1><a name="top"></a>FreeDOS ile Ağa Bağlanmak - DOS ağlarının tarihçesi</h1>
+<h2><a name="zzz"></a>DOS neden ağ desteksiz sağlanıyordu</h2>
+<pre>
+  IBM Personal Computer (PC), IBM'in pazarını VisiCalc ve Wordstar gibi
+  ofis uygulamalarıyla tehdit eden Apple II'ye bir cevap olarak 12 ağustos
+  1981 tarihinde piyasaya sürüldü. PC için işletim sistemini çok kısa bir
+  süre zarfında hazırlanmak zorunda kalınmıştı, Digital Research (DR)
+  kendi "Control Program for Micros" (CP/M) programlarını IBM'e lisanslama
+  fırsatını geri teptikten sonra.
+  Yeni bir yazılım şirketi olan Microsoft, ki işin başında sadece BASIC ve
+  Fortran gibi dil yorumlayıcıları ve derleyiciler sağlamayı amaç
+  edinmişti, boşluğu doldurdu. Microsoft CP/M benzeri bir İS prototipini
+  üç ay içinde sağlamayı kabul etti. Seattle Computer şirketinin "Quick
+  and Dirty OS" (QDOS) programını satın alıp IBM'in beklentilerini
+  karşılayacak şekilde uyarladı. "Microsoft Disk Operating System" işletim
+  sisteminin 1.0 sürümü (MS-DOS, IBM tarafından "PC DOS" olarak da
+  pazarlanmıştır) 4000 satır kod içeriyordu. <a href="../network/network.htm">Ağa bağlanma</a> kabiliyeti
+  hiç yoktu ve diğer işlevler çok daha önemli olarak kabul edilmiş
+  olabilirdi: ilk DOS sabit diskleri yönetmeyi bile bilmiyordu. Microsoft
+  aynı zamanda başarısının kilometre taşları olacak uygulamalar üzerinde
+  çalışmakla da meşguldü: "Multiplan"/"Excel" ile "Word".
+  <a href="../network/network.htm">Ağa bağlanma</a> işlevleri DOS'ın
+  halefi OS/2'ye ertelenmiş gibi durmaktaydı, ki bu işletim sistemi resmi
+  olarak Microsoft ile IBM tarafından 1985 senesinde duyurulmuştu (ve 1987
+  senesinde yayınlanmıştı). Aynı zamanda Microsoft, 1983 senesinden beri
+  IBM PC için piyasada olan bir UNIX türü olan XENIX'i sağlıyordu.
+  Bu, başkaları için süre sağladı. DOS ile <a href="../network/network.htm">ağa bağlanmak</a> için iki
+  yaklaşım mevcuttu ve bunlar "PC merkezli" ve "UNIX merkezli" olarak
+  adlandırılabilir.(<b>http://www.sju.edu/~jhodgson/netw/kw_hwk4.html (*01)</b>).
+    * "PC merkezli" yaklaşım, bir grup PC'yi dosya ve kaynak (mesela
+       yazıcılar) paylaşmak için <a href="../network/network.htm">ağa bağlamak</a> manasına gelir.
+    * "UNIX merkezli" yaklaşım, standart UNIX <a href="../network/network.htm">ağ</a> programlarının DOS
+      sürümlerinin oluşturulması ve bunların LAN veya İnternet üzerinden
+      UNIX benzeri hizmetleri veya onlara erişimi sağlamak anlamına gelir
+      (ki işin sonunda bu da dosya ve kaynak paylaşımı demektir).
+</pre>
+<h2><a name="aaa"></a>"PC merkezli" yaklaşım</h2>
+<pre>
+  <b><a href="../network/novell.htm">Novell</a> NetWare</b>
+
+  1985 senesinde <a href="../network/novell.htm">Novell</a>, ki öncesinde CP/M sistemleri için donanım
+  üreticisiydi, PC için "NetWare 86" (v 1.5) ürününü piyasaya sürdü. AT
+  için bir sürüm "NetWare 286" (v 2.0) ile bunu 1986 senesinde takip etti.
+  <a href="../network/novell.htm">Novell</a> bilgisayarları istemci/sunucu modeline göre ağa bağlıyordu:
+  MS DOS ve bellekte yerleşik kalan (TSR) <a href="../network/novell.htm">Novell</a> yazılımı kullanan
+  istemciler, "<a href="../network/novell.htm">Novell</a> NetWare Sunucu" çalıştıran bir sunucuda "oturum
+  açabiliyorlardı". Bu sunucu, <a href="../network/network.htm">ağı</a> yöneten ve paylaşımlı cihazlara
+  yani disk sürücüler ve yazıcılara erişimi kontrol etmek için seçili bir
+  makineydi. Bağlantının ardından istemciler sunucudaki bir bölümü DOS
+  üzerinde bir sürücü harfiyle eşleştirir ve bunu yerel bir sürücü gibi
+  kullanabilirlerdi. Sunucuya bağlı yazıcıları da kullanabilirlerdi.
+  İstemci ve sunucu <a href="../network/novell.htm">Novell'in</a> "Internetwork Packet Exchange/Sequenced
+  Packet Exchange" (<a href="../network/ipxspx.htm">IPX/SPX protokolü</a>) üzerinden iletişim kuruyordu.
+  Yazılım sürücü mimarisi "Open Datalink Interface" olarak adlandırılmıştı
+  (<a href="../network/odi.htm">ODI</a>).
+  NetWare doksanlı yılların ortasına kadar piyasada baskın bir konum elde
+  etmişti.
+
+  <b><a name="aab"></a>LAN MANAGER</b>
+    (LAN yöneticisi resmi)
+  1983 senesinde, <a href="../network/novell.htm">Novell</a>'den bağımsız bir şekilde, IBM ve Kaliforniyalı
+  Sytek Inc. (1989 yılında Hughes tarafından satın alınmıştır
+  <b>http://www.hughes.com/ (*02)</b>) <b>NetBIOS</b> ağ protokolünü
+  geliştirdi. Bu, 72 ila 80 cihazlı küçük LAN kurulumları için tasarlandı.
+  1985 senesinde IBM <b>NetBIOS</b> için bir öykünümcü üretti ki, ismi
+  <a href="../network/cifs.htm">NetBEUI</a> (<b>NetBIOS</b> Extended User Interface) idi ve 260 cihaza
+  kadar destek sağlıyordu. Aynı sene, Microsoft kendi <b>NetBIOS</b>
+  uygulamasını piyasaya sürdü, adı MS-Net idi. Yaygın kullanılmadı. 1987
+  senesinde şirket "Microsoft LAN Manager" 1.0 programını yayınladı - ilk
+  ciddi <a href="../network/novell.htm">Novell</a> Netware rakibi olarak.
+  <a href="../network/novell.htm">Novell</a> Netware gibi Microsoft'un LAN Manager'ı <b>istemci/</b>
+  <b>sunucu</b> mimarisi kullanıyordu:
+    * Sunucu işletim sistemi olarak OS/2 ve sunucu yazılımı olarak LAN
+      Manager (Yerel Ağ Yöneticisi) kullanıyordu.
+    * İstemci, işletim sistemi için DOS, OS/2 veya Macintosh kullanıyordu
+      ve sunucu ile bağlantı için "LAN Manager istemcisi" veya
+      "<a href="../network/msclient.htm">MS istemcisi</a>" kullanıyordu.
+  1991 senesinden beri <b>"Server Message Block" (SMB)</b> protokolü LAN
+  yöneticisine eklendiğinden, Microsoft <a href="../network/network.htm">ağları</a> <b>eşten eşe ağ</b>
+  kabiliyeti de kazandı. Bu, 1993 senesinde yayınlanan Windows for
+  Workgroups 3.11 ile kullanılmıştı. Bu mekanizma Windows kullanıcıları
+  tarafından "Windows paylaşımı", "<a href="../network/network.htm">ağ</a> çevresi" veya
+  "Workgroup" yani "çalışma grubu" olarak bilinir.
+    (MS-DOS için çalışma grubu eklentisi resmi)
+  Ekim 1993 tarihinde Microsoft, "Microsoft Workgroup Add-On for MS-DOS"
+  yani "MS-DOS için çalışma grubu eklentisi" adlı bir araç yayınladı, ki
+  bu DOS üzerinde aynı eşten eşe <a href="../network/network.htm">ağ</a> imkânlarına izin verdi. Bu
+  araç artık satılmıyor olsa da, işlevlerinin çoğu hâlâ "<a href="../network/msclient.htm">MS client</a>"
+  ve özel bir güncelleme olan "WG1049" (bkz.: <a href="../network/msclient.htm">MS istemcisi</a>) kullanarak
+  elde edilebilir. Microsoft'un ağ yazılımları kendi <a href="../network/network.htm">ağ</a> sürücü modeli
+  ile sağlanmıştır, ki ismi  "Network Driver Interface Specification"
+  (<a href="../network/ndis.htm">NDIS</a>) şekindedir ve şirket bunu <a href="../network/3com.htm">3Com</a>
+  ile beraber geliştirmiştir.
+  LAN Manager, rakibi <a href="../network/novell.htm">Novell</a> Netware'i yenememiştir. Piyasaya
+  ikinci olarak çıkmanın dezavantajına ilaveten bu, sunucuda OS/2 işletim
+  sisteminin kurulması gerektiğinden kaynaklanmış olabilir. OS/2,
+  müşteriler arasında popüler değildi. 1993 senesinden beri, "Microsoft
+  Windows NT Advanced Server (v3.1)" sunucu tarafında OS/2 yerine
+  kullanılıyordu. Ağustos 1995 tarihinde "Windows 95"'in yayınlanması (ve
+  olumlu karşılanması) DOS ağa bağlanma faaliyetlerine son vermiştir. Bu
+  Windows sürümü, kendi yerleşik <a href="../network/tcpip.htm">TCP/IP</a> çekirdeği ve <b>SMB</b>
+  eşten eşe ağ kabiliyetleri ile sağlanmıştı - dolayısıyla birçok üçüncü
+  taraf çözümleri artık gereksizdi.
+</pre>
+<h2><a name="bbb"></a>"UNIX merkezli" yaklaşım</h2>
+<pre>
+  <a href="../network/tcpip.htm">TCP/IP</a>'yi PC üzerinde çalıştırma deneyleri, IBM'in piyasaya
+  sürmesinden kısa bir süre sonra başlamıştı. Bu konuda ilk çalışanlar
+  Massachusetts Institute of Technology (MIT)'nin Bilgisayar Bilimleri
+  laboratuvarında Dave Clark, Jerry Saltzer ve birinci sınıf öğrencisi
+  John Romkey (<b>http://www.romkey.com/ (*03)</b>) olmuştur). 1981'de
+  Romkey'in anılarına göre (<b>http://www.drizzle.com/~aboba/internaut/
+  pc-ip.html (*04)</b>) "<a href="../network/tcpip.htm">TCP/IP</a>'nin IBM PC kadar küçük bir
+  üzerinde çalışıp çalışamayacağını görmek için" bir araştırma projesi
+  başlatmışlardı.
+
+  <b><a name="bbc"></a>PC-IP (PC/IP)</b>
+
+  Bunun sonucunun adı "PC-IP" idi, finger, whois ve netwatch gibi birkaç
+  programla alakalı küçük bir <a href="../network/tcpip.htm">TCP/IP</a> uygulamasıydı bu. PC-IP, kaynak
+  kodu ile beraber kamu malı olarak yayınlanmıştır. Carnegie Mellon
+  Üniversitesi'nden Drew Perkins ve Harvard Üniversitesi'nden Dan Lanciani
+  kodu iyileştirmiştir. PC-IP hâlâ İnternet üzerinde bulunabilir.
+  (<b>http://members.aol.com/Karima4483/pcip/ (*05)</b>) or
+  (<b>ftp://ftp.kuzbass.ru/pub/networks/tcpip/tool/pcip.zip (*06)</b>).
+
+  <b><a name="bbd"></a>PC-TCP (PC/TCP)</b>
+    (PC/TCP uygulamalarının ikonları
+  PC-IP'nin başarısı, Romkey ve arkadaşlarını CMU sürümünü alıp onu kapalı
+  kaynaklı bir ürün olarak geliştirmeye cesaretlendirdi: "PC/TCP", ki bunu
+  1986 senesinde kurulan "FTP Software, Inc." şirketleri aracılığıyla
+  satışa çıkardılar.(<b>http://en.wikipedia.org/wiki/FTP_Software (*07)</b>).
+  Şirketin ismi popüler 'File Transfer Protokolünden' esinlenmiştir:
+  PC/TCP, PC üzerindeki ilk FTP hizmetlerinden birini içeriyordu.
+
+  <b><a name="bbe"></a>Paket Sürücüleri</b>
+
+  PC/TCP ile birlikte FTP Software Inc. "Paket Sürücü Tanımlamasını"
+  geliştirdi, (<b>http://www.crynwr.com/packet_driver.html (*08)</b>) PC
+  <a href="../network/network.htm">ağ</a> arayüz kartları için ilk çoklu protokol tanımlamasıydı bu.
+  12 aralık 1988 tarihinde bu tanımlama herkesin istediği gibi uygulaması
+  için açık bir standart olarak yayınlandı.
+  Paket sürücüleri hem donanım satıcıları için hem de yazılım
+  geliştiricileri için faydalıydı. Kamu malı veya shareware <a href="../network/tcpip.htm">TCP/IP</a>
+  uygulamalarının çoğu sadece paket sürücülerle arayüzlenecek şekilde
+  yazılmıştır. Birçok paket sürücüsü Clarkson Üniversitesi'nden Russ
+  Nelson tarafından yazılmış veya yönetiliyordu, bu sebepten dolayı Nelson
+  "Paket Sürücü Kralı" olarak tanınmıştır - bu hikayeyi İnternet sitesinde
+  anlatır (<b>http://russnelson.com/bio.html (*09)</b>). Nelson hâlâ
+  bu sürücüleri Özgür Yazılım olarak ismi "<a href="../network/crynwr.htm">Crynwr</a>" olan şirketinin
+  sitesinde yayınlamaktadır <b>http://www.crynwr.com/ (*10)</b>) (ki bu ad
+  dini inancı olan "Quaker" kelimesinin Galcesi olan Crynwr'dan gelir).
+  <a href="../network/crynwr.htm">Crynwr</a> hakkında daha fazlasını burada öğrenebilirsiniz.
+  FTP Software'in başarısının bir nedeni bu açık paket sürücü arayüzüydü,
+  çünkü sürücü ve uygulama geliştirmeyi kolaylaştırıyordu.
+  <a href="../network/odi.htm">ODI</a> ve <a href="../network/ndis.htm">NDIS</a> gibi diğer ağ sürücü arayüzleri
+  ortaya çıktıklarında, PC/TCP dönüştürücüler içerdi: <a href="../network/odi_ins.htm#ccc">ODIPKT.COM</a> adlı bir
+  araçla ODI sürücüleri paket sürücüsü olarak kullanılabildi, DIS_PKT.GUP
+  adlı bir araç aynısını <a href="../network/ndis_ins.htm">NDIS drivers</a> sürücüleri için yaptı.
+  PC/TCP ayrıca adı ETHDRV.EXE olan harici bir <a href="../network/ldtcpipk.htm">TCP/IP çekirdeği</a> ile
+  sağlandı, ki bu programcıların  <a href="../network/network.htm">ağ</a> işlevlerini uygulamalarından
+  onları kendileri programlamadan kullanmalarına imkân veriyordu. DOS
+  bilgisayarlarının news, e-mail, ftp, <b>Telnet</b> veya <a href="../network/network.htm">ağ</a>
+  depolama (PC/TCP InterDrive isimli bir NFS istemcisi bile içeriyordu)
+  gibi <a href="../network/tcpip.htm">TCP/IP</a> hizmetlerine erişmesine veya bunları sağlamasına imkân
+  veren tüm bu işlevler ve uygulama grubu, FTP Software Inc.'in DOS <a href="../network/tcpip.htm">TCP/IP</a>
+  yazılımları alanında piyasa lideri yaptı. PC/TCP tüm dünyada 10 milyon
+  DOS makinesinde kuruluydu. Doksanlı yılların ortasında FTP Software Inc.
+  700'den fazla kişiyi işe almış durumdaydı (daha fazla bilgi için buraya
+  bakın <b>http://www.answers.com/topic/ftp-software?cat=biz-fin (*11)</b>).
+
+  <b>Üniversiteler ve meraklılar tarafından geliştirilen yazılımlar</b>
+
+  PC-IP ile halefi PC/TCP, DOS için ilk ve en başarılı <a href="../network/ldtcpipk.htm">TCP/IP Çekirdekleri</a>
+  olmuş olabilirler fakat tek çekirdek bunlar değildi.
+
+  <b><a name="bbf"></a>KA9Q</b>
+
+  Erken PC-IP çekirdeğinden sonra "KA9Q <a href="../network/network.htm">Ağ</a> İşletim Sistemi" ortaya
+  çıkmıştı (NOS, bkz.: <b>http://www.ka9q.net/code/ka9qnos/ (*12)</b>) ve
+  1985 senesinde Phil Karn tarafından yazılmıştı. Baltimore, Maryland'den
+  bir mühendis olan Karn, bunu iki sene evvel CP/M için oluşturmuştu,
+  ardından DOS'a taşıdı. Bu, ayrıca FTP Software'in paket sürücü
+  tanımlamasını DOS için kullanan ilk <a href="../network/tcpip.htm">TCP/IP</a> uygulamalarından biriydi.
+  KA9Q aynı anda hem bir İnternet istemcisi, bir sunucu ve bir IP paket
+  yönlendiricisi olarak işleyebiliyordu. Program, amatör paket radyo için
+  özeldi, ama mesela ftp veya Web sunucusu olarak da kullanılabiliyordu.
+  KA9Q birçok iştirakçiyi etrafında topladı. Karn'ın açıklamasına göre:
+  "Günün Linux'ıydı" (<b>http://www.ka9q.net/code/ka9qnos/ (*13)</b>).
+  2002 senesinde KA9Q özgür bir yazılım oldu (GNU GPL). Halefleri, JNOS
+  (<b>http://www.langelaar.net/projects/jnos2/ (*14)</b>) ve <a href="../network/tcpip_ap.htm#ddd">EZ-NOS2</a>
+  (<b>http://eznos.knevel.info/index.php (*15)</b>) (ayrıca bakınız
+  <b>http://www.hippy.freeserve.co.uk/eznos.htm (*16)</b> ve
+  <b>http://www.dossolutions.pwp.blueyonder.co.uk/eznos.htm (*17)</b>)
+  hâlâ faal bir biçimde geliştirilmektedir.
+
+  <b><a name="bbg"></a>NCSA Telnet</b>
+
+  Paket Sürücüsü Tanımlamasını temel alarak birçok üniversite DOS PC'ler
+  için <a href="../network/tcpip.htm">TCP/IP</a> uygulamalar ve yardımcı araçlar yazdı. 1986 senesinde
+  Illinois Üniversitesi "National Center for Supercomputing Applications"
+  (NCSA) "<b>Telnet</b>" (<b>ftp://ftp.uu.net/.vol/1/applic/NCSA_Telnet/
+  PC/tel2308b.zip (*18)</b>) programını yayınladı - UNIX <b>Telnet</b>
+  hizmetleri için  FTP ve rcp sunucusu olarak da çalışabilen bir istemci.
+  finger, whois ve lpr gibi <a href="../network/tcpip.htm">TCP/IP</a> araçlarıyla beraber sağlanıyordu.
+  <b>Telnet</b>, kendi <a href="../network/ldtcpipk.htm">TCP/IP Çekirdeği</a> ile yayınlanmıştı ve bu,
+  halihazırda uygulamalarla bütünleşmişti. Yazılım 1995 senesinde dek
+  geliştirildi (v2.308) ve kaynak koduyla kamu malı olarak yayınlandı
+  (<b>ftp://ftp.uu.net/.vol/1/applic/NCSA_Telnet/PC/tel2308s.zip (*19)</b>)
+
+  <b><a name="bbh"></a>CUTCP</b>
+
+  Potsdam, New York'daki Clarkson Üniversitesi, NCSA <b>Telnet</b>'i
+  değiştirdi. Kendi sürümlerini CUTE veya CUTCP olarak isimlendirdiler.
+  Daha sonra New Jersey'deki Rutgers Üniversitesi bakımı üstlendi ve en
+  son sürümü temmuz 1993 tarihinde yayınladı (<b>ftp://ftp.cc.umanitoba.ca/
+  software/pc_network/cutcp-b.zip (*20)</b>). NCSA <b>Telnet</b>'ten
+  farklı olarak CUTCP IBM-3270 öykünümünü destekliyordu ve teknik açıdan
+  iyileştirilmişti. O da kamu malı olarak yayınlandı.
+
+   <b><a name="bbi"></a>Diğerleri</b>
+    (MINUET Sürüm 1.0 Beta 18A resmi)
+  Bahsedilmesi gereken üniversitelerdeki diğer gelişmeler şunlardır:
+  "Kermit", (<b>http://www.columbia.edu/kermit/ (*21)</b>) yani New York
+  Columbia Üniversitesi'nde yazılmış DOS için bir terminal öykünüm
+  programı ve Minnesota Üniversitesi'nin "Minnesota InterNet Users
+  Essential Tool" ("<b>MINUET</b>"<b>http://www.fdisk.com/doslynx/minuet/
+  (*22)</b>), ki bu paket sürücüsü temelli bir <a href="../network/tcpip.htm">TCP/IP</a> uygulama grubuydu.
+  Minuet, E-mail, Gopher, <b>Telnet</b>, Usenet News, bir Web tarayıcısı
+  ve FTP istemci uygulamaları bulunduran fareyle yönetilen grafik bir
+  arayüzdü. Minet, o dönemin DOS lisanslarının talihsizliğinin iyi bir
+  örneğidir. GNU/Linux dünyasında standart bir hale gelen GNU Genel Kamu
+  Lisansı'nın aksine, DOS için üniversiteler ve meraklılar tarafından
+  yazılan yazılımların lisansları çoğunlukla yazılıma özeldi.
+  Mesela Minuet lisansı Minnesota Üniversitesi fakültesi çalışanları ve
+  öğrencileri için bedavaydı. Tüm diğer kullanıcıların 15 günlük bir
+  değerlendirmenin ardından 50$ ödemeleri bekleniyordu. Dağıtıma sadece
+  ticari olmayan şekillerde izin verilmişti.
+  Her ne kadar bu shareware lisanslar 15 sene önce işe yarayabilmiş olsa
+  da, günümüzde yazılım için bir ölüm fermanına benzerler: yazılım artık
+  satılmamakta veya resmi olarak yayınlanmamaktadır. Her ne kadar 50$
+  ödeyecek birini bulsanız da, onun size güncelleme veya destek sağlaması
+  muhtemel değildir. Dolayısıyla, pazarı ortadan kalktıktan ve orijinal
+  geliştiriciler ilgiyi kaybettikten sonra, maliyet bugün değerinin
+  değerini aşabilir. Daha da önemli olarak: kaynak kodu olmadan diğer
+  programcılar için hiçbir faydası yoktur - yani geliştirme lisans
+  yüzünden durmuştur. Ve "ticari dağıtımı" yasaklamanın etkisi, mesela
+  Minuet'nin bulunabileceği yerlerin çoğunlukla değişen, güvenilmez ve
+  rastgele olduğu anlanmına gelir. Bazı geliştiriciler sayesinde, DOS için
+  başlıca <a href="../network/network.htm">ağ</a> yazılımları, kaynak
+  kodlarıyla beraber kamu malı veya Özgür Yazılım olarak yayınlamıştır.
+  Bu, kullanıcılar ve geliştiricilerin hâlâ DOS için <a href="../network/tcpip.htm">TCP/IP</a>
+  yazılımları yazıp kullanmalarına imkân sağlamaktadır.
+  Bu başlıca yazılımlara şunlar dahildir:
+    * Günümüzün daha yaygın <a href="../network/odi_ins.htm">ODI</a> ve <a href="../network/ndis_ins.htm">NDIS sürücüleri</a> için
+      özgür paket sürücüsü dönüştürücüleri: <a href="../network/odi_ins.htm#ccc">ODIPKT.COM</a>, ki Dan Lanciani
+      (Harvard Üniversitesi) tarafından yazılmıştır ve <a href="../network/odi_ins.htm">ODI sürücülerini</a>
+      paket sürücüleri olarak kullanmaya imkân sağlar, DIS_PKT9.DOS, ki
+      Prof. Joe R. Doupnik (Utah Devlet Üniversitesi) ve Dan Lanciani
+      tarafından yazılmıştır, aynısını <a href="../network/ndis_ins.htm">NDIS sürücüleri</a> için yapar.
+    * "<a href="../network/wattcp.htm">WatTCP</a>", Kanadalı Waterloo Ünversitesi'nden Erick Engelke
+      tarafından 1990 ila 1992 senelerinde yazılmış popüler bir özgür
+      <a href="../network/ldtcpipk.htm">TCP/IP Çekirdek</a> kütüphanesi ve halefi
+      <a href="../network/wattcp.htm">Watt-32</a>, ki Norveç'ten Gisle Vanem tarafından yazılmıştır. Bu
+      kütüphaneler programcıların uygulamalarına <a href="../network/tcpip.htm">TCP/IP</a> işlevlerini
+      tekerleği tekrar icat etmeden eklemelerine imkân sağlar.
+    * "Trumpet TCP sürücüsü (<a href="../network/ntcpdrv.htm">NTCPDRV</a>)" 1992 senesinden, özgür bir
+      harici <a href="../network/ldtcpipk.htm">TCP/IP Çekirdeği</a>, oluşturan Avustralyalı programcı Peter
+      Tattam'dır (ayrıca Trumpet Winsock programı için de meşhurdur).
+  Bu yazılıma dair daha çok şeyi bu belgenin devamında öğreneceğiz.
+
+  <b>Özgür olmayan yazılımlar</b>
+
+  FTP Software Inc.'in PC/TCP programının gölgesinde, birçok başka ticari
+  uygulama DOS <a href="../network/tcpip.htm">TCP/IP</a> <a href="../network/network.htm">ağa bağlanma</a> piyasasında bulunabiliyordu,
+  on ila on beş sene öncesine kadar.
+  30'a kadar <a href="../network/tcpip.htm">TCP/IP</a> paketi (<b>ftp://ftp.cac.psu.edu/pub/dos/info/tcpip.
+  packages (*23)</b>) doksanlı yılların ortasında DOS için mevcuttu, mesela
+  IBM "<a href="../network/tcpip.htm">TCP/IP</a> for DOS", NetManage "Chameleon", Sun "PC-<a href="../network/nfs.htm">NFS</a>",
+  <a href="../network/novell.htm">Novell</a> "LAN WorkPlace", Frontier Technologies "SuperTCP" veya Artisoft
+  "LANtastic" - <a href="../network/network.htm">ağa bağlanma</a> sistemi, neredeyse dönemin piyasa lideri
+  olan <a href="../network/novell.htm">Novell</a> kadar popüler idi doksanlı yılların ilk yarısında.
+  İşlevlerinin bir mukayesesi şurada bululanbilir (<b>http://img.cmpnet.
+  com/nc/820/graphics/tcpip.pdf (*24)</b>). Ayrıca, "<a href="../network/network.htm">Network</a> Computing"
+  dergisinde ilgili makaleyi okuyabilirsiniz (<b>http://www.network
+  computing.com/820/820buyers.html (*25)</b>).
+</pre>
+<h2><a name="ccc"></a>DOS ile ağa bağlanmanın sonu</h2>
+<pre>
+  Unutmamamız gereken şu ki, tüm bu DOS <a href="../network/tcpip.htm">TCP/IP</a> yazılım geliştirmesi
+  görece kısa bir süre zarfında meydana geldi. IBM PC'nin herhangi bir
+  <a href="../network/network.htm">ağa bağlanma</a> kapasitesi yoktu 1981 senesinde piyasaya çıktığında.
+  O zaman UNIX makineleriyle çalışanlar PC'lere oyuncak gibi bakıyorlardı.
+  Ama <a href="../network/network.htm">ağa bağlanma</a>, daha güçlü PC AT (i286) 1984 senesinde
+  çıktığında ve 1986 senesinde Compaq ilk i386 içeren PC'yi çıkardığında
+  ciddi bir seçenek haline gelmişti.
+  Bu fırsat penceresi 1993 senesinde Windows NT'nin çıkmasıyla kapanmaya
+  başladı ve ağustos 1995 tarihinde Windows 95'in çıkmasıyla kapandı çünkü
+  bunun kendi <a href="../network/ldtcpipk.htm">TCP/IP Çekirdeği</a> zaten bütünleşik olarak mevcuttu ve
+  Point-to-Point Protocol (PPP), bir numara çevirici ile eşten eşe <b>SMB</b>
+  <a href="../network/network.htm">ağa bağlanma</a> kabiliyeti içeriyordu.
+  Bu, ticari ağa bağlanma yazılımı için bir darbe olmuştu, ki buna <a href="../network/novell.htm">Novell</a>
+  NetWare'de dahildi.
+  FTP Software Inc. 1998 senesinde eski rakibi NetManage tarafından
+  FTP Software'in banka hesabındaki meblağın biraz üzerinde bir fiyata
+  satın alınmıştı (daha fazla bilgi için bakınız <b>http://www.
+  apocalypse.org/pub/ftp-alumni/archives/ftp-alumni.9806 (*26)</b>).
+  Günümüzde artık yoktur tabii ki. 2007 senesinde DOS <a href="../network/network.htm">ağa bağlanma</a>
+  yazılım piyasası terk edilmiştir. Ticari çözümlerin ekseriyeti artık
+  mevcut değildir. Üreticileri ya sahip veya piyasa değiştirdiler ya da
+  artık yoklar. 10 sene önce "UNIX merkezli" yaklaşımda çalışanlar bugün
+  belki de GNU/Linux çözümleri üzerinde çalışıyorlardır.
+  DOS bilgisayarlarıyla <a href="../network/tcpip.htm">TCP/IP</a> <a href="../network/network.htm">ağa bağlanma</a> tarihçesi hakkında
+  daha fazlasını Steven Baker'ın şu makalesinde okuyabilirsiniz:
+  "Net Worth - Desktop <a href="../network/tcpip.htm">TCP/IP</a> At Middle Age"
+  (<b>http://web.archive.org/web/20070314043508/http://www.ece.ubc.ca/
+  ~gillies/9802net.html (*27)</b>).
+</pre>
+<h2><a name="ddd"></a>Parçaları toplamak</h2>
+<pre>
+  DOS ile 21. asırda <a href="../network/network.htm">ağa bağlanmak</a> çoğunlukla DOS devrinden, yani
+  seksenlerin ortasından doksanların ortasına kadar süreden kalanları
+  toplamak anlamına gelir. Bazı <a href="../network/novell.htm">Novell</a> ve Microsoft araçları hâlâ
+  yasal olarak indirilebilir ve kullanılabilir. Ayrıca üniversitelerin ve
+  ve meraklıların kamu malı, shareware olarak veya kartpostal karşılığı
+  yayınladıkları <a href="../network/tcpip.htm">TCP/IP</a> çözümleri hâlâ mevcuttur, her ne kadar
+  çoğu orijinal konumlarında artık bulunamasalar dahi.
+  Ama fazlası da var. Birkaç proje hâlâ faaldir: grafik DOS tarayıcısı
+  <a href="../network/tcpip_ap.htm#ccc">Arachne</a> yeniden bir programcı grubu tarafından etkin bir şekilde
+  geliştirilmektedir GNU GPL kapsamında yayınlanmasının ardından. Ayrıca
+  <a href="../network/tcpip_ap.htm#eee">SSH2DOS</a>, <a href="../network/wattcp.htm">Watt-32</a>
+  ve KA9Q halefleri <a href="../network/tcpip_ap.htm#ddd">EZ-NOS2</a> ve JNOS2 hâlâ geliştirilmektedir.
+  Hatta yeni DOS <a href="../network/tcpip.htm">TCP/IP</a> yazılımı yakın geçmişte yayınlanmıştır.
+
+  <b>(*01) http://people.sju.edu/~jhodgson/netw/kw_hwk4.html</b>
+  <b>(*02) Tamam</b>
+  <b>(*03) Tamam</b>
+  <b>(*04) https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=
+        &cad=rja&uact=8&ved=2ahUKEwjmnqmTiJvqAhVtQUEAHSx2BBYQFjAAegQIB
+        hAB&url=ftp%3A%2F%2Fnic.funet.fi%2Findex%2Fnetworking%2Fmagazines
+        %2FInternaut%2Fpc-ip.html&usg=AOvVaw2xp6u7ieLlJMNfvpiqtLq5</b>
+  <b>(*05) https://web.archive.org/web/20050529012400/http://members.
+        aol.com/Karima4483/pcip/</b>
+  <b>(*06) ?</b>
+  <b>(*07) Tamam</b>
+  <b>(*08) https://web.archive.org/web/20120608031912/
+        http://www.crynwr.com/packet_driver.html</b>
+  <b>(*09) Tamam</b>
+  <b>(*10) https://web.archive.org/web/20200110122004/http://crynwr.com/</b>
+  <b>(*11) Tamam</b>
+  <b>(*12) Tamam</b>
+  <b>(*13) Tamam</b>
+  <b>(*14) Tamam</b>
+  <b>(*15) https://vetusware.com/download/EZ-NOS%202.0%20DOS%20Internet
+        %20server%20OS%202.0/</b>
+  <b>(*16) https://web.archive.org/web/20090711165409/http:
+        //www.hippy.freeserve.co.uk/eznos.htm</b>
+  <b>(*17) https://web.archive.org/web/20081016111245/http:
+        //www.dossolutions.pwp.blueyonder.co.uk/eznos.htm</b>
+  <b>(*18) https://ftp.gwdg.de/pub/msdos/ncsa-telnet/</b>
+  <b>(*19) https://ftp.gwdg.de/pub/msdos/ncsa-telnet/</b>
+  <b>(*20) Tamam</b>
+  <b>(*21) Tamam http://www.kermitproject.org/</b>
+  <b>(*22) Tamam</b>
+  <b>(*23) ?</b>
+  <b>(*24) Tamam</b>
+  <b>(*25) https://web.archive.org/web/20090308122027/http://www.
+        networkcomputing.com/820/820buyers.html</b>
+  <b>(*26) https://en.wikipedia.org/wiki/FTP_Software</b>
+  <b>(*27) Tamam</b>
+</pre>
+<hr>
+<pre>
+  <b>Telif hakkı &copy; 2007 Ulrich Hansen, Mainz (Almanya), 2010 ve 2020
+  senelerinde W.Spiegl tarafından değiştirilmiştir.</b>
+  <b>2023 senesinde Berki Yenigün tarafından tercüme edilmiştir.</b>
+  Daha fazla bilgi için <a href="../network/intro.htm#ddd">buraya bakın</a>.
+
+  Bu belgeyi kopyalama, dağıtma ve/veya değiştirme izni, GNU Özgür
+  Belgeleme Lisansı'nın 1.2 veya Free Software Foundation tarafından
+  yayınlanan daha yeni bir sürümü kapsamında verilmiştir.
+  Lisansın bir sureti, <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>
+  başlıklı bölümde mevcuttur.
+
+</pre></body></html>

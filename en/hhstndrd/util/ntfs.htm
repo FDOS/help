@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: ntfs</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: ntfs</h1>
+<pre>
+  NTFS is a collection of tools to change the password of a NT user
+  and to access NTFS files.
+  chntpw:    Lets you change password of a user in a NT SAM file.
+             You may experiment severe problems with Win2K
+  ntcat:     Dumps the contents of an NTFS file to stdout
+  ntcp:      Read a file on a NTFS drive
+  ntchange:  Change a file on a NTFS drive
+  ntdir:     dir
+  ntdump:    Prints low-level structures of an NTFS
+  ntgrep:
+  ntmkdir:   Creates a new directory
+  samdump:   Change password of a user in a NT SAM file
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  chntpw   [OPTIONS] &lt;samfile&gt;
+  ntcat    [OPTIONS] [directory/]filename
+  ntchange [OPTIONS]
+  ntcp     [-V|h] &lt;src&gt; &lt;dst&gt;
+  ntdir    [OPTIONS] path
+  ntdump   [OPTIONS]
+  ntgrep   [OPTIONS] string
+  ntmkdir  [OPTIONS] path
+  samdump  &lt;samfile&gt;
+</pre>
+<h2>Options:</h2>
+<pre>
+  all:  --help, -h  Display this help message
+  chntpw:
+    -u &lt;user&gt;       Username to change, Administrator is default
+    -l              (Try to) list all users in SAM file
+    -i              Interactive. List users (as -l) then ask for
+                    username to change
+    -e              Registry editor (currently read-only)
+    -d              Enter buffer debugger instead (hex editor)
+    -t              Trace. Show hexdump of structs/segments.
+                    (debug function)
+    See readme file on how to extract/read/write the NT's SAM file if
+    it's on a NTFS partition. NOTE: This program is somewhat hackish!
+    You are on your own!
+  ntcat:
+    --offset -o offset   Use offset
+    --size, -s size      Only first size bytes
+    --bias, -B bias      Use partition bias
+    --buflen, -b buflen  Read with buffer size buflen
+    --8859-1, -1         Use charset ISO-8859-1 (default is UTF-8)
+    --version, -V        Display version
+  ntchange:
+    -o offset            Offset in file
+    -a start size        Allocate cluster range
+    -d start size        Deallocate cluster range
+    -W inum              Read and write inode inum
+    -t newsize           Truncate inode to newsize
+    -i inum              Operate on inode inum
+    -A anum              Operate on attribute anum (80)
+    -L string            Make inode a symlink with value string
+    -n name              Create file name in dir inum
+    -V                   Print version
+  ntcp:                  Files on the NTFS volume are accessed as
+                         //&lt;device&gt;/&lt;path&gt;
+  ntdir:
+    --dos, -d            Display only short names
+    --nt, -n             Display only long names (default)
+    --posix, -p          Display all but hidden files
+    --long, -l           Display all files
+    --unsorted, -U       Do not sort names alphabetically
+    --8859-1, -1         Display names using ISO-8859-1 (default is
+                         UTF-8)
+  ntdump:
+    --filesystem, -f device   Use device
+    --raw, -r                 Access the raw device
+    --offset, -o n            Start at offset o
+    --cluster, -c n           Start at cluster n
+    --mft, -M                 Display as master file table record
+    --inode, -i n             Display inode n
+    --dir, -d                 Display as directory
+    --info -I                 Display file system information
+    --decompress, -D n        Decompress run n
+    --bias -B n               Add partition bias n [bytes]
+    --attribute-type, -A n    Dump type n
+    --attribute-name, -N str  Dump attribute named str
+    --verbose, -v             Decompress verbose
+    --linode, -n              Show internal inode representation
+    --version, -V             Print version number
+  ntgrep:
+    --filesystem, -f device   Use device as volume
+    --offset, -o n            Start at offset n
+    --ignorecase, -i          Do caseless search
+    --ascii, -a               Search for ASCII string (def. is Unicode)
+    --nodump, -n              Display only location, don't dump context
+    --continue, -C            Continue searching until end of volume
+    --cluster, -c n           Start at cluster n
+    --blocksize, -b n         Dump n bytes around the location
+    --bytes                   String is given as hex bytes
+  ntmkdir:
+    --filesystem, -f device   Use device
+    --version, -v             Display version
+  samdump:
+    - none -
+</pre>
+<h2>Comments:</h2>
+<pre>
+  At <b>https://www.cgsecurity.org/wiki/Chntpw_for_Dos</b> a newer
+  version of CHNTPW is available (0.98.4).
+</pre>
+<h2>Examples:</h2>
+<pre>
+  To change NT password,
+  - Autodetection mode:
+      1.  ntcp ///winnt/system32/config/sam sam
+      2.  chntpw -i sam
+      3.  ntchange sam ///winnt/system32/config/sam
+  - Manual mode:
+      1.  ntcp //hda2/winnt/system32/config/sam sam
+      2.  chntpw -i sam
+      3.  ntchange sam //hda2/winnt/system32/config/sam
+
+  To extract password,
+  - Autodetection mode:
+      1.  ntcp ///winnt/system32/config/sam sam
+      2.  samdump sam
+  - Manual mode:
+      1.  ntcp //hda2/winnt/system32/config/sam sam
+      2.  samdump sam
+
+  Use the manual mode if your NTFS partition is not detected.
+    hda2  a=first hard disk (a,b,c,...)
+          2=partition number 2
+</pre>
+<h2>See also:</h2>
+<pre>
+  <b>https://www.cgsecurity.org/wiki/Chntpw_for_Dos</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2001 Christophe Grenier, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

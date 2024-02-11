@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>FreeDOS ile Ağa Bağlanmak - Hızlı Ağa Bağlanma Rehberi</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<h1>FreeDOS ile Ağa Bağlanmak - Hızlı Ağa Bağlanma Rehberi</h1>
+<pre>  Bu Hızlı Ağa Bağlanma Rehberi'nin orijinali İnternet üzerinde
+  resimlerle mevcuttur, şuraya bakın:
+  <b>http://wiki.freedos.org/wiki/index.php/Networking_FreeDOS_-_Quick_</b>
+  <b>Networking_HowTo</b> .
+
+  Bu belgenin gelecek bölümleri DOS ile ağa bağlanmayı oldukça ayrıntılı
+  bir şekilde açıklayacaktır. Ama sabırsız kullanıcılar için işte hızlı
+  bir rehber (HowTo): FreeDOS 1.3 ile ağ kurulumunun nasıl yapıldığını
+  açıklar.
+</pre>
+<h2>Ağa bağlanma yazılımının kurulumu</h2>
+<pre>  Varsayılan değer olarak FreeDOS herhangi bir ağ kurulumuyla gelmez.
+  Ancak kurulum programı bunun yapılandırmasını oldukça kolaylaştırır.
+  *  FreeDOS'ı <b>http://www.freedos.org/install/</b> yönergelerine göre
+     kurun.
+  *  Ardından CD'yi yuvasında bırakın, bilgisayarı tekrar başlatın ve şunu
+     seçin:
+     <b>"Boot from system harddisk"</b> (Sistemi sabit diskten başlat).
+
+  (FreeDOS'ın CD'den kurulumunu gösteren resim)
+
+  *  Tekrar başlatmadan sonra, <b>FDIMPLES</b> paket yöneticisini
+     çalıştırın:
+
+   (FDIMPLES prgramının FDNET, mTCP ile HTGET programlarını
+   etkinleştirmesini gösteren resim.)
+
+  (Kurulum CD'si, tüm mevcut paketleri görebilmek için yuvada olmalıdır.)
+  *  Sol panoda Ağ İzlenceleri kısmını seçin, sağ panoda kurmak
+     istediğiniz programları seçebilirsiniz.
+  *  <b>FDNET</b>, sanal makinelerde ağa bağlanmak için zorunludur. En
+     azından <b>mTCP</b> ve <b>wget</b> programlarını tavsiye ederim.
+     Tamam ile teyitte bulunun.
+  *  Makineyi yeniden başlatın.
+
+  (Ağ desteği ile başlayan FreeDOS 1.3'ü gösteren resim.)
+
+  Yukarıdaki başlatma mesajları, C:\FREEDOS\BIN\FDNET.BAT ağ toplu iş
+  dosyasının sistemimin doğru bir şekilde VirtualBox üzerinde çalıştığını
+  farkına vardığını gösterir. Doğru paket sürücü PCNTPK.COM programını
+  yüklemiştir. Ayrıca mTCP'den DHCP.EXE ağı bulmuş ve otomatik olarak
+  yapılandırılmıştır. Güncel olarak FDNET.BAT, şu sanal makineleri
+  tanır: QEMU, VirtualBox, VMWARE.
+</pre>
+<h2>FreeDOS sanal bir makinede çalışmıyorsa</h2>
+<pre>  Şayet FreeDOS'ı sanal bir makinede çalıştırmıyorsanız, öncelikle
+  ağ arayüz kartınız (NIC) için bir paket sürücüsü bulmayı denemeniz
+  gerekir. Birçok paket sürücüsü, Rusell Nelson ve onun Crynwr Software'i
+  <b>(*01)</b> tarafından yazılmış ve toplanmıştır. Bunları o siteden veya
+  FreeDOS deposundan indirin.
+
+  Bir paket sürücüsü bulduysanız, lütfen onu AUTOEXEC.BAT dosyanıza
+  FDNET.BAT satırından hemen önce ekleyin. Mesela 3COM 3c589 PCMCIA kartı
+  için şunu eklersiniz:
+
+     LH 3C589PD.COM 0x60 5 0x300
+     if exist &percnt;dosdir&percnt;\bin\fdnet.bat call &percnt;dosdir&percnt;\bin\fdnet.bat start
+
+</pre>
+<h3>Paket sürücüsü olmadan</h3>
+<pre>  Ağ kartınız için bir paket sürücüsü bulamadıysanız, Novell Netware
+  (ODI sürücüsü) veya Windows Lanmanager ya da Windows for Workgroups
+  (Çalışma grupları için Windows, NDIS sürücüsü) ile çalışmak üzere
+  tasarlanmış bir  sürücü bulma şansınız yüksektir. Biraz uğraş gerektirir
+  ama bu sürücüleri paket sürücüleri olarak kullanabilirsiniz.
+  Netware (ODI driver) or with the Windows Lanmanager or with Windows
+  for Workgroups (NDIS driver). It's a bit of work, but you can use
+  these drivers as packet drivers. <a href="https://www.bootablecd.de/network/ndis_ins.htm">NDIS sürücüleri</a> veya <a href="https://www.bootablecd.de/network/odi_ins.htm">ODI sürücüleri</a>
+  hakkında daha fazla şeyi bu <a href="https://www.bootablecd.de/network/index.htm">belgelendirmede</a> öğrenebilirsiniz.
+</pre>
+<h2>Ağ kuruldu. Şimdi ne yapmalı?</h2>
+<pre>  Eğer FreeDOS'ı VirtualBox üzerinde kullanıyorsanız, lütfen ağ
+  adaptörü için ayarlarınızı kontrol edin. Köprülü Ağ veya NAT arasında
+  bir seçim yapmanız gerekir. Lütfen VirtualBox rehberine <b>(*02)</b> bakın.
+  Ağ programlarınızı yapılandırmanız gerekir. Mesela FTP sunucusu için
+  isim ve parolayı C:\MTCP\FTPPASS.TXT dosyasını düzenleyerek ayarlayın.
+
+  Bazı DOS ağ programları, ağ yapılandırmasını C:\FREEDOS\WATTCP.CFG
+  dosyasında bulmaya ihtiyaç duyar. FreeDOS 1.3 üzerinde bu şuna benzer:
+
+     my_ip = dhcp
+
+  Maalesef bazı eski programlar değerleri DHCP ile kendi kendilerine
+  alamazlar. Yani ya burada sabit IP'ler koymanız gerekir. Ya da Kanadalı
+  programcı Dave Dunfield tarafından yazılmış güzel bir yardımcı aracı
+  kullanmanız gerekir: doğru ağ ayarlarını DHCP ile alır ve bunları
+  C:\FREEDOS\WATTCP.CFG dosyasına ekler.
+
+  Eğer ikinci seçeneği seçtiyseniz,
+
+  *  C:\FREEDOS\WATTCP.CFG dosyasını açıp şu satırı silin:
+
+     my_ip = dhcp
+
+  *  Dave Dunfields'ın "DOS Widgets" sayfasına gidin (*03).
+  *  Ağ araçları bölümünden "DDHCP" dosyasını indirin
+     (YENİ: "DHCP", bkz. (*04)).
+  *  Bunu  C:\DDHCP dizinine koyun ve şu satırları AUTOEXEC.BAT dosyasında
+     FDNET.BAT satırından hemen sonra ekleyin:
+
+     if exist &percnt;dosdir&percnt;\bin\fdnet.bat call &percnt;dosdir&percnt;\bin\fdnet.bat start
+     C:\DDHCP\DDHCP /W /F
+
+  ("/F" parametresi, WATTCP.CFG dosyasında eksik tüm değerleri
+  dolduracaktır.)
+
+  (LÜTFEN UNUTMAYIN: dosya ismi "DDHCP" değil şudur: "DHCP"! Yani küçük
+  değişiklikler olabilir!)
+
+  Artık her yeniden başlatmada, WATTCP.CFG doğru ağ ayarlarıyla
+  güncellenecektir.
+</pre>
+<h2>Ayrıca bakın:</h2>
+<pre>  *  <b>(*01)</b> Crynwr sitesi, bkz.:
+           <b>http://crynwr.com</b>
+           Crynwr paket sürücüleri, bkz.:
+           <b>http://crynwr.com/drivers/</b>
+           VEYA:
+<b>https://web.archive.org/web/20120623172127/http://www.crynwr.</b>
+<b>com/drivers/</b>
+          (her şey TEK SATIRDA, boşluk KOYMADAN!)
+  *  <b>(*02)</b> VirtualBox hakkında rehber, bkz.:
+           <b>http://wiki.freedos.org/wiki/index.php/VirtualBox</b>
+  *  <b>(*03)</b> Dave Dunfields "DOS Widgets sayfası" artık şuradadır:
+           <b>http://dunfield.classiccmp.org/dos/index.html</b>
+  *  <b>(*04)</b> Dosyanın ismi ddhcp.zip yerinde "dhcp.zip" gibi
+           görünmektedir. Dolayısıyla yeni bağlantı şudur:
+           <b>http://dunfield.classiccmp.org/dos/dhcp.zip</b>
+</pre>
+<hr>
+<pre>  <b>Copyright © 2007 Ulrich Hansen, Mainz (Germany), updated 2022
+  for FreeDOS help by W.Spiegl.</b>
+  For more information <a href="https://www.bootablecd.de/network/intro.htm#ddd">see here</a>.
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="https://www.bootablecd.de/other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+
+</body></html>

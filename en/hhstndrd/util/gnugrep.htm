@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: gnu grep</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: gnu grep</h1>
+<pre>
+  GREP searches the named input files (or standard input if no files are
+  named, or the file name - is given) for lines containing a match to the
+  given pattern. By default, grep prints the matching lines.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  grep [-[[AB] ]&lt;num&gt;] [-[CEFGVchilnqsvwx]] [-[ef]] &lt;expr&gt; [&lt;files...&gt;]
+</pre>
+<h2>Options:</h2>
+<pre>
+  All variants of grep understand the following options:
+  -num        Matches will be printed with num lines of leading and
+              trailing context. However, grep will never print any given
+              line more than once.
+  -A num      Print num lines of trailing context after matching lines.
+  -B num      Print num lines of leading context before matching lines.
+  -C          Equivalent to -2.
+  -V          Print the version number of grep to standard error. This
+              version number should be included in all bug reports
+              (see below).
+  -b          Print the byte offset within the input file before
+              each line of output.
+  -c          Suppress normal output; instead print a count of matching
+              lines for each input file. With the -v option (see below),
+              count non-matching lines.
+  -e pattern  Use pattern as the pattern; useful to protect patterns
+              beginning with -.
+  -f file     Obtain the pattern from file.
+  -h          Suppress the prefixing of filenames on output when
+              multiple files are searched.
+  -i          Ignore case distinctions in both the pattern and the
+              input files.
+  -L          Suppress normal output; instead print the name of each
+              input file from which no output would normally have been
+              printed.
+  -l          Suppress normal output; instead print the name of each in-
+              put file from which output would normally have been printed.
+  -n          Prefix each line of output with the line number within
+              its input file.
+  -q          Quiet; suppress normal output.
+  -s          Suppress error messages about nonexistent or unreadable
+              files.
+  -v          Invert the sense of matching, to select non-matching lines.
+  -w          Select only those lines containing matches that form whole
+              words. The test is that the matching substring must either
+              be at the beginning of the line, or preceded by a non-word
+              constituent character. Similarly, it must be either at the
+              end of the line or followed by a non-word constituent
+              character. Word-constituent characters are letters, digits,
+              and the underscore.
+  -x          Select only those matches that exactly match the whole line.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  There are three major variants of grep, controlled by the following
+  options.
+  -G          Interpret pattern as a basic regular expression
+              (see below). This is the default.
+  -E          Interpret pattern as an extended regular expression
+              (see below).
+  -F          Interpret pattern as a list of fixed strings, sepa-
+              rated by newlines, any of which is to be matched.
+              In addition, two variant programs egrep and fgrep are
+              available. Egrep is similiar (but not identical) to
+              grep -E, and is compatible with the historical Unix egrep.
+              Fgrep is the same as grep -F.
+  GREP has an extensive documentation that is beyond the scope of
+  this help. For more information see:
+  <b>https://gitlab.com/FreeDOS/unix/grep</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - none
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/find.htm">find</a>
+  <a href="../util/xgrep.htm">xgrep</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1995 Stephen McConnel, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

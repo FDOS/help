@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: zdir</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: zdir</h1>
+<pre>
+  ZDir is a powerful directory utility with coloring by extension,
+  sorting, easy configuration, full wildcards, and more.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  zdir [options] [d:] [path] [filespec[.ext]] [options]
+</pre>
+<h2>Options:</h2>
+<pre>
+ /H /?       This help screen
+ /R          Registration information
+ /Lfilename  Write a listing to filename, which may be a device (PRN or
+             LPT1 for printer, AUX or COM1 for modem, etc.)
+ /A          Write ANSI color codes to the file if one is specified by /L
+ /F          File find - lists all files in specified directory and in
+             all directories below it
+ /T          Display a directory Tree, including only specified files
+             and using the specified directory as the root of the tree
+ /U          Only list the entries matching a User extension
+ /+A or /-A  Turn on or off archive attribute for all found files
+ /+H or /-H  Turn on or off hidden attribute for all found files
+ /+R or /-R  Turn on or off read only attribute for all found files
+ /+S or /-S  Turn on or off system attribute for all found files
+ /Y          Allow attribute changing to affect directories
+Options to override defaults:
+ /N /X /Z /D Primary sort by file Name, eXtension, siZe or Date and time
+ /S          Perform no Sort at all (like the DOS dir command).
+ /&num;          Display in this many columns (1, 2, 3, 4, or 6 or W)
+ /K          Toggle wait for key at the end of every displayed screen
+
+  To configure every option and color of ZDIR, run the program ZDircfg.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  ZanySoft Dir (ZDir) is an easy to use and very powerful directory
+  lister. The main purpose of ZDir is to replace the generic DIR command
+  with a fast, easily readable display with more functionality. It can
+  organize the file listing with many sorting options, color files based
+  upon their extension, choose how many columns to use in the display,
+  find files, draw a tree of the directory structure, use full-scale
+  wildcards, and much more. Besides being powerful and easy to use, ZDir
+  is also easy to configure with the included configuration program
+  ZDircfg. It is very easy for a novice computer user to learn how to
+  use ZDir, but has many features that expand upon the basic directory
+  listing capability.
+  For more information see:
+  <b>https://github.com/ckirmse/ZDir/blob/master/READDME.DOC</b> OR:
+  <b>https://tipovers.com/zdir/</b> OR:
+  <b>https://gitlab.com/FreeDOS/util/zdir/-/blob/master/DOC/ZDIR/</b>
+  <b>ZDIR.DOC?ref_type=heads</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - none -
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/dir.htm">dir</a>
+  <a href="../base/tree.htm">tree/pdtree</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1994 Christopher Kirmse, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

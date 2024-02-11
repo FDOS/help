@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: clamav</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: clamav</h1>
+<pre>
+  CLAMAV is the FREEDOS Antivirus scanner.
+  Making it work is not so easy as it consists of up to three
+  parts that have to be downloaded and combined.
+  The first part is: CLAMAV, the second part is CLAMDB and
+  the third part (user interface) is FDAV which is not necessary
+  for command line version.
+
+  You can download these parts from internet via fdnpkg install.
+   a) fdnpkg install clamav  (the console version of clamav)
+   b) fdnpkg install clamdb  (the virus database)
+   c) fdnpkg install fdavx   (user interface - SORRY - at the moment it
+                             cannot be downloaded and installed this way!)
+  As an alternative you can download the packets from:
+  <b>https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/util/</b>
+  <b>system/clamav/</b>
+  and there:
+  clamavs-0.95.3.zip
+  MAIN.CVD, 30 MB (only available at: </>https://gitlab.com/FreeDOS/util/</b>
+  <b>clamdb/-/blob/master/UTIL/CLAMAV/MAIN.CVD?ref_type=heads</b>
+  (in about 30 MB) OR:
+  clamdbx-0.95.2 OR clamdbx-0.95.3.zip OR clamdbx-0.95 which are smaller
+  versions
+  fdavx-0.2.2.zip
+  Unzip them all and copy the whole content into one folder
+  (e.g. C:\UTIL\CLAMAV).
+  Create an empty folder C:\VIRUS
+</pre>
+<h2>Command line version:</h2>
+<pre>
+  As most of the options are not needed, I start directly with making
+  CLAMAV work in command line.
+  To make the virus checker work from command line or user interface
+  you need <b>at least 128 MB RAM (or more)</b> for work with version
+  54 of ClamAV database (30 MB size)!
+  Database version 54 only runs with main.cvd. In combination with
+  daily.cvd it will hang. Version 54 main.cvd supports 1,044,363 virus
+  definitions.
+  Version 51 - main.cvd supports 545,035 virus definitions, in combination
+  with daily.cvd 640,722.
+  Version 51 needs less RAM (?? MB RAM) - depending on you use both cvd
+  files or only main.cvd. All these zip files are available from:
+  <b>https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/util/system/</b>
+  <b>clamav/</b>
+
+  The command line looks in about as follows:
+  clamscan --tempdir=C:\Freedos\temp* --database=FILE or DIR** --recursive
+  --move=c:\virus*** c:\
+
+    * C:\Freedos\temp should already exist, if not, please create it.
+   ** --database=file (file=C:\util\clamav\main.cvd)
+   ** --database=dir (dir=C:\util\clamav, uses main.cvd and daily.cvd
+      if available)
+  *** C:\virus has to be created first!
+
+  So the whole command looks in about as follows (depending on your
+  settings):
+
+  clamscan --tempdir=C:\Freedos\temp --database=c:\util\clamav\main.cvd
+  --recursive --move =c:\virus c:\  OR:
+  clamscan --tempdir=C:\Freedos\temp --database=c:\util\clamav\
+  --recursive --move =c:\virus c:\
+
+  Of course you can start this from a batch file and add other drive
+  letters. For unknown reasons it sometimes doesn't work, so please
+  be patient.
+</pre>
+<h2>User interface version:</h2>
+<pre>
+  Follow the steps at section "Command clamav".
+  Means: Download all three parts (zip) and extract the files from
+  folder "bin" and "lib" (db!) into ONE folder, e.g. C:\UTIL\CLAMAV.
+  Keep in mind that you need at least 128 MB RAM.
+  Then go to C:\UTIL\CLAMAV and execute "fdav.exe".
+  Wait a while till it starts.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  In case that clamav should not work, please check that there is enough
+  free space on the HD. If not, check C:\VIRUS and C:\FREEDOS\TEMP
+  if they are empty.
+  Please also check that you have enough RAM!
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - none -
+</pre>
+<h2>See also:</h2>
+<pre>
+  - none -
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; the ClamAV team, http://www.clamav.net/teamhelp, help version
+  2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

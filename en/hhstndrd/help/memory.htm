@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The DOS memory management:</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>The DOS memory management:</h1>
+<pre>
+  This file describes DOS memory management only in very rough terms.
+  Anything else would fill an entire book. So I beg your pardon if
+  you do not find details.
+  There are other documentations about DOS memory management, e.g.
+  Wikipedia, see:
+  <b>https://en.wikipedia.org/wiki/DOS_memory_management</b>  OR:
+  <b>https://blogsystem5.substack.com/p/from-0-to-1-mb-in-dos</b> OR:
+  Search for DOS memory management with your favourite Search engine.
+</pre>
+<h2><a name="normal">NORMAL</a> low DOS memory:</h2>
+<pre>
+  <b>NORMAL</b> low DOS memory is at most 640 kB. Sometimes minus EBDA which
+  is an extra BIOS data area, see <a href="../cnfigsys/switches.htm">SWITCHES /E</a> Option to manipulate if
+  you know what you are doing.
+</pre>
+<h2><a name="umb">UMB</a> - upper memory blocks:</h2>
+<pre>
+  <b>UMB</b> upper memory blocks, which are the area between 640 kB and 1 MB
+  accessible by all 8086 or newer CPU in theory, but reserved for VGA
+  RAM, BIOS and similar in practice. Drivers like RDOSUMB, <a href="../base/hiram.htm">HIRAM</a> or URAM
+  can activate normal RAM in unused areas between those in chipset-
+  dependent ways on various mainboards and all sorts of <a href="../base/jemm386.htm">EMM386</a> style
+  drivers can make RAM visible in those areas if you have 386 or newer
+  CPU. Sometimes, <b>UMB</b> have limitations such as not working with DMA for
+  floppy or harddisk. Extra drivers bundled with the <b>UMB</b> drivers, or
+  extra options for <a href="../base/jemm386.htm">EMM386</a> can be used to work around or try to work
+  around the limitations. Sometimes you just want to avoid to load
+  certain disk, network or USB drivers to <b>UMB</b> instead. You can tell the
+  FreeDOS kernel to move some data structures to <b>UMB</b> with <a href="../cnfigsys/dosdata.htm">DOSDATA=</a>... and
+  you can use <a href="../cnfigsys/dos.htm">DOS=</a>... to move some other kernel things to <b>UMB</b>. See also
+  <a href="../cnfigsys/files.htm">FILESHIGH</a>.
+</pre>
+<h2><a name="hma">HMA</a> - high memory area:</h2>
+<pre>
+  <b>HMA</b> high memory area is 64 kB big and starts where the first 1 MB ends.
+  You can use it on 286 or newer CPU, usually by loading <a href="../base/himemx.htm">HIMEM</a> or similar
+  drivers. You can use <a href="../cnfigsys/dos.htm">DOS=</a>... to move large parts of the kernel to <b>HMA</b>.
+  Other drivers can use remaining <b>HMA</b> space, but this is not done as
+  easily in FreeDOS as in other DOS. See also <a href="../cnfigsys/files.htm">FILESHIGH</a>. Because the
+  accessbility of <b>HMA</b> depends on the infamous A20 address line gate,
+  you may have to help <a href="../base/himemx.htm">HIMEM</a> or <a href="../base/jemm386.htm">EMM386</a> to treat that properly if auto-
+  detection has resulted in wrong A20 handling.
+</pre>
+<h2><a name="xms">XMS</a> - extended memory:</h2>
+<pre>
+  <b>XMS</b> extended memory is what <a href="../base/himemx.htm">HIMEM</a> and similar drivers give you. Note
+  that <a href="../base/jemmex.htm">JEMMEX</a> is a driver containing both <a href="../base/jemm386.htm">EMM386</a> and <a href="../base/himemx.htm">HIMEM</a> in a single
+  driver. <b>XMS</b> are memory areas which you can ask the driver to copy to or
+  from DOS memory (or <a href="../help/memory.htm#umb">UMB</a>, maybe even <a href="../help/memory.htm#hma">HMA</a>) as needed. Protected mode apps
+  can also access <b>XMS</b> directly at the original location beyond 1 MB after
+  telling <a href="../base/himemx.htm">HIMEM</a> to lock areas so they keep a constant absolute location.
+  You need 286, with common drivers even 386 or newer CPU to use <b>XMS</b>.
+</pre>
+<h2><a name="ems">EMS</a> - expanded memory area:</h2>
+<pre>
+  <b>EMS</b> expanded memory is what <a href="../base/jemm386.htm">EMM386</a> usually gives you, but there also
+  are chipset-dependent hardware drivers for certain old mainboards with
+  hardware <b>EMS</b> support and there were hardware expansion cards for <b>EMS</b>
+  for really old computers. Either way, <b>EMS</b> consists of originally 16 kB,
+  later 4 kB sized pieces of memory which you can make visible (map) at
+  locations below 1 MB. For the 4 kB style, you need <b>EMS</b> 4, the 16 kB
+  style is <b>EMS</b> 3.2 and the latter also is limited to make the 16 kB
+  chunks visible in any quarter of a 64 kB page frame at a location which
+  has to be a multiple of 64 kB. That page frame takes away space which
+  you could otherwise use for <a href="../help/memory.htm#umb">UMB</a>, so there is a misleadingly named NOEMS
+  option for <a href="../base/jemm386.htm">EMM386</a> style drivers which actually means that you need no
+  page frame. You can still map 4 kB to various multiples of 4 kB within
+  the first megabyte if you use <b>EMS</b> 4 even when your <a href="../base/jemm386.htm">EMM386</a> is in NOEMS
+  mode and has no fixed page frame. Because you make memory appear at
+  other places instead of actually copying it, <b>EMS</b> can fast when you want
+  to swap around memory areas, maybe for handling libraries or background
+  music data in a game, in situations where you do not want to copy a
+  specific part of your data, but want a whole subset of your data to be
+  available in case you want to use it. <a href="../help/memory.htm#xms">XMS</a>, on the other hand, is good
+  when you already know which specific data area you want to be copied
+  where, because you do not have to take the extra step of mapping there.
+</pre>
+<h2><a name="vcpi">VCPI</a>:</h2>
+<pre>
+  <b>VCPI</b> is a low-level interface for <a href="../base/jemm386.htm">EMM386</a> which lets it co-exist with
+  other protected mode software, so it also involves memory mapping and
+  allocation. It is not very popular outside <a href="../help/memory.htm#ext">DOS Extenders</a>, I would say.
+  Note that Windows can be called a <a href="../help/memory.htm#ext">DOS Extender</a> in this context.
+</pre>
+<h2><a name="dpmi">DPMI</a>:</h2>
+<pre>
+  <b>DPMI</b> is a more high-level interface to manage memory in a protected
+  mode context. It is so comfortable that the CWSDPMI <a href="../help/memory.htm#ext">DOS Extender</a>
+  basically just makes sure that you get <b>DPMI</b>, if necessary distilled
+  from a number of other (!) types of memory access available in pure
+  DOS, because apps compiled with DJGPP and similar compilers already
+  feel fine with <b>DPMI</b> as a <a href="../help/memory.htm#ext">DOS Extender</a>, roughly speaking. Windows also
+  provides <b>DPMI</b> to apps, but not for example <a href="../help/memory.htm#vcpi">VCPI</a>, because the latter
+  would be too low-level for smooth coexistance with apps directly using
+  that.
+</pre>
+<h2>DOS <a name="ext">Extenders</a>:</h2>
+<pre>
+  <b>DOS Extenders</b> make sure that apps can use more than 1 MB of memory
+  taken from any suitable source of memory, using protected mode. So they
+  may differ a lot in which types of memory they support or not.
+
+  This also involves INT15 memory, which is a BIOS based way to access
+  memory above 1 MB which is not otherwise relevant to most DOS apps,
+  because they prefer to use the more DOS specific types of memory
+  instead. So INT15 is more something relevant for <a href="../base/himemx.htm">HIMEM</a> and <a href="../base/jemm386.htm">EMM386</a> to
+  either use or coexist with. In general, the BIOS has provided a number
+  of different methods to get to know which memory and where is available
+  for which purposes, often INT15 related, so DOS memory drivers like
+  <a href="../base/himemx.htm">HIMEM</a> have to take care to query the newest available sub-method and
+  they may have to resolve ambiguities and contradictions if the BIOS is
+  not properly designed.
+
+  Note that very specific <b>DOS Extenders</b> can also make it possible for
+  apps to use more than 4 GB of RAM or more than 1 CPU core. Neither are
+  widespread yet, so most implementations of <a href="../base/himemx.htm">HIMEM</a> or <a href="../base/jemm386.htm">EMM386</a> will be
+  limited to between 2 GB and 4 GB of usable RAM even if you have more
+  installed, because things like graphics memory or MMIO areas and extra
+  BIOS stuff etc. will block some amount of memory within the first 4 GB.
+  In particular graphics RAM windows can be quite large with modern
+  graphics hardware and few apps or drivers for DOS take the effort to
+  use 36- or 64-bit addressing to reach beyond the first 4 GB. You can
+  assume that the system RAM which you cannot access below 4 GB because
+  graphics RAM uses the address space will be made available at some
+  place above 4 GB, so 64-bit aware drivers can use all your RAM. This is
+  similar to the <a href="../help/memory.htm#umb">UMB</a> problem mentioned above, RAM covered by BIOS or by
+  VGA RAM and therefore not available for <a href="../help/memory.htm#umb">UMB</a> can sometimes still be made
+  available at another address for other purposes such as <a href="../help/memory.htm#ems">EMS</a> depending
+  on your hardware and drivers.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  (Comment by Rugxulo:)
+  8086 could address 1 MB (conventional memory), but the IBM PC specifi-
+  cally (contrary to SCP's boards) would only use 640 kb (minus OS over-
+  head) with ROM data (e.g. BIOS) in higher parts. EMS with bankswitching
+  was optional, but some people (e.g. Jim Leonard) have physical hardware
+  EMS, allowing a few extra MB.
+
+  XMS required an AT, i.e. an 286 on a 286 mainboard. The 286 could only
+  address 16 MB (or 1 GB virtual, allegedly, IIRC). It fragmented a bit
+  worse than EMS.
+
+  EMM386 was optional but helped get old EMS apps to work using V86 mode.
+  VCPI (ring 0, 386 only) was a superset of this, supported by Win 3.x
+  Standard mode (win.com /s), but DPMI was overall better.
+
+  DPMI was originally invented for Win 3.0 (Enhanced mode) in 1990 but
+  later standardized and became common elsewhere (OS/2 2.1, Novell DOS 7).
+  Unfortunately, most people only supported the 0.9 spec (usually for
+  32-bit apps only). But Borland did support 16-bit DPMI. So, just to be
+  clear, unlike ring 0 32-bit exclusive VCPI, DPMI could also be ring 3
+  and either 286 or 386 compatible. Ring 3 is less prone to OS insta-
+  bility.
+
+  There are various bugs and limits in implementations of all of the
+  above. Testing is more important than blind fidelity to specs.
+
+  (Comment by bretjohn:)
+  What types of memory you may actually need to configure in FreeDOS at
+  boot time depends on what programs you are going to run and what kind(s)
+  of memory they use.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/dos.htm">DOS=</a>
+  <a href="../cnfigsys/dosdata.htm">DOSDATA=</a>
+  <a href="../help/memory.htm#ext">DOS Extenders</a>
+  <a href="../help/memory.htm#dpmi">DPMI</a>
+  <a href="../base/jemm386.htm">EMM386</a>
+  <a href="../help/memory.htm#ems">EMS</a>
+  <a href="../cnfigsys/files.htm">FILESHIGH</a>
+  <a href="../base/himemx.htm">HIMEM</a>
+  <a href="../base/hiram.htm">HIRAM</a>
+  <a href="../help/memory.htm#hma">HMA</a>
+  <a href="../base/jemmex.htm">JEMMEX</a>
+  <a href="../help/memory.htm#normal">Normal low DOS memory</a>
+  <a href="../cnfigsys/switches.htm">SWITCHES</a>
+  <a href="../help/memory.htm#umb">UMB</a>
+  <a href="../help/memory.htm#vcpi">VCPI</a>
+  <a href="../help/memory.htm#xms">XMS</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2024 Eric Auer, help version W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

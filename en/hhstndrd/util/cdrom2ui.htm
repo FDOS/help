@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: cdrom / cdrom2</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: cdrom / cdrom2</h1>
+<pre>
+  CDROM is a toolkit for handling CD-ROM-drives.
+
+  CDROM2 is a toolkit for handling CD-ROM-drives
+  with additional audio support.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  CDROM / CDROM2 [EJECT|CLOSE|LOCK|UNLOCK|RESET] X:
+  CDROM [drive:]
+  CDROM2 [PAUSE|CONT|INFO|PLAYnn] X:
+  CDROM2 [drive:]
+</pre>
+<h2>Options:</h2>
+<pre>
+  CD options:
+  drive  the drive letter of the CD / Audio drive
+  eject
+  close
+  lock
+  unlock
+  reset
+
+  Audio options:
+  pause  pause
+  cont   continue
+  info
+  playnn  (xx is audio track number)
+</pre>
+<h2>Comments:</h2>
+<pre>
+  CDROM N:    Asks *CDEX 2.0+ if a CD-ROM exists.
+  Errorlevels:
+    0 okay,
+    1 failed / no such drive.
+  Shows a list of valid drives if invalid selection.
+  Not all drives do all commands.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  CDROM EJECT N:
+  CDROM N:        Asks *CDEX 2.0+ if a CD-ROM exists
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../../index.htm">main site</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003, Eric Auer, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

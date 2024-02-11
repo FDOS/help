@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>FreeDOS ile Ağa Bağlanmak - Giriş</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<h1><a name="top"></a>FreeDOS ile Ağa Bağlanmak - Giriş</h1>
+<pre>
+  Ulrich Hansen'e bu makaleyi FreeDOS yardımında yayınlamamıza izin
+  verdiği için teşekkür ederiz!
+</pre>
+<h2><a name="zzz"></a>Özet</h2>
+<pre>
+  Bu belge, FreeDOS  (<b>http://www.freedos.org/</b>)ile çalışan bir
+  bilgisayarın nasıl <a href="../network/network.htm">ağa</a> bağlanabileceğini açıklar. Burada açıklananların
+  çoğu diğer DOS sürümlerinde de çalışır.
+  <a href="../network/history.htm">İlk bölüm</a>, DOS ile <a href="../network/network.htm">ağa bağlanmanın</a> tarihçesi ile ilgilidir, ki bu esasen
+  1981 ila 1995 senelerinde meydana gelmiştir. <a href="../network/dosnetto.htm">İkinci bölümde</a> 21. asırda
+  hâlâ mevcut olan sürücülere, protokollere ve uygulamalara genel bir
+  bakış bulabilirsiniz. <a href="../network/install.htm">Üçüncü</a> ve <a href="../network/ldtcpipk.htm">dördüncü bölümler</a> nihayet bir DOS
+  makinesine <a href="../network/tcpip.htm">TCP/IP</a>'nin nasıl kurulacağını açıklar. Bunlar, sürücüler ve
+  diğer gerekli yazılımların nasıl kurulup yapılandırılacaklarını
+  açıklayan ayrıntılı bir rehber oluştururlar.
+</pre>
+<h2><a name="aaa"></a>Alternatifler</h2>
+<pre>
+  Her iki makinede de bir LPT girişi mevcutsa dosya transferi için paralel
+  kablo bağlantısı kullanabilirsiniz (mesela MS DOS 6.22 ile Interlnk,
+  Open/DR DOS Filelink, Laplink, Winlink veya <b>FileMaven</b>;
+  bkz.: <b>http://www.briggsoft.com/fmdos.htm (*01)</b>).
+</pre>
+<h2><a name="bbb"></a>Donanım</h2>
+<pre>
+    (Bu viki için deneme donanımı resmi: PCMCIA ile bir Compaq Contura
+    Aero 4/33C)
+  Bir <a href="../network/network.htm">ağa</a> bağlanmak için PC'niz ve <a href="../network/network.htm">ağ</a> arasında bağlantıya imkân verecek
+  fiziki bir cihaza ihtiyacınız olacaktır. Bu, şu şekillerde yapılabilir:
+    * telefon hattını kullanarak bir <a href="../network/modem.htm">Modem</a> ile, veya
+    * doğrudan bağlantıyı kullanarak bir <a href="../network/ethernet.htm">Ethernet</a> ağ kartı ile, veya
+    * <a href="../network/wifi.htm">WiFi</a> ile.
+
+  <a href="../network/modem.htm">Modem</a>
+  Bir <a href="../network/modem.htm">Modem</a> ile ağa bağlanma henüz bu vikide açıklanmamıştır - yardım
+  etmek ister misiniz?
+
+  <a href="../network/ethernet.htm">Ethernet</a>
+  Eğer FreeDOS makineniz için bir <a href="../network/ethernet.htm">Ethernet</a> kartı satın almayı
+  düşünüyorsanız, paket sürücüsü ile sağlanıp sağlanmadığına bakın. Birçok
+  DOS için <a href="../network/tcpip.htm">TCP/IP</a> uygulaması çalışmak için bir paket sürücüsüne ihtiyaç
+  duyar (daha fazla bilgi için <a href="../network/pack_ins.htm">buraya</a> bakın).
+  Şayet kart DOS veya Windows 3.1 için başka sürücülüler ile sağlanıyorsa,
+  <a href="../network/odi_ins.htm">ODI sürücüleri</a> (<a href="../network/novell.htm">Novell</a>) veya <a href="../network/ndis_ins.htm">NDIS2 sürücülüleri</a> (Microsoft) gibi, DOS
+  ile de çalışırlar (kurulumları biraz daha karmaşıktır, o kadar).
+  PCMCIA kullanıyorsanız, aşağıdaki kartların çalıştığı bildirilmiştir:
+    * <a href="../network/3com.htm">3Com</a> Megahertz 3C574 10/100 LAN PC Kartı (paket sürücüsüz, ama
+      <a href="../network/odi.htm">ODI</a> ve <a href="../network/ndis.htm">NDIS</a>2 ile sağlanır),
+    * <a href="../network/3com.htm">3Com</a> EtherLink III 3C589 10Mbit Kart (paket sürücülü) ve
+    * D-Link DFE-670TXD Fast <a href="../network/ethernet.htm">Ethernet</a> PC Kartı (paket sürücülü).
+  PCMCIA kartları, SystemSofts CardSoft gibi üçüncü taraf yazılımları ile
+  kurulmaya ihtiyaç duyar. Bu, driverguide'dan "SystemSoft Version 3.1,
+  Soft Version 3.1, <b>CARDSOFT.ZIP</b>" olarak indirilebilir.
+  (bkz.: <b>http://www2.driverguide.com/uploads/uploads9/26188.html (*02)</b>)
+
+  <a href="../network/wifi.htm">WiFi</a>
+  Bazı eski <a href="../network/wifi.htm">WiFi</a> kartları FreeDOS ile çalışır. Daha fazla bilgi için
+  <a href="../network/wifi.htm">buraya bakın</a>.
+</pre>
+<h2><a name="ccc"></a>Notlar</h2>
+<pre>
+  Bu belgenin yazılması sadece birçok başka kişinin İnternet üzerinde kod
+  ve bilgi paylaşmaya istekli oldukları için mümkün oldu. Teşekkürler!
+  Bu belgenin bazı bölümleri, Michael Bernardi'nin <b>DOS Networking HOWTO</b>
+  (<b>http://www.dendarii.co.uk/FAQs/dos-net.html (*03)</b>) belgesinden
+  ilham alınarak yazılmıştır. Aynı zamanda SSS koleksiyonları
+  (<b>http://www.dendarii.co.uk/FAQs/ (*04)</b>) ve <b>ağa bağlanma
+  uygulamaları</b> <b>http://www.dendarii.co.uk/FAQs/dos-apps.html (*05)</b>)
+  ile <b>DOS-Meta FAQ about networking DOS machines</b> (<b>http:
+  //www.dendarii.co.uk/FAQs/dos-meta_faq.html (*06)</b>) çok değerli
+  olmuşlardır. DOS ile ağa bağlanmaya başka iyi bir giriş Michael B.
+  B. Brutman tarafından yazılmıştır. Başlığı: <b>"DOS ile <a href="../network/tcpip.htm">TCP/IP</a> ağlarına
+  bağlanmak. Kimse neden bunu yapmak istesin ki?"</b>
+  (<b>http://www.brutman.com/Dos_Networking/dos_networking.html (*07)</b>).
+</pre>
+<h2><a name="ddd"></a>Telif Hakkı</h2>
+<pre>
+  Çalışmanın tümü ("Networking under FreeDOS"), <a href="../other/fdl12.htm">"GNU Free Documentation
+  License 1.2"</a> (GNU FDL) kapsamındadır. <a href="../network/history.htm#aab">LAN yöneticisi</a> bölümündeki
+  "<a href="../network/history.htm#aab">LAN manager</a> 2.1" ekran fotoğrafı
+  (<b>http://lazybrowndog.net/freedos/#Manager (*08)</b>) Michal Necasek
+  tarafından <b>"OS/2 Tarihçesi"</b> (<b>http://pages.prodigy.net/michaln/
+  history (*09)</b>) için çekilmiştir. Bu ekran fotoğrafını kullanma ve
+  GNU FDL kapsamında yayınlama iznini vermiştir.
+  Aynı bölümdeki "Workgroup Add-On for MS-DOS" fotoğrafı Dirk Makowski
+  tarafından <b>"Winhistory"</b> (<b>http://www.winhistory.de/ (*10)</b>),
+  için çekilmiştir ve bu büyük bir  tarihi yazılımlar ve nesneler
+  koleksiyonudur. O da fotoğrafını bu belgede önizleme resmi olarak
+  kullanma ve GNU FDL kapsamında yayınlama iznini vermiştir.
+  Metnin ana kısmı ve birçok grafik <b>Ulrich Hansen</b> tarafından
+  (<b>http://www.ulrich-hansen.de/ (*11)</b>) oluşturulmuştur. Copyright
+  (c) 2007 by Ulrich Hansen, Mainz (Almanya). Lisans: GNU FDL.
+    Bu belgeyi kopyalama, dağıtma ve/veya değiştirme izni, GNU Özgür
+  Belgeleme Lisansı'nın 1.2 veya Free Software Foundation tarafından
+  yayınlanan daha yeni bir sürümü kapsamında verilmiştir; değişmez bölüm,
+  Ön ve Arka Kapak Metinleri yoktur. Lisansın bir sureti şurada
+  bulunabilir: <b>GNU Free Documentation License</b>
+  (<b>http://www.gnu.org/licenses/gfdl.html (*12)</b>).
+</pre>
+<h2><a name="eee"></a>Feragatname</h2>
+<pre>
+  Bu metin, bizim DOS ile ağa bağlanma tecrübelerimizi yansıtır. Çözüm
+  ve tavsiyeler sizin ortamınızda çalışabilir veya çalışmayabilir.
+  Dolayısıyla lütfen dikkatli olun: Sisteminize yazılım kurmak veya sistem
+  dosyalarını değiştirmek makinenize zarar verebilir, çalışma akışınızı
+  aksatabilir ve vaktinizi ziyan edebilir.
+
+  <b>(*01) Tamam</b>
+  <b>(*02) https://archive.org/details/SYSUTI11
+        and: https://support.advantech.com.tw/support/DownloadSRDetail_
+        New.aspx?SR_ID=1-17FJK&Doc_Source=Download
+        and: https://support.advantech.com.tw/support/DownloadSRDetail_
+        New.aspx?SR_ID=1%2BGE%2B626&Doc_Source=Download</b>
+  <b>(*03) Tamam</b>
+  <b>(*04) Tamam</b>
+  <b>(*05) Tamam</b>
+  <b>(*06) Tamam</b>
+  <b>(*07) Tamam</b>
+  <b>(*08) http://freedos.sourceforge.net/wiki/index.php/
+        Networking_FreeDOS</b>
+  <b>(*09) http://ps-2.kev009.com/michaln/history/index.html</b>
+  <b>(*10) Tamam</b>
+  <b>(*11) Tamam</b>
+  <b>(*12) Tamam</b>
+</pre>
+<hr>
+<pre>
+  <b>Telif hakkı &copy; 2007 Ulrich Hansen, Mainz (Almanya), 2010 ve 2020
+  senelerinde W.Spiegl tarafından değiştirilmiştir.</b>
+  <b>2023 senesinde Berki Yenigün tarafından tercüme edilmiştir.</b>
+  Daha fazla bilgi için <a href="../network/intro.htm#ddd">buraya bakın</a>.
+
+  Bu belgeyi kopyalama, dağıtma ve/veya değiştirme izni, GNU Özgür
+  Belgeleme Lisansı'nın 1.2 veya Free Software Foundation tarafından
+  yayınlanan daha yeni bir sürümü kapsamında verilmiştir.
+  Lisansın bir sureti, <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>
+  başlıklı bölümde mevcuttur.
+
+</pre></body></html>

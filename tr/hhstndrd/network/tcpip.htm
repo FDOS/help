@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>FreeDOS ile Ağa Bağlanmak - TCP/IP</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<h1><a name="top"></a>FreeDOS ile Ağa Bağlanmak - TCP/IP</h1>
+<pre>
+  Transmission Control Protocol (yani Aktarım Kontrol Protokolü, TCP) ve
+  the Internet Protocol (IP) artık bir <a href="../network/network.htm">ağa</a> bağlanmak için en yaygın
+  kullanılan protokoldür. TCP/IP, RFC sistemiyle açık bir standart olarak
+  İnternet'e bağlanmak için tasarlanmıştır. Kullanılan ana protokoller
+  arasında, TCP/IP sadece yerel ağlara (LAN) değil, <b>aslen</b> geniş alan
+  <a href="../network/network.htm">ağlarına</a> yani Wide Area Networks bağlanmak için tasarlanan tek
+  protokoldür.
+  DOS için TCP/IP katmanının birçok uygulaması olmuştur (İS tarafından
+  standartlaştırılmış olmamasından dolayı). Hâlâ kullanıldığından dolayı
+  en başarılısı Erick Engelke'den edinilebilen <a href="../network/wattcp.htm">WatTCP</a>'dir (Waterloo TCP/IP
+  Çekirdeği). Kullanılması ücretsizdir ancak programcının el kitabının
+  satın alınması gerekir. <a href="../network/wattcp.htm">WatTCP</a>'nin 32 bit bir sürümü de mevcuttur.
+  <a href="../network/history.htm#bbf">KA9Q</a> TCP/IP yığını başka uygulamalarda kullanılmıştır, ama en çok NOS
+  NET.EXE programının çeşitli sürümlerinde bulunur, ki bunlar bazı
+  uygulamaları (ftp, smtp, vs.) programın bir parçası olarak içerirler.
+  Kalan TCP/IP yığınlarının çoğu üçüncü taraf desteğine sahip değildiler,
+  dolayısıyla orijinal programcılar geliştirmeyi durdurunca, tüm uygulama
+  geliştirmesi de durmuş oldu. Bunlar MIT/CMU pcip, Trumpet TCP/IP,
+  TinyTCP ve FreePASCAL TCP/IP yığınlarını kapsar. Daha az bir ölçüde bu,
+  Microsoft ile <a href="../network/novell.htm">Novell</a> TCP/IP yığınlarını ve çeşitli diğer ticari çözümleri
+  de kapsar.
+</pre>
+<h2><a name="aaa"></a>Harici Bağlantılar</h2>
+<pre>
+    * <b><a href="../network/history.htm#bbd">PC-TCP (PC/TCP)</a> Paket Sürücü Tanımlaması</b>
+      (bkz.: <b>http://www.crynwr.com/packet_driver.html (*01)</b>)
+    * <b>Packet Drivers, made simple</b> (PACKET.DOC) (Joe R. Doupnik)
+      (bkz.: <b>http://www.crynwr.com/drivers/pktd11.zip (*02)</b>)
+    * <b><a href="../network/history.htm#bbc">PC-IP</a> Nasıl Oluştu</b> (John Romkey, Bernard Aboba'ya anlatıldığı gibi)
+      (bkz.: <b>http://aboba.drizzlehosting.com/internaut/pc-ip.html (*03)</b>)
+    * <b>Orta Çağda Masaüstü TCP/IP'si</b> (Steven Baker)
+      (bkz.: <b>http://www.ece.ubc.ca/home/staff/faculty/gillies/etc/www/
+      9802net.html (*04)</b>)
+    * <b>The <a href="../network/history.htm#bbf">KA9Q</a> NOS TCP/IP paketi</b> (Phil Karn)
+      (bkz.: <b>http://www.ka9q.net/code/ka9qnos/ (*05)</b>)
+    * (url?) Evrensel TCP/IP Ağ Başlatma Diski, Microsoft Ağları için
+       ver 5.2 (Brad Driver) (*06)
+
+  <b>(*01) https://web.archive.org/web/20120608031912/http://www.
+        crynwr.com/packet_driver.html</b>
+  <b>(*02) http://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/
+        repositories/latest/net/crynwr.zip - see PACKET.DOC</b>
+  <b>(*03) https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=
+        web&cd=&ved=2ahUKEwi4tc_xvZPqAhUEnVwKHeJpBZQQFjAAegQIAhAB&url=
+        ftp%3A%2F%2Fnic.funet.fi%2Findex%2Fnetworking%2Fmagazines%2F
+        Internaut%2Fpc-ip.html&usg=AOvVaw2xp6u7ieLlJMNfvpiqtLq5</b>
+  <b>(*04) http://www.ece.ubc.ca/~gillies/9802net.html</b>
+  <b>(*05) Tamam</b>
+  <b>(*06) https://www.netbootdisk.com/download.htm</b>
+</pre>
+<hr>
+<pre>
+  <b>Telif hakkı &copy; 2007 Ulrich Hansen, Mainz (Almanya), 2010 ve 2020
+  senelerinde W.Spiegl tarafından değiştirilmiştir.</b>
+  <b>2023 senesinde Berki Yenigün tarafından tercüme edilmiştir.</b>
+  Daha fazla bilgi için <a href="../network/intro.htm#ddd">buraya bakın</a>.
+
+  Bu belgeyi kopyalama, dağıtma ve/veya değiştirme izni, GNU Özgür
+  Belgeleme Lisansı'nın 1.2 veya Free Software Foundation tarafından
+  yayınlanan daha yeni bir sürümü kapsamında verilmiştir.
+  Lisansın bir sureti, <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>
+  başlıklı bölümde mevcuttur.
+
+</pre></body></html>

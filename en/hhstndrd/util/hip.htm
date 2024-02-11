@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: HIP</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: HIP</h1>
+<pre>
+  <b>WARNING: THE USE OF HIP IS PROHIBITED IN MANY COUNTRIES! USE IT AT
+  YOUR OWN RISK!</b>
+  <b>IT IS STRICTLY RECOMMENDED TO READ THE DOCUMENTATION FOR MORE
+  DETAILED INFORMATION ABOUT THIS TOOL!</b>
+  Hide In Picture (HIP) is a steganography program. It is a program that
+  allows you to "hide" any kind of file inside standard bitmap pictures.
+  The pictures look like normal images, so people will not suspect they
+  contain hidden data.
+  You can use a password to hide your files, and only those who know the
+  password use are able to retrieve them - without it, people cannot
+  even be sure there is something hidden in the image.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  To hide a file inside a picture, use:
+    hip h source_image input_file [destination_image] [options]
+  If the destination image name is not specified, the destination image
+  is written on top of the source image.
+
+  To retrieve a file from a picture, use:
+    hip r source_image [output_file] [options]
+  If the output file name is not specified, the name saved in the picture
+  is used.
+
+  To erase a file previously hidden in a picture, use:
+    hip e source_image [destination_image] [options]
+  If the destination image name is not specified, the destination image
+  is written on top of the source image.
+</pre>
+<h2>Options:</h2>
+<pre>
+  fxxxxxx - file name to write in image
+    By default, the name of the input file is written in the image. Use
+    this option to specify a different name to write. If you use it
+    without specifying a file name, no name is written.
+  pxxxxxx - password to use
+    When used with the hide or retrieve operations, this option specifies
+    the password to use for hiding/retrieving the file. If you do not use
+    this option, you will be asked to enter a password (recommended).
+    When used with the erase operation, HIP assumes there is a file
+    hidden with the specified password and overwrites only the first bits
+    of the hidden data; if the image contains a file hidden with a
+    different password, it will not be erased correctly.
+  thh or thhhhhh - transparent color index or RGB value
+    Use this option to set the transparent color for the image. To
+    specify the palette index for the transparent color of an 8-bit
+    image, use two hexadecimal digits (00-FF). To specify the RGB value
+    for the transparent color, use six hexadecimal digits (the first two
+    represent the red component, the next two represent the green one
+    and the last two, the blue one). If you specify the RGB value for
+    the transparent color of an 8-bit image and there is more than one
+    palette entry with that color, the one with the lowest index will be
+    used.
+  ex - encryption algorithm
+    Use this option to choose the encryption algorithm: a for Blowfish
+    (default) or b for Rijndael.
+  ix - image format
+    Use this option to choose the image format for the output file. If
+    the format is not specified, HIP will choose the format based on the
+    file extension; if the extension is not recognized, the file will be
+    saved as a Windows Bitmap (BMP) picture.
+  c - write the CRC-32 of the data
+    Use this option to append a checksum to the data to identify data
+    corruption. This is enabled by default.
+  C - do not write the CRC-32 of the data
+    Use this option if you do not wish to append a checksum to the data;
+    see above.
+  h - hide the password characters
+    If the p option is not used, the program asks the user for the
+    password. Use this option to show *'s (asterisks) instead of the
+    password characters. This is enabled by default.
+  H - do not hide the password characters
+    Use this option to show the password characters while you are typing
+    them.
+  v - view file information only
+    Use this option if you only want to see whether the file fits inside
+    the picture when hiding, or the name and size of the hidden file when
+    retrieving. The destination image or output file is not written.
+  q -quiet mode
+    Use this option if you do not want to see unnecessary messages (such
+    as the file information and status bars). The only things that will
+    be shown are password prompts, confirmation messages and error
+    messages.
+  y -answer 'yes' to all confirmation questions
+    By default, the program asks for confirmation before overwriting a
+    file that already exists. If this option is specified, you will not
+    be asked for confirmation.
+</pre>
+<h2>Comments:</h2>
+<pre>
+ <b>IT IS STRICTLY RECOMMENDED TO READ THE DOCUMENTATION FOR MORE
+ DETAILED INFORMATION ABOUT THIS TOOL!</b>
+ See:
+ <b>https://gitlab.com/FreeDOS/util/hip/-/tree/master/UTIL/HIP?ref_type=heads</b>
+ OR:
+ <b>https://sourceforge.net/projects/hide-in-picture/files/hide-in-picture/</b>
+ OR:
+ <b>C:\UTIL\HIP\hip.txt or hip.htm</b>
+ <b>WARNING: THE USE OF HIP IS PROHIBITED IN MANY COUNTRIES! USE IT AT
+ YOUR OWN RISK!</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - none -
+</pre>
+<h2>See also:</h2>
+<pre>
+  - nowhere -
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2002 Davi Figueiredo, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

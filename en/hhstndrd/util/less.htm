@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: less</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: less</h1>
+<pre>
+     LESS is a program similar to <a href="../base/more.htm">MORE</a>, but which allows backward
+     movement in the file as well as forward movement. Also, less does
+     not have to read the entire input file before starting, so with
+     large input files it starts up faster than text editors like VI.
+     Less uses termcap (or terminfo on some systems), so it can run on a
+     variety of terminals. There is even limited support for hardcopy
+     terminals. (On a hardcopy terminal, lines which should be
+     printed at the top of the screen are prefixed with a caret.)
+
+     Commands are based on both <a href="../base/more.htm">MORE</a> and VI. Commands may be preceded
+     by a decimal number, called N in the descriptions below. The number
+     is used by some commands, as indicated.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+     less -?
+     less -V
+     less [-[+]aBcCdeEfgGiImMnNqQrsSuUVwX]
+          [-b bufs] [-h lines] [-j line] [-k keyfile]
+          [-{oO} logfile] [-p pattern] [-P prompt] [-t tag]
+          [-T tagsfile] [-x tab] [-y lines] [-[z] lines]
+          [+[+]cmd] [filename]...
+</pre>
+<h2>Options:</h2>
+<pre>
+                     SUMMARY OF COMMANDS
+
+      Commands marked with * may be preceded by a number, <b>N</b>.
+      Notes in parentheses indicate the behavior if <b>N</b> is given.
+
+  h  H                 Display this help.
+  q  :q  :Q  ZZ        Exit.
+
+  e  ^E  j  ^N  CR  *  Forward  one line (or <b>N</b> lines).
+  y  ^Y  k  ^K  ^P  *  Backward one line (or <b>N</b> lines).
+  f  ^F  ^V  SPACE  *  Forward  one window (or <b>N</b> lines).
+  b  ^B  ESC-v      *  Backward one window (or <b>N</b> lines).
+  z                 *  Forward  one window (and set window to <b>N</b>).
+  w                 *  Backward one window (and set window to <b>N</b>).
+  d  ^D             *  Forward  one half-window (and set half-window
+                       to <b>N</b>).
+  u  ^U             *  Backward one half-window (and set half-window
+                       to <b>N</b>).
+  F                    Forward forever; like "tail -f".
+  r  ^R  ^L            Repaint screen.
+  R                    Repaint screen, discarding buffered input.
+        ---------------------------------------------------
+        Default "window" is the screen height.
+        Default "half-window" is half of the screen height.
+        ---------------------------------------------------
+  /<b>pattern</b>          *  Search forward for (<b>N</b>-th) matching line.
+  ?<b>pattern</b>          *  Search backward for (<b>N</b>-th) matching line.
+  n                 *  Repeat previous search (for <b>N</b>-th occurrence).
+  N                 *  Repeat previous search in reverse direction.
+  ESC-n             *  Repeat previous search, spanning files.
+  ESC-N             *  Repeat previous search, reverse dir. &amp;
+                       spanning files.
+  ESC-u                Undo (toggle) search highlighting.
+        ---------------------------------------------------
+        Search patterns may be modified by one or more of:
+        !  search for NON-matching lines.
+        *  search multiple files.
+        @  start search at first file (for /) or last file (for ?).
+        ---------------------------------------------------
+  g  &lt;  ESC-&lt;       *  Go to first line in file (or line <b>N</b>).
+  G  &gt;  ESC-&gt;       *  Go to last line in file (or line <b>N</b>).
+  p  &percnt;              *  Go to beginning of file (or <b>N</b> percent into file).
+  {                 *  Go to the } matching the (<b>N</b>-th) { in the top line.
+  }                 *  Go to the { matching the (<b>N</b>-th) } in the bottom line.
+  (                 *  Go to the ) matching the (<b>N</b>-th) ( in the top line.
+  )                 *  Go to the ( matching the (<b>N</b>-th) ) in the bottom line.
+  [                 *  Go to the ] matching the (<b>N</b>-th) [ in the top line.
+  ]                 *  Go to the [ matching the (<b>N</b>-th) ] in the bottom line.
+  ESC-^F &lt;<b>c1</b>&gt; &lt;<b>c2</b>&gt;  *  Go to the <b>c1</b> matching the (<b>N</b>-th) <b>c2</b> in the top line
+  ESC-^B &lt;<b>c1</b>&gt; &lt;<b>c2</b>&gt;  *  Go to the <b>c2</b> matching the (<b>N</b>-th) <b>c1</b> in the bottom
+                       line.
+  m<b>&lt;letter&gt;</b>            Mark the current position with &lt;letter&gt;.
+  '<b>&lt;letter&gt;</b>            Go to a previously marked position.
+  ''                   Go to the previous position.
+  ^X^X                 Same as '.
+  :e [<b>file</b>]            Examine a new file.
+  ^X^V                 Same as :e.
+  :n                *  Examine the (<b>N</b>-th) next file from the command line.
+  :p                *  Examine the (<b>N</b>-th) previous file from the command
+                       line.
+  :x                *  Examine the first (or <b>N</b>-th) file from the command
+                       line.
+  =  ^G  :f            Print current file name.
+  V                    Print version number of "less".
+  -<b>&lt;flag&gt;</b>              Toggle a command line flag [see FLAGS below].
+  _<b>&lt;flag&gt;</b>              Display the setting of a command line flag.
+  +<b>cmd</b>                 Execute the less cmd each time a new file is
+                       examined.
+  !<b>command</b>             Passes the command to $SHELL to be executed.
+  |X<b>command</b>            Pipe file between current pos &amp; mark X to shell
+                       command.
+  v                    Edit the current file with $VISUAL or $EDITOR.
+        ---------------------------------------------------
+                         FLAGS
+
+        Most flags may be changed either on the command line,
+        or from within less by using the - command.
+
+  -?            Display help (from command line).
+  -a            Forward search skips current screen.
+  -b [<b>N</b>]        Number of buffers.
+  -B            Don't automatically allocate buffers for pipes.
+  -c  -C        Repaint by scrolling/clearing.
+  -d            Dumb terminal.
+  -e  -E        Quit at end of file.
+  -f            Force open non-regular files.
+  -g            Don't highlight matches for previous search pattern.
+  -G            Highlight ALL matches for previous search pattern.
+  -h [<b>N</b>]        Backward scroll limit.
+  -i            Ignore case in searches.
+  -I            Ignore case in searches and in search patterns.
+  -j [<b>N</b>]        Screen position of target lines.
+  -k [<b>file</b>]     Use a lesskey file.
+  -m  -M        Set prompt style.
+  -n  -N        Use line numbers.
+  -o [<b>file</b>]     Log file.
+  -O [<b>file</b>]     Log file (unconditionally overwrite).
+  -p [<b>pattern</b>]  Start at pattern (from command line).
+  -P [<b>prompt</b>]   Define new prompt.
+  -q  -Q        Quiet the terminal bell.
+  -r            Output "raw" control characters.
+  -s            Squeeze multiple blank lines.
+  -S            Chop long lines.
+  -t [<b>tag</b>]      Find a tag.
+  -T [<b>tagsfile</b>] Use an alternate tags file.
+  -u  -U        Change handling of backspaces.
+  -V            Display the version number of "less".
+  -w            Display &tilde; for lines after end-of-file.
+  -x [<b>N</b>]        Set tab stops.
+  -X            Don't use termcap init/deinit strings.
+  -y [<b>N</b>]        Forward scroll limit.
+  -z [<b>N</b>]        Set size of window.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  LESS has an extensive documentation that is beyond the scope of
+  this help. For more information see:
+  <b>https://gitlab.com/FreeDOS/unix/less</b> OR WIKI
+  <b>https://en.wikipedia.org/wiki/Less_(Unix)</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - none -
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/more.htm">more</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2013 Mark Nudelmann, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

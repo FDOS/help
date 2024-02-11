@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: stamp</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: stamp</h1>
+<pre>
+  STAMP is a file attributes manipulation tool to set, view, and filter
+  the timestamps of files.
+  Features of STAMP:
+  - Change date/time for files
+  - Change attributes for files and directories
+  - Compare date/time and attributes for files and directories
+  - Date/time options allow get values from current and file date/time
+    simultaneously with explicit numbers
+  - Complex date/time comparision with current date/time, likewise with
+    file
+  - Date/time in formats, that conforms COUNTRY settings
+  - UNC and NetWare pathes allowed
+  - Multiply targets in one command line
+  - Extended wildcards: names can contain any number of '*', also as '?';
+    "name" mean "name.", but "*" mean "*.*"
+  - Option character ('/' or '-') autosense
+  - Option to include directories names in wildcards search
+  - Option to process files and directories in all of target's subdirectories
+  - Option to process file with list of targets; missed argument mean
+    standard input
+</pre>
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  STAMP [/a&lt;a&gt;] [/d[&lt;d&gt;]] [/t[&lt;t&gt;]] {path | /@[list]}...
+  STAMP [/a&lt;a&gt;] [/d[&lt;d&gt;]] [/t[&lt;t&gt;]] &lt;compare&gt; {path | /@[list]}...
+</pre>
+<h2>Options:</h2>
+<pre>
+  /r  - Include directories when search by wildcards
+  /s  - Process files in all subdirectories of specified targets
+  <b>Arguments:</b>
+  &lt;a&gt; - Union of attributes (ARHSD) with '+' or '-' prefix;
+        prefixes can be ommited (i.e. /aha-sr works as /a+h+a-s-r),
+        ommited argument clears RHS attributes (i.e. /a works as /a-rhs)
+  &lt;d&gt;  - Date in [[[c]y]m]d (century, year, month, day) format*
+  &lt;t&gt;  - Time in h[m[s]] (hour, minute, second) format*
+  <b>Compare options:</b>
+  /e  - Check if given date, time and/or attributes equal to file
+  /g  - Check if given date and/or time greater than file
+  /l  - Check if given date and/or time lesser than file
+  /c  - Compare given date/time with current, not file date/time (i.e.
+        "/d!!!! file /g /c" works same as "/d /l file")
+  *  Ommited option don't touch corresponding attribute
+  *  Fields must be '@' (gets value from current date/time), '!' (from
+     file date/time) or 2-digit numbers; ommited argument mean current
+     date/time (i.e. /d and /t works as /d@@@@ and /t@@@), ommited field
+     mean '@' for date (unless century, which mean '!' if year represen-
+     ted by '!') and 0 for time (i.e. /d!@@ and /t! works as /d!!@@
+     and /t!0000)
+  *  Date and time can be presented in formats, that conforms COUNTRY
+     settings (i.e. for USA /d3-19-! works as /d!!1903)
+</pre>
+<h2>Comments:</h2>
+<pre>
+    0  - Date/time and attributes setting or comparing successful
+    1  - Compare (one of) is unsuccessful
+    2  - Error file access or set file date/time/attributes
+  128  - Invalid or diplicated option
+  129  - Incompatible options, none targets or invalid arguments
+  130  - Internal error (not enough memory or too deep directory)
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - none -
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/attrib.htm">attrib</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Arkady Belousov, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

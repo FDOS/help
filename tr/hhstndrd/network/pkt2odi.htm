@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>FreeDOS ile Ağa Bağlanmak - PKT2ODI</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<h1><a name="top"></a>FreeDOS ile Ağa Bağlanmak - PKT2ODI</h1>
+<pre>
+  Daha yaygın kullanılan <a href="../network/odi_ins.htm#ccc">ODIPKT.COM</a> programına alternatif olarak, bazı
+  kişiler Caldera'nın PKT2ODI.EXE programını bir paket sürücüsünden <a href="../network/odi.htm">ODI</a>
+  dönüştürücüsü olarak kullanmayı denemek isteyebilirler. Ancak farkında
+  olmamız gereken nokta, Novell'in WebSpyder lisansının (ki PKT2ODI.EXE
+  programını da kapsar) yazılımı sadece değerlendirme amacıyla kullanmaya
+  izin verdiğidir. Ticari kullanıcılar için değerlendirme süresi 90 günle
+  sınırlıdır. Ticari olmayan kullanıcılar içinse değerlendirme izni "makul
+  bir süre" için verilmiştir. (Bu yazılımı 21. asırda değerlendirmek ne
+  kadar makul olabilir ki?) Her durumda, PKT2ODI.EXE, <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>
+  dosyasında şunun gibi bir komutla başlatılacaktır:
+    LH C:\NETWORK\NWCLIENT\PKT2ODI.EXE /B:1 /I:69
+  "/B" seçeneği, PKT2ODI.EXE programına hangi mantıksal kartı
+  kullanacağını belirtir. Yukarıda izah edildiği gibi, <a href="../network/ethernet.htm">ETHERNET</a> II
+  çerçevesini kullanan kartı seçmemiz gerekir. <a href="../network/odi_ins.htm#ccc">ODIPKT</a> programından farklı
+  olarak, PKT2ODI "1" değerinden başlayarak sayar, dolayısıyla NET.CFG bu
+  örnek gibi görünüyorsa:
+    --- NET.CFG ---
+      Link Driver 3C574
+        FRAME ETHERNET_II
+        FRAME ETHERNET_802.2
+        FRAME ETHERNET_802.3
+        FRAME ETHERNET_SNAP
+  şu parametreyi kullanmamız gerekir:
+    PKT2ODI.EXE /B:1
+  ki bunun amacı ilk kartı kullanmaktır (ETHERNET_II ile olanı). Unutmayın
+  ki Ethernet II ile çalışan kartı kullanmamız gerekir, yoksa dönüştürücü
+  sürücüyle iletişim kuramayacak ve MLID (Multiple Link Interface Driver)
+  bulunamadı hatası verecektir.
+
+  İkinci parametre yani "/I", sürücünün kullandığı yazılım kesmesini
+  (vektörü) ayarlar. Bunun 0x60 olması gerektiğini önceden bulmuştuk,
+  ancak maalesef bu PKT2ODI ile çalışmaz. Program 0x60 ila 0x68 arası
+  kesme vektörlerini kabul etmemektedir. 0x69 vektörünü şu parametre ile
+  kullanabiliriz:
+    PKT2ODI.EXE /I:69
+  0x69 gibi alışılagelmedik bir kesme vektörünü kullanmak bazı TCP/IP
+  uygulamaları için sorun teşkil edebilir. Bu vektörü kullanmak için
+  yapılandırılmaları gerekir. SIOUX Web sunucusu gibi bazı programlar,
+  vektör 0x60 değilse gerektiği gibi çalışmayabilirler.
+  Hepsi bu. LSL'i (Link Support Layer) başlattıktan sonra, MLID
+  (Multiple Link Interface Driver) ve paket sürücü arayüz dönüştürücüsü
+  faal ve çalışır olmalıdır.
+    (PKT2ODI başlangıç mesajlarını gösteren resim)
+</pre>
+<hr>
+<pre>
+  <b>Telif hakkı &copy; 2007 Ulrich Hansen, Mainz (Almanya), 2010 senesinde
+  W.Spiegl tarafından değiştirilmiştir.</b>
+  <b>2023 senesinde Berki Yenigün tarafından tercüme edilmiştir.</b>
+  Daha fazla bilgi için <a href="../network/intro.htm#ddd">buraya bakın</a>.
+
+  Bu belgeyi kopyalama, dağıtma ve/veya değiştirme izni, GNU Özgür
+  Belgeleme Lisansı'nın 1.2 veya Free Software Foundation tarafından
+  yayınlanan daha yeni bir sürümü kapsamında verilmiştir.
+  Lisansın bir sureti, <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>
+  başlıklı bölümde mevcuttur.
+
+</pre></body></html>

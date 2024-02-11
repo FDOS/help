@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: gnu bc</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: gnu bc</h1>
+<pre>
+  GNU BC is an arbitrary precision calculator language.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  bc [ -lws ] [  file ... ]
+</pre>
+<h2>Options:</h2>
+<pre>
+  -l   Define the standard math library.
+  -w   Give warnings for extensions to POSIX bc.
+  -s   Process exactly the POSIX bc language.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  BC is a language that supports arbitrary precision numbers with
+  interactive execution of statements. There are some similarities in
+  the syntax to the C programming language. A standard math library is
+  available by command line option. If requested, the math library is
+  defined before processing any files. bc starts by processing code from
+  all the files listed on the command line in the order listed. After all
+  files have been processed, bc reads from the standard input. All code
+  is executed as it is read. (If a file contains a command to halt the
+  processor, bc will never read from the standard input.)
+  For more information see:
+  <b>https://gitlab.com/FreeDOS/unix/gnubc/-/blob/master/DOC/GNUBC/</b>
+  <b>BC.MAN?ref_type=heads</b> OR:
+  <b>https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/util/unix/bc/</b>
+  <b>dosbc.zip</b> OR:
+  <b>C:\FREEDOS\DOC\GNUBC\bc.man</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - none -
+</pre>
+<h2>See also:</h2>
+<pre>
+  - nowhere -
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>FreeDOS ile Ağa Bağlanmak - ODI sürücü kurulumu</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<h1><a name="top"></a>FreeDOS ile Ağa Bağlanmak - ODI sürücü kurulumu</h1>
+<h2><a name="zzz"></a>Genel Bakış</h2>
+<pre>
+    (ODI modelinin resmi)
+  "Open Datalink Interface" (<a href="../network/odi.htm">ODI</a>) sürücüleri aslında <a href="../network/novell.htm">Novell</a> NetWare için
+  gerekliydi. Ancak bu, onların paket sürücüsü temelli <a href="../network/tcpip.htm">TCP/IP</a>
+  uygulamaları için kullanılamayacakları anlamına gelmez. İcat
+  edildiklerinden beri bunun için kullanıldılar.
+  Bir <a href="../network/odi.htm">ODI</a> sürücüsü iyi bir seçimdir, kartınız için paket sürücüsü mevcut
+  değilse. Geçen asrın seksenli ve doksanlı senelerinde NetWare popüler
+  bir sistem olduğundan dolayı, <a href="../network/network.htm">ağ</a> kartınızın üreticisinin böyle bir
+  ODI sürücüsü sağlamış olması oldukça muhtemeldir.
+</pre>
+<h2><a name="aaa"></a>Nerede bulunurlar</h2>
+<pre>
+  Kartınızın kurulum disketi veya CD-ROM'unda "netware", "nwclient", "ODI"
+  veya "VLM" isimli bir dizin arayın. Sürücüler çalıştırılabilir
+  dosyalardır, isimleri "3C574.COM" or "DFE670.COM" gibidir.
+</pre>
+<h2><a name="bbb"></a>Nasıl çalışırlar</h2>
+<pre>
+  <b>ODI tanımlaması</b> dilinde (bkz.: <b>http://developer.novell.com
+  /ndk/doc/lancomp/dos_psta/dos_pstack.pdf (*01)</b>) bu ağ kartı
+  sürücüleri, <b>"Multiple Link Interface Driver" (MLID)</b> yani Çoklu
+  Bağlantı Arayüz Sürücüsü olarak adlandırılır. Yukarıdaki resimde
+  görebileceğiniz üzere, <b>MLID</b> doğrudan <a href="../network/network.htm">ağ</a> arayüz kartının donanımıyla
+  iletişim kurar. <b>MLID</b>, sistemde değişik protokol yığınları
+  (çekirdekleri) için paketler alır ve bu paketleri ismi <b>"Link Support
+  Layer" (LSL)</b> yani Bağlantı Destek Katmanı olan ikinci bir yazılıma
+  aktarır. Bunun ardından LSL, paketi hangi protokol yığınının alacağını
+  belirler. <b>MLID</b> ve <b>LSL</b>'in her ikisi ODI mimarisini oluşturur.
+  Dolayısıyla ODI'yi çalıştırabilmek için ilave bir dosyaya ihtiyacımız
+  olacaktır: <b>LSL</b>, ki bu, LSL.COM isimli bir dosyadır. Bu dosya,
+ "DOS NetWare Client" istemcisinin bir parçasıdır ve <a href="../network/novell.htm">Novell</a>
+  sitesinden indirilebilir (bkz.: <b>http://www.novell.com/coolsolutions/
+  tools/downloads/dw271e.zip (*02)</b>). <a href="../network/novell.htm">Novell'in</a> <b>indirme sitesi</b>
+  (bkz.: <b>http://www.novell.com/coolsolutions/tools/13555.html (*03)</b>)
+  bu dosya için açıkça "LICENSE: FREE" ibaresini bulundurur, yani lisans
+  ücretsizdir. İndirme ve çıkarmanın ardından, "LSL.COM" dosyası "NIOS"
+  dizininin içinde bulunabilir.
+</pre>
+<h2><a name="ccc"></a>Dönüştürücü/takoz</h2>
+<pre>
+    (Webspyder'ın resmi)
+  ODI'yi paket sürücüsü temelli <a href="../network/tcpip.htm">TCP/IP</a> uygulamalarıyla kullanmak
+  istediğimizden dolayı, başka bir yazılım da indirmemiz gerekecektir, bir
+  <b>"Paket Sürücüsünden ODI'ye Dönüştürücü"</b>. Dönüştürücülere aynı
+  zamanda "wrappers" veya "shim" yani takoz da denir.
+  Üç seçeneğimiz bulunmaktadır:
+    * Harvard Üniversitesi'nden Dan Lanciani'nin yazdığı <a href="../network/history.htm#bbe">ODIPKT.COM</a> v3.1
+      (bkz.: <b>http://www.danlan.com (*04)</b>). Yazılım kamu malıdır;
+      lisansı özgürce kaynak ve ikili dosyaların tekrar dağıtımıyla
+      kaynağın (assembler) değiştirilmesine izin verir. <a href="../network/history.htm#bbe">ODIPKT.COM</a>,
+      FreeDOS 1.0 sürümünün bir parçasıdır.
+      Şayet ağ uygulamalarını Full CD dağıtımından kurduysanız,
+      C:\FREEDOSDOS\BIN konumunda bulunur. <b>Bu, kullanıcıların büyük
+      çoğunluğunun seçeceği yazılımdır</b>.
+    * Caldera tarafından yazılan <a href="../network/pkt2odi.htm">PKT2ODI</a>.EXE. Bu dosya, grafik bir
+      DOS tarayıcısı olan ve Caldera'nın 1998 senesinde yayınladığı DR
+      "WebSpyder"yazılımının bir parçasıdır. WebSpyder, xChaos/<a href="../network/tcpip_ap.htm#ccc">Arachne</a>'den
+      lisanslanmıştır. Yazılım şuradan indirilebilir </b> (bkz.: <b>http://
+      lazybrowndog.net/webspyder (*05)</b>). Lisansı denemeye ve ticari
+      olmayan amaçlar için tekrar dağıtıma izin vermektedir.
+    * Eğer zaten tam NetWare çalıştırıyorsanız, IPX.COM üzerinde bir paket
+      sürücüsü çalıştırmak için IPXPKT.COM dosyasını kullanabilirsiniz.
+      IPXPKT.COM, <a href="../network/crynwr.htm">Crynwr</a> tarafından
+      yazılmış özgür bir yazılımdır ve PKTD11.ZIP paket sürücüsü
+      koleksiyonunun bir parçasıdır. (bkz.: <b>http://www.crynwr.com/
+      drivers/pktd11.zip (*06)</b>). Bu özel bir durumdur ve bu belgede
+      daha fazla incelenmeyecektir.
+  <b>MLID</b> ile <b>LSL</b> ve dönüştürücü, ihtiyacımız olan dosyaların
+  neredeyse tamamıdır. Kalan tek dosya "NET.CFG" yapılandırma dosyasıdır.
+  Kartınız için varsayılan ayarlarla bir örnek dosya kartla gelen CD veya
+  disket üzerinde bulunabilir ve ODI sürücüsüyle aynı dizinde olması
+  muhtemeldir.
+</pre>
+<h2><a name="ddd"></a>NET.CFG yapılandırması</h2>
+<pre>
+  Şimdi ana yapılandırma dosyası olan NET.CFG dosyasını düzenleyelim.
+  Mevcut değilse onu oluşturun. Bir dizin seçmeniz gerekecektir - NET.CFG
+  için varsayılan konumlar C:\NWCLIENT veya C:\NET gibi görünmektedir. Her
+  durumda konumun LSL.COM ve sürücünün bulunduğu dizin olması gerekir.
+  <a href="../network/3com.htm">3Com</a> 3C574 PC kartıyla gelen örnek bir
+  NET.CFG (aşağıya bakın) birçok yapılandırma ayarı gösterir ki bunlar
+  NetWare ve başka yazılımlar için gereklidir. Paket sürücüsü temelli
+  <a href="../network/tcpip.htm">TCP/IP</a> uygulamalarını kullanmak için NET.CFG dosyasındaki aşağıdaki dört
+  satır kafidir:
+      --- NET.CFG ---
+      Link Support
+        buffers 8 1600
+      Link Driver 3C574
+        Frame Ethernet_II
+  <b>Parametrelerin açıklaması:</b>
+      link support
+  "Link Support" satırı <b>LSL</b>'i yapılandırır. Seçenekler şunlardır:
+  "buffers", "max boards", "max stacks" ve "mempool". Sadece şunu
+  ayarlamaya ihtiyacımız vardır:
+      buffers 8 1600
+  Bu, <b>LSL</b> alma tamponlarının sayısı ve boyutunu belirler.
+  <a href="../network/tcpip.htm">TCP/IP</a> için varsayılan iletişim rakamı 8'dir. <a href="../network/history.htm#bbe">ODIPKT</a> geliştiricisi Dan
+  Lanciani, ODIPKT için 1600 baytlık bir tampon boyutu tavsiye etmiştir.
+  (bkz.: <b>http://groups.google.de/group/comp.protocols.tcp-ip/msg/
+  b8ba79ab39cacc4f/ (*07)</b>)
+      Link Driver 3C574
+  "Link Driver" satırı, <b>MLID</b> (<a href="../network/network.htm">ağ</a> kartınızın sürücüsü) yapılandırmaya
+  yarar. İlk önce sürücünün ismi belirtilir. Yukarıda örnek olarak <a href="../network/3com.htm">3Com</a>
+  3C574 PC Kartını görüyorsunuz. Bunu sizin ağ kartınızın adı olacak
+  şekilde değiştirin.
+  Ardından bu sürücü tarafından kullanılan "frame" veya "envelope type"
+  ("çerçeve" veya "zarf türü") unsurunu yapılandıracağız (her iki beyan
+  işe yarar ve aynı anlama gelir):
+      Frame Ethernet_II
+  Burada birden fazla frame türü belirtmek mümkündür: ODI'nin çoklu
+  protokol destekli bir sürücü olduğunu zaten biliyoruz, yani <b>MLID</b> aynı
+  ağ kartıyla birden fazla çerçeve yani frame ve protokol kullanabilir. Bu
+  maksatla her tanımlanan çerçeve için mantıksal ağ kartı tanımlar. Mümkün
+  olan çerçeveler mesela şunlardır: "<a href="../network/ethernet.htm">ETHERNET</a>_II" (IP protokolü),
+  "ETHERNET_802.2" veya "ETHERNET_802.3" (<a href="../network/ipxspx.htm">IPX/SPX</a> protokollerinin her
+  ikisi).
+  Daha sonra başlatmak isteyeceğimiz paket sürücü dönüştürücüsü için
+  burada en azından <a href="../network/ethernet.htm">Ethernet</a> II çerçevesi tanımlamak mecburidir. Buna ek
+  olarak ODIPKT dosyasına bir komut satırı parametresiyle ETHERNET_II
+  çerçevesi kullanan kartı kullanmasını bildirmeniz gerekecektir (aşağıya
+  bakın).
+  NET.CFG dosyasındaki tüm parametrelerin tam belgelendirmesi için
+  "NetWare Client for DOS and MS Windows Technical Reference"
+  (bkz.: <b>http://www.docs.hp.com/en/J2771-90016/index.html (*08)</b>)
+  belgesine bakın.
+</pre>
+<h2><a name="eee"></a>Kurulum</h2>
+<pre>
+  NET.CFG dosyasını yapılandırdıktan sonra, ODI sürücülerini bilgisayarın
+  başlatma aşamasında <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> içinde başlatabiliriz.
+  İlk başlatmak isteyeceğimiz şey şudur: Link Support Layer.
+      LH C:\NETWORK\NWCLIENT\LSL.COM /C C:\NETWORK\NET\NET.CFG
+  Lütfen yolları siteminizde kullandığınız yollarla değiştirin. "/C"
+  seçeneği, <b>LSL</b>'e NET.CFG dosyasını nerede bulacağını belirtir. Bu
+  seçenek sadece NET.CFG LSL.COM ile aynı dizinde değil ise gereklidir.
+  Şimdi <b>MLID</b>'yi başlatıyoruz:
+      LH C:\NETWORK\PCMCIA\3C574\ODI\3C574.COM
+  Son bir adım olarak Paket Sürücüsü ODI dönüştürücüsünü kurmamız gerekir.
+  Burada, <a href="../network/history.htm#bbe">ODIPKT</a> veya daha seyrek görülen <a href="../network/pkt2odi.htm">PKT2ODI</a> arasında bir seçim
+  yapabiliriz.
+  Kullanıcıların büyük çoğunluğu, Dan Lanciani'nin yazdığı ve şuradan
+  indirilebilen <b>http://danlan.com/pdr_shim/odipkt/odipkt.zip (*09)</b>
+  özgür dönüştürücüyü kullanacaktır. Zip dosyasını çıkarın ve ODIPKT.COM
+  dosyasını <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> içinde şunun gibi bir komut satırıyla yükleyin:
+    LH C:\NETWORK\NWCLIENT\ODIPKT.COM 0 96
+  Yukarıdaki ilk sayısal parametre ("0"), ETHERNET_II çerçevesini kullanan
+  kartı belirtir. Aşağıdaki örnek, NET.CFG dosyasında değişik çerçeveler
+  (frames, aynı zamanda "envelope types" olarak da bilinirler)
+  tanımladığınızı varsayar:
+      --- NET.CFG ---
+      Link Driver 3C574
+        FRAME ETHERNET_II
+        FRAME ETHERNET_802.2
+        FRAME ETHERNET_802.3
+        FRAME ETHERNET_SNAP
+  Ardından, ODIPKT dosyasına <a href="../network/ethernet.htm">Ethernet</a> II çerçevesini destekleyen mantıksal
+  kartın endeks numarasını belirtmeniz gerekir. NET.CFG dosyasında
+  çerçeveleri saymanız yeterli olacaktır:
+  Ethernet II ilk olanıdır, frame 802.2 ikincisidir, frame 802.3
+  üçüncüsüdür, snap dördüncüsüdür.
+  İşleri biraz karıştırmak için ODIPKT sıfırdan "0" başlayarak sayar
+  (programcıların yaptığı gibi). Bu, aşağıdaki örneğe göre şu anlama
+  gelir:
+      ODIPKT.COM 0 | ETHERNET_II kullanan kart
+      ODIPKT.COM 1 | ETHERNET_802.2 (çalışmayacaktır)
+      ODIPKT.COM 2 | ETHERNET_802.3 (çalışmayacaktır)
+      ODIPKT.COM 3 | ETHERNET_SNAP (çalışmayacaktır)
+  ODIPKT için çalışacak yegane seçenek, <a href="../network/ethernet.htm">Ethernet</a> II çerçevesi kullanan
+  mantıksal kartı belirten sayıdır, ki örneğimizde bu şudur: "0".
+  Şimdi ODIPKT dosyasını başlatmak için kullandığımız ikinci parametreye
+  ("96") bakıyoruz. Bu parametre, sürücü tarafından kullanılan yazılım
+  kesmesini (vektör) tanımlar. Bir paket sürücüsü yapılandırırken
+  duyduğumuz üzere, en sık kullanılan paket sürücüsü yazılım kesme sayısı
+  0x60'dır, ki bu onaltılık 60 değeridir ("0x" bize sadece bunun onaltılık
+  biçimde olduğunu gösterir). Maalesef ODIPKT onaltılık değerleri anlamaz,
+  dolayısıyla bu değeri ondalık değere çevirmeniz gerekecektir - ondalık
+  değer 96'dır.
+  Eğer başka değerler kullanmak istiyorsanız ve onaltılık değerlere alışık
+  değilseniz, onaltılık-ondalık bir hesap makinesi deneyebilirsiniz
+  (bkz.: <b>http://www.langeneggers.ch/Nuetzliches/Hex_Dez.htm (*10)</b>) veya
+  aşağıdaki listeye bakabilirsiniz:
+        0x60 = 96
+        0x61 = 97
+        0x62 = 98
+         ...
+        0x69 = 105
+        0x6A = 106
+         ...
+        0x7D = 125
+        0x7E = 126
+
+  <b>Örnek NET.CFG</b>
+    ; version 2.0
+    ; max tasks = 60
+    ; show dots = on
+    link support
+    buffers 8 1514
+    ; mempool 4096
+    ; BU BÖLÜM LINKWATCH YÖNETİLEBİLİR SON DÜĞÜMLERİN YAPILANDIRILMASI
+    ; İÇİNDİR
+    ;
+    Protocol DME
+    BIND #1
+    ; LinkWatch için sizin özel değerlerinizle değiştirin
+    USER_NAME "İsminiz"
+    NODE_NAME "Düğüm isminiz"
+    NODE_LOCATION "Düğüm Konumunuz"
+    ; parolayı ağ yöneticinizin talimatlarına göre ayarlayın
+    ; NODE_PASSWORD "ABCDEFGH"
+    PHONE_NUMBER "Telefon Numaranız"
+    NOTES "Çeşitli metin"
+    NOTES "ve daha fazla metin"
+    LINK DRIVER 3C574
+    INT 10
+    ; PORT 300
+    NO_AMP
+    FRAME ETHERNET_802.2
+    FRAME ETHERNET_802.3
+    ; PROTOCOL IPX 0 ETHERNET_802.3
+    FRAME ETHERNET_II
+    FRAME ETHERNET_SNAP
+    Netware DOS Requester
+    FIRST NETWORK DRIVE = F
+    NETWARE PROTOCOL = NDS BIND
+</pre>
+<h2><a name="fff"></a>Tekrar Başlatma</h2>
+<pre>
+  Bilgisayarınızı tekrar başlattığınızda, paket sürücüsü <a href="../network/install.htm">kurulmuş</a> ve hazır
+  olacaktır. Çalışıp çalışmadığını denemek için bir uygulama
+  kullanabilirsiniz, mesela WATTCP paketinden "ping" komutunu.
+  Bol şanslar!
+    (Resim: başlatma mesajları)
+
+  <b>(*01) Tamam</b>
+  <b>(*02) Tamam</b>
+  <b>(*03) Tamam</b>
+  <b>(*04) https://web.archive.org/web/20110722171549/http:
+        //www.danlan.com/</b>
+  <b>(*05) Tamam</b>
+  <b>(*06) http://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/
+        repositories/latest/net/crynwr.zip</b>
+  <b>(*07) Tamam</b>
+  <b>(*08) https://support.hpe.com/hpesc/public/docDisplay?docId=
+        c02037554&docLocale=en_US</b>
+  <b>(*09) https://web.archive.org/web/20110722171549/http://
+        www.danlan.com/</b>
+  <b>(*10) Tamam</b>
+</pre>
+<hr>
+<pre>
+  <b>Telif hakkı &copy; 2007 Ulrich Hansen, Mainz (Almanya), 2010 ve 2020
+  senelerinde W.Spiegl tarafından değiştirilmiştir.</b>
+  <b>2023 senesinde Berki Yenigün tarafından tercüme edilmiştir.</b>
+  Daha fazla bilgi için <a href="../network/intro.htm#ddd">buraya bakın</a>.
+
+  Bu belgeyi kopyalama, dağıtma ve/veya değiştirme izni, GNU Özgür
+  Belgeleme Lisansı'nın 1.2 veya Free Software Foundation tarafından
+  yayınlanan daha yeni bir sürümü kapsamında verilmiştir.
+  Lisansın bir sureti, <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>
+  başlıklı bölümde mevcuttur.
+
+</pre></body></html>

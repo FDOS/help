@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: GNU CHCP</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: GNU CHCP</h1>
+<pre>
+  GNUCHCP changes the EGA/VGA bitmap font in text mode.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  GNUCHCP [filename]  (to load font)
+  GNUCHCP -r          (to restore system font)
+</pre>
+<h2>Options:</h2>
+<pre>
+  - see above -
+</pre>
+<h2>Comments:</h2>
+<pre>
+  GNU CHCP is intended to clone the CHCP command found in DOS. However,
+  it is not compatible. Never worry however, because IMHO GNU CHCP is
+  superior to Microsoft's CHCP in that it comes with a sofware (GNU
+  TTF2FNT) to convert TTF fonts to DOS fonts.
+  This is absolutely the first of its kind. No other software exists
+  capable of converting TTF files into DOS fonts.
+  As if this were not enough, a set of free fonts comes with this
+  package.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  gnuchcp C:\UTIL\GNUFONTS\antique.fnt  (uses antique.fnt)
+  gnuchcp -r                            (removes antique.fnt)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1999-2013 Kurt Zammit, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

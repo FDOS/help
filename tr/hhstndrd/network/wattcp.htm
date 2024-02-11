@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>FreeDOS ile Ağa Bağlanmak - WatTCP/Watt-32</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<h1><a name="top"></a>FreeDOS ile Ağa Bağlanmak - WatTCP/Watt-32</h1>
+<h2><a name="zzz"></a>Genel Bakış:</h2>
+<pre>
+  Waterloo TCP (WatTCP), 1990 ila 1992 senelerinde Ontario'daki (Kanada)
+  Waterloo Üniversitesi'nde yazılmıştır. Yazar, o zaman Mühendislik
+  Fakültesinde bir geliştirici, günümüzde ise üniversitenin <b>Mühendislik
+  Bilgi İşlem Müdürü</b> olan Erick Engelke'dir (bkz.: http://www.eng.
+  uwaterloo.ca/~erick/ (*01)</b>).
+  WatTCP'nin çekirdek TCP yazılımı Geoffrey H. Cooper'ın TinyTCP
+  programına dayalıydı.
+  WatTCP, aslen kendi özel kamu malı lisansı kapsamında yayınlanmıştı
+  - ikili ve kaynak dosyalar ücretsiz kullanılabiliyordu, dağıtım sadece
+  ticari olmayan amaçlara izin veriyordu. 2004 senesinde Erick Engelke
+  bu yazılımı GNU LGPL kapsamına aldı. WatTCP, Erick Engelke'nin <b>kişisel
+  sitesinde</b> bulunabilir (<b>http://www.erickengelke.com/wattcp/index.
+  html (*02)</b>). Yazılımın kendisi özgür olsa da, WatTCP Programcı
+  Referansı <b>50$ karşılığında PDF olarak satılmaktadır</b> (bkz.:
+  <b>http://www.erickengelke.com/wattcp/docs.shtml (*03)</b>).
+  WatTCP, Bergen, Norveç'te 1999 senesinde Gisle Vanem tarafından 32 bite
+  taşınmıştır. Bu taşımanın adı şudur: <b>Watt-32</b> (bkz.: <b>http://home.
+  broadpark.no/~gvanem/ (*04)</b>). Korumalı 32 bit kiple 16 bit gerçek
+  kipi destekler. Sitede ikili dosyaları, kaynak kodu ve belgelendirmeyi
+  indirebilirsiniz. Watt-32 yığınını kullanan daha fazla ikili <b>burada</b>
+  bulunabilir (bkz.: <b>http://www.filegate.net/utiln/utilnet/wt32apps.zip
+  (*05)</b>). Bir <b>geliştirici forumu</b> mevcuttur (bkz.: <b>http://tech.groups.
+  yahoo.com/group/watt-32/messages/2617?viscount=-30&amp;l=1 (*06)</b>), bu
+  forum hâlâ etkindir. WatTCP ile Watt-32 harici <a href="../network/ldtcpipk.htm">TCP/IP Çekirdekleri</a>
+  değildir. Her ikisi de programcılar için sadece <b>kütüphane</b> takımıdır -
+  programcılar bu kütüphaneleri kendi uygulamalarına <a href="../network/tcpip.htm">TCP/IP</a> işlevleri
+  eklemek için kullanabilirler. WatTCP paketi, yerleşik WatTCP çekirdeği
+  bulunduran bu gibi "ping", "finger", "whois" veya "lpr" uygulamalarını
+  içerir.
+  Birçok önemli DOS <a href="../network/network.htm">ağ</a> uygulamaları WatTCP kütüphanelerini kullanır, buna
+  örnek olarak <a href="../network/tcpip_ap.htm#ccc">Arachne</a> veya <a href="../network/tcpip_ap.htm#eee">SSH2DOS</a> gösterilebilir. Bu uygulamaların bir
+  listesi, "<b>DOS Solutions</b>" sitesinde mevcuttur (<b>http://www.dossolutions
+  .pwp.blueyonder.co.uk/wattcp.htm (*07)</b>).
+</pre>
+<h2><a name="aaa"></a>Kurulum ve yapılandırma:</h2>
+<pre>
+  WatTCP/Watt-32 çekirdeğini kullanmak için hiçbir şey indirmeye
+  ihtiyacınız yoktur. Zaten uygulamalarda mevcuttur o. Gerekli olan tek
+  şey ismi "WATTCP.CFG" olan ve her iki sürümde de temelde aynı olan bir
+  yapılandırma dosyasıdır. Varsayılan değer olarak uygulamanın dizininde
+  bulunur. Sabit IP adresleriyle çalışıyorsanız ayarlar şu şekildedir:
+      --- WATTCP.CFG ---
+      &num; Bunlar örnek değerlerdir:
+      my_ip = 192.168.1.10
+      netmask = 255.255.255.0
+      nameserver = 192.168.1.1
+      nameserver = 129.97.128.196
+      nameserver = 129.97.128.1
+      gateway = 192.168.1.1
+      &num; Yapılandırmayı DHCP ile alıyorsanız satırın yorum işaretini silin
+      &num; my_ip = dhcp
+  Eğer ayarlarınızı bir DHCP sunucusu/yönlendiriciden alıyorsanız:
+      --- WATTCP.CFG ---
+      my_ip = dhcp
+      netmask = 255.255.255.0
+      gateway = 0.0.0.0
+      domain_list = benim.domain.com
+      &num; alan, geçit, ip, ad sunucusu DHCP ile ayarlanacaktır
+  Şayet uygulama WATTCP.CFT ile aynı dizinde değilse, lütfen ona işaret
+  etmek için set WATTCP.CFG=\dosyaya\yol komutunu kullanın (<a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>
+  dosyasında).
+  Kullanılan uygulamalara göre ilave ayarlar gerekebilir. WatTCP
+  programlarına daha derin bir giriş <b>burada</b> bulunabilir
+  (bkz.: <b>http://www.web.archive.org/web/20080329105946/http://www.
+  smashco.com/wattcp.asp (*08)</b>).
+
+  <b>(*01) Tamam</b>
+  <b>(*02) https://web.archive.org/web/20100414105959/http://
+        www.erickengelke.com/wattcp
+        and: http://www.erickengelke.com/history.html</b>
+  <b>(*03) ?</b>
+  <b>(*04) http://www.watt-32.net/</b>
+  <b>(*05) Tamam</b>
+  <b>(*06) https://groups.io/g/watt-32/message/1</b>
+  <b>(*07) https://web.archive.org/web/20090509205846/http://
+        www.dossolutions.pwp.blueyonder.co.uk/wattcp.htm</b>
+  <b>(*08) Tamam</b>
+</pre>
+<hr>
+<pre>
+  <b>Telif hakkı &copy; 2007 Ulrich Hansen, Mainz (Almanya), 2010 ve 2020
+  senelerinde W.Spiegl tarafından değiştirilmiştir.</b>
+  <b>2023 senesinde Berki Yenigün tarafından tercüme edilmiştir.</b>
+  Daha fazla bilgi için <a href="../network/intro.htm#ddd">buraya bakın</a>.
+
+  Bu belgeyi kopyalama, dağıtma ve/veya değiştirme izni, GNU Özgür
+  Belgeleme Lisansı'nın 1.2 veya Free Software Foundation tarafından
+  yayınlanan daha yeni bir sürümü kapsamında verilmiştir.
+  Lisansın bir sureti, <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>
+  başlıklı bölümde mevcuttur.
+
+</pre></body></html>

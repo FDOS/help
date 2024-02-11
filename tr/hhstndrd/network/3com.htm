@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>FreeDOS ile Ağa Bağlanmak - 3Com</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<h1><a name="top"></a>FreeDOS ile Ağa Bağlanmak - 3Com</h1>
+<pre>
+  Şayet 3Com NIC'iniz <a href="../network/crynwr.htm">Crynwr</a> paket sürücüleri tarafından desteklenmiyorsa,
+  şurada bir sürücü bulabilirsiniz:
+  <b>ftp://ftp.3com.com/pub/nic/3c90x/3c90x2.exe (*01)</b>
+  Bu, <b>3C90x</b> adaptör ailesi için 2 üzeri 2. diskten EtherCD v5.4'dir.
+  2. disk DOS için <a href="../network/odi.htm">ODI</a> ve <a href="../network/ndis.htm">NDIS</a> sürücüleri, paket sürücüsü, yardım
+  dosyalarıyla DOS teşhislerini içerir. Kendi kendini çıkarabilen bir DOS
+  çalıştırılabilir dosyasıdır. Onu başlattıktan sonra PKTDVR dizinine
+  gidin ve 3C90XPD.COM dosyasını çalıştırın. Bu, NIC'inizi otomatik olarak
+  tespit edebilecektir, ki bu biraz zaman alabilir, ardından da 0x60 ile
+  başlayan ilk müsait kesme vektöründe paket sürücüsünü kuracaktır.
+  Kesme vektörü /I ile de belirtilebilir; ayrıntılar için /? kullanın.
+  Bunu, <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> dosyanıza ilave etmek isteyeceksiniz.
+  Sonrasında SSH (bkz: <a href="../network/tcpip_ap.htm#eee">SSH2DOS</a>) ve <a href="../network/tcpip_ap.htm#ccc">Arachne</a> gibi
+  herhangi bir <a href="../network/wattcp.htm">WatTCP</a> uygulamasını yapılandırıp kullanabilirsiniz.
+  Kesme vektörünü belirtmek için WATTCP.CFG dosyanızda şunu kullanın:
+    pkt.vector = 0x60
+
+  <b>(*01) İnternet: "3c90x2.exe"</b>
+</pre>
+<hr>
+<pre>
+  <b>Telif hakkı &copy; 2007 Ulrich Hansen, Mainz (Almanya), 2010 ve 2020
+  senelerinde W.Spiegl tarafından değiştirilmiştir.</b>
+  <b>2023 senesinde Berki Yenigün tarafından tercüme edilmiştir.</b>
+  Daha fazla bilgi için <a href="../network/intro.htm#ddd">buraya bakın</a>.
+
+  Bu belgeyi kopyalama, dağıtma ve/veya değiştirme izni, GNU Özgür
+  Belgeleme Lisansı'nın 1.2 veya Free Software Foundation tarafından
+  yayınlanan daha yeni bir sürümü kapsamında verilmiştir.
+  Lisansın bir sureti, <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>
+  başlıklı bölümde mevcuttur.
+
+</pre></body></html>

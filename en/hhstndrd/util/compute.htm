@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: compute</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: compute</h1>
+<pre>
+  COMPUTE is a very simple program for evaluating mathematical ex-
+  pressions.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  Use common notation used on computers. Powers can be specified
+  by "^" operator. These functions are supported:
+  SIN
+  COS
+  SQR
+  TAN
+  COTAN
+  ARCSIN
+  ARCCOS
+  ARCTAN
+  LN
+  EXP
+  NOT
+  You can also use these bit operators: AND, OR, XOR
+</pre>
+<h2>Options:</h2>
+<pre>
+  Argument can be given as a program parameter or can be typed inter-
+  actively.
+  If everything is OK, <a href="../batch/errorlvl.htm">return code</a> is 0, else it is non-zero:
+  1: non valid expression
+  2: division by zero
+  3: wrong argument for power
+  4: floating point number for logical operation
+  5: result is too big
+  6: result is too small
+  7: zero or negative logarithm
+</pre>
+<h2>Comments:</h2>
+<pre>
+  COMPUTE can use the language resource strings if <a href="../command/environm.htm">ENVIRONMENT VARIABLES</a>
+  LANG and NLSPATH are properly set. Otherwise default strings will be
+  used.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Create test.bat (to make the errorlevels visible):
+
+  TEST.BAT
+  ---------------------------------------------
+  @echo off
+  compute &percnt;1 &percnt;2 &percnt;3 &percnt;4 &percnt;5 &percnt;6 &percnt;7 &percnt;8 &percnt;9
+  for &percnt;&percnt;e in (0,1,2,3,4,5,6,7,8,9) do if errorlevel &percnt;&percnt;e set err=&percnt;&percnt;e
+  echo Errorlevel value: &percnt;err&percnt;
+  set err=
+  ---------------------------------------------
+
+  Then execute test.bat:
+
+  Example 1:                         Alternative:
+  TEST 5+5                           compute 5+5
+  10                                 10
+  Errorlevel value: 0                (Errorlevel 0 is given but not shown)
+
+  Example 2:
+  TEST 5+                            compute 5+
+  Error on pos. n. 2                 Error on pos. n. 2
+  Errorlevel value: 1                (Errorlevel 1 is given but not shown)
+
+  Example 3:
+  TEST 5/0                           etc. etc.
+  division by zero
+  Errorlevel value: 2
+
+  Example 4:
+  TEST 5^11
+  48828125
+  Errorlevel value: 0
+
+  Example 5:
+  TEST 222^999
+  too big result in math operation
+  errorlevel value: 6
+
+  Example 6:
+  TEST 1*2*3*4*5*6+7-8/9
+  726.111
+  errorlevel value: 0
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/environm.htm">environment variable</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode/return code</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 Laaca, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

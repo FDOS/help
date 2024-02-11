@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: arj</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: arj</h1>
+<pre>
+  ARJ is a packer / unpacker for the .arj format.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  Usage:    ARJ &lt;command&gt; [-&lt;sw&gt; [-&lt;sw&gt;...]] lt;archive_name&gt; [&lt;file_names&gt;...]
+  Examples: ARJ a -e archive, ARJ e archive, ARJ l archive *.doc
+</pre>
+<h2>Commands:</h2>
+<pre>
+  List of frequently used commands and switches.
+  Type ARJ -? for more help.
+ ac: Add Chapter to chapter archive     l: List contents of archive
+  a: Add files to archive               m: Move files to archive
+  c: Comment archive files              t: Test integrity of archive
+  d: Delete files from archive          u: Update files to archive
+  e: Extract files from archive         v: Verbosely list contents of
+                                           archive
+  f: Freshen files in archive           x: eXtract files with full
+                                           pathname
+</pre>
+<h2>Switches:</h2>
+<pre>
+  c: skip time-stamp Check              r: Recurse subdirectories
+  e: Exclude paths from names           u: Update files (new and newer)
+  f: Freshen existing files             v: enable multiple Volumes
+  g: Garble with password               w: assign Work directory
+  i: with no progress Indicator         x: eXclude selected files
+  m: with Method 0, 1, 2, 3, 4          y: assume Yes on all queries
+  n: only New files (not exist)        hk: enable ARJ-PROTECT damage
+                                           protection
+</pre>
+<h2>Comments:</h2>
+<pre>
+  ARJ is a packer and unpacker and has a lot of options and switches.
+  Type ARJ -? for more help than above.
+  ARJ has an extensive documentation that is beyond the scope of
+  this help. For more information see:
+  <b>https://gitlab.com/FreeDOS/archiver/arj</b> OR WIKI:
+  <b>https://en.wikipedia.org/wiki/ARJ</b>
+  ARJ has the following errorlevels:
+  0  success
+  1  warning (specified files to add to archive, to list, extract etc.
+     not found, or answering negatively to "OK to proceed to next
+     volume..." prompt
+  2 fatal error
+  3 CRC error (header or file CRC error or bad password)
+  4 ARJ-SECURITY error or attempt to update an ARJ-SECURED archive
+  5 disk full or write error
+  6 cannot open archive or file
+  7 simple user error (bad parameters)
+  8 not enough memory
+  9 not an ARJ archive
+ 10 [DOS] XMS memory error (read or write)
+ 11 user control break
+ 12 too many chapters (over 250)
+ </pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+  Add all files and subfolders of C:\FREEDOS to C:\archive.arj
+    fdnpkg install arj  (OR: start fdimples and install arj from CD)
+    arj ac C:\archive.arj C:\FREEDOS\*.* -r
+  Example 2:
+  List contents of archive C:\archive.arj and send the list to
+  C:\archive.txt
+    arj l archive.arj &gt; C:\archive.txt
+  Example 3:
+  Restore C:\archive.arj to C:\test\ :
+    arj x C:\archive.arj C:\test\ *.*
+  Example 4:
+  Backup all files on OS partition C: to D:\backup_c.arj (without
+  MBR):
+    fdnpkg install arj (OR: start fdimples and install arj from CD)
+    copy C:\FREEDOS\BIN\arj.exe D:\ OR: A: if you have a boot diskette
+    (you may need arj for restore later)
+    arj ac D:\backup_c.arj C:\*.* -r
+  Restoring all files back from D: (partition C must still be OK!)
+  You need a bootable diskette or live CD etc, (if you can still boot
+  from C: you can also use it), boot from it and goto D:
+    D:\arj x D:\backup_c.arj C:\ *.*  (you are asked for creating a
+    directory, enter "a" for "all".
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/7zdec.htm">7zdec</a>
+  <a href="../util/bzip2.htm">bzip2</a>
+  <a href="../util/cabext.htm">cabext</a>
+  <a href="../base/fdimples.htm">fdimples</a>
+  <a href="../base/fdnpkg.htm">fdnpkg</a>
+  <a href="../util/gzip.htm">gzip</a>
+  <a href="../util/lpq1.htm">lpq1</a>
+  <a href="../util/lzip.htm">lzip</a>
+  <a href="../util/lzma.htm">lzma</a>
+  <a href="../util/lzop.htm">lzop</a>
+  <a href="../util/p7zip.htm">p7zip</a>
+  <a href="../util/slicer.htm">slicer</a>
+  <a href="../util/tar.htm">tar</a>
+  <a href="../util/unzip.htm">unzip</a>
+  <a href="../util/zip.htm">zip</a>
+  <a href="../util/zoo.htm">zoo</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2005 Andrew Belov and others, help version 2023
+  W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

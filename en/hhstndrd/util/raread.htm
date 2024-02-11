@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: raread</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: raread</h1>
+<pre>
+  RAREAD reads the image for a floppy disk (that can be written using
+  <a href="../util/rawrite.htm">RAWRITE3</a>). Useful for creating disk images.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  RAREAD [-d A|B] [-f file] [-n] [-h|/?]
+</pre>
+<h2>Options:</h2>
+<pre>
+  -d drive  Specify diskette drive to use; must be either A or B.
+  -f file   Specify disk image file.
+  -n        Don't wait for user to insert diskette -- assumes diskette
+            is waiting in selected drive.
+  -h        Shows the help.
+  /?        Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  The images can be used for virtual machines or other purposes.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  raread                         (You are asked for diskette drive and
+                                 image file step by step)
+  raread -d A -f C:\test.img     (You are asked to insert the diskette
+                                 into drive A: and press ENTER to create
+                                 the image)
+  raread -d A -n -f C:\test.img  (Creating the image starts after ENTER)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/diskcopy.htm">diskcopy</a>
+  <a href="../util/ospimg.htm">dskimg/ospimg</a>
+  <a href="../util/raread.htm">raread</a>
+  <a href="../util/rawrite.htm">rawrite</a>
+  <a href="../base/shsurdrv.htm">shsurdrv</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2001 Brian E. Reifsnyder, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

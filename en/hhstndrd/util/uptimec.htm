@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: uptime (uptimec)</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: uptime (uptimec)</h1>
+<pre>
+  UPTIME is a 16 bit DOS utility that display system uptime by automati-
+  cally detecting when it was firstly booted. It replicates *NIX uptime,
+  one of the basic UNIX commands which allows you to quickly confirm how
+  long your system has been up and running since it was last rebooted or
+  powered on.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  UPTIME [-h|-r]
+</pre>
+<h2>Options:</h2>
+<pre>
+  uptime  Displays the current system uptime.
+  -h      Shows the help screen.
+  -r      Forces resetting the counter. Useful if it is not automatically
+          detected properly during startup.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  UPTIME uses CMOS data area to retrieve current system date/time using the
+  RTC (Real Time Clock). Since CMOS area is persistent, it uses CMOS alarm
+  registers, to store when the system was first startedup. Almost no DOS
+  programs use alarm capabilities, but if so, running UPTIME, will over-
+  write them.
+  There are different approaches to UPTIME in DOS, such as UPTIME 7.02 by
+  Mark Aitchison. His approach is to get system boottime, by reading
+  NUL: file timestamp. Unfortunately, this approach is not working in
+  DOSBox and other emulators.
+  UPTIME(c) has been specially optimized to run on pure DOS enviroments,
+  no matter if the are on the top of physical machines, or virtual
+  machines. It is written using JWASM 2.12 beta, with x86 assembly using
+  DOS tiny memory model in order to keep it compact.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  See above:
+  uptime
+  shows (for example):
+    13:05:44 up 0 hour, 0 minute, 29 second, 1 user, load average:
+    0.00, 0.00, 0.00
+ a new uptime shows (for example):
+    13:08:04 up 0 hour, 2 minute, 49 second, 1 user, load average:
+    0.00, 0.00, 0.00
+  uptime -h   Shows the help
+  uptime -r
+  shows
+    Uptime counter reseted to zero
+  a new uptime then shows:
+    13:10:01 up 0 hour, 0 minute, 43 second, 1 user, load average:
+    0.00, 0.00, 0.00
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/uptime.htm">uptime</a> (another uptime program)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2017 Javier Gutierrez Chamorro, help version 2023
+  W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

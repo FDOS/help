@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: cabextract</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: cabextract</h1>
+<pre>
+  CABEXTRACT - program to extract files from Microsoft cabinet (.cab)
+  archives
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  cabextract [-ddir] [-f] [-Fpattern] [-eencoding] [-h] [-l]
+  [-L] [-p] [-q] [-s] [-t] [-v]  cabinet files ...
+</pre>
+<h2>Options:</h2>
+<pre>
+  -d dir Extracts all files into the directory dir.
+  -f     Corrupted cabinet files will be 'fixed' to salvage whatever is
+         possible from them. File entries with bad folders or names will
+         be skipped rather than rejecting the entire cabinet file.
+         Impossible file lengths will be truncated to extract as much as
+         possible, including when you're missing later files in a cabinet
+         set. Corrupted MSZIP blocks and failed block checksums will be
+         ignored. Warnings will be printed if any of these conditions are
+         met.
+  -F pattern
+         Only files with names that match the shell pattern pattern shall
+         be listed, tested or extracted. On non-GNU systems, this match
+         may be case-sensitive.
+  -e encoding
+         Specify the character encoding of filenames inside the cabinet
+         files. This is only needed if you find cabinet files with garbled
+         filenames; most software creates CAB files with either ASCII or
+         UTF8 filenames. The list of supported encodings is given by
+         the command "iconv -l".
+  -h     Prints a page of help and exits.
+  -l     Lists the contents of the given cabinet files, rather than
+         extracting them.
+  -L     When extracting cabinet files, makes each extracted file's name
+         lowercase.
+  -p     Files shall be extracted to standard output.
+  -q     When extracting cabinet files, suppresses all messages except
+         errors and warnings.
+  -s     When testing, listing or extracting cabinets which span multiple
+         files, only cabinet files given on the command line shall be used.
+  -t     Tests the integrity of the cabinet. Files are decompressed, but
+         not written to disk or standard output. If the file successfully
+         decompresses, the MD5 checksum of the file is printed.
+  -v     If given alone on the command line, prints the version of cab-
+         extract and exits. Given with a list of cabinet files, it will
+         list the contents of the cabinet files.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  CABEXTRACT is a program that un-archives files in the Microsoft cabinet
+  file format (.cab) or any binary file which contains an embedded cabinet
+  file (frequently found in .exe files). CABEXTRACT will extract all files
+  from all cabinet files specified on the command line.
+  To extract a multi-part cabinet consisting of several files, only the
+  first cabinet file needs to be given as an argument to CABEXTRACT as it
+  will automatically look for the remaining files. To prevent CABEXTRACT
+  from extracting cabinet files you did not specify, use the -s option.
+  For more information see:
+  <b>https://gitlab.com/FreeDOS/archiver/cabext/-/tree/master/DOC/CABEXT?</b>
+  <b>ref_type=heads</b> OR:
+  <b>https://www.cabextract.org.uk/</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Extracting files from a cabinet file:
+    $ cabextract wibble.cab
+  Extracting files from an executable which contains a cabinet file:
+    $ cabextract wibble.exe
+    [cabextract will automatically search executables for embedded
+    cabinets]
+  Extracting files from a set of cabinet files; wib01.cab, wib02.cab, ...:
+    $ cabextract wib01.cab
+    [cabextract will automatically get the names of the other files]
+  Extracting files to a directory of your choice (in this case, 'boogie'):
+    $ cabextract -d boogie wibble.cab
+    [cabextract will create the directory if it does not already exist]
+  Listing files from a cabinet file:
+    $ cabextract -l wibble.cab
+  Testing the integrity of a cabinet file, without extracting it:
+    $ cabextract -t wibble.cab
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/7zdec.htm">7zdec</a>
+  <a href="../util/arj.htm">arj</a>
+  <a href="../util/bzip2.htm">bzip2</a>
+  <a href="../util/gzip.htm">gzip</a>
+  <a href="../util/lpq1.htm">lpq1</a>
+  <a href="../util/lzip.htm">lzip</a>
+  <a href="../util/lzma.htm">lzma</a>
+  <a href="../util/lzop.htm">lzop</a>
+  <a href="../util/p7zip.htm">p7zip</a>
+  <a href="../util/slicer.htm">slicer</a>
+  <a href="../util/tar.htm">tar</a>
+  <a href="../util/unzip.htm">unzip</a>
+  <a href="../util/zip.htm">zip</a>
+  <a href="../util/zoo.htm">zoo</a>
+</pre>
+<hr>
+<pre>
+  This manual page was written by Stuart Caie <b>kyzer@cabex-</b>
+  <b>act.org.uk</b>, based on the one written by Eric Sharkey
+  <b>sharkey@debian.org</b>, for the Debian GNU/Linux system.
+  Help version 2023 W. Spiegl.
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

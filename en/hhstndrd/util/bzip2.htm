@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: bzip2</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: bzip2</h1>
+<pre>
+  BZIP2 compresses files using the Burrows-Wheeler block sorting text
+  compression algorithm, and Huffman coding. Compression is generally
+  considerably better than that achieved by more conventional LZ77/LZ78-
+  based compressors, and approaches the performance of the PPM family
+  of statistical compressors.
+  The command-line options are deliberately very similar to those of GNU
+  gzip, but they are not identical.
+  BUNZIP2 (or BZIP2 -d) decompresses all specified files. Files which
+  were not created by bzip2 will be detected and ignored, and a warning
+  issued.
+  BZCAT decompresses files to stdout.
+  BZIP2REC recovers data from damaged BZIP2 files.
+  <b>IMPORTANT: BZIP2 only compresses /decompresses SINGLE FILES, NO FOLDERS!</b>
+  <b>When creating a .bz2 file the original file is DELETED, so do not forget</b>
+  <b>the option -k --keep!</b>
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  bzip2 [ -cdfkqstvzVL123456789 ] [ filenames ... ]
+  bunzip2 [ -fkvsVL ] [ filenames ... ]
+  bzcat [ -s ] [ filenames ... ]
+  bzip2rec filename
+</pre>
+<h2>Options:</h2>
+<pre>
+  -h --help         print this message
+  -d --decompress   force decompression
+  -z --compress     force compression
+  -k --keep         keep (don't delete) input files
+  -f --force        overwrite existing output files
+  -t --test         test compressed file integrity
+  -c --stdout       output to standard out
+  -q --quiet        suppress noncritical error messages
+  -v --verbose      be verbose (a 2nd -v gives more)
+  -l --license      display software version &amp; license
+  -V --version      display software version &amp; license
+  -n                select output file name rule 2.
+                    rule 1: filename preserved, extension truncated.
+                    default is output file name rule1.
+                    rule 2: filename truncated, extension preserved.
+                    This flag is only available on plain DOS and
+                    WIN9x with LFN=n.
+  -s --small        use less memory (at most 2500k)
+  -1 .. -9          set block size to 100k .. 900k
+  --fast            alias for -1
+  --best            alias for -9
+
+  If invoked as 'bzip2', default action is to compress.
+             as 'bunzip2', default action is to decompres.
+             as 'bzcat', default action is to decompress to stdout.
+  If no file names are given, bzip2 compresses or decompresses from
+  standard input to standard output. You can combine short flags,
+  so '-v -4' means the same as -v4 or -4v, &amp;c.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  BZIP2 has an extensive documentation that is beyond the scope of
+  this help. For more information see:
+  <b>https://sourceware.org/bzip2/</b> OR:
+  <b>https://gitlab.com/FreeDOS/archiver/bz2</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+    bzip2 -z -k -v --best testfile.exe  (creates compressed file
+                            "testfile.exb", removes testfile.exe
+                            without "-z")
+    bunzip2 -d -v vim.exb  (unzips vim.exb to vim.ex)
+  In a folder:
+    bzip2 -z -v -4 *.* (zips all files in this folder)
+    bunzip2 -v *.*  (unzips all files)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/7zdec.htm">7zdec</a>
+  <a href="../util/arj.htm">arj</a>
+  <a href="../util/cabext.htm">cabext</a>
+  <a href="../util/gzip.htm">gzip</a>
+  <a href="../util/lpq1.htm">lpq1</a>
+  <a href="../util/lzip.htm">lzip</a>
+  <a href="../util/lzma.htm">lzma</a>
+  <a href="../util/lzop.htm">lzop</a>
+  <a href="../util/p7zip.htm">p7zip</a>
+  <a href="../util/slicer.htm">slicer</a>
+  <a href="../util/tar.htm">tar</a>
+  <a href="../util/unzip.htm">unzip</a>
+  <a href="../util/zip.htm">zip</a>
+  <a href="../util/zoo.htm">zoo</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1996-2019 Julian Seward, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

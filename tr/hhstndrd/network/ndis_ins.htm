@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>FreeDOS ile Ağa Bağlanmak - NDIS sürücü kurulumu</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<h1><a name="top"></a>FreeDOS ile Ağa Bağlanmak - NDIS sürücü kurulumu</h1>
+<h2><a name="zzz"></a>Genel Bakış</h2>
+<pre>
+    (Resim: NDIS mimarisine genel bakış)
+  "<a href="../network/network.htm">Network</a> Driver Interface Specification" (<a href="../network/ndis.htm">NDIS</a>)'e dayalı sürücüler,
+  Windows dünyasında varsayılandır. En yeni sürüm, Windows Vista'da
+  kullanılan <a href="../network/ndis.htm">NDIS</a> 6'dır. Windows 98, NDIS 5 ile, Windows 95 ise NDIS
+  3.1 ile satılmıştır. DOS üzerinde gerçek kipte NDIS2 sürücüsünü
+  kullanmak gerekir.
+</pre>
+<h2><a name="aaa"></a>Nerede bulunurlar</h2>
+<pre>
+  <a href="../network/network.htm">Ağ</a> kartınız için bir NDIS sürücüsü çok büyük ihtimalle mevcuttur.
+  Kartın kurulum dosyalarında "NDIS2" adlı bir dizin arayın. Eğer bir
+  sürücü bulamazsanız, şu siteye bir göz atın: (bkz.: <b>http://
+  drivesnapshot.de/en/makebootdisk.htm (*01)</b>). Sürücü isminin sonu
+  *.DOS olmalıdır, mesela <a href="../network/3com.htm">3Com</a> 3C574 PC-Card'ın sürücüsünün ismi şu
+  şekildedir: "EL3C574.DOS".
+</pre>
+<h2><a name="bbb"></a>Nasıl çalışırlar</h2>
+<pre>
+  NDIS mimarisi dilinde bu sürücülere <b>"Media Access Control" (MAC)</b>
+  yani Ortam Erişim Kontrolü sürücüleri denir.
+  Yukarıdaki resimde görebileceğiniz üzere <b>MAC</b> sürücüsü, NDIS
+  mimarisinin sadece bir unsurudur. NDIS 2.1 belgelendirmesine göre,
+  (bkz.: <b>http://www.ndis.com/faq/ndis201.txt (*02)</b>) NDIS şu
+  şekilde çalışıyor gibi görünmektedir:
+    * <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> (FreeDOS) veya <a href="../cnfigsys/index.htm">CONFIG.SYS</a> (diğer DOS sistemleri)
+      dosyalarındaki komutlar, Protokol Yönetici sürücüsü PROTMAN.DOS
+      dosyasını, <b>MAC</b> sürücüsünü ve protokol sürücüsünü yüklerler.
+      Bu, her bir sürücü için bir satır kullanılarak veya PROTOCOL.INI
+      dosyasına göre "DEVICEHIGH=IFSHLP.SYS" tarafından yüklenen
+      "Installable File System Helper" (yani Kurulabilir Dosya Sistemi
+      Yardımcısı) sürücüsünü, <b>MAC</b> ve protokol sürücülerini
+      başlatarak yapılabilir.
+    * Protokol yöneticisi, yapılandırmayı PROTOCOL.INI dosyasından okur ve
+      bunu kendisinden sonra yüklenen <b>MAC</b> ile protokol sürücüleri için
+      erişilebilir kılar.
+    * <b>MAC</b> ile protokol sürücüleri kendilerini bu bilgiye istinaden
+      yüklerler ve yapılandırırlar. Kendilerini Protokol Yöneticisi'ne
+      tanımlarlar.
+    * <b>MAC</b> ile protokol sürücüleri iletişim kurabilmeden evvel,
+      birbirlerine bağlanmaları gerekir, ki her biri diğerinin "giriş
+      noktalarına" (iletişim portlarına) erişebilsin. Bu bağlanma süreci,
+      PROTOCOL.INI bilgilerine dayalı olarak Protokol Yöneticisi
+      tarafından kontrol edilir.
+    * Bağlanma süreci NET.EXE VEYA NETBIND.COM tarafından tetiklenebilir
+      (ki bu, <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> içinde yapılabilir).
+    * Protokol Yöneticisi (PROTMAN.DOS) o zaman bellekte yerleşik (yani
+      Terminate and Stay Resident - TSR) program PROTMAN.EXE'yi, bağlanma
+      komutunu çalıştırması ve sürücülerin doğru sıralanmalarını kontrol
+      etmesi için başlatır.
+    * Bağlanmanın ardından, <b>MAC</b> ve protokol sürücüleri birbirleriyle
+      doğrudan iletişim kurar. Protokol Yöneticisi bu iletişim sürecine
+      artık dahil olmaz, dolayısıyla NETBIND.COM Protokol Yöneticisi
+      tarafından ayrılan belleğin ekseriyetini boşaltır.
+  DOS üzerinde NDIS yapılandırması paketin değişik sürümleriyle zaman
+  içinde değişmiştir. Bu değişikliklere dair bazı ipuçları şurada
+  bulunabilir (bkz.: <b>http://www.yale.edu/pclt/WINWORLD/NDIS.HTM (*03)</b>).
+  Bu belgede, <a href="../network/msclient.htm">MS client</a> 3.0 ile beraber gelen NDIS
+  dosyalarını kullandığımızı varsayıyorum.
+  Bu bölüm, paket sürücülerine dayalı <a href="../network/tcpip.htm">TCP/IP</a> uygulamalarının DOS ile
+  çalıştırılmaları hakkında olduğu için, burada <a href="../network/msclient.htm">MS istemcisi</a>
+  ayrıntılarına girmeyeceğiz, bu zaten başka yerlerde açıklanmıştır.
+</pre>
+<h2><a name="ccc"></a>Gerekli ilave dosyalar</h2>
+<pre>
+  Peki <a href="../network/network.htm">ağ</a> arayüz kartıyla gelen NDIS2 <b>MAC</b> sürücüsünü <a href="../network/tcpip.htm">TCP/IP</a> ile ağa
+  bağlanmak için nasıl kullanacağız? Yukarıdaki açıklamadan öğrendiğimiz
+  üzere daha fazla dosyaya ihtiyacımız var. Bunlar şunlardır:
+    * Protokol Yöneticisi (yani Protocol Manager ("PROTMAN.DOS" ve
+      "PROTMAN.EXE"))
+    * Bağlanma yardımcı aracı ("NETBIND.COM")
+  Bu dosyalar, şuradan indirilebilecek olan <a href="../network/msclient.htm">MS istemcisi</a> 3.0'ın
+  bir parçasıdır:
+    <b>ftp://ftp.microsoft.com/bussys/Clients/MSCLIENT/DSK3-1.EXE (*04)</b>
+    <b>ftp://ftp.microsoft.com/bussys/Clients/MSCLIENT/DSK3-2.EXE (*05)</b>
+  Mevzubahis üç dosya, "DSK3-1.EXE" dosyasının bir parçasıdır. Bu
+  dosyaları açmak için ilk diskteki "EXPAND.EXE" yardımcı aracını
+  kullanın.
+    * DSK3-1.EXE dosyasını C:\MSCLIENT1 gibi bir dizine kopyalayın. Bunu
+      Windows ile yapıyorsanız uzun bir dosya isminden kaçının. 16 bit
+      yazılımlar yol çok uzunsa çalıştırılamazlar.
+    * İçeriğini açmak için DSK3-1.EXE dosyasını çalıştırın.
+    * PROTMAN.DO_ ve PROTMAN.EX_ dosyalarını çıkarın.
+
+  expand -r protman.do_
+  expand -r protman.ex_
+
+    * NETBIND.COM zaten çıkarılmıştır. Şimdi bu üç dosyayı alıp
+      kullanabilirsiniz.
+  Bu dosyaları kullanmadan evvel LICENSE.TXT dosyasını okuyun. Yazılım,
+  dahili kullanım için ücretsizdir. Ne dağıtım, ne de değiştirme izni
+  yoktur.
+</pre>
+<h2><a name="ddd"></a>Dönüştürücü/"shim" veya takoz</h2>
+<pre>
+  İhtiyacımız olan son parça, <b>"Paket Sürücüsünden NDIS'e Dönüştürücü"</b>dür.
+  Yaygın kullanılan "DIS_PKT9.DOS" dosyasını edinin (9. sürüm, bkz.:
+  <b>ftp://ftp.cc.umanitoba.ca/software/pc_network/dis_pkt9.zip (*06)</b>)
+  veya alternatif olarak biraz daha yeni (11. sürüm) "DIS_PKT.DOS"
+  dosyasını (bkz.: <b>http://danlan.com/pdr_shim/odipkt/odipkt.zip (*07)</b>).
+  indirin. Kullanım ve işlenmesinde hiçbir fark yoktur. Her ikisi de Prof.
+  Joe R. Doupnik (Utah Devlet Üniversitesi) ve Dan Lanciani (Harvard
+  Ünversitesi) tarafından yazılmıştır. Telif hakkı artık var olmayan bir
+  şirket olan FTP Software, Inc.'e aittir ve neyse ki bu şirket bu
+  bu sürücüyü kamu malı olarak, özgürce kullanılabilecek, dağıtılabilecek,
+  değiştirilebilecek ve kaynak koduyla yayınlamıştır.
+</pre>
+<h2><a name="eee"></a>NDIS sürücülerinin yapılandırılmaları</h2>
+<pre>
+  Daha önce söylediğim gibi, bu sadece asgari bir <a href="../network/msclient.htm">MS istemcisi</a> 3.0
+  <a href="../network/install.htm">kurulumudur</a>. Tek amaç paket sürücüsü temelli <a href="../network/tcpip.htm">TCP/IP</a> uygulamaları
+  kullanmaktır. Bu maksatla:
+    Şu dört dosyayı
+      PROTMAN.DOS
+      PROTMAN.EXE
+      NETBIND.COM
+      DIS_PKT.DOS
+  bir dizine kopyalayın, mesela C:\NET dizinine.
+  Ayrıca <a href="../network/network.htm">ağ</a> arayüz kartınızın <b>MAC sürücüsünü</b> de kopyalayın, mesela:
+      EL3C574.DOS
+  bu dizin içine.
+  Şimdi, NDIS mimarisi için gerekli yapılandırma dosyasını oluşturmamız
+  gerekmektedir: C:\NET dizini içinde PROTOCOL.INI adında bir dosya
+  oluşturun. Bizim asgari yapılandırmamız için sadece şu satırlara
+  ihtiyacı vardır:
+      --- PROTOCOL.INI ---
+      [protman]
+      DriverName=PROTMAN$
+      [EL3C574]
+      DriverName=EL3C574$
+      [PKTDRV]
+      drivername=PKTDRV$
+      bindings=EL3C574
+      intvec=0x60
+      chainvec=0x68
+  <b>Parametrelerin açıklaması:</b>
+  Diğer *.ini dosyaları gibi PROTOCOL.INI dosyası, köşeli parantezler
+  içinde bölüm isimleri ve bunlara verilen değerlerle yapılanmıştır.
+    [protman]
+    DriverName=PROTMAN$
+  İlk bölüm yani [protman] Protokol Yöneticisi'ni tanımlar. Yukarıda
+  açıklandığı üzere, Protokol Yöneticisi PROTMAN.DOS sürücüsü olarak
+  yüklenir ki burada adı şu şekildedir: "PROTMAN$". Bölüm ve satır
+  mecburidir.
+    [EL3C574]
+    DriverName=EL3C574$
+  [EL3C574] bölümü, <a href="../network/network.htm">ağ</a> arayüz kartını tanımlar. Varsayılan olarak
+  bu bölümün kendisi kartın ismine göre adlandırılır - bu faydalıdır, eğer
+  birden fazla <a href="../network/network.htm">ağ</a> kartınız varsa ve değişik kartlar için değişik
+  bölümler kullanıyorsanız. Yani bölüm ismi burada değiştirilecek ilk
+  değerdir. Kendi <a href="../network/network.htm">ağ</a> kartınıza göre adlandırmanız iyi bir fikir olacaktır.
+  Ama bölümün ismini "netcard", "NIC" veya "fasulye" olarak da
+  seçebilirsiniz - nasıl isterseniz, PROTOCOL.INI dosyasında bu bölüme
+  işaret eden diğer tüm satırları da değiştirdiğiniz sürece sorun olmaz.
+  Bu bölümdeki bir sonraki satır şudur: "DriverName=EL3C574$". <a href="../network/network.htm">Ağ</a>
+  arayüz kartı için sürücüyü tanımlar. Örneğimizde bu EL3C574.DOS adını
+  taşımaktadır, burada ismi "EL3C574$" şeklindedir. Çok muhtemelen bu
+  örnekte gösterilenden başka bir kart kullanacaksınız. Dolayısıyla bu
+  satırı değiştirmeniz gerekecektir. Sürücünün doğru ismini, kartınızla
+  verilen NDIS sürücülerinin bir parçası olması gereken "PROTOCOL.INI"
+  metin dosyasında bulursunuz.
+  Bu bölüme <a href="../network/network.htm">ağ</a> kartınız için özel
+  ayarlar tanımlamak maksadıyla satır eklemek mümkündür. Daha fazla bilgi
+  için NDIS sürücünüzle sağlanan "PROTOCOL.INI" dosyasına bakın. Fakat
+  birçok durumda sürücü ismi yani drivername satırı yeterli olacaktır.
+    [PKTDRV]
+    drivername=PKTDRV$
+    bindings=EL3C574
+    intvec=0x60
+    chainvec=0x68
+  Sonraki bölüm yani "[PKTDRV]", Paket Sürücüsü'nden NDIS'e Dönüştürücü'yü
+  tanımlar, ki bu "DIS_PKT.DOS" veya "DIS_PKT9.DOS" şeklindedir. Her ikisi
+  de "PKTDRV$" olarak adlandırılır.
+  Dönüştürücünün <a href="../network/network.htm">ağ</a> kartının sürücüsü ile bağlanması önemlidir. Bu,
+  bir sonraki "bindings=EL3C574" satırıyla yapılır. Lütfen bu ismin <b>hiçbir</b>
+  "$" harfi içermediğini not edin - bu, sürücünün kendisine değil,
+  sürücüyü tanımlayan <b>bölümün ismine</b> işaret eder.
+  Bu bölümü yukarıda önerildiği gibi "[fasulye]" olarak adlandırdı iseniz,
+  buraya "bindings=fasulye" yazmanız gerekecektir ;-).
+  "intvec" unsuru, paket sürücü arayüzü tarafından kullanılan yazılım
+  kesme vektörünü belirtir. Daha önce izah edildiği üzere, bu varsayılan
+  değer olarak onaltılık 0x60 olmalıdır.
+  "chainvec" unsuru da mevcut bir yazılım kesmesini tanımlar. İşlevi benim
+  için hâlâ bir gizem teşkil etmektedir. Paket sürücüsü mucidi FTP'ye göre
+  (bkz.: <b>http://groups.google.de/group/comp.protocols.tcp-ip.ibmpc/msg/
+  17b6041f7a3cde7c?dmode=source (*08)</b>), bir zincir vektör kesmesi
+  eklemek paket işleme süratini ve güvenilirliğini arttırabilir.
+  Kullanıcılar "performansta 10 kat iyileşme" görmüşlerdir (bkz.:
+  <b>http://groups.google.de/group/comp.protocols.nfs/msg/9b0c2e0d6aa47b32
+  ?dmode=source (*09)</b>). EMM386 hatalarından kaçınmak için, bazıları
+  (bkz.: <b>http://groups.google.de/group/bit.listserv.banyan-l/msg/
+  aa961def5901f506?dmode=source (*10)</b>) vektörü ondalık 8 ile artıracak
+  bir kesme ayarlamayı tavsiye etmiştir. Yani <b>intvec</b> 0x60 ise
+  (bu ondalık 96'dır), <b>chainvec</b> değerinin ondalık 104 (96+8) olması
+  gerekir, ki bu onaltılık 0x68 değeridir. Bu ayrıca DIS_PKT.DOS
+  (bkz.: <b>http://groups.google.de/group/comp.protocols.tcp-ip.ibmpc/
+  msg/64f2b6060ff2b438?dmode=source (*11)</b>) yazarlarından biri olan
+  Dan Lanciani tarafından da açıklanmıştır. Daha fazlasını bulursanız
+  lütfen yazın. Amacımız için PROTOCOL.INI dosyasında ihtiyacımız olan tüm
+  ayarlar bunlardır. Son bir ipucu: eğer bu değerlerin bazılarını
+  bilgisayar her başladığında değiştirmek istiyorsanız, mesela bir DOS
+  başlatma menüsünde, Horst Schaeffer'in bedava "Inifile" aracını
+  yararlı bulabilirsiniz (bkz: <b>http://www.horstmuc.de/wbat32.htm (*12)</b>).
+</pre>
+<h2><a name="fff"></a>Kurulum</h2>
+<pre>
+  Yapılması gereken son şey sürücülerin başlatma esnasında yüklenmelerini
+  sağlamaktır. Sistem dosyalarınızı şu satırları içerecek şekilde
+  değiştirin:
+    --- <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> (FreeDOS) ---
+    --- or <a href="../cnfigsys/index.htm">CONFIG.SYS</a> (MS DOS/başka DOS) ---
+    DEVICEHIGH=C:\NET\PROTMAN.DOS /I:C:\NET
+    DEVICEHIGH=C:\NET\EL3C574.DOS
+    DEVICEHIGH=C:\NET\DIS_PKT.DOS
+  "/I" parametresi Protokol Yöneticisi'ne PROTOCOL.INI dosyasının konumunu
+  belirtir. Her ikisi de aynı dizinde ise buna gerek yoktur.
+    --- <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> ---
+    C:\NET\NETBIND.COM
+  NETBIND.COM dosyasının üst belleğe yüklenemeyeceğini ve sadece
+  <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> dosyasından çalıştırılması gerektiğini not edin. Şayet
+  onu bir sürücü gibi yüklemeye çalışırsanız, şu hata mesajı ile
+  çıkacaktır: "run-time error R6009 - not enough space for environment"
+  (yani "çalışma zamanı hatası R6009 - çevre için yeterli alan yok").
+</pre>
+<h2><a name="ggg"></a>Tekrar başlatma</h2>
+<pre>
+  Hepsi bu. Sisteminizi yeniden başlatın ve ping gibi sade bir <a href="../network/tcpip.htm">TCP/IP</a>
+  uygulaması ile her şeyin çalışıp çalışmadığını deneyin.
+    (Resim: NDIS başlatma mesajları)
+
+  <b>(*01) Tamam</b>
+  <b>(*02) https://web.archive.org/web/20030327055531/http://
+        www.ndis.com/faq/</b>
+  <b>(*03) https://web.archive.org/web/20100901143311/http://www.yale.
+        edu/pclt/WINWORLD/NDIS.HTM</b>
+  <b>(*04) https://www.virtualbox.org/wiki/Sharing_files_with_DOS
+        and: https://archive.org/download/ftp.microsoft.com/ftp.microsoft.
+        com.zip/ftp.microsoft.com%2Fbussys%2FClients%2FMSCLIENT%2FDSK3-1.
+        EXE</b>
+  <b>(*05) https://www.virtualbox.org/wiki/Sharing_files_with_DOS
+        and: https://archive.org/download/ftp.microsoft.com/ftp.microsoft.
+        com.zip/ftp.microsoft.com%2Fbussys%2FClients%2FMSCLIENT%2FDSK3-2.
+        EXE
+        and: http://download.amd.com/techdownloads/wfw31.zip
+        and: https://archive.org/download/ftp.microsoft.com/ftp.microsoft.
+        com.zip/ftp.microsoft.com%2FSoftlib%2FMSLFILES%2FWG1049.EXE
+        and: https://archive.org/download/ftp.microsoft.com/ftp.microsoft.
+        com.zip/ftp.microsoft.com%2FSoftlib%2FMSLFILES%2FNETSHAR.EXE
+        and: https://jeffpar.github.io/kbarchive/kb/121/Q121086/
+        and: https://jeffpar.github.io/kbarchive/kb/128/Q128800/</b>
+  <b>(*06) Tamam</b>
+  <b>(*07) https://web.archive.org/web/20110722171549/http://
+        www.danlan.com/</b>
+  <b>(*08) https://groups.google.com/forum/#!topic/comp.os.ms-windows.
+        networking.tcp-ip/Ekxg5Y5pP0g</b>
+  <b>(*09) https://groups.google.com/forum/#!original/comp.protocols.
+        nfs/Xe1WnbPu0og/Mnukag0uDJsJ</b>
+  <b>(*10) https://groups.google.com/forum/#!original/bit.listserv.
+        banyan-l/v6HiU41jovQ/BvUBWe8dlqoJ</b>
+  <b>(*11) https://groups.google.com/forum/#!original/comp.protocols
+        .tcp-ip.ibmpc/-/OLTyDwa28mQJ</b>
+  <b>(*12) https://www.horstmuc.de/div.htm#inifile</b>
+</pre>
+<hr>
+<pre>
+  <b>Telif hakkı &copy; 2007 Ulrich Hansen, Mainz (Almanya), 2010 ve 2020
+  senelerinde W.Spiegl tarafından değiştirilmiştir.</b>
+  <b>2023 senesinde Berki Yenigün tarafından tercüme edilmiştir.</b>
+  Daha fazla bilgi için <a href="../network/intro.htm#ddd">buraya bakın</a>.
+
+  Bu belgeyi kopyalama, dağıtma ve/veya değiştirme izni, GNU Özgür
+  Belgeleme Lisansı'nın 1.2 veya Free Software Foundation tarafından
+  yayınlanan daha yeni bir sürümü kapsamında verilmiştir.
+  Lisansın bir sureti, <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>
+  başlıklı bölümde mevcuttur.
+
+</pre></body></html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: vmsmount</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: vmsmount</h1>
+<pre>
+  VMSMOUNT is a DOS redirector for mounting VMware's shared folders.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  VMSMOUNT [/H][/V|/Q|/QQ] [/L:&lt;drv&gt;] [/B:&lt;siz[K]&gt;] [/LFN [/M:&lt;n&gt;]
+           [/CI|/CS]]
+  VMSMOUNT [/V|/Q|/QQ] /U
+</pre>
+<h2>Options:</h2>
+<pre>
+  /H                  - Prints help message and exits.
+  /V                  - Verbose: Prints information on system resources.
+  /Q                  - Quiet: Omits copyright message.
+  /QQ                 - Silent: Does not print any messages at all.
+  /L:&lt;drive letter&gt;   - Drive letter to assign.
+                        (if omitted, use first available).
+  /B:&lt;size[K]&gt;        - Size of read/write buffer.
+                        (4K default, higher values increase performance).
+  /LFN                - Long File Name support. "Mangles" long file names
+                        (or those with illegal or unconvertibe characters)
+                        to valid 8.3 names, using a hash algorithm. For
+                        example, "This is a long file.name" will trans-
+                        late into "THIS&tilde;2BF.NAM"
+  /M:&lt;n&gt;              - Number of mangling chars for short names
+                        (2 minimum, 6 maximum, 3 default). For example,
+                        the same "This is a long file.name" will translate
+                        into "THISI&tilde;02.NAM" if /M:2 or "TH&tilde;0BAC0.NAM" if
+                        /M:5. The default suits most use cases. Increase
+                        if the host file system has many files with
+                        similar long names.
+  /CI                 - Host file system is case insensitive, so
+                        "example.txt" and "ExaMPLe.Txt" are the same.
+                        This is the default behaviour.
+  /CS                 - Host file system is case sensitive (non-Windows
+                        hosts). Mangles file names whith lower case chars.
+                        For example, "EXAMPLE.TXT" will be left unchanged,
+                        but "Example.txt" will be translated into
+                        "EXAM&tilde;4F0.TXT".
+  /U                  - Uninstall
+  /D                  - Dump contents of internal stack (if compiled with
+                        debug support)
+
+  <a href="../command/environm.htm">ENVIRONMENT</a>:
+  TZ      - Valid POSIX timezone. If omitted, file times will be in UTC
+            (see http://www.gnu.org/s/hello/manual/libc/TZ-Variable.html)
+            Example: TZ=CET-1CEST-2,M3.5.0/02:00:00,M10.5.0/03:00:00
+  LANG    - Used by the Kitten library to show messages in the correct
+            language. Currently only available in English, Spanish and
+            Dutch.
+  NLSPATH - Used by the Kitten library to find the message catalogs
+            (VMSMOUNT.EN, VMSMOUNT.ES, VMSMOUNT.NL, ...)
+  PATH    - VMSMOUNT searchs in the PATH for the unicode conversion
+            tables.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  <b>PLEASE NOTE THAT VMWARE IS NO OPEN SOURCE SOFTWARE!</b>
+  VMSMOUNT only works on VMWARE virtual machines, not on others!
+  For more information see:
+  <b>https://gitlab.com/FreeDOS/net/vmsmount/-/tree/master/NET/VMSMOUNT?</b>
+  <b>ref_type=heads</b> OR:
+  <b>https://github.com/eduardocasino/vmsmount/tree/main</b>
+  VMSMOUNT has the following <a href="../batch/errorlvl.htm">RETURN CODES (ERRORLEVELS)</a>
+  If loaded successfully, VMSMOUNT returns the number of the assigned
+  drive letter starting with 1 ( A == 1, B == 2, C == 3, ... )
+  If not loaded, errorlevel is set according to the following table:
+    ERRORLEVEL  Meaning
+      0         Not loaded (help screen requested) or successfully
+                uninstalled
+    245         Unable to uninstall
+    246         Driver not installed and tried to uninstall
+    247         Invalid buffer size
+    248         Invalid command line option(s)
+    249         Unsupported DOS version
+    250         Not running in a virtual machine
+    251         Shared folders not enabled
+    252         Redirector not allowed to install
+    253         Already installed
+    254         Invalid drive letter
+    255         Other system error
+</pre>
+<h2>Examples:</h2>
+<pre>
+  FREEDOS runs in a VMWARE virtual machine (not Virtualbox, Qemu or
+  others). VMSMOUNT can connect your virtual FREEDOS machine with your
+  real system (e.g. Windows, Linux, Mac).
+  A FREEDOS installation on VMWARE is a little tricky, here a short
+  description for Windows, but other OSes should work close to this:
+  a) Download VMWare Workstation Player and install it. Start vmware.
+  b) Create a new virtual machine using "Installer disc image file(ISO)",
+     choose "Guest operating System - Other - MS-DOS", then the
+     Virtual machine name and your location. Then finish the basic
+     settings.
+  c) Start FreeDOS installation. With a mouse click into the vm-window
+     you come into the vmware window, with CTRL-ALT you come out again
+     (do not forget!!!). After first installation vmware boots up and
+     shows "55AA" on the screen. Reason: FREEDOS runs only <a href="../base/fdisk.htm">FDISK</a> at
+     the first installation.
+  d) To <a href="../base/format.htm">FORMAT</a> the virtual HD and install FREEDOS on the HD the CD has to
+     be rebooted a SECOND time. This is prevented by vmware as it removes
+     the installation CD and boots up so fast that you have no chance to
+     press "F2" to come into BIOS. To fix this go to your home directory
+     (C:\users\user name\Documents\Virtual Machines\FREEDOS machine name
+     \FREEDOS machine name.vmx. Edit this file and add the line:
+       bios.bootdelay = "5000" (can be removed later).
+  e) With this setting you can boot up, click into the vm window with the
+     mouse and press "F2" to come into the virtual machines BIOS where
+     you can CHANGE THE BOOT ORDER (start from CD = ISO file) first.
+     Then reboot and run the installation from the ISO-CD a second time
+     and finish the FreeDOS installation.
+  f) VMSMOUNT is at C:\NET\VMSMOUNT and can be executed from there.
+     In case that it is not yet there (and you have internet connection)
+     run "fdnpkg search vmsmount" and then "fdnpkg install vmsmount"
+     As alternative you can use the FREEDOS ISO file and run "fdimples"
+     and install it this way. In case it should run permanently do not
+     forget to modify FDAUTO.BAT (add C:\NET\VMSMOUNT\vmsmount /V /LFN
+     there).
+  g) Create a folder (e.g. "SHARE" anywhere at C: (or e.g. at C:\users\
+     user name\Documents\Virtual Machines\FREEDOS machine name\SHARE".
+  h) Switch off vmware, start the program and modify the settings for
+     your vm. Go to "Edit virtual machine settings", then go to "Options"
+     "Shared Folders" "Always enabled" and add a new "Shared Folder".
+     Host path see see g), Host name should appear automatically. Save
+     this settings. Since vmsmount 0.6 the changes can be done while
+     the player is running via Main window - Player - Manage - virtual
+     machine settings - Options - Shared Folders. It is also possible
+     to create several shared folders.
+  i) If everything went right, you should have an additional drive letter
+     at FREEDOS (e.g. E:\) which should share the files inside with the
+     SHARE folder created at g). (copy a file there and you should be
+     able to see and use it on both OSes).
+  j) Since version 0.6, VMSMOUNT supports code page changes with CHCP if
+     the optional VMCHCPD.SYS driver and NLSFUNC are installed, see:
+     <b>https://github.com/eduardocasino/vmsmount/blob/main/readme.txt</b>
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../command/environm.htm">environment variables</a>:
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+  <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../network/index.htm">Networking FreeDOS</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2011-2022 Eduardo Casino-Almao, help version 2023
+  W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

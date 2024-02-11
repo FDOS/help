@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: dskimage (ospimg)</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: dskimage (ospimg)</h1>
+<pre>
+  DSKIMAGE, the OSPlus Disk Imager is a utility that lets you read floppy
+  disks and create images of them on your hard disk. These can then be
+  written to a CD, zipped and e-mailed or uploaded to the Internet.
+  DSKIMAGE also lets you write these images back to a floppy disk. Be
+  warned that any existing data on the floppy will be DESTROYED when
+  writing an image.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  - none - dskimage uses a user interface.
+</pre>
+<h2>Options:</h2>
+<pre>
+  - none -
+</pre>
+<h2>Comments:</h2>
+<pre>
+  The image you write doesn't have to have been created with the Disk
+  Imager. There are no identifing "marks" in the image file that say it's
+  been created with the Disk Imager - it's just the exact contents of the
+  floppy disk. This can be written back to disk with other tools such as
+  RAWRITE (which Disk Imager is based on). Please note that some imaging
+  tools such as "DIM" have their own headers - these disks may not work
+  properly when written.
+  DSKIMAGE seems to have problems with ctmouse. If you have problems,
+  use "ALT + highlighted character" instead.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  To create an image file from a disk, do the following:
+    1. Start Disk Imager, either by typing DSKIMAGE or double-clicking
+       the icon if using Windows or another GUI.
+    2. Choose Read Image from Disk from the File menu, or press F2. A
+       dialog will appear.
+    3. Type the name of the file you want created (plus the path), or
+       click the Browse dialog and do it that way.
+    4. Click OK to read the disk and create a disk image.
+
+  To write an image file back to a disk, do the following:
+    1. Start the Disk Imager, as above.
+    2. Choose Write Image to Disk from the File menu, or press F3. A
+       dialog will appear.
+    3. Type the full path to the file you want to write to the disk,
+       or click the Browse dialog to find it graphically.
+    4. Click OK to write the disk image to the disk.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/diskcopy.htm">diskcopy</a>
+  <a href="../util/raread.htm">raread</a>
+  <a href="../util/rawrite.htm">rawrite</a>
+  <a href="../base/shsurdrv.htm">shsurdrv</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2000-2001 Owen Rudge, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>FreeDOS komutu: fdisk</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+</head>
+<body>
+<h1>Komut: fdisk</h1>
+<pre>
+  FDISK sabit diskler üzerinde bir veya daha fazla bölüm oluşturur. Sonra
+  bölümler <a href="../base/format.htm">biçimlendirilebilir</a> ve FreeDOS
+  ile kullanılmaya hazır olurlar. Onları başlatılabilir yapmak için bir
+  'faal bölüm' ayarlamanız ve 'fdisk /ipl' (veya: 'fdisk /mbr') ardından
+  'sys c:' komutlarını çalıştırmanız gerekir. FDISK komutuna disketler
+  için ihtiyaç duyulmaz!
+</pre>
+<h2>Söz dizimi:</h2>
+<pre>
+  FDISK [argüman]...
+  argümansız        Etkileşimli kipte çalışır.
+  /INFO [sürücü&num;]   &lt;sürücü&num;> hakkında bölüm verileri görüntüler.
+  /REBOOT           Bilgisayarı yeniden başlatır.
+</pre>
+<h2>Seçenekler:</h2>
+<pre>
+  Bölüm oluşturmak ve silmek için komutlar:
+  &lt;boyut&gt;  megabayt saysı veya azami boyut için MAX değeridir
+          ya da &lt;sayı&gt;,100 ki bu  &lt;sayı&gt; değerini yüzde olarak
+          ifade eder.
+  &lt;tür&num;&gt; sayısal bir bölüm türüdür veya /SPEC girilmemişse
+          FAT-12/16/32.
+
+  /PRI:&lt;boyut&gt; [/SPEC:&lt;tür&num;&gt;] [sürücü&num;] Birincil bir bölüm
+                                                    oluşturur.
+  /EXT:&lt;boyut&gt; [sürücü&num;]    Genişletilmiş bir DOS bölümü oluşturur.
+  /LOG:&lt;boyut&gt; [/SPEC:&lt;tür&num;&gt;] [sürücü&num;] Mantıksal bir sürücü
+                                                    oluşturur.
+  /PRIO,/EXTO,/LOGO                        Yukarıdaki gibi, ama FAT32'den
+                                           kaçınır.
+  /AUTO [sürücü&num;]                          Diski otomatik olarak bölümler.
+  /DELETE {/PRI[:&num;] | /EXT | /LOG:&lt;bölüm&num;&gt; Bir bölümü siler.
+           | /NUM:&lt;bölüm&num;&gt;} [sürücü&num;] ...mantıksal sürücüler /NUM=5
+                                           değerinden itibaren başlar.
+  /DELETEALL [sürücü&num;]                     &lt;sürücü&num;&gt; üzerindeki tüm
+                                           bölümleri siler.
+
+Faal bölümlerin ayarlanmaları:
+  /ACTIVATE:&lt;bölüm&num;&gt; [sürücü&num;]       &lt;bölüm&num;&gt; faal olarak
+                                           ayarlanır.
+  /DEACTIVATE [sürücü&num;]                    Tüm bölümler devre dışı
+                                           bırakılır.
+MBR (Master Boot Record) yönetimi:
+  /CLEARMBR [sürücü&num;]      Tüm bölümleri ve başlatma kodunu siler.
+  /LOADMBR  [sürücü&num;]      Bölüm tablosuyla kodu "boot.mbr" konumundan
+                           MBR'e yükler.
+  /SAVEMBR  [sürücü&num;]      Bölümler tablosuyla kodu "boot.mbr" dosyasına
+                           kaydeder.
+
+Bölümlere dokunmadan MBR kod değişiklikleri:
+  /IPL      [sürücü&num;]     Standart başlatma kodunu &lt;sürücü&num;&gt; MBR'ına
+                          kurar.
+                          ... /MBR ve /CMBR ile aynı, uyumluluk için.
+  /SMARTIPL [sürücü&num;]      DriveSmart IPL'i &lt;sürücü&num;&gt; MBR'ına kurar.
+  /LOADIPL  [sürücü&num;]      MBR'a "boot.mbr" dosyasından 440 kod baytı
+                           yazar.
+
+Gelişmiş bölüm tablosu değişiklikleri:
+  /MODIFY:&lt;bölüm&num;&gt;,&lt;tür&num;&gt; [sürücü&num;] Bölüm türünü &lt;tür&num;&gt;
+                                              olarak değiştirir. ...
+                                              Mantıksal sürücüler "5"
+                                              değerinden başlar.
+  /MOVE:&lt;kaynakbölüm&num;&gt;,&lt;hedefbölüm&num;&gt; [sürücü&num;] Birincil
+                                                          bölümleri taşır.
+  /SWAP:&lt;ilkbölüm&num;&gt;,&lt;ikincibölüm&gt;  [sürücü&num;] Birincil bölümler
+                                                     arasında geçiş yapar.
+
+Bir sabit disk üzerindeki bayrakların yönetimi:
+  /CLEARFLAG[{:&lt;bayrak&num;&gt;} | /ALL}] [sürücü&num;]  &lt;bayrak&num;&gt; veya
+                                               tümü &lt;sürücü&num;&gt;
+                                               üzerinde sıfırlanır.
+  /SETFLAG:&lt;bayrak&num;&gt;[,&lt;değer&gt;] [sürücü&num;]  &lt;bayrak&num;&gt; 1
+                                             veya &lt;değer&gt; olarak
+                                             ayarlanır.
+  /TESTFLAG:&lt;bayrak&num;&gt;[,&lt;değer&gt;] [sürücü&num;] &lt;bayrak&num;&gt; 1 ya
+                                            da &lt;değer&gt; için denenir.
+
+Sabit disklere dair bilgi edinmek için:
+  /STATUS       Güncel bölüm düzenini görüntüler.
+  /DUMP         Tüm sabit disklerden bölüm bilgisini döker (hata ayıklama
+                için).
+
+Etkileşimli kullanıcı arayüzü seçenekleri:
+  /UI           Son argüman olarak girildiyse arayüz daima başlatılır.
+  /MONO         Kullanıcı arayüzünü tek renk kipinde çalışmaya zorlar.
+  /FPRMT        Etkileşimli kipte FAT32/FAT16 için sorar.
+  /XO           Genişletilmiş seçenekleri etkinleştirir.
+
+Uyumluluk seçenekleri:
+  /X            Sonraki komutlar için ext. INT 13 ve LBA'yi devre dışı
+                bırakır.
+</pre>
+<h2>Açıklamalar:</h2>
+<pre>
+  FDISK bölüm oluşturup sildiği için onu dikkatli kullanmalısınız. Şayet
+  bir sabit diski başlatılabilir yapmak istiyorsanız, 'Active' yani faal
+  bayrağını ayarlayıp MBR'ı sabit diske yazmak için 'fdisk /mbr' komutunu
+  çalıştırmayı unutmayın. FreeDOS DÖRT değerine dek birincil bölüm
+  destekler. Bir sabit diskte DÖRTTEN fazla bölüm oluşturmak istiyorsanız
+  önce azami ÜÇ birincil bölüm oluşturup BİR (=azami!) genişletilmiş bölüm
+  oluşturmanız, bunun içinde de BİR veya DAHA FAZLA mantıksal bölümler
+  oluşturmanız gerekir. Dörde kadar farklı bölümden başlatma yapmak için
+  bu bölümlere sistem kurmanız gerekir (en azından = "sys c: / d: /e: /
+  f:") ve ardından fdisk'i çalıştırmanız ve 'Faal' bayrağını başka bir
+  birincil bölüme değiştirmeniz gerekir. Mantıksal  sürücülerden başlatma
+  YAPAMAZSINIZ!
+  FDISK'in <a href="../batch/errorlvl.htm">hata kodları (ERRORLEVEL / EXITCODES)</a> şunlardır:
+     0  Programın normal tamamlanması, hata yok
+     1  Söz dizimi hatası
+     3  fdisk.ini dosyasında hata
+     4  part.dat dosyasında hata
+     5  Mevcut olmayan sabit disk
+     6  Tampon atama başarısızlığı
+     7  Sabit disk zaten bölümlenmiş. (Bu sadece "/AUTO" işlevi
+        kullanılırsa ve sabit diskte zaten Compaq Diagnostic
+        Partition bölümü dışında bölümler varsa meydana
+        gelir.)
+     8  boot.mbr dosyasından okuma veya dosyaya yazma hatası.
+     9  Çeşitli hatalar. En iyisi, hatanın kesin kaynağını
+        bulmak için ekrana özgür FDISK'ten gönderilen
+        çıktıyı okumaktır.
+    20  Bayrak ayarlandı  (detaylar için /SETFLAG, /TESTFLAG ve
+        /CLEARFLAG seçeneklerine bakın)
+    21  Bayrak ayarlanmadı (yukarıdaki errorlevel 20'ye bakın)
+</pre>
+<h2>Örnekler:</h2>
+<pre>
+  Örnek 1:
+  Bir disketin başlatılabilir yapılması, sürüm 1:
+  Mevcut başlatılabilir bir sabit disk veya CD'den:
+    fdisk      (gerekli değildir!)
+    format a:  (Disketi biçimlendirir ki dosyalar yazılabilsin).
+    sys a:     <a href="../base/kernel.htm">ÇEKİRDEK (KERNEL.SYS)</a> ve <a href="../base/command.htm">COMMAND.COM</a>
+               başlatılabilir sabit diskiniz veya CD'nizden A:'ya
+               kopyalanır; işlemden sonra disket başlatılabilir olacaktır.
+  Örnek 2:
+  Bir disketin başlatılabilir yapılması, sürüm 2:
+  Başlatılmış bir disketten (A: sürücüsünde):
+    fdisk      (gerekli değildir!)
+    format b:  (Disketi biçimlendirir ki dosyalar yazılabilsin).
+               İki disket sürücünüz olup olmadığına dayalı olarak format
+               komutu B: sürücüsünde biçimlendirme yapar veya sizden A:
+               sürücüsüne yeni bir disket koymanızı ister ve
+               biçimlendirmeyi orada yapar. İşlem tamamlandığında,
+               orijinal disketi yeniden koyun ve şu komutu çalıştırın:
+    sys b:     <a href="../base/kernel.htm">ÇEKİRDEK (KERNEL.SYS)</a> ve <a href="../base/command.htm">COMMAND.COM</a>
+               başlatılabilir A: disketinizden B:'ye kopyalanacaktır,
+               (format b: ile aynı süreç) işlem tamamlandığında disket
+               başlatılabilir olacaktır.
+  Örnek 3:
+  Bir sabit diskin başlatılabilir yapılması:
+  Mevcut bir başlatılabilir disketten veya CD'den:
+    fdisk      (Bu, BİR veya DAHA FAZLA bölüm oluşturmanıza imkân verir,
+               yukarıda açıklanmıştır; DÖRDE kadar birincil bölüm
+               yaratılabilir. (Şayet dört birincil bölüm oluşturursanız
+               sabit diskinizin kalan alanı kullanılamaz!) Bilgisayarı
+               tekrar başlatmayı unutmayın! Seçeneksiz çalıştırılan Fdisk
+               bir grafik arayüz görüntüler.
+    fdisk      <b>FAAL BÖLÜMÜ</b> ayarla (SADECE BU böüm başlatma
+               yapabilir, ama bunu diğer üç bölümü fdisk ile FAAL yaparak
+               değiştirebilirsiniz (başlatma yöneticisi YOKTUR).
+               Bilgisayarınızı tekrar başlatmayı unutmayın!
+    fdisk      Başlatma kodunu güncellemek için <b>FDISK /IPL</b>
+               (veya: FDISK /mbr) yazın, ardından bilgisayarınızı tekrar
+               başlatmayı unutmayın!
+    format c:  Sabit diski C: bölümüne dosya yazılabilmesi için hazırlar.
+               Kullanmak istediğiniz ve fdisk ile hazırladığınız tüm
+               bölümler için bunu yapmanız gerekir.
+    sys c:     <a href="../base/kernel.htm">ÇEKİRDEK (KERNEL.SYS)</a> ve <a href="../base/command.htm">COMMAND.COM</a>
+               başlatılabilir disketinizden veya CD'nizden C:'ye
+               kopyalanır.
+  Örnek 4:
+    fdisk /info
+</pre>
+<h2>Ayrıca bakınız:</h2>
+<pre>
+
+  <a href="../base/command.htm">command.com</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../base/krnl-dvl.htm">kernel-devel</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../base/sys.htm">sys</a>
+  <a href="../base/undelete.htm">undelete</a>
+  <a href="../base/unformat.htm">unformat</a>
+  <a href="../command/vol.htm">vol</a>
+</pre>
+<hr>
+<pre>
+  <b>Telif hakkı &copy; 1998-2023 Brian E. Reifsnyder ve FreeDOS camiası,
+  yardım 2023 senesinde by W. Spiegl tarafından güncellenip Berki Yenigün
+  tarafından tercüme edilmiştir.</b>
+
+  Bu dosya FreeDOS Spec Command HOWTO'dan türetilmiştir.
+  Kopyalama şartları için <a href="../other/h2cpying.htm">H2Cpying</a> dosyasına bakın.
+</pre>
+<hr>
+</body></html>

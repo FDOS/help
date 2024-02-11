@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: (pager)</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: pg (pager)</h1>
+<pre>
+  PG -- PaGer
+  A text file viewer with mouse interface.
+  It browses any text file and with more advanced features.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  PG [/? | filename ... | @file ]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /?       - displays a brief help on screen
+  filename - page through filename on the PC screen
+           - filename maybe in wildcard format
+  ...      - support multiple filenames
+  @file    - response file with a list of files to view.
+  If filename is omitted, read data from &lt;stdin&gt;
+
+  OR  command | PG  like
+      dir /s  | PG
+</pre>
+<h2>Control:</h2>
+<pre>
+  Control is intuitive, Keys defined as:
+  PG Key:     Meaning:
+  Esc,Q,q     Exit program
+  B,b         Toggle bit 7 on/off
+  H,h         Hex view
+  W,w         Wrap long lines
+  Up          Scroll down 1 line
+  Down,Enter  Scroll up 1 line
+  Page Up     Scroll down 1 page
+  Page Down   Scroll up 1 page
+  Home        First page
+  End         Last page
+  Left        Pan view left 30 columns (1..256)
+  Right       Pan view right 30 columns (1..256)
+  1..0        Save current position to boomark #1..5
+  Alt-1..0    Jump to saved bookmark
+  Alt-D       Jump to DOS shell
+  Alt-E       Toggle VGA 25/28/50 Lines
+  Alt-F       Enter new path and file name
+  Backspace   Jump to a line as far as possible
+  F1          Online help (PG.MAN this file)
+  S-F1        One Line Chinese
+  F2          Continue to search backward (Case Insensitive) (CI)
+  S-F2        Continue to search backward (Case Sensitive) (CS)
+  F3          Continue to search forward  (CI)
+  S-F3        Continue to search forward  (CS)
+  F4          Enter search mode and input search string (CI)
+  S-F4        Recall search history
+  F5          Save 1 screenful of text to "PG.SAV"
+  S-F5        View "PG.SAV"
+  F6          Change the foreground color in text window
+  S-F6        Change the background color in text window
+  F7          Change to a different language font (immediate)
+  S-F7        Change to a different language font (deferred)
+  F8          Save filename, color and topline to "PG.PG"
+  S-F8        Recall saved filename from "PG.PG"
+  F9          Reload files from proceeding command line argument
+  S-F9        Remove "PG.PG"
+  F10         Reload files from following command line argument
+  S-F10       Remove "PG.SAV"
+  C-PgUp      View previous file
+  C-PgDn      View next file
+  Linux DOSEMU user may press 'n'/'p' for next/prev. file in TUI mode
+</pre>
+<h2>Comment:</h2>
+<pre>
+  For more informations see:
+  <b>https://gitlab.com/FreeDOS/util/pg/-/blob/master/DOC/PG/</b>
+  <b>PG.MAN?ref_type=heads></b> OR:
+  <b>C:\FREEDOS\PG\</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  PG C:\PATH\example.txt
+  and then navigate through the document
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/edit.htm">edit</a>
+  <a href="../util/foxtype.htm">foxtype</a>
+  <a href="../command/type.htm">type</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1995-1998 Bill Weinmen, 2007 BAHCL,
+  help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

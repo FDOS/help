@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: uptime</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: uptime</h1>
+<pre>
+  Report the amount of time the computer has been running.
+  This is the Free &amp; Open DOS Utility by
+  M.Aitchison@phys.canterbury.ac.nz, Version 7.02a
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  UPTIME  [options]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /B      Brief
+  /D      Day of start only
+  /L[:fn] List to printer (or filename)
+  /S      System uptime (if under dosemu)
+  /T      Time of start only
+  /U:x    Units:[Days|Hours|Min|S|Ticks]
+</pre>
+<h2>Comments:</h2>
+<pre>
+  <a href="../command/environm.htm">ENVIRONMENT VARIABLES:</a>
+    UPTIME  Specify default options, e.g. SET UPTIME=/Verbosity=16
+    CLASS1=Error, CLASS2=Warn, _ANSI=NO, COMPATIBILITY=OpenDOS, LFN=NO
+  EXPLANATiON:
+    This command shows how long the system has been up and running. The
+    default format is similar to (but not exactly the same as) the Unix
+    command of the same name, e.g.:
+
+    11:12am  up 2 hours, since 30-SEP-1997  9:22:12, 2 OpenDOS tasks
+       |        |                  |           |     |
+    time now    |            date of boot      |     if Taskmgr is running
+             running for                   boot time
+             (units automatic)
+  For more information see:
+  <b>https://gitlab.com/FreeDOS/unix/uptime/-/tree/master/HELP?ref_type=heads</b>
+  UPTIME is not part of the actual FREEDOS distribution.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  uptime shows (for example):
+     1:16pm  up 1 hours,   since 27-SEP-2023  12:56:11
+  uptime /b shows:
+     1 hours
+  uptime /d shows:
+    27-SEP-2023
+  uptime /u:hours shows:
+   1:21pm    up 0.4 hours, since 27-SEP-2023 12:56:11
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/environm.htm">environment variables</a>
+  <a href="../util/uptimec.htm">uptime(c)</a> (another uptime program)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1997 Mark Aitchison, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<title>FreeDOS command: fdisk</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: fdisk</h1>
+<pre>
+  FDISK erstellt auf einer Festplatte eine oder mehrere Partitionen.
+  Diese können danach mit <a href="../base/format.htm">FORMAT</a> formatiert werden.
+  Im Anschluss sind die Partitionen zur Verwendung unter FreeDOS bereit.
+  Um sie bootfähig zu machen müssen Sie eine 'Aktive Partition' setzen
+  und 'fdisk /ipl' (oder 'fdisk /mbr') und 'sys c:' ausführen.
+  FDISK wird für Disketten nicht benötigt!
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  FDISK [Laufwerk&num;] [Argumente]...
+  Kein Argument     Läuft im interaktiven Modus (grafisch).
+  /INFO             Zeigt Partitionsinformationen über &lt;Laufwerk(=LW)&num;&gt;.
+  /REBOOT           Startet den Computer neu.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+Befehle zum Erstellen und Löschen von Partitionen:
+  &lt;Größe&gt;   Ist ein Wert in Megabyte oder MAX für die maximale
+            Größe oder &lt;Wert&gt;, 100 für &lt;Wert&gt; in Prozent.
+  &lt;Typ&num;&gt;    Ist ein numerischer Partitionstyp oder FAT-12/16/32
+            falls /SPEC nicht eingegeben.
+  /PRI:&lt;Größe&gt; [/SPEC:&lt;Typ&num;&gt;]              Erstellt eine primäre Partition.
+  /EXT:&lt;Größe&gt;                             Erstellt eine erweiterte
+                                           DOS-Partition.
+  /LOG:&lt;Größe&gt; [/SPEC:&lt;Typ&num;&gt;]              Erstellt ein logisches Laufwerk.
+  /PRIO,/EXTO,/LOGO                        Wie oben, vermeidet aber die
+                                           Verwendung von FAT32.
+  /AUTO                                    Partitioniert die Festplatte
+                                           automatisch.
+  /DELETE {/PRI[:&num;] | /EXT | /LOG:&lt;part&num;&gt;  Löscht eine Partition.
+          | /NUM:&lt;part&num;&gt;}                  ...Logische Laufwerke starten
+                                           mit /NUM=5.
+  /DELETEALL                               Löscht alle Partitionen vom
+                                           &lt;LW&num;&gt;.
+
+Aktive Partition setzen:
+  /ACTIVATE:&lt;Partition&num;&gt;                Setzt &lt;Partition&num;&gt; aktiv.
+  /DEACTIVATE                           Deaktiviert alle Partitionen.
+
+MBR (Master Boot Record) Verwaltung:
+  /CLEARMBR            Löscht alle Partitionen und Bootcode.
+  /LOADMBR             Lädt Partitionstabelle und Bootcode von
+                       "boot.mbr" in den MBR.
+  /SAVEMBR             Speichert Partitionstabelle und Bootcode in
+                       die Datei "boot.mbr".
+
+MBR Codeänderungen die die Partitionen intakt lassen:
+  /IPL                 Installiert den Standardbootcode in den MBR
+                       &lt;LW&num;&gt;. ...Wegen Kompatibilität identisch mit
+                       /MBR und /CMBR.
+  /SMARTIPL            Installiert den DriveSmart IPL in den MBR &lt;LW&num;&gt;.
+  /LOADIPL             Schreibt 440 Codebytes von "boot.mbr" in den MBR.
+
+Erweiterte Partitionstabellenveränderung:
+  /MODIFY:&lt;part&num;&gt;,&lt;Typ&num;&gt;                 Ändert Partitionstyp zu
+                                         &lt;Typ&num;&gt;. ...Logische Laufwerke
+                                         starten bei "5".
+  /MOVE:&lt;srcpart&num;&gt;,&lt;destpart&num;&gt;           Verschiebt primäre Partitionen.
+  /SWAP:&lt;1stpart&num;&gt;,&lt;2ndpart&num;&gt;            Vertauscht primäre Partitionen.
+
+Zum Handhaben von Flags auf einer Festplatte:
+  /CLEARFLAG[{:&lt;Flag&num;&gt;} | /ALL}]         Resettet &lt;Flag&num;&gt; oder alle
+                                         auf &lt;LW&num;&gt;.
+  /SETFLAG:&lt;Flag&num;&gt;[,&lt;Wert&gt;]              Setzt &lt;Flag&num;&gt; auf 1 oder
+                                         &lt;Wert&gt;.
+  /TESTFLAG:&lt;Flag&num;&gt;[,&lt;Wert&gt;]             Testet &lt;Flag&num;&gt; für 1 oder
+                                         &lt;Wert&gt;.
+
+Zum Erhalt von Informationen über die Festplatte(n):
+  /STATUS      Zeigt das aktuelle Partitionslayout.
+  /DUMP        Gibt Partitionsinformationen von allen Festplatten aus
+               (fürs Debuggen).
+
+Schalter für die interaktive Benutzeroberfläche:
+  /UI           Startet immer die Benutzeroberfläche, wenn sie als
+                letztes Argument angegeben wird.
+  /MONO         Erzwingt die Ausführung der Benutzeroberfläche im
+                monochromen Modus.
+  /FPRMT        Fordert im interaktiven Modus nach FAT32/FAT16.
+  /XO           Ermöglicht erweiterte Optionen.
+
+Kompatibilitätsoptionen:
+  /X            Deaktiviert für die folgenden Befehle INT 13 und LBA.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Da FDISK Partitionen erstellt / löscht, sollten Sie damit vorsichtig
+  umgehen. Wenn Sie eine Festplatte bootfähig machen wollen, vergessen
+  Sie nicht, den 'Aktiv- Flag' zu setzen und 'fdisk /ipl' ('fdisk /mbr')
+  auszuführen, damit der Masterbootrecord auf die Festplatte geschrieben
+  wird. FreeDOS unterstützt bis zu VIER primäre Partitionen. Wenn Sie
+  mehr als VIER Partitionen auf einer Festplatte erstellen wollen, dann
+  sollten Sie zuerst maximal DREI primäre Partitionen erstellen, danach
+  maximal EINE (= verbleibende Restgröße!) erweiterte Partition - und
+  in dieser EINE oder MEHRERE logische Partitionen erstellen.
+  Um von bis zu vier unterschiedlichen (primären) Partitionen booten zu
+  können, müssen Sie zuerst auf allen "sys c: / d: / e: / f: ausführen,
+  dann fdisk ausführen und den 'Aktiv-Flag' der gewünschten primären
+  Partition zuweisen. Von logischen Laufwerken können Sie NICHT booten!
+
+  FDISK hat folgende <a href="../batch/errorlvl.htm">ERRORLEVEL / EXITCODES</a>:
+     0  Programm normal ausgeführt, keine Fehler.
+     1  Syntax Error.
+     3  Fehler in der Datei fdisk.ini.
+     4  Fehler in der Datei part.dat.
+     5  Keine Festplatte vorhanden.
+     6  Pufferzuweisungsfehler.
+     7  Festplatte ist bereits partitioniert. (Das wird nur bei Verwen-
+        dung der Option "/AUTO" ausgegeben, und wenn bereits andere
+        Partitionen als eine Compaq Diagnosepartition auf der Festplatte
+        sind.)
+     8  Fehler beim Lesen von oder Schreiben auf die boot.mbr Datei.
+     9  Verschiedene Fehler. Am besten überprüfen Sie die Bildschirm-
+        ausgabe von Free FDISK, um die genaue Ursache des Problems
+        herauszufinden.
+    20  Der Flag wurde gesetzt (vgl. /SETFLAG, /TESTFLAG und
+        /CLEARFLAG für Details)
+    21  Der Flag wurde nicht gesetzt (vgl. Errorlevel 20 oben).
+</pre>
+<h2>Beispiele:</h2>
+<pre>
+  Beispiel 1:
+  Eine Diskette bootfähig machen, Version 1:
+  Von einer vorhandenen bootfähigen Festplatte oder CD:
+    fdisk      (wird nicht benötigt!)
+    format a:  (Formatiert die Diskette, damit darauf Dateien
+               geschrieben werden können).
+    sys a:     Der <a href="../base/kernel.htm">KERNEL (KERNEL.SYS)</a> und <a href="../base/command.htm">COMMAND.COM</a> werden von
+               der bootfähigen Festplatte oder CD nach A: kopiert;
+               danach ist die Diskette bootfähig.
+
+  Beispiel 2:
+  Eine Diskette bootfähig machen, Version 2:
+  Von einer gebooteten Diskette (im Laufwerk A:):
+    fdisk      (wird nicht benötigt!)
+    format b:  (Formatiert die Diskette, damit darauf Dateien
+               geschrieben werden können). In Abhängigkeit davon, ob Sie
+               ein oder zwei Diskettenlaufwerke haben, formatiert der
+               FORMAT-Befehl entweder sofort das Laufwerk B: oder er
+               weist den Benutzer an, eine neue Diskette in das Laufwerk
+               A: zu legen und von dort aus zu formatieren. Nachdem das
+               erledigt ist, muss die Originaldiskette wieder eingelegt
+               und folgender Befehl eingegeben werden:
+    sys b:     Der <a href="../base/kernel.htm">KERNEL (KERNEL.SYS)</a> und <a href="../base/command.htm">COMMAND.COM</a> werden von
+               der bootfähigen Diskette A: nach B: kopiert (gleiche
+               Prozedur wie bei format b:), danach ist die Diskette
+               bootfähig.
+
+  Beispiel 3:
+  Eine Festplatte bootfähig machen:
+  Von einer existierenden bootfähigen Diskette oder CD:
+    fdisk      (Dies erlaubt es, EINE oder MEHRERE Partitionen zu er-
+               stellen (vgl. oben); es können bis zu VIER primäre
+               Partitionen erstellt werden. (Wenn Sie VIER primäre
+               Partitionen erstellen, kann evtl. verbleibender freier
+               Festplattenspeicher nicht mehr verwendet werden!)
+               Vergessen Sie nicht, neu zu starten! FDISK ohne Optionen
+               zeigt eine grafische Benutzeroberfläche.
+    fdisk      Setzen Sie die <b>AKTIVE PARTITION</b> (nur DIESE kann
+               booten, was Sie aber ändern können, indem Sie eine andere
+               PRIMÄRE Partition mit FDISK auf AKTIV setzen (es gibt
+               keinen Bootmanager!) Neustart nicht vergessen!
+    fdisk      Tippen Sie <b>FDISK /IPL</b> (oder: FDISK /mbr) um den Boot-
+               code zu aktualisieren. Neustart nicht vergessen!
+    format c:  Formatiert die Festplatte, damit Dateien auf die Parti-
+               tionen (C: D: usw.) geschrieben werden können. Diesen
+               Befehl müssen Sie für alle Partitionen erstellen, die Sie
+               mit fdisk neu erstellt haben, damit sie benutzbar sind.
+    sys c:     Der <a href="../base/kernel.htm">KERNEL (KERNEL.SYS)</a> und <a href="../base/command.htm">COMMAND.COM</a> werden von
+               der bootfähigen Diskette oder CD nach C: kopiert, danach
+               ist die aktive Partition C: (oder eine andere primäre
+               Partition, siehe dieses Beispiel, fdisk) bootfähig.
+
+  Beispiel 4:
+    fdisk /info
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/command.htm">command.com</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../base/krnl-dvl.htm">kernel-devel</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../base/sys.htm">sys</a>
+  <a href="../base/undelete.htm">undelete</a>
+  <a href="../base/unformat.htm">unformat</a>
+  <a href="../command/vol.htm">vol</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998-2023 Brian E. Reifsnyder and the FreeDOS
+  Community, aktualisiert 2023 von W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+
+<hr>
+
+</body></html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: mplayer</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: mplayer</h1>
+<pre>
+  MPLAYER is a movie player ported from Linux.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  mplayer [options] [url|path/]filename
+</pre>
+<h2>Options:</h2>
+<pre>
+  Basic options: (complete list in the man page)
+  -vo &lt;drv&gt;         Select video output driver ('-vo help' for a list)
+  -ao &lt;drv&gt;         Select audio output driver ('-ao help' for a list)
+   dvd://&lt;titleno&gt;  Play DVD title from device instead of plain file
+  -alang/-slang     Select DVD audio/subtitle language (by 2-char country
+                    code)
+  -ss &lt;position&gt;    Seek to given (seconds or hh:mm:ss) position
+  -nosound          Do not play sound
+  -fs               Fullscreen playback (or -vm, -zoo, details in the man
+                    page)
+  -x &lt;x&gt; -y  &lt;y&gt;    Set display resolution (for use with -vm or -zoom)
+  -sub &lt;file&gt;       Specify subtitle file to use (also see -subfps,
+                    -subdelay)
+  -playlist &lt;file&gt;  Specify playlist file
+  -vid x -aid y     Select video (x) and audio (y) stream to play
+  -fps x -srate y   Change video (x fps) and audio (y Hz) rate
+  -pp &lt;quality&gt;     Enable postprocessing filter (details in the man
+                    page)
+  -framedrop        Enable frame dropping (for slow machine)
+
+  Basic keys: (complete list in the man page, also check input.conf)
+  &lt;- or -&gt;          Seek backward/forward 10 seconds
+  down or up        Seek backward/forward 1 minute
+  pgdown or pgup    Seek backward/forward 10 minutes
+  &lt; or &gt;            Step backward/forward in playlist
+  p or SPACE        Pause movie (press any key to continue)
+  q or ESC          Stop playing and quit program
+  + or -            Adjust audio delay by +/- 0.1 second
+  o                 Cycle OSD mode: none / seekbar / seekbar + timer
+  * or /            Increase or decrease PCM volume
+  x or z            Adjust subtitle delay by +/- 0.1 second
+  r or t            Adjust subtitle position up/down, also see -vf expand
+
+  ** SEE THE MAN PAGE FOR DETAILS, FURTHER (ADVANCED) OPTIONS AND KEYS **
+</pre>
+<h2>Comments:</h2>
+<pre>
+  MPLAYER has an extensive documentation that is beyond the scope of
+  this help. For more information see:
+  <b>https://gitlab.com/FreeDOS/sound/mplayer/-/tree/master/DOC/MPLAYER/
+  HTML/de?ref_type=heads</b> OR go to:
+  <b>https://gitlab.com/FreeDOS/sound/mplayer/-/tree/master?ref_type=heads</b>
+  there is a symbol "Code", download source code, unzip it, go to
+  "\mplayer-master\DOC\MPLAYER\HTML\", choose your language and start
+  index.htm with a modern browser (reason: man files are not in 8.3
+  format) OR:
+  <b>http://www.mplayerhq.hu/DOCS/man/en/mplayer.1.html</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  In virtualbox the sound should run without a sound card driver.
+  On bare metal and other vms you will have to install sound card
+  driver. In my tests mplayer needed at least 64 MB RAM to work
+  properly. Copying the files from DVD to HD accelerated the video.
+    mplayer example.vob -aid 128   (128 ff should be the languages)
+  In Linux you can change the language with "&num;" - but it freezes
+  in FREEDOS when you do so.
+</pre>
+<h2>See also:</h2>
+<pre>
+  - nowhere -
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2000-2007 MPlayer Team, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

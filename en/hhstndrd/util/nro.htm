@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: nro</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: nro</h1>
+<pre>
+  NRO is a text processor and formatter based on the design provided in
+  "Software Tools" by Kernighan and Plauger. The text and commands
+  found  in the infile(s) are processed to generate formatted text. The
+  output may be directed into a file or to the printer, otherwise, the
+  output will appear at the user console.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  nro [-n] [+n] [-pxx] [-v] [-u] [-b] [-mmacfile] infile ...
+          [>outfile]
+</pre>
+<h2>Options:</h2>
+<pre>
+  The +n option causes the output to start with page n.
+  The -n option causes the output to stop after page n.
+  The -v option prints the version number to the console.
+  The -p option causes the output to be shifted to the right by xx
+         spaces. This has the same effect as the .po command.
+  The -u option enables underlining and bold to appear in the
+         output text.
+  The -b option allows backspaces to be used when underlining or
+         overstriking. Otherwise a carriage return without linefeed is
+         used. This has the same effect as the .bs command with a non-
+         zero argument.
+  The -m option processes the file mfile for macro definitions. Note
+         that files processed in this way should contain only macro
+         definitions, no immediate output should be generated from this file.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  NRO has a lot of commands, e.g.:
+  .bo, .bp, .br, .bs, .cc, .ce, .de, .cu, .ef, .eh, .en, .fi, .fo, .he,
+  .in, .ju, .ls, .m1, .m2, .m3, .m4, .ne, .nf, .nj, .nr, .of, .oh, .pc,
+  .pl, .po, .rm, .so, .sp, .ti, .ul.
+  NRO has an extensive documentation that is beyond the scope of
+  this help. For more information see:
+  <b>https://gitlab.com/FreeDOS/unix/nro</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - none -
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/index.htm">edit</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Steffen Kaiser, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

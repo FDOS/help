@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: bsum</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: bsum</h1>
+<pre>
+  BSUM - computes BSD checksums of files.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  BSUM filename
+</pre>
+<h2>Options:</h2>
+<pre>
+  - none -
+</pre>
+<h2>Comments:</h2>
+<pre>
+  BSUM is a tiny tool (256 bytes!) that computes the BSD checksum of
+  any file. It requires only a few kilobytes of memory, and is fast
+  even on an 8086-class PC. BSUM supports files of any size (as long
+  as your file system is able to handle them). The BSD checksum is
+  displayed in hexadecimal format (ie. four alphanumeric characters,
+  like "C2E1"). BSUM is an excellent candidate for verifying data
+  integrity on systems that are very constrained in terms of disk
+  space, memory or CPU power. Typically, bsum can be used to verify
+  that files transferred by unreliable means arrived intact.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  echo "Hi, how are you?"&gt; hi.txt
+  echo "Hi, how are you?"&gt; howare.txt
+  echo Hi, how are you?&gt; hi1.txt
+  echo Hi, how are you?&gt; howare1.txt
+  bsum hi.txt             gives result: E9E6
+  bsum howare.txt         gives result: E9E6
+  bsum hi1.txt            gives result: 93A8
+  bsum howare1.txt        gives result: 93A8
+  hi.txt and howare.txt are identical, so the BSD checksums are
+  identical. Same with hi1.txt and howare1.txt.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/comp.htm">comp</a>
+  <a href="../base/diskcomp.htm">diskcomp</a>
+  <a href="../base/fc.htm">fc</a>
+  <a href="../util/md5sum.htm">md5sum</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2017 Mateusz Viste, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

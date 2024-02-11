@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>FreeDOS ile Ağa Bağlanmak - Paket sürücüsü kurulumu</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<h1><a name="top"></a>FreeDOS ile Ağa Bağlanmak - Paket sürücüsü kurulumu</h1>
+<h2><a name="zzz"></a>Genel Bakış</h2>
+<pre>
+    (Paket sürücüsü resmi)
+  Paket sürücüleri, donanım (<a href="../network/network.htm">ağ</a> arayüz kartı) ve <a href="../network/ldtcpipk.htm">TCP/IP Çekirdeği</a>
+  ("protokol yığını" olarak da bilinir) arasında bir arayüz olarak
+  çalışırlar. <a href="../network/ldtcpipk.htm">TCP/IP Çekirdeklerinin</a> bir türü çeşitli <a href="../network/network.htm">ağ</a> uygulamaları
+  tarafından çağrılabilir harici bir program olarak çalışırlar. Başka
+  <a href="../network/ldtcpipk.htm">TCP/IP</a> çekirdekleri ise zaten <a href="../network/network.htm">ağ</a> uygulamalarına yerleşiktir, mesela
+  bir İnternet tarayıcısına veya bir ftp istemcisine. Bu çekirdekler
+  konusunda daha fazla şeyi bu vikide <a href="../network/ldtcpipk.htm">biraz daha sonra</a> öğreneceğiz.
+  Çoğumuz paket sürücüsünü <a href="../network/tcpip.htm">TCP/IP</a> ile ağa bağlanmak için kullanacaktır.
+  Ve hepsi bu olacaktır. Fakat paket sürücüleri çoklu protokol
+  sürücüleridir - yani <a href="../network/tcpip.htm">TCP/IP</a> onun üzerinde çalışabilecek tek çekirdek
+  değildir. Yukarıdaki resimde (koy gri alanlarda) görebileceğiniz üzere,
+  bir paket sürücüsünün üzerinde <a href="../network/novell.htm">Novell</a> NetWare çalıştırmak ta mümkündür:
+  IPXPD.COM veya PDIPX.COM gibi özel sürücü yazılımları, paket sürücüsü
+  arayüzünün üzerinde IPX desteği sağlarlar. Buna rağmen <a href="../network/cifs.htm">NetBEUI</a>
+  protokolü bir paket sürücüsünün üzerinde kullanılamaz, çünkü paket
+  sürücü arayüzü <a href="../network/ndis.htm">NDIS</a>'den çok farklıdır.
+</pre>
+<h2><a name="aaa"></a>Nerede bulunurlar</h2>
+<pre>
+  Paket sürücüleri için ilk bakılması gereken yer, kartınızla gelen
+  kurulum ortamı olmalıdır. Paket sürücüleri sıklıkla isimlerinde "PD"
+  bulundurur, yani <a href="../network/3com.htm">3Com</a> 3C589 PC kartının paket sürücüsünün adı şudur:
+  "3C589PD.COM" ve D-Link DFE-670TXD PC kartının sürücüsünün adı
+  "DFE670PD.COM" şeklindedir. Kartınızla gelen CD veya diskette "PKTDRV"
+  isimli bir dizin arayın.
+  Eğer kurulum ortamında böyle bir sürücü yoksa veya ortamınız yoksa,
+  İnternet üzerinde bir arama yapmayı deneyin. ISA ve PCI <a href="../network/network.htm">ağ</a> kartları
+  için bir paket sürücüsünün Russell Nelson'ın <a href="../network/crynwr.htm">Crynwr</a> sitesinde (bkz.:
+  <b>http://www.crynwr.com/project (*01)</b>) bulunması ihtimal dahilindedir.
+  Bu site, kamu malı paket sürücüleri kaynağıdır. Ancak burada PCMCIA
+  sürücüleri nadirdir.
+  Georg Potthast, PCI kartları için paket sürücüsü koleksiyonu sağlar
+  <b>http://www.georgpotthast.de/sioux/packet.htm (*02)</b>), buna ek olarak
+  PCI <a href="../network/network.htm">ağ</a> kartlarının çip setini tespit etmek için NICSCAN.EXE adlı
+  bir yardımcı araç da sağlar (bkz.: <b>http://www.georgpotthast.de/sioux/
+  pktdrv/nicscan.zip (*03)</b>).
+  Aynı üreticiden büyük bir model sayısı için paket sürücülerin sıklıkla
+  aynı olduğunu tecrübe etmiştir, dolayısıyla model numaranıza özel bir
+  paket sürücüsü bulmaya çalışmamanızı tavsiye etmektedir.
+</pre>
+<h2><a name="bbb"></a>Paket sürücüsünün kurulumu</h2>
+<pre>
+  Bir paket sürücüsü <a href="../network/install.htm">kurmak</a> için <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> dosyanıza şunun gibi bir
+  satır ekleyin (3c589 PCMCIA kartı için örnek):
+    LH 3C589PD.COM 0x60 5 0x300
+  Yukarıdaki örnekte, sürücü üst belleğe "LH" komutunu kullanarak
+  yükleniyor. İlk seçenek ("0x60") sürücü tarafından kullanılan yazılım
+  kesmesini (vektörü) belirtiyor. Paket sürücüleri için en çok kullanılan
+  yazılım kesme sayısı şudur: 0x60. İkinci seçenek ("5") IRQ ayarlamaya
+  yarar, üçüncü seçenek ("0x300") G/Ç portunu belirler. Bazı sürücüler
+  sadece vektöre ihtiyaç duyar ve diğer değerleri kendileri bulurlar.
+  Paket sürücülerin çoğu, kullanımın ardından "-u" seçeneği ile bellekten
+  kaldırılabilir.
+</pre>
+<h2><a name="ccc"></a>Tekrar başlatma</h2>
+<pre>
+  Hepsi bu. Başka bir sürücüye (<a href="../network/odi.htm">ODI</a> veya <a href="../network/ndis.htm">NDIS</a>) ihtiyacınız yoktur. Bir
+  paket sürücüsünü başarıyla kurduktan sonra, artık dahili bir çekirdek
+  bulunduran <a href="../network/tcpip.htm">TCP/IP</a> uygulamalarınızı (<a href="../network/wattcp.htm">WatTCP</a>) kurabilir veya harici bir
+  <a href="../network/ldtcpipk.htm">TCP/IP Çekirdeği</a> kurabilirsiniz (<a href="../network/ntcpdrv.htm">NTCPDRV</a>).
+    (Resim: paket sürücüsünün başlatma mesajları)
+
+  <b>(*01) ?</b>
+  <b>(*02) Tamam</b>
+  <b>(*03) Tamam</b>
+</pre>
+<hr>
+<pre>
+  <b>Telif hakkı &copy; 2007 Ulrich Hansen, Mainz (Almanya), 2010 ve 2020
+  senelerinde W.Spiegl tarafından değiştirilmiştir.</b>
+  <b>2023 senesinde Berki Yenigün tarafından tercüme edilmiştir.</b>
+  Daha fazla bilgi için <a href="../network/intro.htm#ddd">buraya bakın</a>.
+
+  Bu belgeyi kopyalama, dağıtma ve/veya değiştirme izni, GNU Özgür
+  Belgeleme Lisansı'nın 1.2 veya Free Software Foundation tarafından
+  yayınlanan daha yeni bir sürümü kapsamında verilmiştir.
+  Lisansın bir sureti, <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>
+  başlıklı bölümde mevcuttur.
+
+</pre></body></html>

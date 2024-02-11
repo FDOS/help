@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: gnu sed</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: gnu sed</h1>
+<pre>
+  SED is a stream editor. A stream editor is used to perform basic text
+  transformations on an input stream (a file or input from a pipeline).
+  While in some ways similar to an editor which permits scripted edits
+  (such as ED), SED works by making only one pass over the input(s), and
+  is consequently more efficient. But it is SED's ability to filter text
+  in a pipeline which particularly distinguishes it from other types of
+  editors.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  sed [OPTION]... {script-only-if-no-other-script} [input-file]...</pre>
+<h2>Options:</h2>
+<pre>
+  -n, --quiet, --silent
+                 suppress automatic printing of pattern space
+  -e script, --expression=script
+                 add the script to the commands to be executed
+  -f script-file --file=script-file
+                 add the contents of script-file to the commands to be
+                 executed
+  --follow-symlinks
+                 follow symlinks when processing in place
+  -i [SUFFIX], --in-place[=SUFFIX]
+                 edit files in place (makes backup if SUFFIX supplied)
+  -b, --binary
+                 open files in binary mode (CR+LFs are not processed
+                 specially)
+  -l N, --line-length=N
+                 specify the desired line-wrap length for the `l' command
+  --posix
+                 disable all GNU extensions.
+  -r, --regexp-extended
+                 use extended regular expressions in the script.
+  -s, --separate
+                 consider files as separate rather than as a single
+                 continuous long stream
+  -u, --unbuffered
+                 load minimal amounts of data from the input files and
+                 flush the output buffers more often
+  -z, --null-data
+                 separate lines by NUL characters
+      --help     display this help and exit
+      --version  output version information and exit
+  If no -e, --expression, -f, or --file option is given, then the first
+  non-option argument is taken as the sed script to interpret. All
+  remaining arguments are names of input files; if no input files are
+  specified, then the standard input is read
+</pre>
+<h2>Comments:</h2>
+<pre>
+  GNUSED has an extensive documentation that is beyond the scope of
+  this help. For more information see:
+  <b>https://gitlab.com/FreeDOS/unix/gnused</b> OR:
+  <b>https://www.gnu.org/software/sed/</b> OR:
+  <b>https://www.gnu.org/software/sed/manual/</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Delete the 6th line in a file:
+    sed '6d' input.txt > output.txt
+  Replace every occurence of 'hello' with 'world' on line 5-15
+    sed '5,15s/hello/world/' input.txt > output.txt
+  Gives 'Hallo Welt' to sed and replaces a by e and Welt by world:
+    echo Hallo Welt | sed -e "s/a/e/" -e "s/Welt/world/"
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/echo.htm">echo</a>
+  <a href="../util/gnugrep.htm">grep</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998-2015 Jim Meyering, Assaf Gordon, help version
+  2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

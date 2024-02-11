@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: lzma</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: lzma</h1>
+<pre>
+  LZMA (Lempel-Ziv-Markov chain-Algorithm) is an improved version of
+  famous LZ77 compression algorithm. It was improved in way of maximum
+  increasing of compression ratio, keeping high decompression speed and
+  low memory requirements for decompressing.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  lzma.exe [flags and input files in any order]
+</pre>
+<h2>Options:</h2>
+<pre>
+  -c --stdout             Output to standard output.
+  -d --decompress         Force decompression.
+  -z --compress           Force compression.
+  -k --keep               Keep (don't delete) input files.
+  -f --force              Force overwrite of output file and compress
+                          links.
+  -t --test               Fest compressed file integrity.
+  -S .suf --suffix .suf   Use suffix .suf on compressed files.
+  -q --quiet              Suppress error messages.
+  -v --verbose            Be verbose.
+  -h --help               Print this message.
+  -L --license            Display the license information.
+  -V --version            Display the version numbers of LZMA SDK and
+                          lzma.
+  -1 .. -2                Fast compression.
+  -3 .. -9                Good to excellent compression. -7 is the default.
+     --fast               Alias for -1.
+     --best               Alias for -9 (usually *not* what you want).
+  Memory usage depends a lot on the chosen compression mode -1 .. -9.
+  See the man page lzma(1) for details.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  LZMA, like most Zippers, has an extensive documentation that is beyond
+  the scope of this help. For more information see:
+  <b>https://gitlab.com/FreeDOS/archiver/lzma</b> OR: <b>http://tukaani.org/lzma/</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - none -
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/7zdec.htm">7zdec</a>
+  <a href="../util/arj.htm">arj</a>
+  <a href="../util/bzip2.htm">bzip2</a>
+  <a href="../util/cabext.htm">cabext</a>
+  <a href="../util/gzip.htm">gzip</a>
+  <a href="../util/lpq1.htm">lpq1</a>
+  <a href="../util/lzip.htm">lzip</a>
+  <a href="../util/lzop.htm">lzop</a>
+  <a href="../util/p7zip.htm">p7zip</a>
+  <a href="../util/slicer.htm">slicer</a>
+  <a href="../util/tar.htm">tar</a>
+  <a href="../util/unzip.htm">unzip</a>
+  <a href="../util/zip.htm">zip</a>
+  <a href="../util/zoo.htm">zoo</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2005 - 2008 Ville Koskinen, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

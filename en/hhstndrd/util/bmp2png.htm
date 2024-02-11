@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: bmp2png / png2bmp</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: bmp2png / png2bmp</h1>
+<pre>
+  BMP2PNG is a BMP-to-PNG converter - version 1.62 (Sep 4, 2005)
+
+  PNG2BMP is a PNG-to-BMP converter - version 1.62 (Sep 4, 2005)
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  BMP2PNG.exe [-switches] inputfile(s) ...
+    or: ... | bmp2png.exe [-switches] | ...
+  List of input files may use wildcards (* and ?)
+  Output filename is same as input filename, but extension .png.
+
+  PNG2BMP.exe [-switches] inputfile(s) ...
+    or: ... | png2bmp.exe [-switches] | ...
+  List of input files may use wildcards (* and ?)
+  Output filename is same as input filename, but extension .bmp.
+</pre>
+<h2>Options:</h2>
+<pre>
+  BMP2PNG switches (case insensitive):
+    -0..-9   Compression level (default: -6)
+    -I       Create interlaced PNG files
+    -P color  Mark the specified color as transparent. Color:
+              #RRGGBB(html hex) / RR,GG,BB(decimal) / NN(palette index)
+    -F type[,...]  Specify filter type(s) used to create PNG files
+                   type: none,sub,up,average(avg),paeth,all,auto(default)
+    -A, -B   Preserve alpha channel
+    -O name  Specify name for output file
+    -D dir   Output files into dir
+    -E       Delete input files after successful conversion
+    -T       Set the timestamp of input file on output file
+    -Q       Quiet mode
+    -L       Log errors to .\B2PERROR.LOG file
+    -X       Disable conversion through standard input/output
+
+  PNG2BMP switches (case-insensitive):
+    -A       Preserve alpha channel (save in 32bit ARGB BMP format)
+    -B       Preserve alpha channel (save in 32bit Bitfield BMP format)
+    -R       Convert transparent color to alpha channel (use with -A
+             or -B)
+    -O name  Specify name for output file
+    -D dir   Output files into dir
+    -E       Delete input files after successful conversion
+    -T       Set the timestamp of input file on output file
+    -Q       Quiet mode
+    -L       Log errors to .\P2BERROR.LOG file
+    -X       Disable conversion through standard input/output
+</pre>
+<h2>Comments:</h2>
+<pre>
+  - none -
+</pre>
+<h2>Examples:</h2>
+<pre>
+  BMP2PNG -9 -T picture01.bmp
+
+  PNG2BMP -E -T picture02.png
+</pre>
+<h2>See also:</h2>
+<pre>
+  - nowhere -
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1999-2005 MIYASAKA Masaru, help version 2023 W. Spiegl</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

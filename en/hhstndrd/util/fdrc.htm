@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: fdrc</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: fdrc</h1>
+<pre>
+  FreeDOS Resident Calculator (FDRC) is a resident calculator for
+  programmers.
+  FDRC lacks following features:
+  * Built-in help.
+  * Fraction numbers support. (Perhaps fixed point 32:32 or (better)
+    48:16 will be implemented in future versions.)
+  * Functions like sin, cos, ln, etc.
+  * Support for graphics and monochrome video modes.
+  * Mouse support.
+  FDRC has following features:
+  * FDRC works with 32-bit integer numbers.
+  * Expressions in reverse polish notation, eg:
+    2 + 3 == 2 3 +
+    2 - 9 + 8 * 5 == 2 9 - 8 5 * +
+    (9 / (1 + 8)) * 5 == 9 1 8 + / 5 *
+  * FDRC supports following operations:
+    + -- addition              &amp; -- bitwise AND
+    - -- subtraction           | -- bitwise OR
+    * -- multiplication        ^ -- bitwise XOR
+    / -- division              &lt; -- logical shift left
+    &percnt; -- remainder             &gt; -- logical shift right
+    \ -- square root           { -- arithmetical shift left
+    &tilde; -- bitwise NOT           } -- arithmetical shift right
+    ` -- negation
+    Operations \, &tilde; and ` -- unary: not(sqrt(123)+(-12)) == 123 \ 12 ` + &tilde;.
+  * FDRC show result simultaneously in decimal, hexadecimal, binary
+    and string format.
+  * FDRC support numerous color video modes, including 40x12, 80x25,
+    90x60, 132x25, 132x43.
+  * FDRC work in resident and non-resident modes.
+  * Color highlighting for different parts of result.
+  * History.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  fdrc [options]
+</pre>
+<h2>Options:</h2>
+<pre>
+  Command line parameters:
+  FDRC supports the following command line parameters (you can use '/'
+  instead of '-'):
+  -h         Short help.
+  -?         Same as -h.
+  -H         Help on keyboard and operators usage.
+  -a         Calculate result after pressing any key, not only after
+             pressing 'Enter'. Note: current string will be stored in
+             history only after pressing 'Enter', even in this mode.
+  -c         Clear input line when pressing any alpha-numeric key
+             _immediately_ after popup. Pressing 'Delete', 'Backspace'
+             or any such keys doesn't clear the input line.
+  -e         Allow loading 2nd, 3rd,... copy of FDRC into memory.
+  -n         non-resident mode.
+  -w         Prevent loading FDRC into UMB. By default FDRC loads itself
+             into UMB if it is available.
+  -u         Unload. If INT 09h and/or INT 10h intercepted by other
+             program, FDRC will print warning message and exit.
+  -D         Temporarily disables FDRC.
+  -E         Enables FDRC.
+  -q         Quiet mode. If you try to call FDRC within graphics-mode
+             program, FDRC will beep twice. If you reached 1st or last
+             entry in history, FDRC will beep once. -q switch disables
+             all such sounds.
+  -l:number  Column of left side of FDRC's window.
+  -t:number  Row of top side of FDRC's window.
+             number -- decimal number &gt;= 0.
+  -k:number  Scancode of activation key (hexadecimal). See 'rbil_i09.txt'
+             for details. Default value -- 35h ('/').
+  -s:number  Code of shift keys (hexadecimal).
+               Right Shift:  01
+               Left Shift:   02
+               Ctrl (any):   04
+               Alt (any):    08
+               Scroll Lock:  10
+               Num Lock:     20
+               Caps Lock:    40
+               Insert:       80
+               Default value -- 04 (Ctrl). For example: RightShift+Alt ==
+               == 1 + 8 == 9.
+  -y:number  Size of the history buffer (decimal). Default value -- 0.
+             Minimal value is 200, maximal is 16000 (can be changed in
+             'config.inc').
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Using FDRC:
+  Type `fdrc' to run calculator. It will terminate and stay resident.
+  Use Ctrl-/ to popup. You can change hot-key: see chapter Options -
+  Command line parameters for details. Type `fdrc -n' to run calculator
+  in non-resident mode.
+
+  When FDRC is active, you can use some keys: see chapter Comments -
+  Controls for details.
+  Use input line to enter expressions. In expressions you can use hexa-
+  decimal numbers (string of hex digits, w/o any prefixes or suffixes),
+  decimal numbers (w/ suffix `.'), binary numbers (w/ suffix `@'), and
+  strings (in double quotes, as in C).
+
+  In the last line of FDRC's window you can see messages about errors:
+  * Parse error -- displayed when parser encountered illegal character,
+    such as `.' in the string `123ab87.' or `j' in `12j6'. Illegal
+    character highlighted.
+  * Stack not empty -- some numbers still on the stack after calculating
+    result. I.e. there are too few operators.
+  * Stack underflow -- there are too many operators in expression. Ope-
+    rator, which attempted to pop numbers from the stack, highlighted.
+  Last line also contains history indicator: number of current string
+  and arrow. Arrow looks like diamond if there are no strings in the
+  history.
+  Up-arrow indicates that you can press Up key to get previous string,
+  down-arrow -- you can press Down key to get next string, double-edged
+  arrow -- you can press both Up and Down keys.
+  After selecting required string by Up/Down keys you can edit it.
+  Note that string in history buffer remains unchanged. You edit the
+  copy of this string.
+
+  You can use up to 10 registers for temporary results storage.
+  Operator :x saves result in the register x, where x is digit in the
+  range 0..9. Expression $x substitutes the value of the register x
+  into whole expression. For example:
+  123. 3 - :0  -- calculates 123 - 3 and saves result in the reg.0;
+  29 :8 :9 12. * :1  -- calculates 29h * 12, 29h is saved in the regs 8
+  and 9, the result saved in the reg.1; 7 $5 ^  -- calculates
+  7 XOR reg.5.
+
+  It is possible to calculate several expressions in the one line.
+  In this case expressions are separated by semicolons. Result of the
+  whole expression will be equal to the result of the last subex-
+  pression.
+  Results of intermediate expressions can be stored in the registers
+  and used later. For example:
+  123. 3 - :0; 8; 89 9 - $0 * :4; af 67; 7 $0 ^ $4 |  --
+  1) FDRC calculates 123 - 3h, result -&gt; reg.0;
+  2) calculates the value of the number 8;
+  3) calculates (89h - 9h) * reg.0, result -&gt; reg.4;
+  4) _tries_ to calculate the value of the expression af 67, but this
+  calculation fails due to missing operator, semicolon flushes stack
+  of the evaluator, so this expression will be ignored;
+  5) calculates (7 XOR reg.0) OR reg.4.
+
+  CONTROLS:
+  You can use the following keys:
+  Numerals and letters      -- enter numbers.
+  " -- if you enter one double quote symbol, the second such symbol
+    will be entered automatically.
+  &lt;-- and --&gt;               -- move cursor. (right and left arrow key)
+  Up and Down arrow keys    -- previous / next string from history.
+  Page Up and Page down     -- first and last strings in the history.
+  Home and End              -- move cursor.
+  Enter     -- calculate result and store it into history buffer.
+  Insert    -- toggle insert/overstrike mode.
+  Backspace -- delete char before cursor.
+  Delete    -- delete char under cursor.
+  Ctrl-Y    -- clear string.
+  Ctrl-K    -- clear text to the end of string.
+  You can move FDRC's window using WordStar-like keys (by default):
+    Ctrl-S -- left
+    Ctrl-D -- right
+    Ctrl-E -- up
+    Ctrl-X -- down
+  or Vi-like keys (if you defined VI_KEYS constant in config.inc):
+    Alt-H  -- left
+    Alt-L  -- right
+    Alt-K  -- up
+    Alt-J  -- down
+  Alt-S    -- switch between signed and unsigned decimal representation
+              of result.
+  Alt-D    -- stuff decimal representation of result to keyboard buffer
+              and exit.
+  Alt-H    -- stuff hexadecimal representation of result to keyboard
+              buffer and exit.
+  Alt-1 .. Alt-4 -- stuff corresponding part of binary representation
+                    of result to keyboard buffer and exit.
+  Esc      -- exit.
+  For more information see:
+    <b>https://sourceforge.net/projects/fdrc/files/fdrc/0.2.1/</b> OR:
+    <b>https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/util/
+    user/fdrc/</b>
+  FDRC is not part of the actual FreeDOS distribution.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  a) execute fdrc
+  b) type CTRL-C to open UI
+  c) type CTRL-S or CTRL-D or CTRL-E or CTRL-X to move it to the
+     position that you want
+  d) calculate 237 + 534 (decimal numbers):
+     ENTER:
+     237. 534. + (ENTER)  You get the result 771d above (d=decimal)
+  e) calculate 237 * 534 (decimal numbers):
+     ENTER:
+     237. 534. * (ENTER) You get the result 126558d above (d=decimal)
+  f) calculate 237 - 534 (decimal numbers)
+     ENTER:
+     237. 534. - (ENTER) You get the result -297d above (d=decimal)
+  g) calculate 237 : 534 (decimal numbers):
+     ENTER:
+     237. 534. / (ENTER) You get the result 0d above (d=decimal) -
+     not: 0.4438202 because it works with 32 bit integer.
+  h) calculate square root of 25 or 35 or 36 (decimal numbers)
+     25. \  OR: 35. \ give result 5.
+     36. \ gives result 6.
+     That's correct because 32-bit integers don't support fractional
+     digits
+  This is only a basic explanation! For more complex calculation options
+  see above: Comments - Using FDRC. 
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/foxcalc.htm">foxcalc</a>
+  <a href="../util/rcal.htm">rcal</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2006-2007 Oleg O. Chukaev, help version 2023 W. Spiegl.</b>
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

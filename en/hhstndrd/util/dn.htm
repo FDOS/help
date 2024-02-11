@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: dn</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: dn</h1>
+<pre>
+  DN (DOS Navigator 2) is an Orthodox file manager. There are still
+  many such file managers available today for Windows, Linux and Mac.
+  The best known of these is Norton Commander.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DN (DOS Navigator 2) uses dn.ini for startup parameters.
+</pre>
+<h2>Options:</h2>
+<pre>
+  - none -
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Orthodox file managers are file managers that follow a two-panel
+  paradigm, and are heavily influenced by Norton Commander.
+  They are simple to use by mouse or keyboard to copy / move one or more
+  files or folders from an active to a passive side, to execute files,
+  to view or edit them, to sort or filter them, to search a special file
+  within the whole HD or a special folder, to zip or unzip files / folders
+  etc. etc.
+  Means: You can execute a lot of things without the need to type a lot
+  of commands.
+  For more informations about Orthodox file managers and how to use
+  them see Wikipedia:
+  <b>https://en.wikipedia.org/wiki/File_manager#Orthodox_file_managers</b>
+    For more informations about DN (DOSnavigator) see:
+  <b>https://gitlab.com/FreeDOS/apps/dn2/-/blob/master/APPS/DN2/DOC/</b>
+  <b>ENGLISH/DNINI.TXT?ref_type=heads</b>
+</pre>
+<h2>Example:</h2>
+<pre>
+  In this example the left side is the target (e.g. "C:\APPS\BLOCEK")
+  and the right side is the source (e.g. CD-ROM drive
+  "D:\PROGRAMS\BLOCEK"). You want to copy the content of the source
+  (CD-ROM drive) to "C:\APPS\BLOCEK" and read info.txt and then execute
+  BLOCEK from there.
+  Start the file manager. There are two sides. Choose the drive letter
+  "C:" on the left side and "D:" on the right side (can usually be done
+  anywhere on top of the left / right side, position varies). Then go to
+  your target side, ("C"), navigate to your destination folder (a ".."
+  means: go back to root step by step (e.g. from C:\FREEDOS\BIN to
+  C:\FREEDOS and one more ".." to C:\). In case that C:\APPS does not
+  exist create it with the correct Fx key (usual: F7) or go into the
+  folder by double clicking (or: ENTER) on the folder name APPS (folders
+  are shown in UPPERCASE LETTERS, files in lowercase letters OR in
+  different colours). Create the folder BLOCEK with key Fx (usual: F7)
+  and go inside with a doubleclick or ENTER.
+  When you are at the correct target position the left headline should
+  show the correct path (e.g. "C:\APPS\BLOCEK" and a ".." below).
+
+  As a next goto the right side, navigate through till you are at "D:\"
+  (see above), navigate to "D:\PROGRAMS\BLOCEK".
+  Then select the file(s) or folder(s) you want to copy (should be folders
+  FONTY, JAZNAS, KEY_TBL, PLUGINY etc. and single files like info.bat,
+  blocek.exe etc. with the right mouse button or INSERT key (or another
+  one, depends on Commander). If you do so again, it should unselect them.
+  Click on Fx button (usual: F5) Copy and it copies the files to the left
+  side.
+  After you have copied the files to C:\APPS\BLOCEK you can read info.txt
+  by a click on it and pressing F3 (View) or F4 (Edit).
+  To execute the program blocek doubleclick on blocek.exe.
+
+  Long story short: Depending on what you want to do, it either runs on
+  the selected side or does the job from the selected side to the other.
+  You can work from left to right or from right to left as you like it.
+  Below the two windows there is also a line for entering a DOS command.
+  Depending on the used Commander there are also a lot of other features.
+  Just try them out.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/dosshell.htm">DOSshell</a>
+  <a href="../util/dz.htm">dz (DOSzip)</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1997-2022 Doszip Developers, help version 2023
+  W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

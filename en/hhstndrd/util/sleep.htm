@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: sleep</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: sleep</h1>
+<pre>
+  SLEEP is a DOS port of the UNIX program by the same name.
+  SLEEP is primarily intended to suspend execution of batch
+  files for a specified time. SLEEP honours the DOS switchar
+  setting and gives up time-slices to operating systems that
+  support it.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+   leep [--help] [--version] seconds
+</pre>
+<h2>Options:</h2>
+<pre>
+  --help
+  /? *        displays help and exits successfully. When this option is
+              used, sleep does not suspend execution. This option cannot
+              be used with other options.  * Note: sleep checks for the
+              switchar defined in DOS. If you have set a different
+              <a href="../cnfigsys/switchar.htm">SWITCHAR</a> in DOS, sleep will honour your preferred setting.
+  --version
+  /v *        displays version and exits successfully. When this option
+              is used, sleep does not suspend execution. This option
+              cannot be used with other options.  * Note: sleep checks
+              for the switchar defined in DOS. If you have set a
+              different switchar in DOS, sleep will honour your preferred
+              setting.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  The sleep command continues running until the specified number of
+  seconds has elapsed.  sleep can delay execution of a program or
+  produce periodic execution in conjunction with shell commands.
+  The seconds argument can be either a number of seconds or a more
+  general time description of the form nhnmns, with nh, nm, and s being
+  optional. The maximum sleep duration is 2,147,483,647 seconds, which
+  works out to 596,523 hours, 14 minutes and 7 seconds. That, I think,
+  should be just about long enough for anybody. ;-)
+  Possible exit status values (<a href="../batch/errorlvl.htm">ERRORLEVELS / EXITCODES</a>) are:
+    0  Successful completion.
+    2  Failure because seconds value was not specified or is invalid.
+
+  Every now and then there is a "Runtime error 215 at 0000:096A".
+  Especially with different virtual machines. The programmer is informed.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  sleep 1h15m30s  sleeps for 1 hour, 5 minutes, 30 seconds - not tested
+  sleep 24        sleeps for 24 seconds - works!
+  sleep 5m        sleeps for 5 minutes - does not work
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+  <a href="../util/runtime.htm">runtime</a>
+  <a href="../cnfigsys/switchar.htm">switchar</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2000 Trane Francks, help version 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

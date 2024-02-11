@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: aefdisk</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: aefdisk</h1>
+<pre>
+  AEFDISK is a DOS based, command line driven disk partitioning
+  utility. The max. supported HD size is 127GB
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  aefdisk [harddisk number] [switches] &lt;command1&gt; [command2] ...
+</pre>
+<h2>Options:</h2>
+<pre>
+  Valid commands are:
+  /pri:&lt;size&gt;:&lt;type&gt;[:n] - create primary partition
+  /ext:&lt;size&gt;[:5][:n]    - create extended partition
+  /log:&lt;size&gt;[:type]     - create logical drive
+  /delete:&lt;n&gt;            - delete an entry
+  /deltype:&lt;type&gt;[:n]    - delete partition(s) of specified type
+  /delactive             - delete active partition
+  /delall                - delete all partitions on a disk
+  /notdel:&lt;type&gt;[,types] - delete all except specified type(s)
+  /activate:&lt;n&gt;          - activate a partition
+  /deactivate            - delete active flag
+  /changetype:&lt;type&gt;:&lt;n&gt; - change type of partition
+  /hidefat[:n]           - hide FAT partition(s)
+  /hident[:n]            - hide NTFS/HPFS partition(s)
+  /unhidefat[:n]         - unhide FAT partition(s)
+  /unhident[:n]          - unhide NTFS/HPFS partition(s)
+  /formatfat[:n][:label] - format FAT partitions, can be a switch
+  /allsize               - put the HD size in ALLSIZE environment var.
+  /freesize              - puts size of unpartitioned space in FREESIZE
+  /psize                 - puts n-th partition's size in PSIZEnn
+  /ptype                 - puts n-th partition's type in PTYPEnn
+  /putactive             - puts active partition nr. in ACTIVE variable
+  /numhds                - puts number of available HDs in NUMHDS
+  /mbr                   - install the standard DOS MBR loader
+  /sort                  - sorts the partition table in physical order
+  /save:&lt;filename&gt;       - save the MBR to a file
+  /restore:&lt;filename&gt;    - restore the MBR from a file
+  /cvtarea:&lt;n&gt;           - create a contiguous file for NTFS conversion
+  /label:&lt;n&gt;:&lt;label&gt;     - create/change label on formatted FAT partition
+  /show                  - show partition table
+  /dump                  - hexadecimal dump of partition table
+  /info                  - show logical characteristics
+  /?                     - this help message
+
+  Valid switches are:
+  /rel                   - use percentages at size definition
+  /y                     - assume Yes on all queries
+  /wipe                  - wipe partitions to be deleted
+  /reboot                - reboot when ready
+  /dynamic               - leave space for Win2000/XP/2003 dynamic volume
+  /noebios               - disables EBIOS access
+  /nolimit               - disables FAT limit check
+</pre>
+<h2>Comments:</h2>
+<pre>
+  - Options between &lt;&gt; are compulsory, between [] are not
+  - n is a valid partition number. From 1 to 4 it means a primary
+    partition. From 5 it means a logical drive.
+  - Harddisk number is a number starting from 1. The default is 1.
+    If you specify '*' here, then all commands will be executed on
+    all installed harddisks.
+  - The /rel and /formatfat switches are effective for the commands
+    that follow them.
+  - The type is hexadecimal. Don't append a 'h' at the end.
+
+  If there was an error then the return value is 1, else 0.
+  On error, the modified partition table will not be written.
+  For more information see:
+  <b>C:\FREEDOS\DOC\aefdisk.txt</b> OR:
+  <b>https://gitlab.com/FreeDOS/util/aefdisk/-/blob/master/DOC/AEFDISK/</b>
+  <b>AEFDISK.TXT?ref_type=heads</b> OR:
+  <b>https://github.com/nagydjol/aefdisk/blob/master/aefdisk.txt</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - aefdisk 2 /delall /pri:200:6 /pri:300:7:4 /activate:1
+    Delete all partitions on the second harddisk and then create
+    two primary partitions. The first is a 200 MB BIGDOS partition,
+    and it is be created in the first available entry. The second
+    is a 300MB HPFS partition, and it is created in the fourth entry.
+    The first primary partition will be active.
+  - aefdisk /pri:3000:7 /ext:10000 /log:10000
+    Create a 3GB primary HPFS and a 10GB extended partition with
+    one 10GB logical drive.
+  - aefdisk /dynamic /pri:0:c
+    Find the largest available space and create a FAT32 partition
+    there. Leave 10MB unpartitioned space at the end of the
+    harddisk for Win2000/XP/2003 dynamic volume conversion.
+  - aefdisk /rel /pri:30:6 /ext:70 /log:40 /log:60
+    Calculate the available unpartitioned space first. Then create
+    a primary BIGDOS partition, which occupies 30&percnt; of the free space.
+    The remaining 70&percnt; space is assigned to an extended partition.
+    In the extended partition, there are two logical drives. The first
+    occupies 40&percnt; of the extended partition, the second occupies 60&percnt;.
+  - aefdisk /formatfat /pri:2000:83 /ext:0 /rel /log:100
+    Create a 2GB Linux partition, and then create an extended
+    partition with one logical drive in the remaining free space,
+    which is calculated automatically. The logical drive will be
+    formatted.
+  - aefdisk 3 /notdel:1,6,83 /mbr /hidefat
+    Deletes all partitions except the specified ones (FAT12, BIGDOS
+    and Linux), install the loader code in the MBR, then hide all
+    primary FAT partitions on the third harddisk.
+  - aefdisk * /hident
+    Hides all primary NTFS/HPFS partitions on all available harddisks.
+  - aefdisk /changetype:6:1 /reboot
+    Change the type ID of the 1st partition to BIGDOS then reboot.
+    This is useful if - let's say - the first partition is a Compaq
+    diagnostic partition and we're corious about its contents.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+  <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../util/ranishpm.htm">ranishpm</a>
+  <a href="../base/sys.htm">sys</a>
+  <a href="../base/undelete.htm">undelete</a>
+  <a href="../base/unformat.htm">unformat</a>
+  <a href="../command/vol.htm">vol</a>
+  <a href="../util/xfdisk.htm">xfdisk</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1997 - 2015 Nagy Daniel, help version 2023
+  W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

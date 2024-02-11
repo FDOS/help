@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>FreeDOS ile Ağa Bağlanmak - mTCP</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<h1><a name="top"></a>FreeDOS ile Ağa Bağlanmak - mTCP</h1>
+<h2><a name="zzz"></a>mTCP:</h2>
+<pre>
+  2009 senesinde bir programcı ve DOS tutkunu <b>Michael B. Brutman</b>
+  (bkz.: <b>http://www.brutman.com/ (*01)</b>), ismi b>"mTCP"</b> olan DOS
+  için yeni bir <a href="../network/ldtcpipk.htm">TCP/IP Çekirdeği</a> yazmıştır (bkz.:
+  <b>http://www.brutman.com/mTCP/ (*02)</b>).
+  Çekirdeğini, 1983 senesinden kalma  bir <b>PCjr</b> üzerinde denemiştir
+  (bkz.: <b>http://en.wikipedia.org/wiki/IBM_PCjr (*03)</b>). İnternet
+  sitesine göre, boyutu küçük ve performansı yüksek modern bir <a href="../network/ldtcpipk.htm">TCP/IP</a>
+  çekirdeği oluşturmak istemektedir.
+  Program şimdiden çok iyi işlemektedir ve sık sık güncellenmektedir.
+</pre>
+<h2><a name="aaa"></a>Lisans:</h2>
+<pre>
+  mTCP Özgür Yazılımdır. 27 mayıs 2011 tarihinde Michael Brutmann onu
+  GPL 3. sürüm kapsamında yayınlamıştır. Kaynak kodu şu adreste mevcuttur:
+  <b>http://www.brutman.com/mTCP/mTCP.html (*04)</b>.
+</pre>
+<h2><a name="bbb"></a>Uygulamalar:</h2>
+<pre>
+  <a href="../network/wattcp.htm">WatTCP</a> gibi, mTCP de uygulama koduna bağlanan bir kütüphanedir, yani
+  uygulamaya yerleşiktir. 2010 yazında aşağıdaki uygulamalar İnternet
+  sitesinden edinilebiliniyorlardı:
+    * dhcp.exe    -- DHCP istemcisi
+    * ftpsrv.exe  -- FTP sunucusu
+    * dnstest.exe -- DNS çözümleyicisi
+    * ftp.exe     -- FTP istemcisi
+    * ircjr.exe   -- IRC istemcisi
+    * nc.exe      -- netcat yardımcı aracı
+    * telnet.exe  -- Telnet
+    * sntp.exe    -- NTP (Network Time Protocol yani Ağ Zaman Protokolü)
+                     istemcisi
+    * ping.exe    -- Ping yardımcı aracı
+</pre>
+<h2><a name="ccc"></a>Yapılandırma:</h2>
+<pre>
+  mTCP paket sürücüleri kullanır. Bir ortam değişkeni tarafından
+  belirtilen bir yapılandırma dosyasına ihtiyaç duyar, mesela:
+    set MTCPCFG=c:\mtcp\tcp.cfg
+  Yapılandırma dosyası şuna benzer:
+    --- TCP.CFG ---
+    PACKETINT 0x60
+    IPADDR 192.168.1.50
+    NETMASK 255.255.255.0
+    GATEWAY 192.168.1.1
+    NAMESERVER 192.168.1.1
+    MTU 1500
+  Eğer ağınızda çalışan bir DHCP sunucunuz varsa, statik adresleri bir
+  köşeye yazmanıza gerek yoktur. Bunun yerine, sadece paket sürücüsünün
+  vektörünü ve makinenin ismini TCP.CFG dosyasında tanımlamanız gerekir:
+    --- TCP.CFG ---
+    PACKETINT 0x60
+    HOSTNAME  PCjr
+  Ardından, DHCP.EXE programını çalıştırın. Program sunucudan aldığı bütün
+  verilerle yapılandırma dosyasını güncelleyecektir.
+</pre>
+<h2><a name="ddd"></a>Performans:</h2>
+<pre>
+  İlk testte mTCP'nin FTP uygulaması denenen diğer tüm programlardan daha
+  hızlıydı. Aslında ikili bir dosyayı <a href="../network/tcpip_ap.htm#ccc">Arachne</a>'den yedi defa ve NCSA
+  <a href="../network/history.htm#bbg">Telnet</a>'ten on kez daha hızlı indirdi!
+  Testte kullanılan bilgisayar 33 Mhz işlemcili ve 20 MB RAM belleği
+  bulunan bir Compaq Contura Aero 486SL idi. İşletim sitemi FreeDOS
+  1.0'dı. İndirilen dosya 4 Megabayt boyutunda bir MP3 dosyasıydı.
+  Sonuçlar:
+    <a href="../network/mtcp.htm">mTCP</a> FTP                      15 s
+    curl                          23 s
+    <a href="../network/wattcp.htm">WatTCP</a> FTP                    51 s
+    <a href="../network/wattcp.htm">Watt-32</a> FTP32                 51 s
+    Datalight Sockets FTP istemcisi   69 s
+    <a href="../network/tcpip_ap.htm#ccc">Arachne</a> 1.93                 104 s
+    NCSA <a href="../network/history.htm#bbg">Telnet</a> FTP              149 s
+    <a href="../network/history.htm#bbh">CUTCP</a> FTP v. 2.2             155 s
+    <a href="../network/tcpip_ap.htm#ddd">EZ-NOS2</a>                      231 s
+  Tabii ki sonuçlar testte kullanılan donanıma göre değişebilir. Mukayese
+  için: daha modern bir dizüstü bilgisayarda (IBM X60T, 3 GB RAM, İS:
+  Ubuntu 8.04) aynı dosya FileZilla ile beş saniyede indirilmiştir.
+</pre>
+<h2><a name="eee"></a>Sonuç:</h2>
+<pre>
+  mTCP iyi bir şekilde çalışmaktadır. Performansı çok umut vericidir.
+  2011 senesinde Özgür Yazılım olarak yayınlanması FreeDOS için ileriye
+  doğru önemli bir adım olmuştur. mTCP'nin geliştirilmesi DOS ve DOS ile
+  ağa bağlanmayla ilgilenen herkes tarafından yakından izlenmelidir.
+
+  <b>(*01) Tamam</b>
+  <b>(*02) Tamam</b>
+  <b>(*03) Tamam</b>
+  <b>(*04) Tamam</b>
+</pre>
+<hr>
+<pre>
+  <b>Telif hakkı &copy; 2007 Ulrich Hansen, Mainz (Almanya), 2010 ve 2020
+  senelerinde W.Spiegl tarafından değiştirilmiştir.</b>
+  <b>2023 senesinde Berki Yenigün tarafından tercüme edilmiştir.</b>
+  Daha fazla bilgi için <a href="../network/intro.htm#ddd">buraya bakın</a>.
+
+  Bu belgeyi kopyalama, dağıtma ve/veya değiştirme izni, GNU Özgür
+  Belgeleme Lisansı'nın 1.2 veya Free Software Foundation tarafından
+  yayınlanan daha yeni bir sürümü kapsamında verilmiştir.
+  Lisansın bir sureti, <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>
+  başlıklı bölümde mevcuttur.
+
+</pre></body></html>
